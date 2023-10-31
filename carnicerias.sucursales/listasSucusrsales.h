@@ -3,15 +3,15 @@
 
 typedef struct
 {
-    char provincia[];
+    char NombreProvincia[30];
     int idProvincia;
 
 }provincia;
 
 typedef struct
 {
-    char localidad[];
-    char direccion[];
+    char localidad[30];
+    char direccion[30];
     int idDeLocal;
 }locales;
 
@@ -20,5 +20,13 @@ typedef struct nodoLocales
     locales dato;
    struct  nodoLocales *siguiente;
 }nodoLocales;
+
+
+
+///prototipado
+
+
+
+
 
 #endif // LISTASSUCUSRSALES_H_INCLUDED
