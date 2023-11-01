@@ -184,7 +184,9 @@ return validos;
  {
      while(lista!=NULL)
      {
+        printf("\nNOMBRE DE PRODUCTO:  %s",lista->dato.nombreDeProductos);
          printf("\nPRECIO POR KILO:%d ",lista->dato.precioPorKilo);
+         printf("\n");
          lista=lista->siguiente;
 
      }
@@ -193,10 +195,8 @@ void muestraUnCatalogo(catalogo A)
 {
      printf("\nNOMBRE DE CATEGORIA: %s",A.nombreDeCategoria);
      printf("\n|%d|",A.idProductos);
-    printf("\nNOMBRE DE PRODUCTO:  %s",A.lista->dato.nombreDeProductos);
-
     muestraLISTA(A.lista);
-
+    printf("\n----------------------------------------------");
 
 
 }
