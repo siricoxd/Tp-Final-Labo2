@@ -4,3 +4,15 @@
 
 1698780954 c:\users\kript\desktop\tp-final-labo2\carnicerias.sucursales\listassucusrsales.h
 
+1698852452 source:c:\users\diegue\desktop\tp-final-labo2\carnicerias.sucursales\listassucursales.c
+	"listasSucusrsales.h"
+	<stdio.h>
+	<stdlib.h>
+
+1698852897 c:\users\diegue\desktop\tp-final-labo2\carnicerias.sucursales\listassucusrsales.h
+
+1698853614 source:c:\users\diegue\desktop\tp-final-labo2\carnicerias.sucursales\main.c
+	<stdio.h>
+	<stdlib.h>
+	"listasSucusrsales.h"
+
