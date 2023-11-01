@@ -11,7 +11,8 @@ int main()
 {
     provincia ar[30];
     int id=0,pos=0;
-    int validos=cargarArchivo(30);
+    int validos=0;
+    validos=cargarArchivo(30);
     printf("listo\n");
     validos=guardarArchivo(ar,validos,30);
     printf("listo\n");
