@@ -1,0 +1,15 @@
+# depslib dependency file v1.0
+1698809007 source:c:\users\54223\desktop\proyecto\tp-final-labo2\carnicerias.productos\main.c
+	<stdio.h>
+	<stdlib.h>
+	"listasProductos.h"
+
+1698809126 c:\users\54223\desktop\proyecto\tp-final-labo2\carnicerias.productos\listasproductos.h
+
+1698809113 source:c:\users\54223\desktop\proyecto\tp-final-labo2\carnicerias.productos\listasproductos.c
+	<stdio.h>
+	<stdlib.h>
+	"listasProductos.h"
+	<string.h>
+	<conio.h>
+
