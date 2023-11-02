@@ -165,7 +165,7 @@ int  cargaCatalogo(catalogo arreglo[],int dim)
         auxProd=cargaDeProductos();
         //system("pause");
         system("cls");
-       validos= altaCatalogo(arreglo,0,auxCata,auxProd);
+       validos= altaCatalogo(arreglo,validos,auxCata,auxProd);
        printf("\nPRESIONE ESC PARA SALIR");
        fflush(stdin);
        opcion=getch();
@@ -179,7 +179,7 @@ return validos;
 
 
  //FUNCIONES DE MUESTRA
-//hay que revisar la funcion de alta porque esta pisando los datos en alguna parte
+//que seria mejor tener un archivo cargado con todo lo datos del principio pasarlo a un arreglo y mostrarlo , o cargar un arreglo y pasarlo a un archivo
  void muestraLISTA(nodoProductos *lista)
  {
      while(lista!=NULL)
@@ -209,3 +209,6 @@ void muestraDeCatalogo(catalogo A[],int validos)
         i++;
     }
 }
+
+//FUNCIONES DE CARGA DE ARCHIVO
+

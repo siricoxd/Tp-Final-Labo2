@@ -13,17 +13,3 @@
 	<string.h>
 	<conio.h>
 
-1698860326 source:c:\users\kript\desktop\tp-final-labo2\carnicerias.productos\listasproductos.c
-	<stdio.h>
-	<stdlib.h>
-	"listasProductos.h"
-	<string.h>
-	<conio.h>
-
-1698860326 c:\users\kript\desktop\tp-final-labo2\carnicerias.productos\listasproductos.h
-
-1698860326 source:c:\users\kript\desktop\tp-final-labo2\carnicerias.productos\main.c
-	<stdio.h>
-	<stdlib.h>
-	"listasProductos.h"
-
