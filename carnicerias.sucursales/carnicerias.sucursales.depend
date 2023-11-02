@@ -1,10 +1,11 @@
 # depslib dependency file v1.0
-1698860326 source:c:\users\kript\desktop\tp-final-labo2\carnicerias.sucursales\listassucursales.c
-	"listasSucusrsales.h"
+1698890095 source:c:\users\kript\desktop\tp-final-labo2\carnicerias.sucursales\listassucursales.c
 	<stdio.h>
 	<stdlib.h>
+	<string.h>
+	"listasSucusrsales.h"
 
-1698860326 c:\users\kript\desktop\tp-final-labo2\carnicerias.sucursales\listassucusrsales.h
+1698890023 c:\users\kript\desktop\tp-final-labo2\carnicerias.sucursales\listassucusrsales.h
 
 1698852452 source:c:\users\diegue\desktop\tp-final-labo2\carnicerias.sucursales\listassucursales.c
 	"listasSucusrsales.h"
@@ -18,19 +19,7 @@
 	<stdlib.h>
 	"listasSucusrsales.h"
 
-1698861584 source:c:\users\kript\desktop\tp-final-labo2\carnicerias.sucursales\main.c
-	<stdio.h>
-	<stdlib.h>
-	"listasSucusrsales.h"
-
-1698887143 source:c:\users\54223\desktop\proyecto\tp-final-labo2\carnicerias.sucursales\listassucursales.c
-	<stdio.h>
-	<stdlib.h>
-	"listasSucusrsales.h"
-
-1698887143 c:\users\54223\desktop\proyecto\tp-final-labo2\carnicerias.sucursales\listassucusrsales.h
-
-1698887143 source:c:\users\54223\desktop\proyecto\tp-final-labo2\carnicerias.sucursales\main.c
+1698890395 source:c:\users\kript\desktop\tp-final-labo2\carnicerias.sucursales\main.c
 	<stdio.h>
 	<stdlib.h>
 	"listasSucusrsales.h"

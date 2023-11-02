@@ -5,8 +5,7 @@
 const char archivoProvincia[]= {"archivoProvincia.dat"};
 int cargarArchivo(int dim);
 void recorrerYMostrar(provincia ar[],int validos,int pos);
-
-int guardarArchivo(provincia ar[],int validos,int dim);
+int descargarArchivo(provincia ar[],int validos,int dim);
 int main()
 {
     provincia ar[30];
@@ -14,7 +13,7 @@ int main()
     int validos=0;
     validos=cargarArchivo(30);
     printf("listo\n");
-    validos=guardarArchivo(ar,validos,30);
+    validos=descargarArchivo(ar,validos,30);
     printf("listo\n");
 
 
@@ -32,9 +31,10 @@ int main()
 
     return 0;
 }
+
 int cargarArchivo(int dim)
 {
-    provincia aux;
+    registroArchivoLocales aux;
     int i=0;
     char salir='s';
     FILE* buffer= fopen(archivoProvincia,"ab");
@@ -42,8 +42,8 @@ int cargarArchivo(int dim)
     {
         while(salir=='s' && i<dim)
         {
-            aux=cargarProvincia();
-            fwrite(&aux,sizeof(provincia),1,buffer);
+            aux=cargarRegistroLocales();
+            fwrite(&aux,sizeof(registroArchivoLocales),1,buffer);
             printf("\nDesea seguir?: ");
             salir=getch(salir);
             printf("\n");
@@ -54,15 +54,15 @@ int cargarArchivo(int dim)
     }
     return i;
 }
-int guardarArchivo(provincia ar[],int validos,int dim)
+int descargarArchivo(provincia ar[],int validos,int dim)
 {
-    provincia aux;
+    registroArchivoLocales aux;
     FILE* buffer= fopen(archivoProvincia,"rb");
     if(buffer)
     {
-        while(fread(&aux,sizeof(provincia),1,buffer)&&(validos<dim))
+        while(fread(&aux,sizeof(registroArchivoLocales),1,buffer)&&(validos<dim))
         {
-            validos=alta(ar,aux.idProvincia,validos);
+            validos=alta(ar,aux,validos);
         }
         fclose(buffer);
     }

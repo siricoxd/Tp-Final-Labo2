@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "listasSucusrsales.h"
 
 
@@ -166,7 +167,7 @@ provincia cargarProvincia()
 }
 int cargarArreglosProvincia(provincia ar[],int dim,int validos)
 {
-    while(validos<dim)
+    if(validos<dim)
     {
         ar[validos]=cargarProvincia();
         validos++;
@@ -240,11 +241,13 @@ int buscarPosProvincia(provincia ar[],int id,int validos)
     }
     return rta;
 }
-int alta(provincia ar[],int id,int validos)
+int alta(provincia ar[],registroArchivoLocales dato,int validos)
 {
     nodoLocales* aux;
-    aux=crearNodoLocales(cargarLocales());
-    int pos=buscarPosProvincia(ar,id,validos);
+    locales auxlocal=pasarRegistrosToLocal(dato);
+    aux=crearNodoLocales(auxlocal);
+
+    int pos=buscarPosProvincia(ar,dato.idProvincia,validos);
     if (pos==-1)
     {
         validos=cargarArreglosProvincia(ar,30,validos);
@@ -253,4 +256,34 @@ int alta(provincia ar[],int id,int validos)
     ar[pos].listaDelocales=agregarAlPpioLocales(ar[pos].listaDelocales,aux);
 
     return validos;
+}
+locales pasarRegistrosToLocal(registroArchivoLocales dato)
+{
+    locales auxlocal;
+    auxlocal.activo=dato.idLocal;
+    strcpy(auxlocal.direccion,dato.direccion);
+    strcpy(auxlocal.localidad,dato.localidad);
+    auxlocal.idDeLocal=dato.idLocal;
+    return auxlocal;
+
+}
+registroArchivoLocales cargarRegistroLocales()
+{
+    registroArchivoLocales aux;
+    printf("Ingrese la provincia: ");
+    fflush(stdin);
+    gets(aux.provincia);
+    printf("Ingrese el id de la provincia: ");
+    scanf("%d",&aux.idProvincia);
+    aux.activoProv=1;
+    printf("Ingrese la ciudad: ");
+    fflush(stdin);
+    gets(aux.localidad);
+    printf("Ingrese la direccion del local: ");
+    fflush(stdin);
+    gets(aux.direccion);
+    printf("Ingrese el id de la empresa: ");
+    scanf("%d",&aux.idLocal);
+    aux.activoLocal=1;
+    return aux;
 }

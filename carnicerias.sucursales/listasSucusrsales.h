@@ -25,6 +25,17 @@ typedef struct
 
 } provincia;
 
+typedef struct
+{
+    char provincia[30];
+    int idProvincia;
+    int activoProv;
+    char localidad[30];
+    char direccion[30];
+    int idLocal;
+    int activoLocal;
+
+}registroArchivoLocales;
 
 
 ///prototipado
@@ -51,7 +62,8 @@ nodoLocales* EliminarLocal(nodoLocales*lista,int objetivo);
 //cargar
 provincia cargarProvincia();
 int cargarArreglosProvincia(provincia ar[],int dim,int validos);
-
+registroArchivoLocales cargarRegistroLocales();
+locales pasarRegistrosToLocal(registroArchivoLocales dato);
 locales cargarLocales();
 //mostrar
 void mostrarProvincia(provincia aux);
@@ -63,6 +75,6 @@ void desctivarProvincia(provincia ar[],int validos,int id);
 //buscar prov
 int buscarPosProvincia(provincia ar[],int id,int validos);
 //alta
-int alta(provincia ar[],int id,int validos);
+int alta(provincia ar[],registroArchivoLocales dato,int validos);
 
 #endif // LISTASSUCUSRSALES_H_INCLUDED
