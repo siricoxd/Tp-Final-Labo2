@@ -43,7 +43,7 @@ typedef struct
 ///listas
 //crear
 nodoLocales*crearNodoLocales(locales dato);
-nodoLocales* inicLista(nodoLocales*lista);
+nodoLocales* inicLista();
 //mostrar
 void mostrarNodo(nodoLocales*lista);
 void mostrarLista(nodoLocales*lista);
@@ -58,10 +58,10 @@ nodoLocales*agregarEnOrdenLocales(nodoLocales*lista,nodoLocales*nuevoNodo);
 nodoLocales* EliminarLocal(nodoLocales*lista,int objetivo);
 
 
-///mostrar y cargar
+///manejo provincias y locales
 //cargar
 provincia cargarProvincia();
-int cargarArreglosProvincia(provincia ar[],int dim,int validos);
+int cargarArreglosProvincia(provincia ar[],registroArchivoLocales dato,int dim,int validos);
 registroArchivoLocales cargarRegistroLocales();
 locales pasarRegistrosToLocal(registroArchivoLocales dato);
 locales cargarLocales();
@@ -69,12 +69,20 @@ locales cargarLocales();
 void mostrarProvincia(provincia aux);
 void mostrarAr(provincia ar[],int validos);
 void mostrarLocal(locales aux);
+void recorrerYMostrar(provincia ar[],int validos,int pos);
+void recorrerYMostrarDesactivados(provincia ar[],int validos,int pos);
+void recorrerYMostrarTodos(provincia ar[],int validos,int pos);
 
-//sacar provincia
-void desctivarProvincia(provincia ar[],int validos,int id);
+//activar y desactivar provincia
+void desactivarProvincia(provincia ar[],int pos);
+void activarProvincia(provincia ar[],int pos);
+void activarLocal(provincia ar[],int id,int pos);
+void descativarLocal(provincia ar[],int id,int pos);
 //buscar prov
 int buscarPosProvincia(provincia ar[],int id,int validos);
 //alta
 int alta(provincia ar[],registroArchivoLocales dato,int validos);
-
+//archivos
+int descargarArchivo(provincia ar[],int validos,int dim);
+int cargarArchivo(int dim);
 #endif // LISTASSUCUSRSALES_H_INCLUDED

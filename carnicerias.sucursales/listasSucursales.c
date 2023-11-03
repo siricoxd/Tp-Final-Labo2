@@ -3,6 +3,8 @@
 #include <string.h>
 #include "listasSucusrsales.h"
 
+const char archivoProvincia[]= {"archivoProvincia.dat"};
+
 
 
 
@@ -14,7 +16,7 @@ nodoLocales*crearNodoLocales(locales dato)
     nuevo->siguiente=NULL;
     return nuevo;
 }
-nodoLocales* inicLista(nodoLocales*lista)
+nodoLocales* inicLista()
 {
     return NULL;
 }
@@ -165,13 +167,17 @@ provincia cargarProvincia()
 
     return aux;
 }
-int cargarArreglosProvincia(provincia ar[],int dim,int validos)
+int cargarArreglosProvincia(provincia ar[],registroArchivoLocales dato,int dim,int validos)
 {
     if(validos<dim)
     {
-        ar[validos]=cargarProvincia();
+        strcpy(ar[validos].NombreProvincia,dato.provincia);
+        ar[validos].idProvincia=dato.idProvincia;
+        ar[validos].activo=dato.activoProv;
+        ar[validos].listaDelocales=inicLista();
         validos++;
     }
+
     return validos;
 }
 
@@ -214,18 +220,54 @@ void mostrarAr(provincia ar[],int validos)
         i++;
     }
 }
-void desctivarProvincia(provincia ar[],int validos,int id)
+void desactivarProvincia(provincia ar[],int pos)
 {
-    int i=0,flag=0;
-    while(i<validos&&flag==0)
+
+    FILE*buffer=fopen(archivoProvincia,"r+b");
+    if(buffer)
     {
-        if(id==ar[i].idProvincia)
+        registroArchivoLocales aux;
+        int flag=0;
+        while(fread(&aux,sizeof(registroArchivoLocales),1,buffer)&&flag==0)
         {
-            ar[i].activo=0;
-            flag=1;
+            if(ar[pos].idProvincia==aux.idProvincia)
+            {
+                ar[pos].activo=0;
+                aux.activoProv=0;
+                fseek(buffer,(-1)*sizeof(registroArchivoLocales),SEEK_CUR);
+                fwrite(&aux,sizeof(registroArchivoLocales),1,buffer);
+
+                flag=1;
+            }
         }
-        i++;
+
+        fclose(buffer);
     }
+
+}
+void activarProvincia(provincia ar[],int pos)
+{
+
+    FILE*buffer=fopen(archivoProvincia,"r+b");
+    if(buffer)
+    {
+        registroArchivoLocales aux;
+        int flag=0;
+        while(fread(&aux,sizeof(registroArchivoLocales),1,buffer)&&flag==0)
+        {
+            if(ar[pos].idProvincia==aux.idProvincia)
+            {
+                ar[pos].activo=1;
+                aux.activoProv=1;
+                fseek(buffer,(-1)*sizeof(registroArchivoLocales),SEEK_CUR);
+                fwrite(&aux, sizeof(registroArchivoLocales),1, buffer);
+                flag=1;
+            }
+        }
+
+        fclose(buffer);
+    }
+
 }
 int buscarPosProvincia(provincia ar[],int id,int validos)
 {
@@ -250,7 +292,7 @@ int alta(provincia ar[],registroArchivoLocales dato,int validos)
     int pos=buscarPosProvincia(ar,dato.idProvincia,validos);
     if (pos==-1)
     {
-        validos=cargarArreglosProvincia(ar,30,validos);
+        validos=cargarArreglosProvincia(ar,dato,30,validos);
         pos=validos-1;
     }
     ar[pos].listaDelocales=agregarAlPpioLocales(ar[pos].listaDelocales,aux);
@@ -260,7 +302,7 @@ int alta(provincia ar[],registroArchivoLocales dato,int validos)
 locales pasarRegistrosToLocal(registroArchivoLocales dato)
 {
     locales auxlocal;
-    auxlocal.activo=dato.idLocal;
+    auxlocal.activo=dato.activoLocal;
     strcpy(auxlocal.direccion,dato.direccion);
     strcpy(auxlocal.localidad,dato.localidad);
     auxlocal.idDeLocal=dato.idLocal;
@@ -269,12 +311,18 @@ locales pasarRegistrosToLocal(registroArchivoLocales dato)
 }
 registroArchivoLocales cargarRegistroLocales()
 {
+
     registroArchivoLocales aux;
     printf("Ingrese la provincia: ");
     fflush(stdin);
     gets(aux.provincia);
-    printf("Ingrese el id de la provincia: ");
-    scanf("%d",&aux.idProvincia);
+    FILE* buffer = fopen(archivoProvincia,"rb");
+    if(buffer)
+    {
+        fread(&aux,sizeof(registroArchivoLocales),1,buffer);
+        aux.idProvincia = cantidadDeRegistros()+1;
+        fclose(buffer);
+    }
     aux.activoProv=1;
     printf("Ingrese la ciudad: ");
     fflush(stdin);
@@ -282,8 +330,190 @@ registroArchivoLocales cargarRegistroLocales()
     printf("Ingrese la direccion del local: ");
     fflush(stdin);
     gets(aux.direccion);
-    printf("Ingrese el id de la empresa: ");
-    scanf("%d",&aux.idLocal);
+    FILE* buffer = fopen(archivoProvincia,"rb");
+    if(buffer)
+    {
+        fread(&aux,sizeof(registroArchivoLocales),1,buffer);
+        aux.idLocal = cantidadDeRegistros()*1;
+        fclose(buffer);
+    }
+    return aux;
+}
+
     aux.activoLocal=1;
     return aux;
+}
+int cantidadDeRegistros()
+{
+    int cantidad;
+    FILE* buffer = fopen(archivoProvincia,"rb");
+    if(buffer)
+    {
+        fseek(buffer, 0, SEEK_END);
+        cantidad =(int)ftell(buffer)/sizeof(registroArchivoLocales);
+        fclose(buffer);
+    }
+    return cantidad;
+}
+int cargarArchivo(int dim)
+{
+    registroArchivoLocales aux;
+    int i=0;
+    char salir='s';
+    FILE* buffer= fopen(archivoProvincia,"ab");
+    if(buffer)
+    {
+        while(salir=='s' && i<dim)
+        {
+            aux=cargarRegistroLocales();
+            fwrite(&aux,sizeof(registroArchivoLocales),1,buffer);
+            printf("\nDesea seguir?: ");
+            fflush(stdin);
+            scanf("%c",&salir);
+            printf("\n");
+            i++;
+        }
+
+        fclose(buffer);
+    }
+    return i;
+}
+int descargarArchivo(provincia ar[],int validos,int dim)
+{
+    registroArchivoLocales aux;
+    FILE* buffer= fopen(archivoProvincia,"rb");
+    if(buffer)
+    {
+        while(fread(&aux,sizeof(registroArchivoLocales),1,buffer)&&(validos<dim))
+        {
+            validos=alta(ar,aux,validos);
+        }
+        fclose(buffer);
+    }
+    return validos;
+}
+void recorrerYMostrar(provincia ar[],int validos,int pos)
+{
+    if(ar[pos].activo!=0)
+    {
+        nodoLocales*seg=ar[pos].listaDelocales;
+        printf("\nProvincia: %s:\n",ar[pos].NombreProvincia);
+        printf("Id de la provincia: %d\n",ar[pos].idProvincia);
+        printf("Locales existentes: \n\n");
+        while(seg!=NULL)
+        {
+            if(seg->dato.activo!=0)
+            {
+                printf("Ciudad del local: %s\n",seg->dato.localidad);
+                printf("ID del local: %d\n",seg->dato.idDeLocal);
+                printf("Direccion del local: %s\n",seg->dato.direccion);
+                printf("Estado de actividad: %d\n",seg->dato.activo);
+                printf("\n");
+                seg=seg->siguiente;
+            }
+        }
+
+    }
+}
+void recorrerYMostrarTodos(provincia ar[],int validos,int pos)
+{
+    nodoLocales*seg=ar[pos].listaDelocales;
+    printf("\nProvincia: %s:\n",ar[pos].NombreProvincia);
+    printf("Id de la provincia: %d\n",ar[pos].idProvincia);
+    printf("Estado de actividad %d\n",ar[pos].activo);
+    printf("Locales existentes: \n\n");
+    while(ar[pos].listaDelocales!=NULL)
+    {
+
+
+
+        printf("Ciudad del local: %s\n",seg->dato.localidad);
+        printf("ID del local: %d\n",seg->dato.idDeLocal);
+        printf("Direccion del local: %s\n",seg->dato.direccion);
+        printf("Estado de actividad: %d\n",seg->dato.activo);
+        printf("\n");
+        seg=seg->siguiente;
+
+
+
+    }
+}
+void recorrerYMostrarDesactivados(provincia ar[],int validos,int pos)
+{
+    nodoLocales*seg=ar[pos].listaDelocales;
+    if(ar[pos].activo==0)
+    {
+
+        printf("\nProvincia: %s:\n",ar[pos].NombreProvincia);
+        printf("Id de la provincia: %d\n",ar[pos].idProvincia);
+        printf("Locales existentes: \n\n");
+        while(seg!=NULL)
+        {
+
+
+            printf("Ciudad del local: %s\n",seg->dato.localidad);
+            printf("ID del local: %d\n",seg->dato.idDeLocal);
+            printf("Direccion del local: %s\n",seg->dato.direccion);
+            printf("Estado de actividad: %d\n",seg->dato.activo);
+            printf("\n");
+            seg=seg->siguiente;
+
+        }
+
+    }
+}
+void activarLocal(provincia ar[],int id,int pos)
+{
+    FILE*buffer=fopen(archivoProvincia,"r+b");
+    if(buffer)
+    {
+        registroArchivoLocales aux;
+        nodoLocales*seg=ar[pos].listaDelocales;
+        int flag=0,id=0;
+        while(fread(&aux,sizeof(registroArchivoLocales),1,buffer)&&flag==0)
+        {
+            if(ar[pos].idProvincia==aux.idProvincia&&aux.idLocal==seg->dato.idDeLocal)
+            {
+                while(seg!=NULL)
+                {
+                    seg->dato.activo=1;
+                    aux.activoLocal=1;
+
+                    fseek(buffer,(-1)*sizeof(registroArchivoLocales),SEEK_CUR);
+                    fwrite(&aux, sizeof(registroArchivoLocales),1, buffer);
+                    flag=1;
+                    seg=seg->siguiente;
+                }
+            }
+        }
+        fclose(buffer);
+    }
+
+}
+void descativarLocal(provincia ar[],int id,int pos)
+{
+    FILE*buffer=fopen(archivoProvincia,"r+b");
+    if(buffer)
+    {
+        registroArchivoLocales aux;
+        nodoLocales*seg=ar[pos].listaDelocales;
+        int flag=0,id=0;
+        while(fread(&aux,sizeof(registroArchivoLocales),1,buffer)&&flag==0)
+        {
+            if(ar[pos].idProvincia==aux.idProvincia&&aux.idLocal==seg->dato.idDeLocal)
+            {
+                while(seg!=NULL)
+                {
+                    seg->dato.activo=0;
+                    aux.activoLocal=0;
+                    fseek(buffer,(-1)*sizeof(registroArchivoLocales),SEEK_CUR);
+                    fwrite(&aux, sizeof(registroArchivoLocales),1, buffer);
+                    flag=1;
+                    seg=seg->siguiente;
+                }
+            }
+        }
+        fclose(buffer);
+    }
+
 }
