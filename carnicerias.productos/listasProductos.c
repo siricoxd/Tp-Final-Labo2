@@ -2,12 +2,12 @@
 #include <stdlib.h>
 #include "listasProductos.h"
 #include <string.h>
-#define ARCHIVO_CATALOGO "catalogo.bin"
-#define ARCHIVO_PRODUCTOS "productos.bin"
+
+
 #define ESC 27
 #include <conio.h>
 
-//manejo de listas
+//TDA de listas
 nodoProductos * inicListaProduc()
 {
     return NULL;
@@ -41,13 +41,14 @@ nodoProductos* agregarNuevonodoProductosAlPLista(nodoProductos*lista,nodoProduct
     return lista;
 }
 //__________________________________________________________________________________________________________________________________________________________________________________________________________________
+
 //manejo de arreglo de listas
-int buscaEnCatalogo(catalogo arreglo[],int validos,catalogo dato1)
+int buscaEnCatalogo(catalogo arreglo[],int validos,REGISTROA dato)
 {
     int i=validos-1,flag=-1;
     while(i>=0 && flag==-1)
     {
-        if(arreglo[i].idProductos==dato1.idProductos)
+        if(strcasecmp(arreglo[i].nombreDeCategoria,dato.nombreDeCategoria)==0)
         {
             flag=i;
         }
@@ -61,31 +62,61 @@ int buscaEnCatalogo(catalogo arreglo[],int validos,catalogo dato1)
 }
 
 
- int agregarALCatalogo(catalogo arreglo[],int validos,catalogo dato)//agrega al cateorias al arreglo
- {
-     strcpy(arreglo[validos].nombreDeCategoria,dato.nombreDeCategoria);
-     arreglo[validos].idProductos=dato.idProductos;
-     validos++;
-     return validos;
- }
-
-int altaCatalogo(catalogo arreglo[],int validos,catalogo dato1,productos dato2)//controla la carga de datos al arreglo de listas
+int agregarALCatalogo(catalogo arreglo[],int validos,REGISTROA dato)//agrega al cateorias al arreglo
 {
-    int pos=buscaEnCatalogo(arreglo,validos,dato1);
+    strcpy(arreglo[validos].nombreDeCategoria,dato.nombreDeCategoria);
+    arreglo[validos].idCategoria=validos*100;
+    arreglo[validos].lista=inicListaProduc();
+    validos++;
+    return validos;
+}
+int buscarUltimoIdDelista(nodoProductos *lista)
+{
+    nodoProductos *seg=lista;
+    while(seg->siguiente!=NULL)
+    {
+        seg=seg->siguiente;
+    }
+    return seg->dato.id;
+}
+int altaCatalogo(catalogo arreglo[],int validos,REGISTROA dato)//controla la carga de datos al arreglo de listas
+{
+    int pos=buscaEnCatalogo(arreglo,validos,dato);
     nodoProductos *aux;
-
+   productos aux2P=pasarDeRegistroCatAPro(dato);
+   int id;
     if(pos==-1)
     {
-        validos=agregarALCatalogo(arreglo,validos,dato1);
+        validos=agregarALCatalogo(arreglo,validos,dato);
         pos=validos-1;
+        aux2P.id=arreglo[pos].idCategoria;
     }
-    aux=crearNuevonodoProductos(dato2);
+    else
+    {
+          id=buscarUltimoIdDelista(arreglo[pos].lista);// aca va la funcion de buscar ultimo id
+    }
+
+    aux2P.id=id+1;
+    aux=crearNuevonodoProductos(aux2P);
+
     arreglo[pos].lista=agregarNuevonodoProductosAlPLista(arreglo[pos].lista,aux);
 
-return validos;
+    return validos;
+}
+
+productos pasarDeRegistroCatAPro(REGISTROA origen)
+{
+    productos dest;
+      strcpy(dest.nombreDeProductos,origen.nombreDeProductos);
+    dest.id=origen.id;
+    dest.precioPorKilo=origen.precioPorKilo;
+
+    return dest;
 }
 //__________________________________________________________________________________________________________________________________________________________________________________________________________________
+
 // carga de arreglo de listas
+
 int leerUltimoId(char archivo[])// POSICIONAMOS EN EL ULTIMO ID de cada estruc
 {
     FILE* archi = fopen(archivo, "rb");
@@ -124,9 +155,9 @@ catalogo cargaDeUnaCateogoria()//funcion de carga para el catalogo
     printf("\nNOMBRE DE CATEGORIA: ");
     fflush(stdin);
     gets(A.nombreDeCategoria);
-    int ultimoId=leerUltimoId(ARCHIVO_CATALOGO);//cargo el archivo de catalo
-    A.idProductos=ultimoId+1;
-    guardarUltimoId(ARCHIVO_CATALOGO,A.idProductos);
+    printf("\nID: ");
+    scanf("%d",&A.idCategoria);
+
 
 
     return A;
@@ -136,7 +167,7 @@ productos cargaDeProductos()//funcion de carga para productos
 {
     productos dato;
 
-      printf("\nLISTA: \n");
+    printf("\nLISTA: \n");
     printf("\nNOMBRE DE PRODUCTO:  ");
     fflush(stdin);
     gets(dato.nombreDeProductos);
@@ -144,57 +175,72 @@ productos cargaDeProductos()//funcion de carga para productos
     printf("\nPRECIO POR KILO: ");
     scanf("%d",&dato.precioPorKilo);
 
-    int ultimosId=leerUltimoId(ARCHIVO_PRODUCTOS);
-    dato.id=ultimosId;
-    guardarUltimoId(ARCHIVO_PRODUCTOS,ultimosId);
+    printf("\nID: ");
+    scanf("%d",&dato.id);
+
+
+    return dato;
+}
+REGISTROA cargaRegistro()
+{
+    REGISTROA dato;
+
+    printf("\nNOMBRE DE CATEGORIA: ");
+    fflush(stdin);
+    gets(dato.nombreDeCategoria);
+
+
+     printf("\nNOMBRE DE PRODUCTO:  ");
+    fflush(stdin);
+    gets(dato.nombreDeProductos);
+
+    printf("\nPRECIO POR KILO: ");
+    scanf("%d",&dato.precioPorKilo);
+
+
 
     return dato;
 }
 
-int  cargaCatalogo(catalogo arreglo[],int dim)
+int  cargaCatalogo(catalogo arreglo[],int dim,int validos)//tengo que mpdificar para que tome los validos asi si el arreglo ya tiene empieza de ahi
 {
-    productos auxProd;
-    catalogo auxCata;
-    int validos=0;
+    REGISTROA aux;
     char opcion;
+
     do
     {
-        auxCata=cargaDeUnaCateogoria();
-       // system("pause");
-        system("cls");
-        auxProd=cargaDeProductos();
-        //system("pause");
-        system("cls");
-       validos= altaCatalogo(arreglo,validos,auxCata,auxProd);
-       printf("\nPRESIONE ESC PARA SALIR");
-       fflush(stdin);
-       opcion=getch();
-       system("pause");
+        aux=cargaRegistro();
+        validos= altaCatalogo(arreglo,validos,aux);
+        printf("\nPRESIONE ESC PARA SALIR");
+        fflush(stdin);
+        opcion=getch();
+        system("pause");
         system("cls");
 
-    }while(opcion!=ESC);
+    }
+    while(opcion!=ESC);
 
-return validos;
+    return validos;
 }
 
 
- //FUNCIONES DE MUESTRA
-//que seria mejor tener un archivo cargado con todo lo datos del principio pasarlo a un arreglo y mostrarlo , o cargar un arreglo y pasarlo a un archivo
- void muestraLISTA(nodoProductos *lista)
- {
-     while(lista!=NULL)
-     {
-        printf("\nNOMBRE DE PRODUCTO:  %s",lista->dato.nombreDeProductos);
-         printf("\nPRECIO POR KILO:%d ",lista->dato.precioPorKilo);
-         printf("\n");
-         lista=lista->siguiente;
+//FUNCIONES DE MUESTRA
 
-     }
- }
+void muestraLISTA(nodoProductos *lista)
+{
+    while(lista!=NULL)
+    {
+        printf("\nNOMBRE DE PRODUCTO:  %s",lista->dato.nombreDeProductos);
+        printf("\nPRECIO POR KILO:%d ",lista->dato.precioPorKilo);
+        printf("\n");
+        lista=lista->siguiente;
+
+    }
+}
 void muestraUnCatalogo(catalogo A)
 {
-     printf("\nNOMBRE DE CATEGORIA: %s",A.nombreDeCategoria);
-     printf("\n|%d|",A.idProductos);
+    printf("\nNOMBRE DE CATEGORIA: %s",A.nombreDeCategoria);
+    printf("\n|%d|",A.idCategoria);
     muestraLISTA(A.lista);
     printf("\n----------------------------------------------");
 
@@ -210,5 +256,101 @@ void muestraDeCatalogo(catalogo A[],int validos)
     }
 }
 
-//FUNCIONES DE CARGA DE ARCHIVO
+
+//GUARDAR EN EL ARCHIVO
+void guardaEnArchivo(catalogo arreglo[],int validos,char archivoCata[])//ESTA FUNCION RECORRE EL ARREGLO
+{
+    FILE *archiC=fopen(archivoCata,"wb");
+
+    for(int i=0; i<validos; i++)
+    {
+        pasarDeArregloDeLisAArchivo(arreglo[i],archiC);
+
+    }
+}
+
+void pasarDeArregloDeLisAArchivo(catalogo arreglo,FILE* archiC)//pasa los datos de una posicion del arreglo y la lista entera al arreglo
+{
+    nodoProductos* seg=arreglo.lista;
+
+    while(seg!=NULL)
+    {
+        if(archiC!=NULL)
+        {
+            REGISTROA aux=cambioDeEstrucCatalARegistro(arreglo);
+            fwrite(&aux,sizeof(REGISTROA),1,archiC);
+
+        }
+        seg=seg->siguiente;
+    }
+    fclose(archiC);
+}
+
+REGISTROA cambioDeEstrucCatalARegistro(catalogo origen)//transforma el tio de dato catlogo a uno de REGISTROA
+{
+    REGISTROA dest;
+    strcpy(dest.nombreDeCategoria,origen.nombreDeCategoria);
+    dest.idCategoria= origen.idCategoria;
+
+    strcpy(dest.nombreDeProductos,origen.lista->dato.nombreDeProductos);
+    dest.id=origen.lista->dato.id;
+    dest.precioPorKilo=origen.lista->dato.precioPorKilo;
+
+    return dest;
+}
+
+int  bajarArchivo(char archivo[],catalogo arreglo[],int dim)
+{
+    FILE *archi=fopen(archivo,"rb");
+    int i=0;
+
+    REGISTROA aux;
+    int validos=0;
+    if(archi!=NULL)
+    {
+        while(i<dim && fread(&aux,sizeof(REGISTROA),1,archi)>0)
+        {
+            validos=altaCatalogo(arreglo,validos,aux);
+            printf("n");
+
+        }
+        fclose(archi);
+    }
+    return validos;
+
+}
+
+
+
+
+
+//MUESTRA DE ARCHIVO_CATALOGO
+
+void muestraUnRegistro(REGISTROA dato)
+{
+    printf("\nNOMBRE DE CATEGORIA: %s",dato.nombreDeCategoria);
+    printf("\n|%d|",dato.idCategoria);
+
+    printf("\nNOMBRE DE PRODUCTO:  %s",dato.nombreDeProductos);
+    printf("\nPRECIO POR KILO:%d ",dato.precioPorKilo);
+    printf("\n----------------------------------------------");
+
+
+}
+void muestraArchivo(char archivo[])
+{
+    FILE *archi=fopen(archivo,"rb");
+    REGISTROA aux;
+    if(archi!=NULL)
+    {
+        while(fread(&aux,sizeof(REGISTROA),1,archi)>0)
+        {
+
+            muestraUnRegistro(aux);
+        }
+        fclose(archi);
+    }
+
+}
+
 

@@ -13,3 +13,17 @@
 	<string.h>
 	<conio.h>
 
+1699023020 source:c:\users\santiago\desktop\segundo cuatri\proyecto\carnicerias.productos\listasproductos.c
+	<stdio.h>
+	<stdlib.h>
+	"listasProductos.h"
+	<string.h>
+	<conio.h>
+
+1699020854 c:\users\santiago\desktop\segundo cuatri\proyecto\carnicerias.productos\listasproductos.h
+
+1699020854 source:c:\users\santiago\desktop\segundo cuatri\proyecto\carnicerias.productos\main.c
+	<stdio.h>
+	<stdlib.h>
+	"listasProductos.h"
+
