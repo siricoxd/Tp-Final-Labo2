@@ -110,6 +110,7 @@ productos pasarDeRegistroCatAPro(REGISTROA origen)
       strcpy(dest.nombreDeProductos,origen.nombreDeProductos);
     dest.id=origen.id;
     dest.precioPorKilo=origen.precioPorKilo;
+    dest.stock=origen.stock;
 
     return dest;
 }
@@ -117,70 +118,14 @@ productos pasarDeRegistroCatAPro(REGISTROA origen)
 
 // carga de arreglo de listas
 
-int leerUltimoId(char archivo[])// POSICIONAMOS EN EL ULTIMO ID de cada estruc
-{
-    FILE* archi = fopen(archivo, "rb");
-    int ultimoId = 0;
-
-    if (archi != NULL)
-    {
-        fscanf(archi, "%d", &ultimoId);
-        fclose(archi);
-    }
-
-    return ultimoId;
-}
 
 
 
 
 
-void guardarUltimoId(char archivo[],int ultimoId)//GUARDAMOS POS DEL ULTIMO ID de cada estr
-{
-    FILE* archi = fopen(archivo, "wb");
-
-    if (archivo != NULL)
-    {
-        fprintf(archi, "%d", ultimoId);//copia el ultimo id en el archivo
-        fclose(archi);
-    }
-}
-
-
-catalogo cargaDeUnaCateogoria()//funcion de carga para el catalogo
-{
-    //carga el ultimo id +1
-    printf("\nARREGLO:\n");
-    catalogo A;
-    printf("\nNOMBRE DE CATEGORIA: ");
-    fflush(stdin);
-    gets(A.nombreDeCategoria);
-    printf("\nID: ");
-    scanf("%d",&A.idCategoria);
 
 
 
-    return A;
-}
-
-productos cargaDeProductos()//funcion de carga para productos
-{
-    productos dato;
-
-    printf("\nLISTA: \n");
-    printf("\nNOMBRE DE PRODUCTO:  ");
-    fflush(stdin);
-    gets(dato.nombreDeProductos);
-
-    printf("\nPRECIO POR KILO: ");
-    scanf("%d",&dato.precioPorKilo);
-
-    printf("\nID: ");
-    scanf("%d",&dato.id);
-
-
-    return dato;
-}
 REGISTROA cargaRegistro()
 {
     REGISTROA dato;
@@ -193,9 +138,12 @@ REGISTROA cargaRegistro()
      printf("\nNOMBRE DE PRODUCTO:  ");
     fflush(stdin);
     gets(dato.nombreDeProductos);
-
+    printf("\nSTOCK: ");
+    scanf("%d",&dato.stock);
     printf("\nPRECIO POR KILO: ");
     scanf("%d",&dato.precioPorKilo);
+    dato.activoCat=1;
+    dato.activoProd=1;
 
 
 
@@ -232,6 +180,8 @@ void muestraLISTA(nodoProductos *lista)
     {
         printf("\nNOMBRE DE PRODUCTO:  %s",lista->dato.nombreDeProductos);
         printf("\nPRECIO POR KILO:%d ",lista->dato.precioPorKilo);
+        printf("\nSTOCK: %d",lista->dato.stock);
+        printf("\nACTIVO: %d",lista->dato.activoProd);
         printf("\n");
         lista=lista->siguiente;
 
@@ -241,6 +191,7 @@ void muestraUnCatalogo(catalogo A)
 {
     printf("\nNOMBRE DE CATEGORIA: %s",A.nombreDeCategoria);
     printf("\n|%d|",A.idCategoria);
+    printf("\nACTIVO; %d",A.activoCata);
     muestraLISTA(A.lista);
     printf("\n----------------------------------------------");
 
@@ -295,6 +246,9 @@ REGISTROA cambioDeEstrucCatalARegistro(catalogo origen)//transforma el tio de da
     strcpy(dest.nombreDeProductos,origen.lista->dato.nombreDeProductos);
     dest.id=origen.lista->dato.id;
     dest.precioPorKilo=origen.lista->dato.precioPorKilo;
+    dest.stock=origen.lista->dato.stock;
+    dest.activoCat=origen.activoCata;
+    dest.activoProd=origen.lista->dato.activoProd;
 
     return dest;
 }
@@ -333,6 +287,7 @@ void muestraUnRegistro(REGISTROA dato)
 
     printf("\nNOMBRE DE PRODUCTO:  %s",dato.nombreDeProductos);
     printf("\nPRECIO POR KILO:%d ",dato.precioPorKilo);
+    printf("\nSTOCK: %d",dato.stock);
     printf("\n----------------------------------------------");
 
 
@@ -352,5 +307,8 @@ void muestraArchivo(char archivo[])
     }
 
 }
+
+
+
 
 

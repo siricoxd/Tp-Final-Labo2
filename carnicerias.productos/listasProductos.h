@@ -9,7 +9,9 @@ typedef struct
 {
     char nombreDeProductos[40];
     int precioPorKilo;
+    int stock;
     int id;
+    int activoProd;
 } productos;
 
 typedef struct nodoProductos
@@ -22,6 +24,7 @@ typedef struct
 {
     char nombreDeCategoria[40];
     int idCategoria;
+     int activoCata;
     nodoProductos *lista;
 } catalogo;
 
@@ -33,7 +36,10 @@ typedef struct
 
     char nombreDeProductos[40];
     int precioPorKilo;
+    int stock;
     int id;
+    int activoCat;
+    int activoProd;
 
 
 } REGISTROA;
