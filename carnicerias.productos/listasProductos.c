@@ -84,7 +84,7 @@ int altaCatalogo(catalogo arreglo[],int validos,REGISTROA dato)//controla la car
     int pos=buscaEnCatalogo(arreglo,validos,dato);
     nodoProductos *aux;
    productos aux2P=pasarDeRegistroCatAPro(dato);
-   int id;
+
     if(pos==-1)
     {
         validos=agregarALCatalogo(arreglo,validos,dato);
@@ -93,10 +93,10 @@ int altaCatalogo(catalogo arreglo[],int validos,REGISTROA dato)//controla la car
     }
     else
     {
-          id=buscarUltimoIdDelista(arreglo[pos].lista);// aca va la funcion de buscar ultimo id
+          aux2P.id=buscarUltimoIdDelista(arreglo[pos].lista);// aca va la funcion de buscar ultimo id
     }
 
-    aux2P.id=id+1;
+    aux2P.id=aux2P.id+1;
     aux=crearNuevonodoProductos(aux2P);
 
     arreglo[pos].lista=agregarNuevonodoProductosAlPLista(arreglo[pos].lista,aux);
@@ -142,8 +142,7 @@ REGISTROA cargaRegistro()
     scanf("%d",&dato.stock);
     printf("\nPRECIO POR KILO: ");
     scanf("%d",&dato.precioPorKilo);
-    dato.activoCat=1;
-    dato.activoProd=1;
+
 
 
 
@@ -181,7 +180,7 @@ void muestraLISTA(nodoProductos *lista)
         printf("\nNOMBRE DE PRODUCTO:  %s",lista->dato.nombreDeProductos);
         printf("\nPRECIO POR KILO:%d ",lista->dato.precioPorKilo);
         printf("\nSTOCK: %d",lista->dato.stock);
-        printf("\nACTIVO: %d",lista->dato.activoProd);
+        printf("\nID: %d",lista->dato.id);
         printf("\n");
         lista=lista->siguiente;
 
@@ -191,7 +190,6 @@ void muestraUnCatalogo(catalogo A)
 {
     printf("\nNOMBRE DE CATEGORIA: %s",A.nombreDeCategoria);
     printf("\n|%d|",A.idCategoria);
-    printf("\nACTIVO; %d",A.activoCata);
     muestraLISTA(A.lista);
     printf("\n----------------------------------------------");
 
@@ -218,6 +216,7 @@ void guardaEnArchivo(catalogo arreglo[],int validos,char archivoCata[])//ESTA FU
         pasarDeArregloDeLisAArchivo(arreglo[i],archiC);
 
     }
+    fclose(archiC);
 }
 
 void pasarDeArregloDeLisAArchivo(catalogo arreglo,FILE* archiC)//pasa los datos de una posicion del arreglo y la lista entera al arreglo
@@ -233,8 +232,10 @@ void pasarDeArregloDeLisAArchivo(catalogo arreglo,FILE* archiC)//pasa los datos 
 
         }
         seg=seg->siguiente;
+
     }
-    fclose(archiC);
+
+
 }
 
 REGISTROA cambioDeEstrucCatalARegistro(catalogo origen)//transforma el tio de dato catlogo a uno de REGISTROA
@@ -268,8 +269,9 @@ int  bajarArchivo(char archivo[],catalogo arreglo[],int dim)
             printf("n");
 
         }
-        fclose(archi);
+
     }
+    fclose(archi);
     return validos;
 
 }
