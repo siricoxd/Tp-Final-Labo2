@@ -72,6 +72,7 @@ void mostrarLocal(locales aux);
 void recorrerYMostrar(provincia ar[],int validos,int pos);
 void recorrerYMostrarDesactivados(provincia ar[],int validos,int pos);
 void recorrerYMostrarTodos(provincia ar[],int validos,int pos);
+void mostrarTodo(provincia ar[],int validos);
 
 //activar y desactivar provincia
 void desactivarProvincia(provincia ar[],int pos);

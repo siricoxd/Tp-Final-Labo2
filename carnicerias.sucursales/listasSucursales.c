@@ -517,3 +517,40 @@ void descativarLocal(provincia ar[],int id,int pos)
     }
 
 }
+void mostrarTodo(provincia ar[],int validos)
+{
+    int i=0;
+
+    printf("--------------------------------------------------------------------------------\n");
+    while(i<validos)
+    {
+        if(ar[i].activo!=324)
+        {
+            nodoLocales*seg=ar[i].listaDelocales;
+            printf("\nProvincia..............: %s\n",ar[i].NombreProvincia);
+            printf("ID de la provincia.....: %d\n",ar[i].idProvincia);
+            printf("Activo.................: %d\n",ar[i].activo);
+            printf("Locales existentes \n\n");
+            while(seg!=NULL)
+            {
+
+                if(seg->dato.activo!=10)
+                {
+                    printf("\t----------------------------------------------------\n");
+                    printf("\t|Ciudad del local................: %s\n",seg->dato.localidad);
+                    printf("\t|ID del local....................: %d\n",seg->dato.idDeLocal);
+                    printf("\t|Direccion del local.............: %s\n",seg->dato.direccion);
+                    printf("\t|Activo..........................: %d\n",seg->dato.activo);
+                    printf("\t----------------------------------------------------\n");
+
+                }
+                printf("\n");
+                seg=seg->siguiente;
+
+            }
+            printf("--------------------------------------------------------------------------------\n");
+        }
+
+        i++;
+    }
+}
