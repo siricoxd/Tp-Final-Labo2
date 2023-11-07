@@ -330,16 +330,13 @@ registroArchivoLocales cargarRegistroLocales()
     printf("Ingrese la direccion del local: ");
     fflush(stdin);
     gets(aux.direccion);
-    FILE* buffer = fopen(archivoProvincia,"rb");
-    if(buffer)
+    FILE* buffer2 = fopen(archivoProvincia,"rb");
+    if(buffer2)
     {
-        fread(&aux,sizeof(registroArchivoLocales),1,buffer);
+        fread(&aux,sizeof(registroArchivoLocales),1,buffer2);
         aux.idLocal = cantidadDeRegistros()*1;
-        fclose(buffer);
+        fclose(buffer2);
     }
-    return aux;
-}
-
     aux.activoLocal=1;
     return aux;
 }
