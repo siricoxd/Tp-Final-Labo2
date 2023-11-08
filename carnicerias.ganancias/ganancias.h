@@ -25,24 +25,26 @@ typedef struct{
 
 ///FUNC DIAS
 //funciones inicializacion/creacion
-nodoGananciasDia* inicGananciasDia();
+nodoGananciasDia* inicListaDias();
 nodoGananciasDia* crearGananciasDia(gananciasDia dato);
 //f de busqueda
 nodoGananciasDia* buscarUltimo(nodoGananciasDia* listaDias);
 nodoGananciasDia* buscarPorDia(nodoGananciasDia* listaDias, int diaBuscado);
 //f de agregado
-nodoGananciasDia* agregarPpioGananciasDia(nodoGanancias* listaDias, nodoGananciasDia* nuevo);
-nodoGananciasMeses* agregarFinalGananciasDia(nodoGananciasDia* listaDias, nodoGananciasDia* nuevo);
+nodoGananciasDia* agregarPpioGananciasDia(nodoGananciasDia* listaDias, nodoGananciasDia* nuevo);
+nodoGananciasDia* agregarFinalGananciasDia(nodoGananciasDia* listaDias, nodoGananciasDia* nuevo);
 nodoGananciasDia* sumarGananciasDia(nodoGananciasDia* listaDias, gananciasDia dato);
 nodoGananciasDia* insertarGananciasDia(nodoGananciasDia* listaDias, gananciasDia dato);
-//
+//f de mostrado
+void mostrarGananciasUnDia(gananciasDia dato);
+void mostrarGananciasDias(nodoGananciasDia* listaDias);
 
 
 ///FUNC MES
-nodoGananciasMes* inicGananciasMes*();
+nodoGananciasMes* inicListaMes();
 nodoGananciasMes* crearGananciasMes(gananciasMes dato);
 nodoGananciasMes* agregarPpioGananciasMes(nodoGananciasMes* listaMes, nodoGananciasMes* nuevo);
 nodoGananciasMes* agregarFinalGananciasMes(nodoGananciasMes* listaMes, nodoGananciasMes* nuevo);
 nodoGananciasMes* buscarUltimoMes(nodoGananciasMes* listaMes);
-nodoGananciaMes* insertarGananciasMes(nodoGananciasMes* listaMes, gananciasMes dato);
+nodoGananciasMes* insertarGananciasMes(nodoGananciasMes* listaMes, gananciasMes dato);
 nodoGananciasMes* sumarGananciasMes(nodoGananciasMes* listaMes, gananciasMes dato);

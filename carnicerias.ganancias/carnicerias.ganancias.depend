@@ -1,0 +1,13 @@
+# depslib dependency file v1.0
+1699456463 source:c:\users\usuario\downloads\tp-final-labo2-main\tp-final-labo2-main\carnicerias.ganancias\main.c
+	<stdio.h>
+	<stdlib.h>
+	"ganancias.h"
+
+1699456508 c:\users\usuario\downloads\tp-final-labo2-main\tp-final-labo2-main\carnicerias.ganancias\ganancias.h
+	<stdio.h>
+	<stdlib.h>
+
+1699456579 source:c:\users\usuario\downloads\tp-final-labo2-main\tp-final-labo2-main\carnicerias.ganancias\gananciasdia.c
+	"ganancias.h"
+

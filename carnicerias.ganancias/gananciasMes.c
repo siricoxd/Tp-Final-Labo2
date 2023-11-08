@@ -1,6 +1,6 @@
-#include <ganancias.h>
+#include "ganancias.h"
 
-nodoGananciasMes* inicGananciasMes*(){
+nodoGananciasMes* inicListaMes(){
     return NULL;
 }
 
@@ -36,7 +36,7 @@ nodoGananciasMes* buscarUltimoMes(nodoGananciasMes* listaMes){
     return listaMes;
 }
 
-nodoGananciaMes* insertarGananciasMes(nodoGananciasMes* listaMes, gananciasMes dato){
+nodoGananciasMes* insertarGananciasMes(nodoGananciasMes* listaMes, gananciasMes dato){
     if(listaMes==NULL) listaMes=crearGananciasMes(dato);
     else{
         if(dato.mes<listaMes->dato.mes){
@@ -44,7 +44,7 @@ nodoGananciaMes* insertarGananciasMes(nodoGananciasMes* listaMes, gananciasMes d
         }
         else{
             if(dato.mes==listaMes->dato.mes){
-                sumarGananciasMes(listMes, dato);
+                sumarGananciasMes(listaMes, dato);
             }
             else{
                 listaMes=agregarFinalGananciasMes(listaMes, crearGananciasMes(dato));
@@ -58,9 +58,21 @@ nodoGananciasMes* sumarGananciasMes(nodoGananciasMes* listaMes, gananciasMes dat
     if(listaMes==NULL) listaMes=crearGananciasMes(dato);
     else{
         while(dato.listaDias!=NULL){
-            sumarGananciasDia(listaMes->dato.listaDias, dato.listaDias->dato);
+            listaMes->dato.listaDias=sumarGananciasDia(listaMes->dato.listaDias, dato.listaDias->dato);
             dato.listaDias=dato.listaDias->sigDia;
         }
     }
     return listaMes;
+}
+
+void mostrarGananciasMes(gananciasMes dato){
+    printf("MES %d:\n", dato.mes);
+    mostrarGananciasDias(dato.listaDias);
+}
+
+void mostrarGanancias(nodoGananciasMes* listaMes){
+    while(listaMes!=NULL){
+        mostrarGananciasMes(listaMes->dato);
+        listaMes=listaMes->sigMes;
+    }
 }

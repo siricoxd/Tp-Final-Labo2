@@ -1,29 +1,29 @@
-#include <gananciasD.h>
+#include "ganancias.h"
 
-nodoGananciasDia* inicGananciasDia(){
+nodoGananciasDia* inicListaDias(){
     return NULL;
 }
 
 nodoGananciasDia* crearGananciasDia(gananciasDia dato){
     nodoGananciasDia* aux=(nodoGananciasDia*) malloc(sizeof(nodoGananciasDia));
     aux->dato=dato;
-    aux->sigMes=NULL;
+    aux->sigDia=NULL;
     return aux;
 }
 
-nodoGananciasDia* agregarPpioGananciasDia(nodoGanancias* listaDias, nodoGananciasDia* nuevo){
+nodoGananciasDia* agregarPpioGananciasDia(nodoGananciasDia* listaDias, nodoGananciasDia* nuevo){
     if(listaDias==NULL){
         listaDias=nuevo;
     }
     else{
-        nuevo->siguiente=listaDias;
+        nuevo->sigDia=listaDias;
         listaDias=nuevo;
     }
     return listaDias;
 }
 nodoGananciasDia* buscarUltimo(nodoGananciasDia* listaDias){
     while(listaDias!=NULL){
-        listaDias=listaDias->siguiente;
+        listaDias=listaDias->sigDia;
     }
     return listaDias;
 }
@@ -41,21 +41,21 @@ nodoGananciasDia* buscarPorDia(nodoGananciasDia* listaDias, int diaBuscado){
     return listaDias;
 }
 
-nodoGananciasMeses* agregarFinalGananciasDia(nodoGananciasDia* listaDias, nodoGananciasDia* nuevo){
+nodoGananciasDia* agregarFinalGananciasDia(nodoGananciasDia* listaDias, nodoGananciasDia* nuevo){
     if(listaDias==NULL){
         listaDias=nuevo;
     }
     else{
         nodoGananciasDia* aux=listaDias;
         aux=buscarUltimo(aux);
-        aux->sigMes=nuevo;
+        aux->sigDia=nuevo;
     }
     return listaDias;
 }
 
 nodoGananciasDia* sumarGananciasDia(nodoGananciasDia* listaDias, gananciasDia dato){
     if(listaDias==NULL){
-        listaDias=crearGananciasDia(listaDias, dato);
+        listaDias=crearGananciasDia(dato);
     }
     else{
         listaDias=buscarPorDia(listaDias, dato.dia);
@@ -70,16 +70,28 @@ nodoGananciasDia* insertarGananciasDia(nodoGananciasDia* listaDias, gananciasDia
     }
     else{
         if(dato.dia<listaDias->dato.dia){
-            listaDias=agregarPpioGananciasDia(listaDias, crearGananciasDia(nuevo));
+            listaDias=agregarPpioGananciasDia(listaDias, crearGananciasDia(dato));
         }
         else{
             if(dato.dia==listaDias->dato.dia){
                 listaDias=sumarGananciasDia(listaDias, dato);
             }
             else{
-                listaDias=agregarFinalGananciasDia(listaDias, crearGananciasDia(nuevo));
+                listaDias=agregarFinalGananciasDia(listaDias, crearGananciasDia(dato));
             }
         }
     }
     return listaDias;
+}
+
+
+void mostrarGananciasUnDia(gananciasDia dato){
+    printf("DIA %d: $%d\n", dato.dia, dato.ganancias);
+}
+
+void mostrarGananciasDias(nodoGananciasDia* listaDias){
+    while(listaDias!=NULL){
+        mostrarGananciasUnDia(listaDias->dato);
+        listaDias=listaDias->sigDia;
+    }
 }
