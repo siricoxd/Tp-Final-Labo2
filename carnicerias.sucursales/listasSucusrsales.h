@@ -86,4 +86,5 @@ int alta(provincia ar[],registroArchivoLocales dato,int validos);
 //archivos
 int descargarArchivo(provincia ar[],int validos,int dim);
 int cargarArchivo(int dim);
+int cantidadDeRegistros();
 #endif // LISTASSUCUSRSALES_H_INCLUDED

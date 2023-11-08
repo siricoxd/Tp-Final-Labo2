@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <windows.h>
 
-
 int dibujo();
 int main()
 {
@@ -40,8 +39,6 @@ int main()
 
     return 0;
 }
-
-
 int dibujo()
 {
     system("cls");
@@ -68,7 +65,6 @@ int dibujo()
     system("cls");
     return seleccion;
 }
-
 void gotoxy(int x,int y)
 {
     HANDLE hcon;

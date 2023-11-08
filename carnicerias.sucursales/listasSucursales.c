@@ -295,7 +295,7 @@ int alta(provincia ar[],registroArchivoLocales dato,int validos)
         validos=cargarArreglosProvincia(ar,dato,30,validos);
         pos=validos-1;
     }
-    ar[pos].listaDelocales=agregarAlPpioLocales(ar[pos].listaDelocales,aux);
+    ar[pos].listaDelocales=agregarAlFinalLocales(ar[pos].listaDelocales,aux);
 
     return validos;
 }
@@ -466,7 +466,7 @@ void activarLocal(provincia ar[],int id,int pos)
     {
         registroArchivoLocales aux;
         nodoLocales*seg=ar[pos].listaDelocales;
-        int flag=0,id=0;
+        int flag=0;
         while(fread(&aux,sizeof(registroArchivoLocales),1,buffer)&&flag==0)
         {
             if(ar[pos].idProvincia==aux.idProvincia&&aux.idLocal==seg->dato.idDeLocal)
@@ -494,7 +494,7 @@ void descativarLocal(provincia ar[],int id,int pos)
     {
         registroArchivoLocales aux;
         nodoLocales*seg=ar[pos].listaDelocales;
-        int flag=0,id=0;
+        int flag=0;
         while(fread(&aux,sizeof(registroArchivoLocales),1,buffer)&&flag==0)
         {
             if(ar[pos].idProvincia==aux.idProvincia&&aux.idLocal==seg->dato.idDeLocal)
