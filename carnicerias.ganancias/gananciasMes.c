@@ -57,9 +57,10 @@ nodoGananciasMes* insertarGananciasMes(nodoGananciasMes* listaMes, gananciasMes 
 nodoGananciasMes* sumarGananciasMes(nodoGananciasMes* listaMes, gananciasMes dato){
     if(listaMes==NULL) listaMes=crearGananciasMes(dato);
     else{
-        while(dato.listaDias!=NULL){
-            listaMes->dato.listaDias=sumarGananciasDia(listaMes->dato.listaDias, dato.listaDias->dato);
-            dato.listaDias=dato.listaDias->sigDia;
+        nodoGananciasDia* diaActual=dato.listaDias;
+        while(diaActual!=NULL){
+            listaMes->dato.listaDias=sumarGananciasDia(listaMes->dato.listaDias,diaActual->dato);
+            diaActual=diaActual->sigDia;
         }
     }
     return listaMes;
