@@ -1,0 +1,12 @@
+# depslib dependency file v1.0
+1695051085 source:c:\users\diegue\desktop\prog2\stock\listasdobles.c
+	<stdio.h>
+	<malloc.h>
+	"listasDobles.h"
+
+1695050977 c:\users\diegue\desktop\prog2\stock\listasdobles.h
+
+1514140574 source:c:\users\diegue\desktop\prog2\stock\main.c
+	<stdio.h>
+	<stdlib.h>
+
