@@ -17,12 +17,16 @@
 1699547223 source:c:\users\usuario\desktop\utn\lab 2\asd\tp-final-labo2\carnicerias.ganancias\gananciasdia.c
 	"ganancias.h"
 
-1699714240 c:\users\usuario\desktop\utn\lab 2\asd\tp-final-labo2\carnicerias.ganancias\ganancias.h
+1699757828 c:\users\usuario\desktop\utn\lab 2\asd\tp-final-labo2\carnicerias.ganancias\ganancias.h
 	<stdio.h>
 	<stdlib.h>
+	<string.h>
 
-1699714510 source:c:\users\usuario\desktop\utn\lab 2\asd\tp-final-labo2\carnicerias.ganancias\main.c
+1699758192 source:c:\users\usuario\desktop\utn\lab 2\asd\tp-final-labo2\carnicerias.ganancias\main.c
 	<stdio.h>
 	<stdlib.h>
+	"ganancias.h"
+
+1699758223 source:c:\users\usuario\desktop\utn\lab 2\asd\tp-final-labo2\carnicerias.ganancias\ganancias.c
 	"ganancias.h"
 
