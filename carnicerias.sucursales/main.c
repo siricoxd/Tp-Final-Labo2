@@ -8,7 +8,6 @@ int main()
     provincia ar[30];
     int id=1,pos=0;
     int validos=0;
-
     validos=descargarArchivo(ar,validos,30);
     while(id!=0)
     {

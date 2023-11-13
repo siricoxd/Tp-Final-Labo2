@@ -20,6 +20,7 @@ void cargarArchivoUsuarios();
 int DescargarArchivoUsuarios(stUsuario ar[],int dim);
 stUsuario cargarUsuarioNuevo();
 int iniciarSesion();
+void registrarse();
 
 
 #endif // PORTADA_H_INCLUDED

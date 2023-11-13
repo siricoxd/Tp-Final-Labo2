@@ -18,7 +18,7 @@ int menuPrincipal()
     printf("\t\t\t|                                                                        |\n");
     printf("\t\t\t|                                                                        |\n");
     printf("\t\t\t|                             1. SUCURSALES                              |\n");
-    printf("\t\t\t|                             2. MODIFICAR                               |\n");
+    printf("\t\t\t|                             2. AGREGAR EMPLEADO                        |\n");
     printf("\t\t\t|                                                                        |\n");
     printf("\t\t\t|                             0. SALIR                                   |\n");
     printf("\t\t\t|                                                                        |\n");
@@ -62,13 +62,13 @@ int LogIn()
     int seleccion=0;
     printf("\n\n\n");
 
-    printf("\t  ####      ##     #####    ##  ##    ####     ####    ##  ##   ######   #####     ####      ## \n");
-    printf("\t ##  ##    ####    ##  ##   ### ##     ##     ##  ##   ### ##   ##       ##  ##     ##      ####\n");
-    printf("\t ##       ##  ##   ##  ##   ######     ##     ##       ######   ##       ##  ##     ##     ##  ##\n");
-    printf("\t ##       ######   #####    ######     ##     ##       ######   ####     #####      ##     ######\n");
-    printf("\t ##       ##  ##   ####     ## ###     ##     ##       ## ###   ##       ####       ##     ##  ##\n");
-    printf("\t ##  ##   ##  ##   ## ##    ##  ##     ##     ##  ##   ##  ##   ##       ## ##      ##     ##  ##\n");
-    printf("\t  ####    ##  ##   ##  ##   ##  ##    ####     ####    ##  ##   ######   ##  ##    ####    ##  ##\n");
+    printf("\t     ####      ##     #####    ##  ##    ####     ####    ######   #####     ####      ## \n");
+    printf("\t    ##  ##    ####    ##  ##   ### ##     ##     ##  ##   ##       ##  ##     ##      ####\n");
+    printf("\t    ##       ##  ##   ##  ##   ######     ##     ##       ##       ##  ##     ##     ##  ##\n");
+    printf("\t    ##       ######   #####    ######     ##     ##       ####     #####      ##     ######\n");
+    printf("\t    ##       ##  ##   ####     ## ###     ##     ##       ##       ####       ##     ##  ##\n");
+    printf("\t    ##  ##   ##  ##   ## ##    ##  ##     ##     ##  ##   ##       ## ##      ##     ##  ##\n");
+    printf("\t     ####    ##  ##   ##  ##   ##  ##    ####     ####    ######   ##  ##    ####    ##  ##\n");
     printf("\n\n\n");
     printf("\t\t\t\t\t\t 1. INICIAR SESION\n\n\t\t\t\t\t\t 0. SALIR\n\n\n\n");
 
@@ -131,6 +131,7 @@ stUsuario cargarUsuarioNuevo()
     printf("Ingrese el rango del empleado: ");
     scanf("%d",&aux.rango);
 
+
     return aux;
 }
 int iniciarSesion()
@@ -154,7 +155,7 @@ int iniciarSesion()
 
         system("cls");
 
-        while(fread(&archi, sizeof(stUsuario), 1, buffer))
+        while(fread(&archi, sizeof(stUsuario), 1, buffer)&&contra==0)
         {
             if(strcmpi(aux.usuario, archi.usuario) == 0)
             {
@@ -162,6 +163,7 @@ int iniciarSesion()
 
                 if(strcmp(aux.contrasenia, archi.contrasenia) == 0)
                 {
+                    ok=1;
                     contra = 1;
                 }
             }
@@ -180,4 +182,48 @@ int iniciarSesion()
     }
 
     return ok;
+}
+void registrarse()
+{
+    stUsuario aux,archi;
+    system("cls");
+    printf("\t\t\t---------------\n");
+    printf("\n\t\t\t   REGISTRAR\n");
+    printf("\t\t\t---------------\n");
+
+    printf("\n\tUsuario: ");
+    fflush(stdin);
+    gets(aux.usuario);
+
+    printf("\n\tContrasenia: ");
+    fflush(stdin);
+    gets(aux.contrasenia);
+
+    system("cls");
+
+    FILE* buffer = fopen("archivoUsuarios.bin", "r+b");
+    if (buffer)
+    {
+        int usuarioExiste = 0;
+        while (fread(&archi, sizeof(stUsuario), 1, buffer))
+        {
+            if (strcmpi(aux.usuario, archi.usuario) == 0)
+            {
+                usuarioExiste = 1;
+            }
+        }
+        if(usuarioExiste==0)
+        {
+            aux = cargarUsuarioNuevo();
+            fwrite(&aux, sizeof(stUsuario), 1, buffer);
+        }
+
+        else
+        {
+            printf("Este empleado ya existe\n");
+            system("pause");
+
+        }
+    }
+    fclose(buffer);
 }

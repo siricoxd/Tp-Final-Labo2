@@ -312,17 +312,12 @@ locales pasarRegistrosToLocal(registroArchivoLocales dato)
 registroArchivoLocales cargarRegistroLocales()
 {
 
-    registroArchivoLocales aux;
+    registroArchivoLocales aux,archi;
     printf("Ingrese la provincia: ");
     fflush(stdin);
     gets(aux.provincia);
-    FILE* buffer = fopen(archivoProvincia,"rb");
-    if(buffer)
-    {
-        fread(&aux,sizeof(registroArchivoLocales),1,buffer);
-        aux.idProvincia = cantidadDeRegistros()+1;
-        fclose(buffer);
-    }
+    printf("Ingrese la id de la provincia:");
+    scanf("%d",&aux.idProvincia);
     aux.activoProv=1;
     printf("Ingrese la ciudad: ");
     fflush(stdin);
@@ -330,11 +325,11 @@ registroArchivoLocales cargarRegistroLocales()
     printf("Ingrese la direccion del local: ");
     fflush(stdin);
     gets(aux.direccion);
-    FILE* buffer2 = fopen(archivoProvincia,"rb");
+    FILE* buffer2 = fopen(archivoProvincia,"a+b");
     if(buffer2)
     {
-        fread(&aux,sizeof(registroArchivoLocales),1,buffer2);
-        aux.idLocal = cantidadDeRegistros()*1;
+        fread(&archi,sizeof(registroArchivoLocales),1,buffer2);
+        aux.idLocal=archi.idLocal+1;
         fclose(buffer2);
     }
     aux.activoLocal=1;
