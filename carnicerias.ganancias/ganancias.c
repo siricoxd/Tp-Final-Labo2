@@ -177,3 +177,36 @@ void sumarGanancias(int ganancias[MESES][DIAS], int nuevasGanancias[MESES][DIAS]
 
 
 ///func datos
+
+
+
+
+ganancias intToGanancias(int ganancias[MESES][DIAS], int anio){
+    ganancias aux;
+    memccpy(aux.ganancias, ganancias, sizeof(aux.ganancias);
+    aux.anio=anio;
+    return aux;
+}
+
+
+///func usuario
+ganancias cargarGananciasADia(ganancias dato){
+    int fecha[2], plata;
+    printf("Ingrese num de mes: ");
+    scanf("%d", fecha[0]);
+    printf("Ingrese dia: ");
+    scanf("%d", fecha[1]);
+    printf("Ingrese dinero a sumar: ");
+    scanf("%d", &plata);
+    sumarGananciaADia(dato.ganancias, fecha, plata);
+    return dato;
+}
+
+ganancias cargarAnio(){
+    ganancias aux;
+    int anio;
+    printf("Ingrese anio: ");
+    scanf("&d", &anio);
+    aux.anio=anio;
+    return aux;
+}
