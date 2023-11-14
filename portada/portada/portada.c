@@ -163,7 +163,13 @@ int iniciarSesion()
 
                 if(strcmp(aux.contrasenia, archi.contrasenia) == 0)
                 {
-                    ok=1;
+                    //if(archi.rango==1)
+                        ok=1;
+                    /*else if(archi.rango==2)
+                        ok=2;
+                    else if(archi.rango==3)
+                        ok=3;*/
+
                     contra = 1;
                 }
             }

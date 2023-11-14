@@ -2,18 +2,17 @@
 #include <stdlib.h>
 #include "listasSucusrsales.h"
 
-void mostrarTodo(provincia ar[],int validos);
 int main()
 {
     provincia ar[30];
     int id=1,pos=0;
-    int validos=0;
-    validos=descargarArchivo(ar,validos,30);
+    int validos;
+
     while(id!=0)
     {
         system("cls");
-
-
+        validos=0;
+        validos=descargarArchivo(ar,validos,30);
         printf("1. mostrar una sola provincia\n2. desactivar\n3. reactivar\n4. cargar\n5. mostrar todo\n");
         scanf("%d",&pos);
         switch(pos)

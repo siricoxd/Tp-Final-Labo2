@@ -295,6 +295,7 @@ int alta(provincia ar[],registroArchivoLocales dato,int validos)
         validos=cargarArreglosProvincia(ar,dato,30,validos);
         pos=validos-1;
     }
+    //if(ar[pos].listaDelocales->dato.idDeLocal==dato.idLocal)
     ar[pos].listaDelocales=agregarAlFinalLocales(ar[pos].listaDelocales,aux);
 
     return validos;
@@ -325,11 +326,13 @@ registroArchivoLocales cargarRegistroLocales()
     printf("Ingrese la direccion del local: ");
     fflush(stdin);
     gets(aux.direccion);
-    FILE* buffer2 = fopen(archivoProvincia,"a+b");
+    FILE* buffer2 = fopen(archivoProvincia,"rb");
     if(buffer2)
     {
+        fseek(buffer2,1*sizeof(registroArchivoLocales),SEEK_END);
         fread(&archi,sizeof(registroArchivoLocales),1,buffer2);
         aux.idLocal=archi.idLocal+1;
+
         fclose(buffer2);
     }
     aux.activoLocal=1;
@@ -341,7 +344,7 @@ int cantidadDeRegistros()
     FILE* buffer = fopen(archivoProvincia,"rb");
     if(buffer)
     {
-        fseek(buffer, 0, SEEK_END);
+        fseek(buffer,0,SEEK_END);
         cantidad =(int)ftell(buffer)/sizeof(registroArchivoLocales);
         fclose(buffer);
     }

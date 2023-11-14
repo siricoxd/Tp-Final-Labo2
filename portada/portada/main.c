@@ -59,6 +59,10 @@ int main()
             }
             while(eleccion!=0);
         }
+        else if(ok==2)
+        {
+
+        }
     }
     while(login!=0);
     return 0;

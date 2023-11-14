@@ -96,7 +96,7 @@ void mostrarUnTrabajador(trabajador a)
 void mostrarArchivo(char archivo[])
 {
 
-printf("ARCHIVO: \n");
+    printf("ARCHIVO: \n");
     FILE* archi=fopen(archivo, "rb");
     trabajador a;
     if(archi)
@@ -112,61 +112,75 @@ printf("ARCHIVO: \n");
 }
 ///Libreria listas
 
-nodoLista* iniclista(){
-return NULL;
+nodoLista* iniclista()
+{
+    return NULL;
 }
 
-nodoLista* crearNodoLista(int idSucursal){
+nodoLista* crearNodoLista(int idSucursal)
+{
 
-nodoLista* aux=(nodoLista*)malloc(sizeof(nodoLista));
+    nodoLista* aux=(nodoLista*)malloc(sizeof(nodoLista));
 
-aux->idSucursal=idSucursal;
-aux->arbol=inicarbol();
-aux->siguiente=NULL;
+    aux->idSucursal=idSucursal;
+    aux->arbol=inicarbol();
+    aux->siguiente=NULL;
 
-return aux;
+    return aux;
 }
 
-nodoLista* agregarAlPpio(nodoLista* lista, nodoLista* nuevo){
+nodoLista* agregarAlPpio(nodoLista* lista, nodoLista* nuevo)
+{
 
-if(lista==NULL){
-    lista=nuevo;
+    if(lista==NULL)
+    {
+        lista=nuevo;
+    }
+    else
+    {
+        nuevo->siguiente=lista;
+        lista=nuevo;
+
+    }
+    return lista;
 }
-else{
-    nuevo->siguiente=lista;
-    lista=nuevo;
 
-}
-return lista;
-}
+nodoLista* agregarEnOrden(nodoLista* lista, nodoLista * nuevoNodo)
+{
 
-nodoLista* agregarEnOrden(nodoLista* lista, nodoLista * nuevoNodo) {
-
-   if(lista == NULL) {
-      lista = nuevoNodo;
-   }else {
+    if(lista == NULL)
+    {
+        lista = nuevoNodo;
+    }
+    else
+    {
 
 
-      if(nuevoNodo->idSucursal < lista->idSucursal){
-         lista = agregarAlPpio(lista, nuevoNodo);
-      } else {
+        if(nuevoNodo->idSucursal < lista->idSucursal)
+        {
+            lista = agregarAlPpio(lista, nuevoNodo);
+        }
+        else
+        {
 
-         nodoLista * ante = lista;
-         nodoLista * seg = lista->siguiente;
-         while((seg != NULL) && (nuevoNodo->idSucursal > seg->idSucursal)){
-            ante = seg;
-            seg = seg->siguiente;
-         }
-         nuevoNodo->siguiente = seg;
-         ante->siguiente = nuevoNodo;
-      }
-   }
-   return lista;
+            nodoLista * ante = lista;
+            nodoLista * seg = lista->siguiente;
+            while((seg != NULL) && (nuevoNodo->idSucursal > seg->idSucursal))
+            {
+                ante = seg;
+                seg = seg->siguiente;
+            }
+            nuevoNodo->siguiente = seg;
+            ante->siguiente = nuevoNodo;
+        }
+    }
+    return lista;
 }
 
 ///Libreria arboles
-nodoArbol* inicarbol(){
-return NULL;
+nodoArbol* inicarbol()
+{
+    return NULL;
 }
 nodoArbol* crearNodoArbol(trabajador a)
 {
@@ -180,60 +194,66 @@ nodoArbol* crearNodoArbol(trabajador a)
     return aux;
 }
 
-nodoArbol* insertar(nodoArbol* arbol, nodoArbol* nuevo){
+nodoArbol* insertar(nodoArbol* arbol, nodoArbol* nuevo)
+{
 
-if(arbol==NULL){
-    arbol=nuevo;
-}
-else{
-    if(arbol->dato.rango > nuevo->dato.rango){
-        arbol->izq=insertar(arbol->izq, nuevo);
+    if(arbol==NULL)
+    {
+        arbol=nuevo;
     }
-    else{
-        arbol->der=insertar(arbol->der, nuevo);
+    else
+    {
+        if(arbol->dato.rango > nuevo->dato.rango)
+        {
+            arbol->izq=insertar(arbol->izq, nuevo);
+        }
+        else
+        {
+            arbol->der=insertar(arbol->der, nuevo);
+        }
     }
-}
-return arbol;
+    return arbol;
 }
 
 void inorder(nodoArbol * arbol)
 {
-if(arbol != NULL)
-{
- inorder(arbol->izq);
- if(arbol->dato.baja==1){// si esta activo lo muestra sino no:
-    mostrarUnTrabajador(arbol->dato);
- }
- inorder(arbol->der);
-}
+    if(arbol != NULL)
+    {
+        inorder(arbol->izq);
+        if(arbol->dato.baja==1) // si esta activo lo muestra sino no:
+        {
+            mostrarUnTrabajador(arbol->dato);
+        }
+        inorder(arbol->der);
+    }
 }
 
 void inorderBajas(nodoArbol * arbol)
 {
-if(arbol != NULL)
-{
- inorderBajas(arbol->izq);
- if(arbol->dato.baja==0){// si esta de baja
-    mostrarUnTrabajador(arbol->dato);
- }
- inorderBajas(arbol->der);
-}
+    if(arbol != NULL)
+    {
+        inorderBajas(arbol->izq);
+        if(arbol->dato.baja==0) // si esta de baja
+        {
+            mostrarUnTrabajador(arbol->dato);
+        }
+        inorderBajas(arbol->der);
+    }
 }
 
 nodoArbol * buscarPorDni(nodoArbol * arbol, int dni)
 {
-nodoArbol * rta=NULL;
-if(arbol!=NULL)
-{
- if(dni == arbol->dato.dni)
-rta = arbol;
- else
-if(dni>arbol->dato.dni)
-rta = buscarPorDni(arbol->der, dni);
-else
-rta = buscarPorDni(arbol->izq, dni);
-}
-return rta;
+    nodoArbol * rta=NULL;
+    if(arbol!=NULL)
+    {
+        if(dni == arbol->dato.dni)
+            rta = arbol;
+        else if(dni>arbol->dato.dni)
+            rta = buscarPorDni(arbol->der, dni);
+        else
+            rta = buscarPorDni(arbol->izq, dni);
+    }
+    return rta;
 }
 
 /// Libreria LDA
@@ -257,175 +277,199 @@ nodoLista* alta(nodoLista* lista, trabajador dato, int idSucursal)
     nodoArbol* nuevo = crearNodoArbol(dato);
     nodoLista* encontrado=buscarSucursal(lista, idSucursal);
 
-   if(encontrado==NULL){
-    nodoLista* aux = crearNodoLista(idSucursal);
-    lista=agregarEnOrden(lista, aux); //o al ppio
-    aux->arbol=insertar(aux->arbol, nuevo);
-
-   }
-
-   else{
-    encontrado->arbol=insertar(encontrado->arbol, nuevo);
-
-   }
-return lista;
-}
-
-
-nodoLista* pasarDelArchivoToLDA(char archivo[], nodoLista* lista){
-
-FILE* archi=fopen(archivo, "rb");
-
-if(archi){
-    trabajador a;
-    while(fread(&a, sizeof(trabajador), 1 , archi)>0){
-        lista=alta(lista, a, a.idSucursal);
+    if(encontrado==NULL)
+    {
+        nodoLista* aux = crearNodoLista(idSucursal);
+        lista=agregarEnOrden(lista, aux); //o al ppio
+        aux->arbol=insertar(aux->arbol, nuevo);
 
     }
 
-    fclose(archi);
+    else
+    {
+        encontrado->arbol=insertar(encontrado->arbol, nuevo);
+
+    }
+    return lista;
 }
 
-return lista;
+
+nodoLista* pasarDelArchivoToLDA(char archivo[], nodoLista* lista)
+{
+
+    FILE* archi=fopen(archivo, "rb");
+
+    if(archi)
+    {
+        trabajador a;
+        while(fread(&a, sizeof(trabajador), 1, archi)>0)
+        {
+            lista=alta(lista, a, a.idSucursal);
+
+        }
+
+        fclose(archi);
+    }
+
+    return lista;
 }
 
 
 
-void mostrarLDA(nodoLista* lista){
-printf("LDA: \n");
+void mostrarLDA(nodoLista* lista)
+{
+    printf("LDA: \n");
 
-while(lista != NULL){
-     printf("Id sucursal: %i\n", lista->idSucursal);
-     printf("\n--------------------------------\n");
-    inorder(lista->arbol);
-    lista=lista->siguiente;
+    while(lista != NULL)
+    {
+        printf("Id sucursal: %i\n", lista->idSucursal);
+        printf("\n--------------------------------\n");
+        inorder(lista->arbol);
+        lista=lista->siguiente;
+
+    }
 
 }
 
-}
+nodoLista * buscarNodo(nodoLista * lista,  int idSucursal)
+{
 
-nodoLista * buscarNodo(nodoLista * lista,  int idSucursal) {
+    nodoLista * seg;
+    seg = lista;
+    while ((seg != NULL) && ( seg->idSucursal!=idSucursal))
+    {
+        seg=seg->siguiente;
+    }
 
-   nodoLista * seg;
-   seg = lista;
-   while ((seg != NULL) && ( seg->idSucursal!=idSucursal)) {
-      seg=seg->siguiente;
-   }
-
-   return seg;
+    return seg;
 }
 
 ///Dar de baja y de alta.
-nodoArbol* darDeBajaArbol(int dni, nodoArbol* arbol){
+nodoArbol* darDeBajaArbol(int dni, nodoArbol* arbol)
+{
 
-if(arbol!=NULL){
-    darDeBajaArbol(dni, arbol->izq);
-    if(arbol->dato.dni==dni){
-        arbol->dato.baja=0;
+    if(arbol!=NULL)
+    {
+        darDeBajaArbol(dni, arbol->izq);
+        if(arbol->dato.dni==dni)
+        {
+            arbol->dato.baja=0;
+        }
+        darDeBajaArbol(dni, arbol->der);
     }
-    darDeBajaArbol(dni, arbol->der);
-}
-return arbol;
+    return arbol;
 }
 
-nodoLista* darDeBaja(nodoLista* lista){
-int idSucursal;
-int dni;
+nodoLista* darDeBaja(nodoLista* lista)
+{
+    int idSucursal;
+    int dni;
 
-nodoLista* seg=lista;
+    nodoLista* seg=lista;
 
-printf("Ingresa el id de la Sucursal del trabajador para dar de baja\n");
-fflush(stdin);
-scanf("%i",&idSucursal);
+    printf("Ingresa el id de la Sucursal del trabajador para dar de baja\n");
+    fflush(stdin);
+    scanf("%i",&idSucursal);
 
-seg=buscarNodo(lista,idSucursal);
-while(seg==NULL){
+    seg=buscarNodo(lista,idSucursal);
+    while(seg==NULL)
+    {
         printf("Ingresa un ID valido:\n");
         fflush(stdin);
         scanf("%i", &idSucursal);
         seg=buscarNodo(lista,idSucursal);
-}
+    }
 
-printf("Ingresa el dni del trabajador\n");
-fflush(stdin);
-scanf("%i",&dni);
-
-nodoArbol* aux=buscarPorDni(seg->arbol,dni);
-while(aux==NULL){
-    printf("Ingrese un dni existente: \n");
+    printf("Ingresa el dni del trabajador\n");
     fflush(stdin);
-    scanf("%i", &dni);
-    aux=buscarPorDni(seg->arbol,dni);
-}
+    scanf("%i",&dni);
 
-seg->arbol=darDeBajaArbol(dni,seg->arbol);
+    nodoArbol* aux=buscarPorDni(seg->arbol,dni);
+    while(aux==NULL)
+    {
+        printf("Ingrese un dni existente: \n");
+        fflush(stdin);
+        scanf("%i", &dni);
+        aux=buscarPorDni(seg->arbol,dni);
+    }
+
+    seg->arbol=darDeBajaArbol(dni,seg->arbol);
 
     return lista;
 }
 //
-nodoArbol* darDeAltaArbol(int dni, nodoArbol* arbol){
+nodoArbol* darDeAltaArbol(int dni, nodoArbol* arbol)
+{
 
-if(arbol!=NULL){
-    darDeAltaArbol(dni, arbol->izq);
-    if(arbol->dato.dni==dni){
-        arbol->dato.baja=1;
+    if(arbol!=NULL)
+    {
+        darDeAltaArbol(dni, arbol->izq);
+        if(arbol->dato.dni==dni)
+        {
+            arbol->dato.baja=1;
+        }
+        darDeAltaArbol(dni, arbol->der);
     }
-    darDeAltaArbol(dni, arbol->der);
-}
-return arbol;
+    return arbol;
 }
 
-nodoLista* darDeAlta(nodoLista* lista){
-int idSucursal;
-int dni;
+nodoLista* darDeAlta(nodoLista* lista)
+{
+    int idSucursal;
+    int dni;
 
-nodoLista* seg=lista;
+    nodoLista* seg=lista;
 
-printf("Ingresa el id de la Sucursal del trabajador para dar de alta\n");
-fflush(stdin);
-scanf("%i",&idSucursal);
+    printf("Ingresa el id de la Sucursal del trabajador para dar de alta\n");
+    fflush(stdin);
+    scanf("%i",&idSucursal);
 
-seg=buscarNodo(lista,idSucursal);
-while(seg==NULL){
+    seg=buscarNodo(lista,idSucursal);
+    while(seg==NULL)
+    {
         printf("Ingresa un ID valido:\n");
         fflush(stdin);
         scanf("%i", &idSucursal);
         seg=buscarNodo(lista,idSucursal);
-}
+    }
 
-printf("Ingresa el dni del trabajador\n");
-fflush(stdin);
-scanf("%i",&dni);
-
-nodoArbol* aux=buscarPorDni(seg->arbol,dni);
-while(aux==NULL){
-    printf("Ingrese un dni existente: \n");
+    printf("Ingresa el dni del trabajador\n");
     fflush(stdin);
-    scanf("%i", &dni);
-    aux=buscarPorDni(seg->arbol,dni);
-}
+    scanf("%i",&dni);
 
-seg->arbol=darDeAltaArbol(dni,seg->arbol);
+    nodoArbol* aux=buscarPorDni(seg->arbol,dni);
+    while(aux==NULL)
+    {
+        printf("Ingrese un dni existente: \n");
+        fflush(stdin);
+        scanf("%i", &dni);
+        aux=buscarPorDni(seg->arbol,dni);
+    }
+
+    seg->arbol=darDeAltaArbol(dni,seg->arbol);
 
     return lista;
 }
 
-void mostrarBajas(nodoLista* lista){
-printf("Trabajadores dados de baja: \n");
+void mostrarBajas(nodoLista* lista)
+{
+    printf("Trabajadores dados de baja: \n");
 
-while(lista != NULL){
-     printf("Id sucursal: %i\n", lista->idSucursal);
-     printf("\n--------------------------------\n");
-    inorderBajas(lista->arbol);
-    lista=lista->siguiente;
+    while(lista != NULL)
+    {
+        printf("Id sucursal: %i\n", lista->idSucursal);
+        printf("\n--------------------------------\n");
+        inorderBajas(lista->arbol);
+        lista=lista->siguiente;
 
-}
+    }
 
 }
 
 ///
 
-nodoLista* cambiarSueldo(){
+nodoLista* cambiarSueldo()
+{
 
 
 
