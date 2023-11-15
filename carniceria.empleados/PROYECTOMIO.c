@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "miotrabajo.h"
+#include "proyectomio.h"
 
 //Libreria archivo
 trabajador cargarUnTrabajador()
@@ -345,111 +345,6 @@ nodoLista * buscarNodo(nodoLista * lista,  int idSucursal)
 }
 
 ///Dar de baja y de alta.
-nodoArbol* darDeBajaArbol(int dni, nodoArbol* arbol)
-{
-
-    if(arbol!=NULL)
-    {
-        darDeBajaArbol(dni, arbol->izq);
-        if(arbol->dato.dni==dni)
-        {
-            arbol->dato.baja=0;
-        }
-        darDeBajaArbol(dni, arbol->der);
-    }
-    return arbol;
-}
-
-nodoLista* darDeBaja(nodoLista* lista)
-{
-    int idSucursal;
-    int dni;
-
-    nodoLista* seg=lista;
-
-    printf("Ingresa el id de la Sucursal del trabajador para dar de baja\n");
-    fflush(stdin);
-    scanf("%i",&idSucursal);
-
-    seg=buscarNodo(lista,idSucursal);
-    while(seg==NULL)
-    {
-        printf("Ingresa un ID valido:\n");
-        fflush(stdin);
-        scanf("%i", &idSucursal);
-        seg=buscarNodo(lista,idSucursal);
-    }
-
-    printf("Ingresa el dni del trabajador\n");
-    fflush(stdin);
-    scanf("%i",&dni);
-
-    nodoArbol* aux=buscarPorDni(seg->arbol,dni);
-    while(aux==NULL)
-    {
-        printf("Ingrese un dni existente: \n");
-        fflush(stdin);
-        scanf("%i", &dni);
-        aux=buscarPorDni(seg->arbol,dni);
-    }
-
-    seg->arbol=darDeBajaArbol(dni,seg->arbol);
-
-    return lista;
-}
-//
-nodoArbol* darDeAltaArbol(int dni, nodoArbol* arbol)
-{
-
-    if(arbol!=NULL)
-    {
-        darDeAltaArbol(dni, arbol->izq);
-        if(arbol->dato.dni==dni)
-        {
-            arbol->dato.baja=1;
-        }
-        darDeAltaArbol(dni, arbol->der);
-    }
-    return arbol;
-}
-
-nodoLista* darDeAlta(nodoLista* lista)
-{
-    int idSucursal;
-    int dni;
-
-    nodoLista* seg=lista;
-
-    printf("Ingresa el id de la Sucursal del trabajador para dar de alta\n");
-    fflush(stdin);
-    scanf("%i",&idSucursal);
-
-    seg=buscarNodo(lista,idSucursal);
-    while(seg==NULL)
-    {
-        printf("Ingresa un ID valido:\n");
-        fflush(stdin);
-        scanf("%i", &idSucursal);
-        seg=buscarNodo(lista,idSucursal);
-    }
-
-    printf("Ingresa el dni del trabajador\n");
-    fflush(stdin);
-    scanf("%i",&dni);
-
-    nodoArbol* aux=buscarPorDni(seg->arbol,dni);
-    while(aux==NULL)
-    {
-        printf("Ingrese un dni existente: \n");
-        fflush(stdin);
-        scanf("%i", &dni);
-        aux=buscarPorDni(seg->arbol,dni);
-    }
-
-    seg->arbol=darDeAltaArbol(dni,seg->arbol);
-
-    return lista;
-}
 
 void mostrarBajas(nodoLista* lista)
 {
@@ -466,14 +361,104 @@ void mostrarBajas(nodoLista* lista)
 
 }
 
-///
-
-nodoLista* cambiarSueldo()
+void darDeBaja(char archivo[], nodoLista* aux, int dni)
 {
+
+    int flag=0;
+
+    FILE* archi=fopen(archivo, "r+b");
+
+    if(archi)
+    {
+
+        trabajador a;
+
+
+        nodoArbol* arbol;
+        while(fread(&a, sizeof(trabajador),1,archi)>0 && flag==0)
+        {
+            if(aux->idSucursal==a.idSucursal)
+            {
+                arbol=buscarPorDni(aux->arbol, dni);
+                if(arbol!=NULL)
+                {
+
+                    arbol->dato.baja=0;
+
+                    if(a.dni==dni)
+                    {
+                        a.baja=0;
+                        fseek(archi, -sizeof(trabajador), SEEK_CUR); // Retrocede al inicio del registro
+                        fwrite(&a, sizeof(trabajador), 1, archi); // Escribe el registro modificado
+                        flag=1;
+
+                    }
+
+
+                }
+            }
+
+
+        }
+
+        fclose(archi);
+    }
 
 
 
 }
 
 
+nodoLista* darDeAlta(char archivo[], nodoLista* lista, int idSucursal, int dni)
+{
 
+    FILE* archi=fopen(archivo, "r+b");
+
+    int flag2=0;
+    nodoLista* aux=buscarNodo(lista, idSucursal);
+
+    if(aux==NULL)
+    {
+        printf("No se encontro la sucursal\n");
+        flag2=1;
+    }
+
+    nodoArbol* aux2=buscarPorDni(aux->arbol, dni);
+    if(aux2==NULL)
+    {
+        printf("No se encontro el dni\n");
+        flag2=1;
+    }
+    else
+    {
+        aux2->dato.baja=1;
+    }
+
+    if(archi)
+    {
+        trabajador a;
+        int flag=0;
+
+        while(fread(&a, sizeof(trabajador),1,archi)>0 && flag2==0)
+        {
+
+            if(a.dni==dni)
+            {
+                a.baja=1;
+                fseek(archi, -sizeof(trabajador), SEEK_CUR); // Retrocede al inicio del registro
+                fwrite(&a, sizeof(trabajador), 1, archi); // Escribe el registro modificado
+                flag=1;
+
+            }
+
+        }
+        if(flag==0)
+        {
+            printf("No se encontro el dni\n");
+        }
+
+        fclose(archi);
+    }
+    return lista;
+
+}

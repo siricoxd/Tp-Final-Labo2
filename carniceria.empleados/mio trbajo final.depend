@@ -1,9 +1,0 @@
-# depslib dependency file v1.0
-1699926362 source:c:\users\win10\downloads\mio trbajo final\main.c
-	<stdio.h>
-	<stdlib.h>
-	<string.h>
-	"miotrabajo.h"
-
-1699926579 c:\users\win10\downloads\mio trbajo final\miotrabajo.h
-
