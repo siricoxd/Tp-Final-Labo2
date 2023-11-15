@@ -2,122 +2,227 @@
 #include <stdlib.h>
 #include "listasProductos.h"
 #define ARCHIVO_CATALOGO "catalogo.bin"
+#include <windows.h>
 
 
-int eliminarCategoria(catalogo arreglo[],int validos,int dato);
-nodoProductos *borrarNodo(int buscado,nodoProductos *lista);
-void eliminarProducto(catalogo arreglo[],int validos,int idCat,int idPro);
+void imprimirBarraCarga(int porcentaje);
+void barra();
+
+int menu();
+int menuOpcion();
 int main()
 {
-   catalogo arreglo[40];
-   int validos=0,eliminarCatalogo,eliminarPro;
-   char rta;
 
-    printf("\nARCHIVO:\n");
-     muestraArchivo(ARCHIVO_CATALOGO);
-    validos=bajarArchivo(ARCHIVO_CATALOGO,arreglo,40);
-
-        printf("\ndesea cargar el arreglo: ");
-        fflush(stdin);
-        scanf("%c",&rta);
-        if(rta=='s')
-        {
-            printf("\nARREGLO:\n");
-             muestraDeCatalogo(arreglo,validos);
-
-              validos=cargaCatalogo(arreglo,40,validos);
-              muestraDeCatalogo(arreglo,validos);
-              guardaEnArchivo(arreglo,validos,ARCHIVO_CATALOGO);
-        }
-//           printf("\ningrese el id que desea eliminar\n");
-//        scanf("%d",&eliminarCatalogo);
-//        system("pause");
-//        system("cls");
-//         printf("\nnuevo arreglo:\n");
-//        validos=eliminarCategoria(arreglo,validos,eliminarCatalogo);
-//        muestraDeCatalogo(arreglo,validos);
-//         guardaEnArchivo(arreglo,validos,ARCHIVO_CATALOGO);
-//            system("pause");
-//        system("cls");
-//           printf("\ningrese el id del catalogo\n");
-//        scanf("%d",&eliminarCatalogo);
-//
-//        eliminarProducto(arreglo,validos,eliminarCatalogo,1);
-//        muestraDeCatalogo(arreglo,validos);
-//         guardaEnArchivo(arreglo,validos,ARCHIVO_CATALOGO);
+              menuOpcion();
 
 
 
     return 0;
 }
 
-int eliminarCategoria(catalogo arreglo[],int validos,int dato)//elimina un posicion del arreglo de categoria
+
+
+int menuOpcion()
 {
-    int i=validos-1,flag=0;
-
-    while(i>=0&& flag==0)
+    int selected;
+    catalogo arreglo[40];
+    int validos = 0, buscar = 0, pos = 0;
+    int idDeProdu=0;
+    do
     {
-        if(arreglo[i].idCategoria==dato)
-        {
-            arreglo[i]=arreglo[i+1];
-            validos--;
-            flag=1;
-        }
-        i--;
+        selected = menu();
 
-    }
-    return validos;
+        switch (selected)
+        {
+        case 1:
+            barra();
+            muestraArchivo(ARCHIVO_CATALOGO);
+            system("Pause");
+            break;
+
+        case 2:
+           printf("\nARCHIVO:\n");
+
+            cargaArchivo(ARCHIVO_CATALOGO);
+            muestraArchivo(ARCHIVO_CATALOGO);
+            system("pause");
+            break;
+
+        case 3:
+            validos = pasardeArchivoAArreglo(ARCHIVO_CATALOGO, arreglo, 40);
+            muestraDeCatalogo(arreglo, validos);
+            system("pause");
+
+            break;
+        case 4:
+
+            printf("\ningrese el id del catalogo que desea desactivar\n");
+            scanf("%d", &buscar);
+            pos = buscaEnCatalogoPorId(arreglo, validos, buscar);
+
+            if (pos !=-1 ) {
+                desactivarCatalogo(arreglo, buscar, pos-1);
+                validos = pasardeArchivoAArreglo(ARCHIVO_CATALOGO, arreglo, 40);
+                muestraDeCatalogo(arreglo, validos);
+
+            }
+            else
+            {
+                printf("\nno se encontro catalogo\n");
+            }
+
+            system("pause");
+
+            break;
+        case 5 :
+
+
+
+
+
+            printf("\ningrese el id del catalogo del producto a dersactivar\n");
+            scanf("%d", &buscar);
+              printf("\nINGRESE EL ID DEL PRODUCTO A DAR DE BAJA");
+            scanf("%d",&idDeProdu);
+            pos = buscaEnCatalogoPorId(arreglo, validos, buscar);
+             if (pos !=-1 ) {
+                desactivarProducto(arreglo, idDeProdu, pos-1);
+                validos = pasardeArchivoAArreglo(ARCHIVO_CATALOGO, arreglo, 40);
+                muestraDeCatalogo(arreglo,validos);
+
+            }
+            else
+            {
+                printf("\nno se encontro catalogo\n");
+            }
+
+            system("pause");
+
+            break;
+        case 6:
+               validos = pasardeArchivoAArreglo(ARCHIVO_CATALOGO, arreglo, 40);
+             muestraDeCatalogo(arreglo, validos);
+              printf("\ningrese el id del catalogo del producto a modificar sotck\n");
+            scanf("%d", &buscar);
+              printf("\nINGRESE EL ID DEL PRODUCTO A a modificar");
+            scanf("%d",&idDeProdu);
+            pos = buscaEnCatalogoPorId(arreglo, validos, buscar);
+              system("pause");
+            system("cls");
+
+             if (pos !=-1 ) {
+                pasarDeArregloAArchivo(arreglo[pos],idDeProdu,ARCHIVO_VENTAS);
+
+                  muestraArchivoVentas(ARCHIVO_VENTAS);
+            }
+            else
+            {
+                printf("\nno se encontro catalogo\n");
+            }
+
+              system("pause");
+            break;
+        case 7:
+            muestraArchivoVentas(ARCHIVO_VENTAS);
+              system("pause");
+            break;
+
+        case 8:
+             muestraArchivoVentas(ARCHIVO_VENTAS);
+            printf("\nINGRESE EL ID DEL ARCHIVO A DESACTIVAR");
+            scanf("%d",&idDeProdu);
+            desactivarArchivoVentas(idDeProdu);
+             system("pause");
+            break;
+
+
+        case 0:
+
+            printf("\n\nTERMINATE THE PROGRAM\n");
+            break;
+        }
+
+    } while (selected != 0);
+
+    system("PAUSE");
+    return 0;
+}
+int menu()
+{
+
+    int input;
+    system("cls");
+
+    printf("\t\t\t\t\t\t\t\t\n----------");
+
+    printf("                   \n MENU");
+    printf("\n\t\t\t\t\t\t\t\t\t-----------");
+    printf("\n\t\t\t\t\t\t\t\t\t1MUESTRA DEL ARCHIVO");
+    printf("\n\t\t\t\t\t\t\t\t\t2-CARGA DEL ARCHIVO");
+    printf("\n\t\t\t\t\t\t\t\t\t3-MOSTRAR ARREGLO DE LISTAS ");
+    printf("\n\t\t\t\t\t\t\t\t\t4-DAR DE BAJA CATEGORIA");
+    printf("\n\t\t\t\t\t\t\t\t\t5-DAR DE BAJA PRODUCTO");
+    printf("\n\t\t\t\t\t\t\t\t\t6-CARGA ARCHIVO VENTAS");
+    printf("\n\t\t\t\t\t\t\t\t\t7-MUESTRA ARCHIVO VENTAS");
+    printf("\n\t\t\t\t\t\t\t\t\t8-DESACTIVAR DATO DE VENTAS");
+
+    printf("\n\n\t\t\t\t\t\t\t\t\tENTER YOUR CHOICE: ");
+    scanf("%d",&input);
+       system("cls");
+    return input;
 }
 
 
-nodoProductos *borrarNodo(int buscado,nodoProductos *lista)// elimina un nodo  de la lista de productos
+
+
+
+
+//BARRA DE CARGA INNCIO
+void barra()
 {
-    if(lista!=NULL)
+    printf("\n");
+    printf("+------------------+\n");
+    printf("|                  |\n");
+    printf("|    CARGANDO...   |\n");
+    printf("|                  |\n");
+    printf("|------------------|");
+    printf("\n");
+    int porcentaje;
+    for (porcentaje = 0; porcentaje <= 100; porcentaje++)
     {
-        if( lista->dato.id==buscado)//primera condicion , el buscado es el 1
-        {
-        nodoProductos*aBorrar=lista;
-        lista=lista->siguiente;
-        free(aBorrar);
-        }
+        imprimirBarraCarga(porcentaje);
+        usleep(10000); // Esperar 100ms (0.1 segundos)
+    }
+    printf("\nCarga completa\n");
+    // sleep(1);
+    system("cls");
+}
 
-
-    else{//si lo buescado no esta en el 1 nodo seg condicion
-
-            nodoProductos*ante=lista;
-    nodoProductos*seg=lista->siguiente;
-    while((seg!=NULL)&&(seg->dato.id!=buscado))
+void imprimirBarraCarga(int porcentaje)
+{
+    int i;
+    for (i = 0; i < 50; i++)
     {
-        ante=seg;
-        seg=seg->siguiente;
-    }
-    if(seg!=NULL)
+        if (i < porcentaje / 2)
         {
-
-            ante->siguiente=seg->siguiente;//elimino
-            free(seg);
-
+            printf("#");
         }
-
+        else
+        {
+            printf(" ");
+        }
+        fflush(stdout); // Limpiar y mostrar la salida inmediatamente
     }
-    }
-return lista;
+    printf("] %d%%\r", porcentaje);
+    fflush(stdout); // Limpiar y mostrar la salida inmediatamente
 }
 
 
-void eliminarProducto(catalogo arreglo[],int validos,int idCat,int idPro)//recorre el arreglo para buscar el catalogo que contiene el producto a eliminar
-{
-     int i=validos-1,flag=0;
 
-    while(i>=0&& flag==0)
-    {
-        if(arreglo[i].idCategoria==idCat)
-        {
-           arreglo[i].lista= borrarNodo(idPro,arreglo[i].lista);
-            flag=1;
-        }
-        i--;
 
-    }
 
-}
+
+
+
+
+

@@ -30,3 +30,16 @@
 1699758223 source:c:\users\usuario\desktop\utn\lab 2\asd\tp-final-labo2\carnicerias.ganancias\ganancias.c
 	"ganancias.h"
 
+1699988023 source:c:\users\54223\desktop\proyecto\tp-final-labo2\carnicerias.ganancias\ganancias.c
+	"ganancias.h"
+
+1699988023 c:\users\54223\desktop\proyecto\tp-final-labo2\carnicerias.ganancias\ganancias.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1699988023 source:c:\users\54223\desktop\proyecto\tp-final-labo2\carnicerias.ganancias\main.c
+	<stdio.h>
+	<stdlib.h>
+	"ganancias.h"
+

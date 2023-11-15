@@ -27,17 +27,33 @@
 	<stdlib.h>
 	"listasProductos.h"
 
-1699150692 source:c:\users\54223\desktop\proyecto\tp final mio\carnicerias.productos\main.c
+1699900061 source:c:\users\54223\desktop\proyecto\tp final mio\carnicerias.productos\main.c
+	<stdio.h>
+	<stdlib.h>
+	"listasProductos.h"
+	<windows.h>
+
+1699984804 c:\users\54223\desktop\proyecto\tp final mio\carnicerias.productos\listasproductos.h
+	<time.h>
+	<conio.h>
+	<string.h>
+
+1699901227 source:c:\users\54223\desktop\proyecto\tp final mio\carnicerias.productos\listasproductos.c
 	<stdio.h>
 	<stdlib.h>
 	"listasProductos.h"
 
-1699048105 c:\users\54223\desktop\proyecto\tp final mio\carnicerias.productos\listasproductos.h
-
-1699151338 source:c:\users\54223\desktop\proyecto\tp final mio\carnicerias.productos\listasproductos.c
+1699660311 source:c:\users\santiago\desktop\segundo cuatri\proyecto\tp final mio\carnicerias.productos\listasproductos.c
 	<stdio.h>
 	<stdlib.h>
 	"listasProductos.h"
 	<string.h>
 	<conio.h>
+
+1699659441 c:\users\santiago\desktop\segundo cuatri\proyecto\tp final mio\carnicerias.productos\listasproductos.h
+
+1699659923 source:c:\users\santiago\desktop\segundo cuatri\proyecto\tp final mio\carnicerias.productos\main.c
+	<stdio.h>
+	<stdlib.h>
+	"listasProductos.h"
 
