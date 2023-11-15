@@ -5,17 +5,24 @@
 
 int main()
 {
-    system("Title= Carniceria");
+    system("Title= Frigorifico");
     system("color 0a");
-    int eleccion=0,menu=0,login=0,ok=0;
+    int eleccion=0,menu=0,login=0,modo=0;
     do
     {
         login=LogIn();
         if(login==1)
         {
-            ok=iniciarSesion();
+            modo=iniciarSesion();
+
         }
-        if(ok==1)
+        else if(login==2)
+        {
+            registrarse();
+            system("cls");
+            modo=iniciarSesion();
+        }
+        if(modo==1)
         {
             do
             {
@@ -59,9 +66,11 @@ int main()
             }
             while(eleccion!=0);
         }
-        else if(ok==2)
+        else if(modo==2)
         {
 
+        printf("hola\n");
+        system("pause");
         }
     }
     while(login!=0);

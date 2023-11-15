@@ -1,8 +1,9 @@
 # depslib dependency file v1.0
-1698866331 source:c:\users\kript\desktop\tp-final-labo2\portada\portada\main.c
+1700015026 source:c:\users\kript\desktop\tp-final-labo2\portada\portada\main.c
 	<stdio.h>
 	<stdlib.h>
 	<windows.h>
+	"portada.h"
 
 1699889276 source:c:\users\diegue\desktop\tp-final-labo2\portada\portada\main.c
 	<stdio.h>
@@ -17,4 +18,12 @@
 	"portada.h"
 
 1699888782 c:\users\diegue\desktop\tp-final-labo2\portada\portada\portada.h
+
+1700014893 c:\users\kript\desktop\tp-final-labo2\portada\portada\portada.h
+
+1700015747 source:c:\users\kript\desktop\tp-final-labo2\portada\portada\portada.c
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+	"portada.h"
 

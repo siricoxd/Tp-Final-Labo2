@@ -5,7 +5,7 @@
 typedef struct{
     char usuario[30];
     char contrasenia[30];
-    int rango;
+    char nombre[30];
     unsigned long int dni;
 }stUsuario;
 
@@ -18,7 +18,7 @@ void gotoxy(int x,int y);
 ///archivos
 void cargarArchivoUsuarios();
 int DescargarArchivoUsuarios(stUsuario ar[],int dim);
-stUsuario cargarUsuarioNuevo();
+stUsuario cargarUsuarioNuevo(int*usuarioExiste);
 int iniciarSesion();
 void registrarse();
 

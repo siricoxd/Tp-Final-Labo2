@@ -3,6 +3,7 @@
 #include <windows.h>
 #include "portada.h"
 const char archivoUsuarios[]= {"archivoUsuarios.bin"};
+
 ///menus
 int menuPrincipal()
 {
@@ -46,6 +47,7 @@ int menuSucursales()
     printf("\t\t\t|                                                                        |\n");
     printf("\t\t\t|                             1. AGREGAR                                 |\n");
     printf("\t\t\t|                             2. MODIFICAR                               |\n");
+    printf("\t\t\t|                             3. ID PROVINCIAS                           |\n");
     printf("\t\t\t|                                                                        |\n");
     printf("\t\t\t|                             0. VOLVER                                  |\n");
     printf("\t\t\t|                                                                        |\n");
@@ -70,7 +72,7 @@ int LogIn()
     printf("\t    ##  ##   ##  ##   ## ##    ##  ##     ##     ##  ##   ##       ## ##      ##     ##  ##\n");
     printf("\t     ####    ##  ##   ##  ##   ##  ##    ####     ####    ######   ##  ##    ####    ##  ##\n");
     printf("\n\n\n");
-    printf("\t\t\t\t\t\t 1. INICIAR SESION\n\n\t\t\t\t\t\t 0. SALIR\n\n\n\n");
+    printf("\t\t\t\t\t\t 1. INICIAR SESION\n\n\t\t\t\t\t\t 2. REGISTRARSE\n\n\t\t\t\t\t\t 0. SALIR\n\n\n\n");
 
     scanf("%d",&seleccion);
     system("cls");
@@ -92,7 +94,7 @@ void cargarArchivoUsuarios()
     FILE*buffer=fopen(archivoUsuarios,"ab");
     if(buffer)
     {
-        aux=cargarUsuarioNuevo();
+        aux=cargarUsuarioNuevo(0);
         fwrite(&aux,sizeof(stUsuario),1,buffer);
         fclose(buffer);
     }
@@ -117,19 +119,62 @@ int DescargarArchivoUsuarios(stUsuario ar[],int dim)
     }
     return i;
 }
-stUsuario cargarUsuarioNuevo()
+stUsuario cargarUsuarioNuevo(int *usuarioExiste)
 {
-    stUsuario aux;
-    printf("Ingrese el nombre de usuario del empleado: ");
+    stUsuario aux,archi;
+    printf("Ingrese el nombre de usuario: ");
     fflush(stdin);
     gets(aux.usuario);
-    printf("Ingrese la contrasenia del empleado: ");
-    fflush(stdin);
-    gets(aux.contrasenia);
-    printf("Ingrese el DNI del empleado: ");
-    scanf("%ld",&aux.dni);
-    printf("Ingrese el rango del empleado: ");
-    scanf("%d",&aux.rango);
+    FILE* buffer = fopen("archivoUsuarios.bin", "r+b");
+    if (buffer)
+    {
+        while (fread(&archi, sizeof(stUsuario), 1, buffer))
+        {
+            if (strcmpi(aux.usuario, archi.usuario) == 0)
+            {
+                *usuarioExiste = 1;
+            }
+        }
+        if(*usuarioExiste==1)
+        {
+            printf("Este empleado ya existe\n");
+            system("pause");
+        }
+        fclose(buffer);
+    }
+
+    if(*usuarioExiste==0)
+    {
+        printf("Ingrese la contrasenia: ");
+        fflush(stdin);
+        gets(aux.contrasenia);
+        printf("Ingrese su nombre: ");
+        fflush(stdin);
+        gets(aux.nombre);
+
+        printf("Ingrese el DNI del empleado: ");
+        scanf("%ld",&aux.dni);
+        FILE* buffer2 = fopen("archivoUsuarios.bin", "r+b");
+        if (buffer2)
+        {
+            int usuarioExiste = 0;
+            while (fread(&archi, sizeof(stUsuario), 1, buffer2))
+            {
+                if (aux.dni==archi.dni)
+                {
+                    usuarioExiste = 1;
+                }
+            }
+            if(usuarioExiste==1)
+            {
+                printf("Este DNI ya existe\n");
+                system("pause");
+
+            }
+            fclose(buffer2);
+        }
+    }
+
 
 
     return aux;
@@ -154,23 +199,27 @@ int iniciarSesion()
         gets(aux.contrasenia);
 
         system("cls");
+        if(strcmpi(aux.usuario,"admin")==0)
+        {
+            if(strcmpi(aux.contrasenia,"admin")==0)
+            {
+                user=1;
+                contra=1;
+                ok=1;
+            }
+        }
 
-        while(fread(&archi, sizeof(stUsuario), 1, buffer)&&contra==0)
+
+        while(fread(&archi,sizeof(stUsuario),1,buffer)&&contra==0)
         {
             if(strcmpi(aux.usuario, archi.usuario) == 0)
             {
                 user = 1;
 
-                if(strcmp(aux.contrasenia, archi.contrasenia) == 0)
+                if(strcmpi(aux.contrasenia, archi.contrasenia) == 0)
                 {
-                    //if(archi.rango==1)
-                        ok=1;
-                    /*else if(archi.rango==2)
-                        ok=2;
-                    else if(archi.rango==3)
-                        ok=3;*/
-
                     contra = 1;
+                    ok=2;
                 }
             }
         }
@@ -179,7 +228,7 @@ int iniciarSesion()
             printf("Usuario incorrecto\n");
             system("pause");
         }
-        else if(contra == 0) //verificacion de contraseña
+        if(contra == 0) //verificacion de contraseña
         {
             printf("Contrasenia incorrecta\n");
             system("pause");
@@ -191,45 +240,22 @@ int iniciarSesion()
 }
 void registrarse()
 {
-    stUsuario aux,archi;
+    stUsuario aux;
+    int usuarioExiste=0;
     system("cls");
     printf("\t\t\t---------------\n");
     printf("\n\t\t\t   REGISTRAR\n");
     printf("\t\t\t---------------\n");
-
-    printf("\n\tUsuario: ");
-    fflush(stdin);
-    gets(aux.usuario);
-
-    printf("\n\tContrasenia: ");
-    fflush(stdin);
-    gets(aux.contrasenia);
-
-    system("cls");
-
-    FILE* buffer = fopen("archivoUsuarios.bin", "r+b");
+    FILE* buffer = fopen("archivoUsuarios.bin", "ab");
     if (buffer)
     {
-        int usuarioExiste = 0;
-        while (fread(&archi, sizeof(stUsuario), 1, buffer))
-        {
-            if (strcmpi(aux.usuario, archi.usuario) == 0)
-            {
-                usuarioExiste = 1;
-            }
-        }
+
+        aux = cargarUsuarioNuevo(&usuarioExiste);
         if(usuarioExiste==0)
         {
-            aux = cargarUsuarioNuevo();
             fwrite(&aux, sizeof(stUsuario), 1, buffer);
         }
-
-        else
-        {
-            printf("Este empleado ya existe\n");
-            system("pause");
-
-        }
+        fclose(buffer);
     }
-    fclose(buffer);
+
 }

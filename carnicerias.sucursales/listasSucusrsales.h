@@ -23,9 +23,10 @@ typedef struct
     int activo;//1 alta,0 baja
     nodoLocales* listaDelocales;
 
-}provincia;
+} provincia;
 
-typedef struct{
+typedef struct
+{
     char provincia[30];
     int idProvincia;
     int activoProv;
@@ -80,6 +81,7 @@ void activarLocal(provincia ar[],int id,int pos);
 void descativarLocal(provincia ar[],int id,int pos);
 //buscar prov
 int buscarPosProvincia(provincia ar[],int id,int validos);
+void Provincias();
 //alta
 int alta(provincia ar[],registroArchivoLocales dato,int validos);
 //archivos

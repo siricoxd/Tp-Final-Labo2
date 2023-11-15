@@ -13,7 +13,7 @@ int main()
         system("cls");
         validos=0;
         validos=descargarArchivo(ar,validos,30);
-        printf("1. mostrar una sola provincia\n2. desactivar\n3. reactivar\n4. cargar\n5. mostrar todo\n");
+        printf("1. mostrar una sola provincia\n2. desactivar\n3. reactivar\n4. cargar\n5. mostrar todo\n6. mostrar id\n");
         scanf("%d",&pos);
         switch(pos)
         {
@@ -67,6 +67,9 @@ int main()
             break;
         case 5:
             mostrarTodo(ar,validos);
+        case 6:
+            Provincias();
+            break;
 
 
             break;

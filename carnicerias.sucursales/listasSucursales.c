@@ -313,7 +313,7 @@ locales pasarRegistrosToLocal(registroArchivoLocales dato)
 registroArchivoLocales cargarRegistroLocales()
 {
 
-    registroArchivoLocales aux,archi;
+    registroArchivoLocales aux;
     printf("Ingrese la provincia: ");
     fflush(stdin);
     gets(aux.provincia);
@@ -329,9 +329,7 @@ registroArchivoLocales cargarRegistroLocales()
     FILE* buffer2 = fopen(archivoProvincia,"rb");
     if(buffer2)
     {
-        fseek(buffer2,1*sizeof(registroArchivoLocales),SEEK_END);
-        fread(&archi,sizeof(registroArchivoLocales),1,buffer2);
-        aux.idLocal=archi.idLocal+1;
+        aux.idLocal=cantidadDeRegistros()+1;
 
         fclose(buffer2);
     }
@@ -519,7 +517,7 @@ void mostrarTodo(provincia ar[],int validos)
     printf("--------------------------------------------------------------------------------\n");
     while(i<validos)
     {
-        if(ar[i].activo!=324)
+        if(ar[i].activo!=0)
         {
             nodoLocales*seg=ar[i].listaDelocales;
             printf("\nProvincia..............: %s\n",ar[i].NombreProvincia);
@@ -529,7 +527,7 @@ void mostrarTodo(provincia ar[],int validos)
             while(seg!=NULL)
             {
 
-                if(seg->dato.activo!=10)
+                if(seg->dato.activo!=0)
                 {
                     printf("\t----------------------------------------------------\n");
                     printf("\t|Ciudad del local................: %s\n",seg->dato.localidad);
@@ -548,4 +546,31 @@ void mostrarTodo(provincia ar[],int validos)
 
         i++;
     }
+}
+void Provincias()
+{
+    printf("   |Provincias---------ID|  \n\n");
+    printf(" |Buenos Aires------------1|\n");
+    printf(" |Catamarca---------------2|\n");
+    printf(" |Chaco-------------------3|\n");
+    printf(" |Chubut------------------4|\n");
+    printf(" |Cordoba-----------------5|\n");
+    printf(" |Corrientes--------------6|\n");
+    printf(" |Entre Rios--------------7|\n");
+    printf(" |Formosa-----------------8|\n");
+    printf(" |Jujuy-------------------9|\n");
+    printf(" |La Pampa---------------10|\n");
+    printf(" |La Rioja---------------11|\n");
+    printf(" |Mendoza----------------12|\n");
+    printf(" |Misiones---------------13|\n");
+    printf(" |Neuquen----------------14|\n");
+    printf(" |Rio Negro--------------15|\n");
+    printf(" |Salta------------------16|\n");
+    printf(" |San Juan---------------17|\n");
+    printf(" |San Luis---------------18|\n");
+    printf(" |Santa Cruz-------------19|\n");
+    printf(" |Santa Fe---------------20|\n");
+    printf(" |Santiago del Estero----21|\n");
+    printf(" |Tierra del Fuego-------22|\n");
+    printf(" |Tucuman----------------23|\n\n");
 }
