@@ -89,6 +89,17 @@ nodoGananciasAnio* sumarGananciasNodo(nodoGananciasAnio* lista, nodoGananciasAni
     return lista;
 }
 
+nodoGananciasAnio* buscarPosAnio(nodoGananciasAnio* lista, int anio){
+    while(lista->dato.anio!=anio && lista!=NULL){
+        lista=lista->siguiente;
+    }
+
+    if(lista==NULL){
+        lista=NULL;
+    }
+    return lista;
+}
+
 //arreglo
 void inicArregloGanancias(int ganancias[MESES][DIAS]){
     for(int i=0;i<MESES;i++){
@@ -210,3 +221,4 @@ ganancias cargarAnio(){
     aux.anio=anio;
     return aux;
 }
+

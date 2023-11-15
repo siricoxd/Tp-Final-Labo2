@@ -23,10 +23,9 @@ typedef struct
     int activo;//1 alta,0 baja
     nodoLocales* listaDelocales;
 
-} provincia;
+}provincia;
 
-typedef struct
-{
+typedef struct{
     char provincia[30];
     int idProvincia;
     int activoProv;
