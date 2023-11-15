@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <../carnicerias.sucursales/listasSucusrsales.h>
 #define MESES 12
 #define DIAS 31
 
@@ -33,3 +32,12 @@ nodoGananciasAnio* buscarPosAnio(nodoGananciasAnio* lista, int anio);
 void inicArregloGanancias(int ganancias[MESES][DIAS]);
 void sumarGananciaADia(int ganancias[MESES][DIAS], int fecha[2], int sumaGanancia);
 void sumarGanancias(int ganancias[MESES][DIAS], int nuevasGanancias[MESES][DIAS]);
+
+void obtenerFecha(char fechaVenta[11], int *anio, int *mes, int *dia);
+
+void listaToArchivo(nodoGananciasAnio* lista);
+nodoGananciasAnio* archivoToLista();
+void obtenerFecha(char fechaVenta[11], int *anio, int *mes, int *dia);
+nodoGananciasAnio* ventasToLista(nodoGananciasAnio* lista, int ventas, int precio, char fechaVenta[11]);
+ganancias ventasToGanancias(int ventas, int precio, char fechaVenta[11]);
+void gananciasABarchivo(int ventas, int precio, char fechaVenta[11]);

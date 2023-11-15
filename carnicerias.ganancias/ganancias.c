@@ -166,9 +166,7 @@ void numeroAString(char* nombreMes, int mes){
 }
 
 //manera 1
-void sumarGananciaADia(int ganancias[MESES][DIAS], int fecha[2], int sumaGanancia){ //fecha[0]=mes fecha[1]=dia. dsp hago funcion para la carga
-    int mes=fecha[0];
-    int dia=fecha[1];
+void sumarGananciaADia(int ganancias[MESES][DIAS], int mes, int dia, int sumaGanancia){
     if(mes<=12 && mes>=1 && dia>=1 && dia<=31){
         ganancias[mes][dia]+=sumaGanancia;
     }
@@ -192,16 +190,16 @@ void sumarGanancias(int ganancias[MESES][DIAS], int nuevasGanancias[MESES][DIAS]
 
 
 
-ganancias intToGanancias(int ganancias[MESES][DIAS], int anio){
+/*ganancias intToGanancias(int ganancias[MESES][DIAS], int anio){
     ganancias aux;
-    memccpy(aux.ganancias, ganancias, sizeof(aux.ganancias);
+    memccpy(aux.ganancias, ganancias, sizeof(aux.ganancias));
     aux.anio=anio;
     return aux;
-}
+}*/
 
 
 ///func usuario
-ganancias cargarGananciasADia(ganancias dato){
+/*ganancias cargarGananciasADia(ganancias dato){
     int fecha[2], plata;
     printf("Ingrese num de mes: ");
     scanf("%d", fecha[0]);
@@ -220,5 +218,78 @@ ganancias cargarAnio(){
     scanf("&d", &anio);
     aux.anio=anio;
     return aux;
+}*/
+
+
+///
+int precioPorVenta(int precio, int ventas){
+    return precio*ventas;
 }
 
+
+
+//func archivo
+void listaToArchivo(nodoGananciasAnio* lista){
+    FILE* archivo=fopen(nombreArchivoGanancias, "ab");
+    if(archivo==NULL){
+        printf("asd");
+    }
+    else{
+        ganancias aux;
+        while(lista!=NULL){
+            aux=lista->dato;
+            fwrite(&aux, sizeof(ganancias), 1, archivo);
+        }
+        fclose(archivo);
+    }
+}
+
+
+nodoGananciasAnio* archivoToLista(){
+    FILE* archivo=fopen(nombreArchivoGanancias, "rb");
+    if(archivo==NULL){
+        printf("Error archivo\n\n");
+    }
+    else{
+        ganancias aux;
+        nodoGananciasAnio* lista=inicLista();
+        nodoGananciasAnio* aux2=inicLista();
+        while(fread(&aux, sizeof(ganancias), 1, archivo)){
+            aux2=crearNodo(aux);
+            insertarNodo(lista, aux2);
+        }
+        fclose(archivo);
+    }
+}
+
+void obtenerFecha(char fechaVenta[11], int *anio, int *mes, int *dia) {
+    sscanf(fechaVenta, "%d-%d-%d", anio, mes, dia);
+}
+
+
+nodoGananciasAnio* ventasToLista(nodoGananciasAnio* lista, int ventas, int precio, char fechaVenta[11]){
+    ganancias aux=ventasToGanancias(ventas, precio, fechaVenta);
+    nodoGananciasAnio* nodoNuevo=crearNodo(aux);
+    lista=insertarNodo(lista, nodoNuevo);
+    return lista;
+
+}
+
+ganancias ventasToGanancias(int ventas, int precio, char fechaVenta[11]){
+    int profit=precioPorVenta(precio, ventas);
+    int anio, mes, dia;
+    ganancias aux;
+    obtenerFecha(fechaVenta, &anio, &mes, &dia);
+    ganancias.anio=anio;
+    gananaias[mes-1][dia-1]=profit;
+    return ganancias;
+}
+
+void gananciasABarchivo(int ventas, int precio, char fechaVenta[11]){
+    FILE * archivo=fopen(nombreArchivoGanancias, "ab");
+    if(archivo){
+        ganancias aux=ventasToGanancias(ventas, precio, fechaVenta);
+        fwrite(&aux, sizeof(ganancias), 1, archivo);
+        fclose(archivo);
+    }
+}
