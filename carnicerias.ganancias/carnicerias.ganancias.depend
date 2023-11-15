@@ -54,3 +54,16 @@
 	<conio.h>
 	<string.h>
 
+1699887187 source:c:\users\diegue\desktop\tp-final-labo2\carnicerias.ganancias\main.c
+	<stdio.h>
+	<stdlib.h>
+	"ganancias.h"
+
+1700061271 c:\users\diegue\desktop\tp-final-labo2\carnicerias.ganancias\ganancias.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1700061254 source:c:\users\diegue\desktop\tp-final-labo2\carnicerias.ganancias\ganancias.c
+	"ganancias.h"
+

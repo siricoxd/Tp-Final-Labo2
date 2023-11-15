@@ -6,6 +6,7 @@
 
 static const char nombreArchivoGanancias[]="archivoGanancias.dat";
 
+
 typedef struct{
     int anio;
     int ganancias[MESES][DIAS];
@@ -30,7 +31,7 @@ nodoGananciasAnio* buscarPosAnio(nodoGananciasAnio* lista, int anio);
 
 //func arreglo
 void inicArregloGanancias(int ganancias[MESES][DIAS]);
-void sumarGananciaADia(int ganancias[MESES][DIAS], int fecha[2], int sumaGanancia);
+void sumarGananciaADia(int ganancias[MESES][DIAS], int mes, int dia, int sumaGanancia);
 void sumarGanancias(int ganancias[MESES][DIAS], int nuevasGanancias[MESES][DIAS]);
 
 void obtenerFecha(char fechaVenta[11], int *anio, int *mes, int *dia);
@@ -41,3 +42,5 @@ void obtenerFecha(char fechaVenta[11], int *anio, int *mes, int *dia);
 nodoGananciasAnio* ventasToLista(nodoGananciasAnio* lista, int ventas, int precio, char fechaVenta[11]);
 ganancias ventasToGanancias(int ventas, int precio, char fechaVenta[11]);
 void gananciasABarchivo(int ventas, int precio, char fechaVenta[11]);
+
+void numeroAString(char* nombreMes, int mes);

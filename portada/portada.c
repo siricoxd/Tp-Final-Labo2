@@ -48,6 +48,8 @@ int menuSucursales()
     printf("\t\t\t|                             1. AGREGAR                                 |\n");
     printf("\t\t\t|                             2. MODIFICAR                               |\n");
     printf("\t\t\t|                             3. ID PROVINCIAS                           |\n");
+    printf("\t\t\t|                             4.                                         |\n");
+    printf("\t\t\t|                                                                        |\n");
     printf("\t\t\t|                                                                        |\n");
     printf("\t\t\t|                             0. VOLVER                                  |\n");
     printf("\t\t\t|                                                                        |\n");

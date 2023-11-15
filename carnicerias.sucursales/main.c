@@ -67,8 +67,9 @@ int main()
             break;
         case 5:
             mostrarTodo(ar,validos);
+            break;
         case 6:
-            Provincias();
+            provincias();
             break;
 
 

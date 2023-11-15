@@ -81,7 +81,7 @@ void activarLocal(provincia ar[],int id,int pos);
 void descativarLocal(provincia ar[],int id,int pos);
 //buscar prov
 int buscarPosProvincia(provincia ar[],int id,int validos);
-void Provincias();
+void provincias();
 //alta
 int alta(provincia ar[],registroArchivoLocales dato,int validos);
 //archivos
