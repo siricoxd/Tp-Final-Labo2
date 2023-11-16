@@ -6,16 +6,10 @@ nodoGananciasAnio* inicLista()
     return NULL;
 }
 
-nodoGananciasAnio* asignarMemoriaNodo()  //para poder inicializar el arreglo dentro del nodo, pq si es NULL no se puede
-{
-    nodoGananciasAnio* aux=(nodoGananciasAnio*) malloc(sizeof(nodoGananciasAnio));
-    return aux;
-}
-
 
 nodoGananciasAnio* crearNodo(ganancias dato)
 {
-    nodoGananciasAnio* aux=asignarMemoriaNodo();
+    nodoGananciasAnio* aux=(nodoGananciasAnio*) malloc(sizeof(nodoGananciasAnio));
     aux->dato=dato;
     aux->siguiente=NULL;
     return aux;
@@ -37,7 +31,7 @@ nodoGananciasAnio* agregarAnioGananciasPpio(nodoGananciasAnio* lista, nodoGananc
 
 nodoGananciasAnio* buscarUltimoAnio(nodoGananciasAnio* lista)
 {
-    while(lista!=NULL)
+    while(lista->siguiente!=NULL)
     {
         lista=lista->siguiente;
     }
@@ -58,41 +52,41 @@ nodoGananciasAnio* agregarAnioGananciasFinal(nodoGananciasAnio* lista, nodoGanan
     return lista;
 }
 
-nodoGananciasAnio* insertarNodo(nodoGananciasAnio* lista, nodoGananciasAnio* nuevo)
+nodoGananciasAnio* insertarGananciasNodo(nodoGananciasAnio* lista, ganancias nuevo)
 {
     if(lista==NULL)
     {
-        lista=nuevo;
+        lista=crearNodo(nuevo);
     }
     else
     {
-        if(nuevo->dato.anio > (buscarUltimoAnio(lista))->dato.anio)
+        if(nuevo.anio > (buscarUltimoAnio(lista))->dato.anio)
         {
-            lista=agregarAnioGananciasFinal(lista, nuevo);
+            lista=agregarAnioGananciasFinal(lista, crearNodo(nuevo));
         }
         else
         {
-            if(nuevo->dato.anio < lista->dato.anio)
+            if(nuevo.anio < lista->dato.anio)
             {
-                lista=agregarAnioGananciasPpio(lista, nuevo);
+                lista=agregarAnioGananciasPpio(lista,crearNodo(nuevo));
             }
             else
             {
                 nodoGananciasAnio* aux=lista;
-                while((aux->siguiente)->dato.anio < nuevo->dato.anio)
+                while((aux->siguiente)->dato.anio < nuevo.anio)
                 {
                     aux=aux->siguiente;
                 }
-                if(aux->siguiente->dato.anio==nuevo->dato.anio)
+                if(aux->siguiente->dato.anio==nuevo.anio)
                 {
-                    aux->siguiente=sumarGananciasNodo(aux->siguiente, nuevo);
-                    free(nuevo);
+                    aux->siguiente=sumarGananciasNodo(aux->siguiente, crearNodo(nuevo));
                 }
                 else
                 {
+                    nodoGananciasAnio* nuevoNodo=crearNodo(nuevo);
                     nodoGananciasAnio* sig=aux->siguiente;
-                    aux->siguiente=nuevo;
-                    nuevo->siguiente=sig;
+                    aux->siguiente=nuevoNodo;
+                    nuevoNodo->siguiente=sig;
                 }
             }
         }
@@ -203,7 +197,7 @@ void sumarGananciaADia(int ganancias[MESES][DIAS], int mes, int dia, int sumaGan
 {
     if(mes<=12 && mes>=1 && dia>=1 && dia<=31)
     {
-        ganancias[mes][dia]+=sumaGanancia;
+        ganancias[mes-1][dia-1]+=sumaGanancia;
     }
     else
     {
@@ -237,9 +231,12 @@ ganancias intToGanancias(int ganancias[MESES][DIAS], int anio){
 }*/
 
 
-///func usuario
+///func usuario(provisorias)
 
-ganancias cargarGananciasADia(ganancias dato){
+ganancias cargarGananciasUnDia(){
+    ganancias dato;
+    inicArregloGanancias(dato.ganancias);
+    dato.anio=cargarAnio();
     int mes=0,dia=0, plata=0;
     printf("Ingrese num de mes: ");
     scanf("%d",&mes);
@@ -247,17 +244,15 @@ ganancias cargarGananciasADia(ganancias dato){
     scanf("%d",&dia);
     printf("Ingrese dinero a sumar: ");
     scanf("%d", &plata);
-    sumarGananciaADia(dato.ganancias,mes,dia, plata);
+    sumarGananciaADia(dato.ganancias, mes,dia, plata);
     return dato;
 }
 
-ganancias cargarAnio(){
-    ganancias aux;
+int cargarAnio(){
     int anio;
     printf("Ingrese anio: ");
     scanf("%d",&anio);
-    aux.anio=anio;
-    return aux;
+    return anio;
 }
 
 
@@ -304,11 +299,9 @@ nodoGananciasAnio* archivoToLista()
     else
     {
         ganancias aux;
-        nodoGananciasAnio* aux2;
         while(fread(&aux, sizeof(ganancias), 1, archivo))
         {
-            aux2=crearNodo(aux);
-            insertarNodo(lista, aux2);
+            insertarGananciasNodo(lista, aux);
         }
         fclose(archivo);
     }
@@ -324,8 +317,7 @@ void obtenerFecha(char fechaVenta[11], int *anio, int *mes, int *dia)
 nodoGananciasAnio* ventasToLista(nodoGananciasAnio* lista, int ventas, int precio, char fechaVenta[11])
 {
     ganancias aux=ventasToGanancias(ventas, precio, fechaVenta);
-    nodoGananciasAnio* nodoNuevo=crearNodo(aux);
-    lista=insertarNodo(lista, nodoNuevo);
+    lista=insertarGananciasNodo(lista, aux);
     return lista;
 
 }

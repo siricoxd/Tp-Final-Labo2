@@ -20,12 +20,11 @@ typedef struct nodoGananciasAnio{
 
 //func nodo
 nodoGananciasAnio* inicLista();
-nodoGananciasAnio* asignarMemoriaNodo();
 nodoGananciasAnio* crearNodo(ganancias dato);
 nodoGananciasAnio* agregarAnioGananciasPpio(nodoGananciasAnio* lista, nodoGananciasAnio* nuevo);
 nodoGananciasAnio* buscarUltimoAnio(nodoGananciasAnio* lista);
 nodoGananciasAnio* agregarAnioGananciasFinal(nodoGananciasAnio* lista, nodoGananciasAnio* nuevo);
-nodoGananciasAnio* insertarNodo(nodoGananciasAnio* lista, nodoGananciasAnio* nuevo);
+nodoGananciasAnio* insertarGananciasNodo(nodoGananciasAnio* lista, ganancias nuevo);
 nodoGananciasAnio* sumarGananciasNodo(nodoGananciasAnio* lista, nodoGananciasAnio* nuevo);
 nodoGananciasAnio* buscarPosAnio(nodoGananciasAnio* lista, int anio);
 
@@ -34,7 +33,12 @@ void inicArregloGanancias(int ganancias[MESES][DIAS]);
 void sumarGananciaADia(int ganancias[MESES][DIAS], int mes, int dia, int sumaGanancia);
 void sumarGanancias(int ganancias[MESES][DIAS], int nuevasGanancias[MESES][DIAS]);
 
-void obtenerFecha(char fechaVenta[11], int *anio, int *mes, int *dia);
+
+//func usuario
+ganancias cargarGananciasUnDia();
+int cargarAnio();
+
+int precioPorVenta(int precio, int ventas);
 
 void listaToArchivo(nodoGananciasAnio* lista);
 nodoGananciasAnio* archivoToLista();
