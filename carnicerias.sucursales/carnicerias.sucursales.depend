@@ -1,13 +1,13 @@
 # depslib dependency file v1.0
-1700063993 source:c:\users\diegue\desktop\tp-final-labo2\carnicerias.sucursales\listassucursales.c
+1700235948 source:c:\users\diegue\desktop\tp-final-labo2\carnicerias.sucursales\listassucursales.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"listasSucusrsales.h"
 
-1700059349 c:\users\diegue\desktop\tp-final-labo2\carnicerias.sucursales\listassucusrsales.h
+1700149489 c:\users\diegue\desktop\tp-final-labo2\carnicerias.sucursales\listassucusrsales.h
 
-1700059349 source:c:\users\diegue\desktop\tp-final-labo2\carnicerias.sucursales\main.c
+1700234724 source:c:\users\diegue\desktop\tp-final-labo2\carnicerias.sucursales\main.c
 	<stdio.h>
 	<stdlib.h>
 	"listasSucusrsales.h"

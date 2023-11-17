@@ -13,7 +13,10 @@ int main()
         system("cls");
         validos=0;
         validos=descargarArchivo(ar,validos,30);
-        printf("1. mostrar una sola provincia\n2. desactivar\n3. reactivar\n4. cargar\n5. mostrar todo\n6. mostrar id\n");
+        int r=cantidadDeRegistros();
+        printf("Cantidad de sucursales existentes: %d\n",r);
+        printf("1. mostrar una sola provincia\n2. desactivar\n3. reactivar\n4. cargar\n5. mostrar todo\n6. mostrar id\n\n");
+
         scanf("%d",&pos);
         switch(pos)
         {
@@ -23,7 +26,7 @@ int main()
             pos=buscarPosProvincia(ar,id,validos);
             if(pos!=-1)
             {
-                recorrerYMostrar(ar,validos,pos);
+                mostrarUnaProvincia(ar[pos]);
             }
             else
             {
@@ -31,15 +34,17 @@ int main()
             }
             break;
         case 2:
-            printf("Ingrese el id del provincia que desee descativar: ");
+            printf("Ingrese el id del provincia que desee desactivar: ");
             scanf("%d",&id);
             pos=buscarPosProvincia(ar,id,validos);
             if(pos!=-1)
             {
-                printf("Ingrese el id del local que desee activar: ");
+                mostrarUnaProvincia(ar[pos]);
+                printf("Ingrese el id del local que desee desactivar: ");
                 scanf("%d",&id);
                 descativarLocal(ar,id,pos);
-                mostrarTodo(ar,validos);
+                system("cls");
+                mostrarUnaProvincia(ar[pos]);
             }
             else
             {
@@ -52,10 +57,11 @@ int main()
             pos=buscarPosProvincia(ar,id,validos);
             if(pos!=-1)
             {
+                mostrarUnaProvincia(ar[pos]);
                 printf("Ingrese el id del local que desee activar: ");
                 scanf("%d",&id);
                 activarLocal(ar,id,pos);
-                mostrarTodo(ar,validos);
+                mostrarUnaProvincia(ar[pos]);
             }
             else
             {

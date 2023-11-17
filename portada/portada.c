@@ -19,7 +19,9 @@ int menuPrincipal()
     printf("\t\t\t|                                                                        |\n");
     printf("\t\t\t|                                                                        |\n");
     printf("\t\t\t|                             1. SUCURSALES                              |\n");
-    printf("\t\t\t|                             2. AGREGAR EMPLEADO                        |\n");
+    printf("\t\t\t|                             2.                                         |\n");
+    printf("\t\t\t|                             3.                                         |\n");
+    printf("\t\t\t|                             4.                                         |\n");
     printf("\t\t\t|                                                                        |\n");
     printf("\t\t\t|                             0. SALIR                                   |\n");
     printf("\t\t\t|                                                                        |\n");
@@ -47,9 +49,93 @@ int menuSucursales()
     printf("\t\t\t|                                                                        |\n");
     printf("\t\t\t|                             1. AGREGAR                                 |\n");
     printf("\t\t\t|                             2. MODIFICAR                               |\n");
-    printf("\t\t\t|                             3. ID PROVINCIAS                           |\n");
-    printf("\t\t\t|                             4.                                         |\n");
+    printf("\t\t\t|                             3. INFO                                    |\n");
+    printf("\t\t\t|                             4. MOSTRAR                                 |\n");
     printf("\t\t\t|                                                                        |\n");
+    printf("\t\t\t|                                                                        |\n");
+    printf("\t\t\t|                             0. VOLVER                                  |\n");
+    printf("\t\t\t|                                                                        |\n");
+    printf("\t\t\t|________________________________________________________________________|\n");
+    printf("\n");
+    scanf("%d",&seleccion);
+    system("cls");
+    return seleccion;
+
+}
+int menuSucursalesModificar()
+{
+    system("cls");
+    int seleccion=0;
+    printf("\n\n\n");
+    printf("\t\t\t ________________________________________________________________________\n");
+    printf("\t\t\t|                                                                        |\n");
+    printf("\t\t\t|                                                     ##                 |\n");
+    printf("\t\t\t|                                                     #                  |\n");
+    printf("\t\t\t|  ####   #  #    ###   #  #   # ##   ####    ###     #     ##    ####   |\n");
+    printf("\t\t\t|  ##     #  #   #      #  #   ##     ##         #    #    # ##   ##     |\n");
+    printf("\t\t\t|    ##   #  #   #      #  #   #        ##    ####    #    ##       ##   |\n");
+    printf("\t\t\t|      #  #  #   #   #  #  #   #          #  #   #    #    #          #  |\n");
+    printf("\t\t\t|  ####    ##     ###    ##    #      ####    ####   ###    ###   ####   |\n");
+    printf("\t\t\t|                                                                        |\n");
+    printf("\t\t\t|                                                                        |\n");
+    printf("\t\t\t|                             1. DESACTIVAR                              |\n");
+    printf("\t\t\t|                             2. ACTIVAR                                 |\n");
+    printf("\t\t\t|                                                                        |\n");
+    printf("\t\t\t|                             0. VOLVER                                  |\n");
+    printf("\t\t\t|                                                                        |\n");
+    printf("\t\t\t|________________________________________________________________________|\n");
+    printf("\n");
+    scanf("%d",&seleccion);
+    system("cls");
+    return seleccion;
+
+}
+int menuSucursalesInfo()
+{
+    system("cls");
+    int seleccion=0;
+    printf("\n\n\n");
+    printf("\t\t\t ________________________________________________________________________\n");
+    printf("\t\t\t|                                                                        |\n");
+    printf("\t\t\t|                                                     ##                 |\n");
+    printf("\t\t\t|                                                     #                  |\n");
+    printf("\t\t\t|  ####   #  #    ###   #  #   # ##   ####    ###     #     ##    ####   |\n");
+    printf("\t\t\t|  ##     #  #   #      #  #   ##     ##         #    #    # ##   ##     |\n");
+    printf("\t\t\t|    ##   #  #   #      #  #   #        ##    ####    #    ##       ##   |\n");
+    printf("\t\t\t|      #  #  #   #   #  #  #   #          #  #   #    #    #          #  |\n");
+    printf("\t\t\t|  ####    ##     ###    ##    #      ####    ####   ###    ###   ####   |\n");
+    printf("\t\t\t|                                                                        |\n");
+    printf("\t\t\t|                                                                        |\n");
+    printf("\t\t\t|                             1. NUMERO DE SUCURSALES                    |\n");
+    printf("\t\t\t|                             2. ID PROVINCIAS                           |\n");
+    printf("\t\t\t|                                                                        |\n");
+    printf("\t\t\t|                             0. VOLVER                                  |\n");
+    printf("\t\t\t|                                                                        |\n");
+    printf("\t\t\t|________________________________________________________________________|\n");
+    printf("\n");
+    scanf("%d",&seleccion);
+    system("cls");
+    return seleccion;
+
+}
+int menuSucursalesMostrar()
+{
+    system("cls");
+    int seleccion=0;
+    printf("\n\n\n");
+    printf("\t\t\t ________________________________________________________________________\n");
+    printf("\t\t\t|                                                                        |\n");
+    printf("\t\t\t|                                                     ##                 |\n");
+    printf("\t\t\t|                                                     #                  |\n");
+    printf("\t\t\t|  ####   #  #    ###   #  #   # ##   ####    ###     #     ##    ####   |\n");
+    printf("\t\t\t|  ##     #  #   #      #  #   ##     ##         #    #    # ##   ##     |\n");
+    printf("\t\t\t|    ##   #  #   #      #  #   #        ##    ####    #    ##       ##   |\n");
+    printf("\t\t\t|      #  #  #   #   #  #  #   #          #  #   #    #    #          #  |\n");
+    printf("\t\t\t|  ####    ##     ###    ##    #      ####    ####   ###    ###   ####   |\n");
+    printf("\t\t\t|                                                                        |\n");
+    printf("\t\t\t|                                                                        |\n");
+    printf("\t\t\t|                             1. MOSTRAR UNA PROVINCIA                   |\n");
+    printf("\t\t\t|                             2. MOSTARAR TODO                           |\n");
     printf("\t\t\t|                                                                        |\n");
     printf("\t\t\t|                             0. VOLVER                                  |\n");
     printf("\t\t\t|                                                                        |\n");

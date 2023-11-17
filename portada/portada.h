@@ -12,6 +12,9 @@ typedef struct{
 ///Menus
 int menuPrincipal();
 int menuSucursales();
+int menuSucursalesModificar();
+int menuSucursalesInfo();
+int menuSucursalesMostrar();
 int LogIn();
 ///complementos
 void gotoxy(int x,int y);
