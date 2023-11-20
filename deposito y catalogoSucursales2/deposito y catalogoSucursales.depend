@@ -1,0 +1,105 @@
+# depslib dependency file v1.0
+1700425531 source:c:\users\54223\desktop\proyecto\tp final mio\deposito y catalogosucursales\main.c
+	<stdio.h>
+	<stdlib.h>
+	"listasProductos.h"
+	<windows.h>
+	"depositoSucursal.h"
+
+1700408009 source:c:\users\54223\desktop\proyecto\tp final mio\deposito y catalogosucursales\listasproductos.c
+	<stdio.h>
+	<stdlib.h>
+	"listasProductos.h"
+
+1700230856 c:\users\54223\desktop\proyecto\tp final mio\deposito y catalogosucursales\listasproductos.h
+	<time.h>
+	<conio.h>
+	<string.h>
+
+1700425411 source:c:\users\54223\desktop\proyecto\tp final mio\deposito y catalogosucursales\depositosucursal.c
+	<stdio.h>
+	<stdlib.h>
+	"depositoSucursal.h"
+	<string.h>
+
+1700425411 c:\users\54223\desktop\proyecto\tp final mio\deposito y catalogosucursales\depositosucursal.h
+	"listasProductos.h"
+
+1700408607 source:c:\users\santiago\desktop\segundo cuatri\proyecto\tp final mio\deposito y catalogosucursales\depositosucursal.c
+	<stdio.h>
+	<stdlib.h>
+	"depositoSucursal.h"
+	<string.h>
+
+1700408433 c:\users\santiago\desktop\segundo cuatri\proyecto\tp final mio\deposito y catalogosucursales\depositosucursal.h
+	"listasProductos.h"
+
+1700408009 source:c:\users\santiago\desktop\segundo cuatri\proyecto\tp final mio\deposito y catalogosucursales\listasproductos.c
+	<stdio.h>
+	<stdlib.h>
+	"listasProductos.h"
+
+1700230856 c:\users\santiago\desktop\segundo cuatri\proyecto\tp final mio\deposito y catalogosucursales\listasproductos.h
+	<time.h>
+	<conio.h>
+	<string.h>
+
+1700408733 source:c:\users\santiago\desktop\segundo cuatri\proyecto\tp final mio\deposito y catalogosucursales\main.c
+	<stdio.h>
+	<stdlib.h>
+	"listasProductos.h"
+	<windows.h>
+	"depositoSucursal.h"
+
+1700441954 source:c:\users\santiago\desktop\segundo cuatri\proyecto\tp final mio\deposito y catalogosucursales2\listasproductos.c
+	<stdio.h>
+	<stdlib.h>
+	"listasProductos.h"
+
+1700441954 c:\users\santiago\desktop\segundo cuatri\proyecto\tp final mio\deposito y catalogosucursales2\listasproductos.h
+	<time.h>
+	<conio.h>
+	<string.h>
+
+1700442562 source:c:\users\santiago\desktop\segundo cuatri\proyecto\tp final mio\deposito y catalogosucursales2\main.c
+	<stdio.h>
+	<stdlib.h>
+	"listasProductos.h"
+	<windows.h>
+	"depositoSucursal.h"
+
+1700425411 c:\users\santiago\desktop\segundo cuatri\proyecto\tp final mio\deposito y catalogosucursales2\depositosucursal.h
+	"listasProductos.h"
+
+1700426621 source:c:\users\santiago\desktop\segundo cuatri\proyecto\tp final mio\deposito y catalogosucursales2\depositosucursal.c
+	<stdio.h>
+	<stdlib.h>
+	"depositoSucursal.h"
+	<string.h>
+
+1700426621 source:c:\users\54223\desktop\proyecto\tp final mio\deposito y catalogosucursales2\depositosucursal.c
+	<stdio.h>
+	<stdlib.h>
+	"depositoSucursal.h"
+	<string.h>
+
+1700425411 c:\users\54223\desktop\proyecto\tp final mio\deposito y catalogosucursales2\depositosucursal.h
+	"listasProductos.h"
+
+1700441954 c:\users\54223\desktop\proyecto\tp final mio\deposito y catalogosucursales2\listasproductos.h
+	<time.h>
+	<conio.h>
+	<string.h>
+
+1700502808 source:c:\users\54223\desktop\proyecto\tp final mio\deposito y catalogosucursales2\listasproductos.c
+	<stdio.h>
+	<stdlib.h>
+	"listasProductos.h"
+
+1700442562 source:c:\users\54223\desktop\proyecto\tp final mio\deposito y catalogosucursales2\main.c
+	<stdio.h>
+	<stdlib.h>
+	"listasProductos.h"
+	<windows.h>
+	"depositoSucursal.h"
+
