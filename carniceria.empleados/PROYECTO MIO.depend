@@ -1,0 +1,10 @@
+# depslib dependency file v1.0
+1700596694 source:c:\users\win10\desktop\tp-final-labo2\carniceria.empleados\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"proyectomio.h"
+	<windows.h>
+
+1700596694 c:\users\win10\desktop\tp-final-labo2\carniceria.empleados\proyectomio.h
+

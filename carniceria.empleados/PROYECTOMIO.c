@@ -47,7 +47,7 @@ trabajador cargarUnTrabajador()
 void cargarArchivo(char archivoTrabajador[])
 {
 
-    FILE* archi=fopen(archivoTrabajador, "wb");
+    FILE* archi=fopen(archivoTrabajador, "ab");
 
     trabajador a;
     char control='s';
@@ -241,21 +241,54 @@ void inorderBajas(nodoArbol * arbol)
     }
 }
 
-nodoArbol * buscarPorDni(nodoArbol * arbol, int dni)
+void inorderRango(nodoArbol * arbol, int rango)
+{
+    if(arbol != NULL)
+    {
+        inorderRango(arbol->izq, rango);
+        if(arbol->dato.rango==rango) // si esta de baja
+        {
+            mostrarUnTrabajador(arbol->dato);
+        }
+        inorderRango(arbol->der, rango);
+    }
+}
+
+
+nodoArbol * buscarPorDni(nodoArbol * arbol, int dni, int rango)
 {
     nodoArbol * rta=NULL;
     if(arbol!=NULL)
     {
-        if(dni == arbol->dato.dni)
-            rta = arbol;
-        else if(dni>arbol->dato.dni)
-            rta = buscarPorDni(arbol->der, dni);
+        printf("%i\t", arbol->dato.dni);
+        if( (dni == arbol->dato.dni) && (rango==arbol->dato.rango) )
+        {
+            rta=arbol;
+            printf("Dato dado de baja: %i", rta->dato.dni);
+        }
+
+        else if(rango>=arbol->dato.rango)
+            rta = buscarPorDni(arbol->der, dni, rango);
         else
-            rta = buscarPorDni(arbol->izq, dni);
+            rta = buscarPorDni(arbol->izq, dni,rango);
     }
     return rta;
 }
 
+nodoArbol * buscarPorRango(nodoArbol * arbol, int rango)
+{
+    nodoArbol * rta=NULL;
+    if(arbol!=NULL)
+    {
+        if(rango == arbol->dato.rango)
+            rta = arbol;
+        else if(rango>=arbol->dato.rango)
+            rta = buscarPorRango(arbol->der, rango);
+        else
+            rta = buscarPorRango(arbol->izq,rango);
+    }
+    return rta;
+}
 /// Libreria LDA
 
 nodoLista* buscarSucursal(nodoLista* lista, int sucursal)
@@ -318,7 +351,6 @@ nodoLista* pasarDelArchivoToLDA(char archivo[], nodoLista* lista)
 
 void mostrarLDA(nodoLista* lista)
 {
-    printf("LDA: \n");
 
     while(lista != NULL)
     {
@@ -361,7 +393,7 @@ void mostrarBajas(nodoLista* lista)
 
 }
 
-void darDeBaja(char archivo[], nodoLista* aux, int dni)
+void darDeBaja(char archivo[], nodoLista* aux, int dni, int rango)
 {
 
     int flag=0;
@@ -375,21 +407,24 @@ void darDeBaja(char archivo[], nodoLista* aux, int dni)
 
 
         nodoArbol* arbol;
-        while(fread(&a, sizeof(trabajador),1,archi)>0 && flag==0)
+        while(flag==0 && fread(&a, sizeof(trabajador),1,archi)>0)
         {
             if(aux->idSucursal==a.idSucursal)
             {
-                arbol=buscarPorDni(aux->arbol, dni);
+                arbol=buscarPorDni(aux->arbol, dni, rango);
                 if(arbol!=NULL)
                 {
 
-                    arbol->dato.baja=0;
+
 
                     if(a.dni==dni)
                     {
+                        arbol->dato.baja=0;
                         a.baja=0;
-                        fseek(archi, -sizeof(trabajador), SEEK_CUR); // Retrocede al inicio del registro
+                        fseek(archi, (-1)*sizeof(trabajador), SEEK_CUR); // Retrocede al inicio del registro
                         fwrite(&a, sizeof(trabajador), 1, archi); // Escribe el registro modificado
+
+
                         flag=1;
 
                     }
@@ -409,56 +444,170 @@ void darDeBaja(char archivo[], nodoLista* aux, int dni)
 }
 
 
-nodoLista* darDeAlta(char archivo[], nodoLista* lista, int idSucursal, int dni)
+void darDeAlta(char archivo[], nodoLista* aux, int dni, int rango)
 {
+
+    int flag=0;
 
     FILE* archi=fopen(archivo, "r+b");
 
-    int flag2=0;
-    nodoLista* aux=buscarNodo(lista, idSucursal);
-
-    if(aux==NULL)
-    {
-        printf("No se encontro la sucursal\n");
-        flag2=1;
-    }
-
-    nodoArbol* aux2=buscarPorDni(aux->arbol, dni);
-    if(aux2==NULL)
-    {
-        printf("No se encontro el dni\n");
-        flag2=1;
-    }
-    else
-    {
-        aux2->dato.baja=1;
-    }
-
     if(archi)
     {
+
         trabajador a;
-        int flag=0;
 
-        while(fread(&a, sizeof(trabajador),1,archi)>0 && flag2==0)
+
+        nodoArbol* arbol;
+        while(flag==0 && fread(&a, sizeof(trabajador),1,archi)>0)
         {
-
-            if(a.dni==dni)
+            if(aux->idSucursal==a.idSucursal)
             {
-                a.baja=1;
-                fseek(archi, -sizeof(trabajador), SEEK_CUR); // Retrocede al inicio del registro
-                fwrite(&a, sizeof(trabajador), 1, archi); // Escribe el registro modificado
-                flag=1;
+                arbol=buscarPorDni(aux->arbol, dni, rango);
+                if(arbol!=NULL)
+                {
 
+
+
+                    if(a.dni==dni)
+                    {
+                        arbol->dato.baja=1;
+                        a.baja=1;
+                        fseek(archi, (-1)*sizeof(trabajador), SEEK_CUR); // Retrocede al inicio del registro
+                        fwrite(&a, sizeof(trabajador), 1, archi); // Escribe el registro modificado
+
+
+                        flag=1;
+
+                    }
+
+
+                }
             }
 
-        }
-        if(flag==0)
-        {
-            printf("No se encontro el dni\n");
+
         }
 
         fclose(archi);
     }
-    return lista;
+
+
 
 }
+
+///
+
+
+void agregarTrabajadores(char archivo[], nodoLista* lista)
+{
+
+    FILE* archi=fopen(archivo, "ab");
+
+    trabajador a;
+
+    if(archi)
+    {
+        a=cargarUnTrabajador();
+        lista=alta(lista,a,a.idSucursal);
+        fwrite(&a,sizeof(trabajador),1,archi);
+
+        fclose(archi);
+    }
+
+
+}
+
+///
+
+void mostrarTrabajadoresDeUnaSucursal(nodoLista* lista,int idSucursal)
+{
+
+    nodoLista* aux=buscarSucursal(lista,idSucursal);
+
+    if(aux==NULL)
+    {
+        printf("No se encontro la sucursal\n");
+    }
+    else
+    {
+        printf("Id sucursal: %i\n", aux->idSucursal);
+        printf("\n--------------------------------\n");
+        inorder(aux->arbol);
+    }
+
+
+
+}
+
+void mostrarTrabajadoresDeUnRango(nodoLista* lista, int rango)
+{
+    printf("Trabajadores rango %i\n", rango);
+    while(lista!=NULL)
+    {
+            printf("Id sucursal: %i\n", lista->idSucursal);
+            printf("\n--------------------------------\n");
+            inorderRango(lista->arbol, rango);
+            lista=lista->siguiente;
+    }
+
+
+
+}
+
+///
+
+void cambiarSueldo(char archivo[], nodoLista* aux, int dni, int rango)
+{
+
+    int flag=0;
+
+    FILE* archi=fopen(archivo, "r+b");
+
+    if(archi)
+    {
+
+        trabajador a;
+
+
+        nodoArbol* arbol;
+        while(flag==0 && fread(&a, sizeof(trabajador),1,archi)>0)
+        {
+            if(aux->idSucursal==a.idSucursal)
+            {
+                arbol=buscarPorDni(aux->arbol, dni, rango);
+                if(arbol!=NULL)
+                {
+
+
+
+                    if(a.dni==dni)
+                    {
+                        int sueldo;
+                        printf("Ingrese el sueldo: \n");
+                        fflush(stdin);
+                        scanf("%i", &sueldo);
+                        arbol->dato.sueldo=sueldo;
+                        a.sueldo=sueldo;
+                        fseek(archi, (-1)*sizeof(trabajador), SEEK_CUR); // Retrocede al inicio del registro
+                        fwrite(&a, sizeof(trabajador), 1, archi); // Escribe el registro modificado
+
+
+                        flag=1;
+
+                    }
+
+
+                }
+            }
+
+
+        }
+
+        fclose(archi);
+    }
+
+
+
+}
+
+
+
