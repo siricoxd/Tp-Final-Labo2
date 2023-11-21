@@ -4,6 +4,7 @@
 #include "proyectomio.h"
 
 //Libreria archivo
+
 trabajador cargarUnTrabajador()
 {
 
@@ -260,11 +261,11 @@ nodoArbol * buscarPorDni(nodoArbol * arbol, int dni, int rango)
     nodoArbol * rta=NULL;
     if(arbol!=NULL)
     {
-        printf("%i\t", arbol->dato.dni);
+
         if( (dni == arbol->dato.dni) && (rango==arbol->dato.rango) )
         {
             rta=arbol;
-            printf("Dato dado de baja: %i", rta->dato.dni);
+
         }
 
         else if(rango>=arbol->dato.rango)
@@ -609,5 +610,139 @@ void cambiarSueldo(char archivo[], nodoLista* aux, int dni, int rango)
 
 }
 
+///FUNCIONES PARA LOS CASE
+
+ void darDeBajaCase(char archivo[],nodoLista* lista,nodoLista* sucursal, nodoArbol* encontrado, int* idSucursal, int* dni, int* rango){
+
+  printf("Ingrese el ID de la sucursal del trabajador para dar de baja\n");
+            fflush(stdin);
+            scanf("%i", idSucursal);
+
+            sucursal=buscarSucursal(lista,*idSucursal);
+
+            if(sucursal==NULL)
+            {
+                printf("No se encontro la sucursal\n");
+            }
+            else
+            {
+                printf("Ingrese el rango del trabajador para dar de baja\n");
+                fflush(stdin);
+                scanf("%i", rango);
+
+                encontrado=buscarPorRango(sucursal->arbol, *rango);
+                if(encontrado==NULL)
+                {
+                    printf("No se encontro el rango\n");
+                }
+                else
+                {
+                    printf("Ingrese el dni del trabajador al que quiere dar de baja\n");
+                    fflush(stdin);
+                    scanf("%i", dni);
+
+                    darDeBaja(archivo,sucursal,*dni,*rango);
+
+                }
+            }
+
+
+ }
+
+ void darDeAltaCase(char archivo[],nodoLista* lista,nodoLista* sucursal, nodoArbol* encontrado, int* idSucursal, int* dni, int* rango){
+
+   printf("Ingrese el ID de la sucursal del trabajador para dar de alta\n");
+            fflush(stdin);
+            scanf("%i", idSucursal);
+
+            sucursal=buscarSucursal(lista,*idSucursal);
+
+            if(sucursal==NULL)
+            {
+                printf("No se encontro la sucursal\n");
+            }
+            else
+            {
+                printf("Ingrese el rango del trabajador para dar de alta\n");
+                fflush(stdin);
+                scanf("%i", rango);
+
+                encontrado=buscarPorRango(sucursal->arbol, *rango);
+                if(encontrado==NULL)
+                {
+                    printf("No se encontro el rango\n");
+                }
+                else
+                {
+                    printf("Ingrese el dni del trabajador al que quiere dar de alta\n");
+                    fflush(stdin);
+                    scanf("%i", dni);
+
+                    darDeAlta(archivo,sucursal,*dni,*rango);
+
+                }
+            }
+
+
+ }
+
+ void mostrarTrabajadoresDeUnaSucursalCase(int* idSucursal, nodoLista* lista){
+
+   printf("Ingrese el ID de la sucursal: \n");
+        fflush(stdin);
+        scanf("%i", idSucursal);
+
+        mostrarTrabajadoresDeUnaSucursal(lista,*idSucursal);
+
+
+ }
+
+  void mostrarTrabajadoresDeUnRangoCase(int* rango, nodoLista* lista){
+
+  printf("Ingrese el rango: \n");
+        fflush(stdin);
+        scanf("%i", rango);
+
+        mostrarTrabajadoresDeUnRango(lista,*rango);
+
+
+ }
+
+void cambiarSueldoCase(char archivo[],nodoLista* lista,nodoLista* sucursal, nodoArbol* encontrado, int* idSucursal, int* dni, int* rango){
+
+   printf("Ingrese el ID de la sucursal del trabajador \n");
+            fflush(stdin);
+            scanf("%i", idSucursal);
+
+            sucursal=buscarSucursal(lista,*idSucursal);
+
+            if(sucursal==NULL)
+            {
+                printf("No se encontro la sucursal\n");
+            }
+            else
+            {
+                printf("Ingrese el rango del trabajador \n");
+                fflush(stdin);
+                scanf("%i", rango);
+
+                encontrado=buscarPorRango(sucursal->arbol, *rango);
+                if(encontrado==NULL)
+                {
+                    printf("No se encontro el rango\n");
+                }
+                else
+                {
+                    printf("Ingrese el dni del trabajador \n");
+                    fflush(stdin);
+                    scanf("%i", dni);
+
+                    cambiarSueldo(archivo,sucursal,*dni,*rango);
+
+                }
+            }
+
+
+ }
 
 
