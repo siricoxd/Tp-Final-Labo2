@@ -73,4 +73,12 @@ void inorderRango(nodoArbol * arbol, int rango);
 nodoArbol * buscarPorDni(nodoArbol * arbol, int dni, int rango);
 nodoArbol * buscarPorRango(nodoArbol * arbol, int rango);
 
+//Funciones del main
+
+void darDeBajaCase(char archivo[],nodoLista* lista,nodoLista* sucursal, nodoArbol* encontrado, int* idSucursal, int* dni, int* rango);
+void darDeAltaCase(char archivo[],nodoLista* lista,nodoLista* sucursal, nodoArbol* encontrado, int* idSucursal, int* dni, int* rango);
+void mostrarTrabajadoresDeUnaSucursalCase(int* idSucursal, nodoLista* lista);
+ void mostrarTrabajadoresDeUnRangoCase(int* rango, nodoLista* lista);
+void cambiarSueldoCase(char archivo[],nodoLista* lista,nodoLista* sucursal, nodoArbol* encontrado, int* idSucursal, int* dni, int* rango);
+
 #endif // PROYECTOMIO_H_INCLUDED
