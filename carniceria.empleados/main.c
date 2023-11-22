@@ -64,7 +64,7 @@ int menuOpcion()
             break;
         case 5 :
 
-            darDeBajaCase(archivoTrabajadores,lista,sucursal,encontrado,&idSucursal,&dni,&rango);
+            darDeAltaCase(archivoTrabajadores,lista,sucursal,encontrado,&idSucursal,&dni,&rango);
 
             system("pause");
 
