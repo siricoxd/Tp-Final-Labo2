@@ -230,6 +230,7 @@ void muestraDeCatalogoTodos(catalogo A[],int validos)
 
 void muestraUnRegistro(deposito dato)
 {
+    printf("nn");
     if(dato.activoCat==1)
     {
         printf("\nNOMBRE DE CATEGORIA: %s",dato.nombreDeCategoria);
@@ -525,7 +526,7 @@ void cargaArchivo(char archivo[])
          if(buffer)
             {
 
-            printf("\nCARGUE EL REGISTRO\n");
+            printf("\nCARGUE EL REGISTRRO\n");
             aux=cargaRegistro();
             fwrite(&aux,sizeof(deposito),1,buffer);
 
