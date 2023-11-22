@@ -39,6 +39,7 @@ int mainMenu()
             break;
         default:
             printf("Opción no válida. Inténtelo de nuevo.\n");
+            system("cls");
         }
     }
     while (opcion != 3);
@@ -574,7 +575,7 @@ int menuOpcionVentas()
             scanf("%d", &idDeSuc);
 
             validos = pasardeArchivoAArregloSucursal(ARCHIVO_SUCUSALDep, arregloSucur, 40, idDeSuc);
-            muestraDecatalogoSucursalTodos(arregloSucur, validos);
+            muestraDecatalogoSucursal(arregloSucur, validos);
 
             printf("\nIngrese el ID del catálogo del producto para registrar la venta: ");
             scanf("%d", &buscar);

@@ -123,6 +123,7 @@ int pasardeArchivoAArregloSucursal(char archivo[],catalogoSuc arreglo[],int dim,
             {
 
                  validos=altacatalogoSuc(arreglo,validos,aux);
+
             }
 
         }

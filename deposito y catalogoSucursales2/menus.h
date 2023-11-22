@@ -9,6 +9,9 @@
 #include "depositoSucursal.h"
 #include "ventas.h"
 
+int mainMenu();
+
+
 void imprimirBarraCarga(int porcentaje);
 void barra();
 
