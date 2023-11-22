@@ -6,9 +6,8 @@
 #define DIAS 31
 #define DIAS_EN_MES {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31}
 
-static const char nombreArchivoGanancias[]="archivoGanancias.bin";
+static const char nombreArchivoGanancias[]="ganancias.bin";
 static const char nombreArchivoVentas[]="ventas.bin";
-
 
 typedef struct{
     int anio;
@@ -55,10 +54,10 @@ int precioPorVenta(int precio, int ventas);
 void crearArchivoGanancias(nodoGananciasAnio* lista);
 nodoGananciasAnio* archivoToLista();
 void obtenerFecha(char fechaVenta[11], int *anio, int *mes, int *dia);
-nodoGananciasAnio* ventasToLista(nodoGananciasAnio* lista, int ventas, int precio, int idSucursal, char fechaVenta[11]);
-ganancias ventasToGanancias(int ventas, int precio, int idSucursal, char fechaVenta[11]);
-void gananciasABarchivo(int ventas, int precio, int idSucursal, char fechaVenta[11]);
-void sumarGananciasArchivo(int ventas, int precio, int idSucursal, char fechaVenta[11]);
+nodoGananciasAnio* ventasToLista(nodoGananciasAnio* lista, StRegistroventas ventas);
+ganancias ventasToGanancias(StRegistroventas ventas);
+void gananciasABarchivo(StRegistroventas ventas);
+void sumarGananciasArchivo(StRegistroventas ventas);
 int buscarEnArchivoGanancias(FILE* archivo, ganancias dato);
 
 void numeroAString(char* nombreMes, int mes);

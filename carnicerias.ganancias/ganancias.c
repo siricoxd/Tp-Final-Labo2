@@ -246,8 +246,6 @@ void numeroAString(char* nombreMes, int mes)
 }
 
 
-
-
 //
 void sumarGanancias(int ganancias[MESES][DIAS], const int nuevasGanancias[MESES][DIAS])
 {
@@ -261,13 +259,6 @@ void sumarGanancias(int ganancias[MESES][DIAS], const int nuevasGanancias[MESES]
     }
 }
 
-
-///
-int precioPorVenta(int precio, int ventas)
-{
-
-    return (precio*ventas);
-}
 
 
 
@@ -314,50 +305,43 @@ nodoGananciasAnio* archivoToLista()
 
 void obtenerFecha(char fechaVenta[11], int *anio, int *mes, int *dia)
 {
-    sscanf(fechaVenta, "%d-%d-%d", anio, mes, dia);
+    sscanf(fechaVenta, "%d/%d/%d", dia, mes, anio);
 }
 
 
-nodoGananciasAnio* ventasToLista(nodoGananciasAnio* lista, int ventas, int precio, int idSucursal, char fechaVenta[11])
+nodoGananciasAnio* ventasToLista(nodoGananciasAnio* lista, StRegistroventas ventas)
 {
-    ganancias aux=ventasToGanancias(ventas, precio, idSucursal, fechaVenta);
+    ganancias aux=ventasToGanancias(ventas);
     lista=insertarGananciasNodo(lista, aux);
     return lista;
 
 }
-
-ganancias ventasToGanancias(int ventas, int precio, int idSucursal, char fechaVenta[11])
+int precioPorVenta(int precio, int ventas)
 {
-    int profit=precioPorVenta(precio, ventas);
+    return (precio*ventas);
+}
+
+ganancias ventasToGanancias(StRegistroventas ventas){
+    int profit=precioPorVenta(ventas.precioPorKilo, ventas.venta);
     int anio, mes, dia;
     ganancias aux;
     inicArregloGanancias(aux.arrayGanancias);
-    obtenerFecha(fechaVenta, &anio, &mes, &dia);
+    obtenerFecha(ventas.fechaVenta, &anio, &mes, &dia);
     aux.anio=anio;
     aux.arrayGanancias[mes-1][dia-1]=profit;
-    aux.idSucursal=idSucursal;
+    aux.idSucursal=ventas.idDSuc;
     return aux;
 }
 
-void gananciasABarchivo(int ventas, int precio, int idSucursal, char fechaVenta[11])
-{
-    FILE * archivo=fopen(nombreArchivoGanancias, "ab");
-    if(archivo)
-    {
-        ganancias aux=ventasToGanancias(ventas, precio, idSucursal, fechaVenta);
-        fwrite(&aux, sizeof(ganancias), 1, archivo);
-        fclose(archivo);
-    }
-}
 
-void sumarGananciasArchivo(int ventas, int precio, int idSucursal, char fechaVenta[11]){
+void sumarGananciasArchivo(StRegistroventas ventas){
     FILE* archivo=fopen(nombreArchivoGanancias, "rb+");
     if(archivo==NULL){
         printf("Error archivo ganancias.\n");
     }
     else{
         ganancias registro;
-        ganancias aux=ventasToGanancias(ventas, precio, idSucursal, fechaVenta);
+        ganancias aux=ventasToGanancias(ventas);
         int flag=buscarEnArchivoGanancias(archivo, aux);
         if(flag){
         rewind(archivo);
@@ -390,13 +374,23 @@ int buscarEnArchivoGanancias(FILE* archivo, ganancias dato){
     return 0;
 }
 
+void gananciasABarchivo(StRegistroventas ventas) {
+    FILE* archivo=fopen(nombreArchivoGanancias, "ab");
+    if(archivo){
+        ganancias profit = ventasToGanancias(ventas);
+        if(fwrite(&profit, sizeof(ganancias), 1, archivo)!= 1){
+            printf("Error al escribir en el archivo de ganancias.\n");
+        }
+        fclose(archivo);
+    }
+}
+
 void crearArchivoGananciasConVentas(){
     FILE* archivoVentas=fopen(nombreArchivoVentas, "rb");
     if(archivoVentas){
         StRegistroventas ventas;
-        ganancias profit;
         while(fread(&ventas, sizeof(StRegistroventas), 1, archivoVentas)==1){
-            gananciasABarchivo(ventas.venta, ventas.precioPorKilo, ventas.idDSuc, ventas.fechaVenta);
+            gananciasABarchivo(ventas);
         }
         fclose(archivoVentas);
     }
@@ -408,13 +402,25 @@ StRegistroventas cargarVentas(){
     printf("Ingrese id sucursal: ");
     scanf("%d", &aux.idDSuc);
     fflush(stdin);
-    printf("Ingrese fecha de la venta (AAAA-mm-DD): ");
+    printf("Ingrese fecha de la venta (DIA/MES/ANIO): ");
     gets(aux.fechaVenta);
     printf("Precio: ");
     scanf("%d", &aux.precioPorKilo);
     printf("Ventas: ");
     scanf("%d", &aux.venta);
     return aux;
+}
+
+void cargarVariasVentas(){
+    int prod=0;
+    StRegistroventas aux;
+    printf("Ingrese cuantos productos desea cargar: ");
+    scanf("%d", &prod);
+
+    for(int i=0;i<prod;i++){
+        aux=cargarVentas();
+        sumarGananciasArchivo(aux);
+    }
 }
 
 void menuGanancias(){
@@ -438,8 +444,7 @@ void menuGanancias(){
             free(lista);
             break;
         case 2: ;
-            StRegistroventas ventas=cargarVentas();
-            sumarGananciasArchivo(ventas.venta, ventas.precioPorKilo, ventas.idDSuc, ventas.fechaVenta);
+                cargarVariasVentas();
             break;
         case 3:
             lista=archivoToLista();

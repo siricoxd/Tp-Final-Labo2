@@ -16,7 +16,7 @@
 
 //FUNCIONE VENTAS EN EL DIA(pasar de arreglo de listas a un archivo de ventas),cambiar el tipo de estructuras y veificar de que suc es el catalogo cuando cargamos el archivo de ventas,, lo podemos hacer wb el archivo asi es venta por dia y guardamos la info en ganancias
 
-/*void pasarDeArregloDeposAArchivoVenta(catalogoSuc arreglo[], int pos, int idDeProd, char archivo[], int idDeSuc)
+void pasarDeArregloDeposAArchivoVenta(catalogoSuc arreglo[], int pos, int idDeProd, char archivo[], int idDeSuc)
 {
     FILE *archi = fopen(archivo, "ab");
 
@@ -33,10 +33,8 @@ void cargarArchivoVentas(nodoproductosSucursal *lista, FILE *archi, int idDeProd
     int flag = 0;
     StRegistroventas aux;
 
-    if (archi != NULL)
-    {
-        while (seg != NULL && flag == 0)
-        {
+    if (archi!=NULL){
+        while (seg != NULL && flag == 0){
             if (seg->dato.id == idDeProd)
             {
                 aux = cambioDeEstrucCatalARegistro(seg->dato, arhcivo, idDeSuc);
@@ -62,7 +60,7 @@ StRegistroventas cambioDeEstrucCatalARegistro(productosDepos dato,char archivo[]
     dest.precioPorKilo=dato.precioPorKilo;
     dest.stock=dato.stock;
 
-    printf("\nINGRESE EL DIA DE LA VENTA: ");
+    printf("\nINGRESE EL DIA DE LA VENTA (DIA/MES/ANIO): ");
     fflush(stdin);
     gets(dest.fechaVenta);
     dest.venta=cargaVenta(dest.stock);
@@ -198,4 +196,4 @@ void muestraArchivoVentas(char archivo[])
     }
 
 }
-*/
+
