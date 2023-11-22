@@ -124,3 +124,50 @@
 	"depositoSucursal.h"
 	"ventas.h"
 
+1700661150 source:c:\users\usuario\desktop\utn\lab 2\asd\tp-final-labo2\deposito y catalogosucursales2\depositosucursal.c
+	<stdio.h>
+	<stdlib.h>
+	"depositoSucursal.h"
+	<string.h>
+
+1700611476 c:\users\usuario\desktop\utn\lab 2\asd\tp-final-labo2\deposito y catalogosucursales2\depositosucursal.h
+	"listasProductos.h"
+
+1700611476 c:\users\usuario\desktop\utn\lab 2\asd\tp-final-labo2\deposito y catalogosucursales2\listasproductos.h
+	<time.h>
+	<conio.h>
+	<string.h>
+
+1700666411 source:c:\users\usuario\desktop\utn\lab 2\asd\tp-final-labo2\deposito y catalogosucursales2\listasproductos.c
+	<stdio.h>
+	<stdlib.h>
+	"listasProductos.h"
+
+1700613064 source:c:\users\usuario\desktop\utn\lab 2\asd\tp-final-labo2\deposito y catalogosucursales2\main.c
+	<stdio.h>
+	<stdlib.h>
+	"listasProductos.h"
+	<windows.h>
+	"depositoSucursal.h"
+	"ventas.h"
+
+1700611476 c:\users\usuario\desktop\utn\lab 2\asd\tp-final-labo2\deposito y catalogosucursales2\ventas.h
+	"depositoSucursal.h"
+
+1700666280 source:c:\users\usuario\desktop\utn\lab 2\asd\tp-final-labo2\deposito y catalogosucursales2\menus.c
+	"menus.h"
+
+1700661150 c:\users\usuario\desktop\utn\lab 2\asd\tp-final-labo2\deposito y catalogosucursales2\menus.h
+	<stdio.h>
+	<stdlib.h>
+	"listasProductos.h"
+	<windows.h>
+	"depositoSucursal.h"
+	"ventas.h"
+
+1700611476 source:c:\users\usuario\desktop\utn\lab 2\asd\tp-final-labo2\deposito y catalogosucursales2\ventas.c
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+	"ventas.h"
+

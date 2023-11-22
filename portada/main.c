@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <windows.h>
 #include "portada.h"
-#include "listasSucusrsales.h"
+
 int main()
 {
     system("Title= Carniceria");

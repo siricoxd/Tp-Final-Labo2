@@ -1,6 +1,7 @@
-#ifndef PORTADA_H_INCLUDED
-#define PORTADA_H_INCLUDED
-
+#include <stdio.h>
+#include <stdlib.h>
+#include <windows.h>
+#include "listasSucusrsales.h"
 
 typedef struct{
     char usuario[30];
@@ -25,5 +26,3 @@ stUsuario cargarUsuarioNuevo(int*usuarioExiste);
 int iniciarSesion();
 void registrarse();
 
-
-#endif // PORTADA_H_INCLUDED

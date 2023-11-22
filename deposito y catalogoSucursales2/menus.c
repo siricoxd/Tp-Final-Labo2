@@ -12,6 +12,7 @@ int mainMenu()
     do
     {
         // Menú principal
+        system("cls");
         printf("Seleccione una opción:\n");
         printf("1. DEPOSITO GENERAL\n");
         printf("2. DEPOSITO POR SUCURSAL\n");
@@ -24,11 +25,9 @@ int mainMenu()
         {
         case 1:
             menuOpcionDeposito();
-
             break;
         case 2:
             menuOpcionDepositoSucursal();
-
             break;
         case 3:
             menuOpcionVentas();
@@ -39,10 +38,11 @@ int mainMenu()
             break;
         default:
             printf("Opción no válida. Inténtelo de nuevo.\n");
-            system("cls");
+
         }
+        system("pause");
     }
-    while (opcion != 3);
+    while (opcion != 4);
 
     return 0;
 }
@@ -68,7 +68,6 @@ int menuOpcionDeposito()
         case 1:
             //barra();
             muestraArchivo(ARCHIVO_DEPOSITO);
-            system("pause");
             break;
 
         case 2:
@@ -76,20 +75,19 @@ int menuOpcionDeposito()
 
             cargaArchivo(ARCHIVO_DEPOSITO);
             muestraArchivo(ARCHIVO_DEPOSITO);
-            system("pause");
+
             break;
 
         case 3:
             validos = pasardeArchivoAArreglo(ARCHIVO_DEPOSITO, arreglo, 40);
             muestraDeCatalogo(arreglo, validos);
-            system("pause");
 
             break;
         case 4:
             validos = pasardeArchivoAArreglo(ARCHIVO_DEPOSITO, arreglo, 40);
             muestraDeCatalogo(arreglo, validos);
 
-            printf("\ningrese el id del catalogo que desea desactivar\n");
+            printf("\nIngrese el id del catalogo que desea desactivar: \n");
             scanf("%d", &buscar);
             pos = buscaEnCatalogoPorId(arreglo, validos, buscar);
 
@@ -102,10 +100,9 @@ int menuOpcionDeposito()
             }
             else
             {
-                printf("\nno se encontro catalogo\n");
+                printf("\nNo se encontro catalogo\n");
             }
 
-            system("pause");
 
             break;
         case 5 :
@@ -115,7 +112,7 @@ int menuOpcionDeposito()
             validos = pasardeArchivoAArreglo(ARCHIVO_DEPOSITO, arreglo, 40);
             muestraDeCatalogo(arreglo, validos);
 
-            printf("\ningrese el id del catalogo del producto a dersactivar\n");
+            printf("\nIngrese el id del catalogo del producto a dersactivar: \n");
             scanf("%d", &buscar);
             printf("\nINGRESE EL ID DEL PRODUCTO A DAR DE BAJA");
             scanf("%d",&idDeProdu);
@@ -142,7 +139,6 @@ int menuOpcionDeposito()
                 printf("\nno se encontro catalogo\n");
             }
 
-            system("pause");
 
             break;
         case 6:
@@ -158,7 +154,6 @@ int menuOpcionDeposito()
             buscado=buscaEnListaId(arreglo,pos,idDeProdu);
 
             activarProducto(ARCHIVO_DEPOSITO,arreglo,pos,buscado);
-            system("pause");
             break;
 
         case 7:
@@ -181,7 +176,6 @@ int menuOpcionDeposito()
                 printf("\nno se encontro catalogo\n");
             }
 
-            system("pause");
             break;
 
 
@@ -191,11 +185,11 @@ int menuOpcionDeposito()
             printf("\n\nTERMINATE THE PROGRAM\n");
             break;
         }
-
+        system("pause");
     }
     while (selected != 0);
 
-    system("pause");
+
     system("cls");
     return 0;
 }
@@ -209,18 +203,18 @@ int menuDeposito()
 
     printf("                   \n MENU");
     printf("\n\t\t\t\t\t\t\t\t\t-----------");
-    printf("\n\t\t\t\t\t\t\t\t\t1MUESTRA DEL ARCHIVO DEPOSTIO");
+    printf("\n\t\t\t\t\t\t\t\t\t1-MUESTRA DEL ARCHIVO DEPOSTIO");
     printf("\n\t\t\t\t\t\t\t\t\t2-CARGA DEL ARCHIVO DEPOSITO");
     printf("\n\t\t\t\t\t\t\t\t\t3-MOSTRAR ARREGLO DE LISTAS DEPOSITO ");
     printf("\n\t\t\t\t\t\t\t\t\t4-DAR DE BAJA CATEGORIA del DEPOSITO");
     printf("\n\t\t\t\t\t\t\t\t\t5-DAR DE BAJA PRODUCTO DEL DEPOSITO" );
     printf("\n\t\t\t\t\t\t\t\t\t6-DAR DE ALTA PRODUCTO  ");// PASAR A LIBRERIA CATALOGO DE CARNICERIAS
     printf("\n\t\t\t\t\t\t\t\t\t7-DAR DE ALTA CATALOGO");
+    printf("\n\t\t\t\t\t\t\t\t\t0-SALIR\n");
 
 
     printf("\n\n\t\t\t\t\t\t\t\t\tENTER YOUR CHOICE: ");
     scanf("%d",&input);
-    system("pause");
     system("cls");
     return input;
 }
@@ -544,13 +538,14 @@ int menuDepositoSucursales()
 
     printf("                   \n MENU");
     printf("\n\t\t\t\t\t\t\t\t\t-----------");
-    printf("\n\t\t\t\t\t\t\t\t\t1CARGA DE ARCHIVO DEPOSITO SUCURSAL");
+    printf("\n\t\t\t\t\t\t\t\t\t1-CARGA DE ARCHIVO DEPOSITO SUCURSAL");
     printf("\n\t\t\t\t\t\t\t\t\t2-MUESTRA DE ARCHIVO DEPOSITO SUCURSAL");
     printf("\n\t\t\t\t\t\t\t\t\t3-MOSTRAR ARREGLO DE LISTAS DEPOSITO SUCURSAL");
     printf("\n\t\t\t\t\t\t\t\t\t4-DESACTIVAR PRODUCTO DEL DEPOSITO DE SUCURSAL");
     printf("\n\t\t\t\t\t\t\t\t\t5-DESACTIVAR CATALOGO DEL DEPOSITO DE SUCURSAL");
     printf("\n\t\t\t\t\t\t\t\t\t6-ACTIVAR CATALOGO DEL DEPOSITO DE SUCURSAL");
     printf("\n\t\t\t\t\t\t\t\t\t7-ACTIVAR PRODUCTO DEL DEPOSITO DE SUCURSAL");
+    printf("\n\t\t\t\t\t\t\t\t\t0-SALIR\n");
     printf("\n\n\t\t\t\t\t\t\t\t\tENTER YOUR CHOICE: ");
     scanf("%d",&input);
     system("cls");
@@ -632,8 +627,9 @@ int menuVentas()
 
     printf("                   \n MENU");
     printf("\n\t\t\t\t\t\t\t\t\t-----------");
-    printf("\n\t\t\t\t\t\t\t\t\t1CARGA DE ARCHIVO VENTAS");
+    printf("\n\t\t\t\t\t\t\t\t\t1-CARGA DE ARCHIVO VENTAS");
     printf("\n\t\t\t\t\t\t\t\t\t2-MUESTRA DE ARCHIVO VENTAS");
+    printf("\n\t\t\t\t\t\t\t\t\t0-SALIR\n");
 
     scanf("%d",&input);
     system("cls");
