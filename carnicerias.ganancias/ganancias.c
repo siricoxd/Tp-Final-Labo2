@@ -219,28 +219,17 @@ void numeroAString(char* nombreMes, int mes)
 
 void verGananciasSucursal(nodoGananciasAnio* lista, int id){
     while(lista!=NULL){
-        printf("--ANIO %d--\n", lista->dato.anio);
         if(lista->dato.idSucursal==id){
+            printf("--ANIO %d--\n", lista->dato.anio);
             mostrarGananciasAnio(lista->dato.arrayGanancias);
         }
         lista=lista->siguiente;
     }
 }
 
-//manera 1
-void sumarGananciaADia(int ganancias[MESES][DIAS], int mes, int dia, int sumaGanancia)
-{
-    if(mes<=12 && mes>=1 && dia>=1 && dia<=31)
-    {
-        ganancias[mes-1][dia-1]+=sumaGanancia;
-    }
-    else
-    {
-        printf("xd");
-    }
-}
 
-//manera 2
+
+//printeo
 void sumarGanancias(int ganancias[MESES][DIAS], const int nuevasGanancias[MESES][DIAS])
 {
     int diasEnMes[MESES]=DIAS_EN_MES;
@@ -254,58 +243,17 @@ void sumarGanancias(int ganancias[MESES][DIAS], const int nuevasGanancias[MESES]
 }
 
 
-///func datos
-
-
-
-/*
-ganancias intToGanancias(int ganancias[MESES][DIAS], int anio){
-    ganancias aux;
-    memccpy(aux.arrayGanancias, ganancias, sizeof(aux.arrayGanancias));
-    aux.anio=anio;
-    return aux;
-}*/
-
-
-///func usuario(provisorias)
-
-ganancias cargarGananciasUnDia(){
-    ganancias dato;
-    inicArregloGanancias(dato.arrayGanancias);
-    dato.anio=cargarAnio();
-    int mes,dia, plata, idSucursal;
-    printf("Ingrese id de la sucursal.");
-    printf("Ingrese num de mes: ");
-    scanf("%d",&mes);
-    printf("Ingrese dia: ");
-    scanf("%d",&dia);
-    printf("Ingrese dinero a sumar: ");
-    scanf("%d", &plata);
-    sumarGananciaADia(dato.arrayGanancias, mes,dia, plata);
-    return dato;
-}
-
-int cargarAnio(){
-    int anio;
-    printf("Ingrese anio: ");
-    scanf("%d",&anio);
-    return anio;
-}
-
-
 ///
-
 int precioPorVenta(int precio, int ventas)
 {
-    int rta=0;
-    rta=precio*ventas;
-    return rta;
+
+    return (precio*ventas);
 }
 
 
 
 //func archivo
-void listaToArchivo(nodoGananciasAnio* lista)
+void crearArchivoGanancias(nodoGananciasAnio* lista)
 {
     FILE* archivo=fopen(nombreArchivoGanancias, "ab");
     if(archivo==NULL)
@@ -424,20 +372,17 @@ int buscarEnArchivoGanancias(FILE* archivo, ganancias dato){
     return 0;
 }
 
-
-//func aux ventas
-StRegistroventas cargarVentas(){
-    StRegistroventas aux;
-    printf("Ingrese id sucursal: ");
-    scanf("%d", &aux.idSuc);
-    fflush(stdin);
-    printf("Ingrese fecha de la venta (AAAA-mm-DD): ");
-    gets(aux.fechaVenta);
-    printf("Precio: ");
-    scanf("%d", &aux.precioPorKilo);
-    printf("Ventas: ");
-    scanf("%d", &aux.venta);
-    return aux;
+void crearArchivoGananciasConVentas(){
+    FILE* archivoVentas= fopen(nombreArchivoVentas, "rb");
+    FILE* archivoGanancias=fopen(nombreArchivoGanancias, "wb");
+    if(archivoGanancias && archivoVentas){
+        StRegistroventas ventas;
+        ganancias profit;
+        while(fread(&ventas, sizeof(StRegistroventas), 1, archivoVentas)==1){
+            profit=ventasToGanancias(ventas.venta, ventas.precioPorKilo, ventas.idDSuc, ventas.fechaVenta);
+            fwrite(&profit, sizeof(ganancias), 1, archivoGanancias);
+        }
+        fclose(archivoGanancias);
+        fclose(archivoVentas);
     }
-
-
+}
