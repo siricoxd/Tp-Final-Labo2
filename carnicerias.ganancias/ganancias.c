@@ -136,41 +136,69 @@ void inicArregloGanancias(int ganancias[MESES][DIAS])
     }
 }
 
-//lo hago asi nomas, pero queda feo xd
+//printeo
 void mostrarTodasGanancias(nodoGananciasAnio* lista){
     while(lista!=NULL){
-        printf("\t--ANIO %d--\n", lista->dato.anio);
+        printf("\t---ANIO %d---\n\n", lista->dato.anio);
          printf("--SUCURSAL %d--\n\n", lista->dato.idSucursal);
-        mostrarGananciasAnio(lista->dato.arrayGanancias);
+        mostrarGanancias(lista->dato.arrayGanancias);
         lista=lista->siguiente;
     }
 }
 void mostrarGananciasSucursal(nodoGananciasAnio* lista, int id){
+    int flag=0;
+    printf("\t---SUCURSAL %d---\n\n", id);
     while(lista!=NULL){
-        printf("\t---SUCURSAL %d---\n\n", id);
         if(lista->dato.idSucursal==id){
+            flag=1;
             printf("--ANIO %d--\n", lista->dato.anio);
-            mostrarGananciasAnio(lista->dato.arrayGanancias);
+            mostrarGanancias(lista->dato.arrayGanancias);
+        }
+        lista=lista->siguiente;
+    }
+    if(flag==0){
+        printf("LA SUCURSAL %d NO EXISTE.\n", id);
+    }
+}
+
+
+void mostrarGananciasAnio(nodoGananciasAnio* lista, int anio){
+    printf("\t---ANIO %d---\n\n", anio);
+    while(lista!=NULL){
+        if(lista->dato.anio==anio){
+            printf("--SUCURSAL %d--\n\n", lista->dato.idSucursal);
+            mostrarGanancias(lista->dato.arrayGanancias);
         }
         lista=lista->siguiente;
     }
 }
-void mostrarGananciasAnio(int ganancias[MESES][DIAS])
+void mostrarGanancias(int ganancias[MESES][DIAS])
 {
     char nombreMes[20];
     int diasEnMes[MESES]=DIAS_EN_MES;
-    for(int i=0; i<MESES; i++)
-    {
-        numeroAString(nombreMes, i+1);
-        printf("GANANCIAS %s:\n\n", nombreMes);
-        for(int j=0; j<diasEnMes[i]; j++)
-        {
+    int hayGanancias;
+    for(int i=0; i<MESES; i++){
+        hayGanancias=0;
+        for(int j=0;j<diasEnMes[i];j++){
             if(ganancias[i][j]!=0){
-            printf("%d) %d\n", j+1, ganancias[i][j]);
+                hayGanancias=1;
+                break;
             }
+        }
+
+        if(hayGanancias==1){
+            numeroAString(nombreMes, i+1);
+            printf("GANANCIAS %s:\n", nombreMes);
+            for(int j=0; j<diasEnMes[i]; j++){
+                if(ganancias[i][j]!=0){
+                printf("DIA %d: %d\n", j+1, ganancias[i][j]);
+                }
+            }
+            printf("\n");
         }
     }
 }
+
 void numeroAString(char* nombreMes, int mes)
 {
     switch(mes)
@@ -217,19 +245,10 @@ void numeroAString(char* nombreMes, int mes)
     }
 }
 
-void verGananciasSucursal(nodoGananciasAnio* lista, int id){
-    while(lista!=NULL){
-        if(lista->dato.idSucursal==id){
-            printf("--ANIO %d--\n", lista->dato.anio);
-            mostrarGananciasAnio(lista->dato.arrayGanancias);
-        }
-        lista=lista->siguiente;
-    }
-}
 
 
 
-//printeo
+//
 void sumarGanancias(int ganancias[MESES][DIAS], const int nuevasGanancias[MESES][DIAS])
 {
     int diasEnMes[MESES]=DIAS_EN_MES;
@@ -340,7 +359,6 @@ void sumarGananciasArchivo(int ventas, int precio, int idSucursal, char fechaVen
         ganancias registro;
         ganancias aux=ventasToGanancias(ventas, precio, idSucursal, fechaVenta);
         int flag=buscarEnArchivoGanancias(archivo, aux);
-
         if(flag){
         rewind(archivo);
             while (fread(&registro, sizeof(ganancias), 1, archivo) == 1) {
@@ -373,16 +391,79 @@ int buscarEnArchivoGanancias(FILE* archivo, ganancias dato){
 }
 
 void crearArchivoGananciasConVentas(){
-    FILE* archivoVentas= fopen(nombreArchivoVentas, "rb");
-    FILE* archivoGanancias=fopen(nombreArchivoGanancias, "wb");
-    if(archivoGanancias && archivoVentas){
+    FILE* archivoVentas=fopen(nombreArchivoVentas, "rb");
+    if(archivoVentas){
         StRegistroventas ventas;
         ganancias profit;
         while(fread(&ventas, sizeof(StRegistroventas), 1, archivoVentas)==1){
-            profit=ventasToGanancias(ventas.venta, ventas.precioPorKilo, ventas.idDSuc, ventas.fechaVenta);
-            fwrite(&profit, sizeof(ganancias), 1, archivoGanancias);
+            gananciasABarchivo(ventas.venta, ventas.precioPorKilo, ventas.idDSuc, ventas.fechaVenta);
         }
-        fclose(archivoGanancias);
         fclose(archivoVentas);
+    }
+}
+
+//func aux ventas
+StRegistroventas cargarVentas(){
+    StRegistroventas aux;
+    printf("Ingrese id sucursal: ");
+    scanf("%d", &aux.idDSuc);
+    fflush(stdin);
+    printf("Ingrese fecha de la venta (AAAA-mm-DD): ");
+    gets(aux.fechaVenta);
+    printf("Precio: ");
+    scanf("%d", &aux.precioPorKilo);
+    printf("Ventas: ");
+    scanf("%d", &aux.venta);
+    return aux;
+}
+
+void menuGanancias(){
+    int seleccion=99;
+    nodoGananciasAnio* lista=inicLista();
+    while(seleccion!=0){
+        system("cls");
+        printf("\t--SISTEMA GANANCIAS--\n\n");
+        printf("1)Ver archivo\n");
+        printf("2)Sumar ventas a archivo\n");
+        printf("3)Ver ganancias de una sucursal\n");
+        printf("4)Ver ganancias de un año\n");
+        printf("5)Crear archivo ganancias.\n");
+
+        seleccion=getch()-'0';
+        system("cls");
+        switch(seleccion){
+        case 1:
+            lista=archivoToLista();
+            mostrarTodasGanancias(lista);
+            free(lista);
+            break;
+        case 2: ;
+            StRegistroventas ventas=cargarVentas();
+            sumarGananciasArchivo(ventas.venta, ventas.precioPorKilo, ventas.idDSuc, ventas.fechaVenta);
+            break;
+        case 3:
+            lista=archivoToLista();
+            int sucursal;
+            printf("Ingrese num de sucursal: ");
+            scanf("%d", &sucursal);
+            mostrarGananciasSucursal(lista, sucursal);
+            break;
+        case 4:
+            lista=archivoToLista();
+            int anio;
+            printf("Ingrese anio: ");
+            scanf("%d", &anio);
+            mostrarGananciasAnio(lista, anio);
+            break;
+        case 5:
+            crearArchivoGananciasConVentas();
+            break;
+        case 0:
+            break;
+            default:
+                printf("Seleccion incorrecta.\n");
+                break;
+        }
+        system("pause");
     }
 }

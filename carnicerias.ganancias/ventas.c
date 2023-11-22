@@ -16,7 +16,7 @@
 
 //FUNCIONE VENTAS EN EL DIA(pasar de arreglo de listas a un archivo de ventas),cambiar el tipo de estructuras y veificar de que suc es el catalogo cuando cargamos el archivo de ventas,, lo podemos hacer wb el archivo asi es venta por dia y guardamos la info en ganancias
 
-void pasarDeArregloDeposAArchivoVenta(catalogoSuc arreglo[], int pos, int idDeProd, char archivo[], int idDeSuc)
+/*void pasarDeArregloDeposAArchivoVenta(catalogoSuc arreglo[], int pos, int idDeProd, char archivo[], int idDeSuc)
 {
     FILE *archi = fopen(archivo, "ab");
 
@@ -198,3 +198,4 @@ void muestraArchivoVentas(char archivo[])
     }
 
 }
+*/
