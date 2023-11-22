@@ -16,7 +16,8 @@ int mainMenu()
         printf("1. DEPOSITO GENERAL\n");
         printf("2. DEPOSITO POR SUCURSAL\n");
         printf("3. VENTAS\n");
-        printf("4. Salir\n");
+        printf("4. COMPRA DE PROVEDORES\n");
+        printf("5. Salir\n");
 
         scanf("\n%d", &opcion);
 
@@ -34,15 +35,18 @@ int mainMenu()
             menuOpcionVentas();
             break;
         case 4:
+            menuOpcionProveedores();
+            break;
+        case 5:
             printf("Saliendo del programa. ¡Hasta luego!\n");
-
+            system("pause");
             break;
         default:
             printf("Opción no válida. Inténtelo de nuevo.\n");
             system("cls");
         }
     }
-    while (opcion != 3);
+    while (opcion != 5);
 
     return 0;
 }
@@ -562,8 +566,8 @@ int menuOpcionVentas()
 {
     int selected;
     catalogoSuc arregloSucur[40];
-    int idDeSuc, buscar, validos, pos,idDeProdu;
-    nodoproductosSucursal *buscado;
+    int idDeSuc,  validos;
+    //nodoproductosSucursal *buscado;
     do
     {
         selected = menuVentas();
@@ -617,4 +621,51 @@ int menuVentas()
 }
 
 
+
+//MENU PROVEDORES
+
+
+int menuOpcionProveedores() {
+    catalogo arregloDepos[40];
+    int validos, selected;
+    fila prov;
+    inicFila(&prov);
+
+    do {
+        selected = menuProveedores();
+
+        switch (selected) {
+            case 1:
+                validos = pasardeArchivoAArreglo(ARCHIVO_DEPOSITO, arregloDepos, 40);
+                pasarDeDepositoAAFilas(arregloDepos, validos, &prov, ARCHIVO_DEPOSITO);
+                mostrarFila(prov);
+                system("pause");
+                break;
+
+            case 0:
+                printf("\n\nTERMINATE THE PROGRAM\n");
+                break;
+        }
+
+    } while (selected != 0);
+
+    printf("\n");
+    return 0;
+}
+
+int menuProveedores() {
+    int input;
+    system("cls");
+
+    printf("\t\t\t\t\t\t\t\t\n----------");
+    printf("                   \n MENU");
+    printf("\n\t\t\t\t\t\t\t\t\t-----------");
+    printf("\n\t\t\t\t\t\t\t\t\t1 COMPRA DE STOCK");
+    printf("\n\t\t\t\t\t\t\t\t\t0 EXIT");
+    printf("\n\t\t\t\t\t\t\t\t\tSelect an option: ");
+
+    scanf("%d", &input);
+    system("cls");
+    return input;
+}
 

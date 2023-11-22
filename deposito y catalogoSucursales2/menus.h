@@ -8,7 +8,7 @@
 #include <windows.h>
 #include "depositoSucursal.h"
 #include "ventas.h"
-
+#include "provedores.h"
 int mainMenu();
 
 
@@ -25,4 +25,8 @@ int menuDepositoSucursales();
 int menuOpcionVentas();
 int menuVentas();
 int mainMenu();
+
+
+int menuOpcionProveedores() ;
+int menuProveedores() ;
 #endif // MENUS_H_INCLUDED

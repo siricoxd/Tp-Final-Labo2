@@ -91,20 +91,21 @@
 	<conio.h>
 	<string.h>
 
-1700610937 source:c:\users\54223\desktop\proyecto\tp final mio\deposito y catalogosucursales2\listasproductos.c
+1700690315 source:c:\users\54223\desktop\proyecto\tp final mio\deposito y catalogosucursales2\listasproductos.c
 	<stdio.h>
 	<stdlib.h>
 	"listasProductos.h"
 
-1700612384 source:c:\users\54223\desktop\proyecto\tp final mio\deposito y catalogosucursales2\main.c
+1700689357 source:c:\users\54223\desktop\proyecto\tp final mio\deposito y catalogosucursales2\main.c
 	<stdio.h>
 	<stdlib.h>
 	"listasProductos.h"
 	<windows.h>
 	"depositoSucursal.h"
 	"ventas.h"
+	"provedores.h"
 
-1700666341 source:c:\users\54223\desktop\proyecto\tp final mio\deposito y catalogosucursales2\ventas.c
+1700690251 source:c:\users\54223\desktop\proyecto\tp final mio\deposito y catalogosucursales2\ventas.c
 	<stdio.h>
 	<stdlib.h>
 	<windows.h>
@@ -113,14 +114,25 @@
 1700666251 c:\users\54223\desktop\proyecto\tp final mio\deposito y catalogosucursales2\ventas.h
 	"depositoSucursal.h"
 
-1700666186 source:c:\users\54223\desktop\proyecto\tp final mio\deposito y catalogosucursales2\menus.c
+1700691026 source:c:\users\54223\desktop\proyecto\tp final mio\deposito y catalogosucursales2\menus.c
 	"menus.h"
 
-1700660550 c:\users\54223\desktop\proyecto\tp final mio\deposito y catalogosucursales2\menus.h
+1700691050 c:\users\54223\desktop\proyecto\tp final mio\deposito y catalogosucursales2\menus.h
 	<stdio.h>
 	<stdlib.h>
 	"listasProductos.h"
 	<windows.h>
 	"depositoSucursal.h"
 	"ventas.h"
+	"provedores.h"
+
+1700691163 source:c:\users\54223\desktop\proyecto\tp final mio\deposito y catalogosucursales2\provedores.c
+	<stdio.h>
+	<stdlib.h>
+	"provedores.h"
+	<string.h>
+	<conio.h>
+
+1700690582 c:\users\54223\desktop\proyecto\tp final mio\deposito y catalogosucursales2\provedores.h
+	"listasProductos.h"
 

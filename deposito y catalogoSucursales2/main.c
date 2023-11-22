@@ -6,7 +6,7 @@
 #include <windows.h>
 #include "depositoSucursal.h"
 #include "ventas.h"
-
+#include "provedores.h"
 
 int main()
 {

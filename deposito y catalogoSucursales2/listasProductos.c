@@ -486,8 +486,7 @@ deposito cargaRegistro()
     printf("\nNOMBRE DE PRODUCTO:  ");
     fflush(stdin);
     gets(dato.nombreDeProductos);
-    printf("\nSTOCK: ");
-    scanf("%d",&dato.stock);
+    dato.stock=0;//inicializo en 0 y el provedor le pasa el stock
     printf("\nPRECIO POR KILO: ");
     scanf("%d",&dato.precioPorKilo);
     dato.activoPro=1;
