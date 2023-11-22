@@ -2,12 +2,15 @@
 #include <stdlib.h>
 #include <windows.h>
 #include "portada.h"
-
+#include "listasSucusrsales.h"
 int main()
 {
+///---------------------------------------------------------------///
     system("Title= Carniceria");
     system("color 0a");
-    int eleccion=0,menu=0,login=0,modo=0;
+    ///----------------
+    ///Variables del menu
+    int eleccion=0,menu=0,login=0,modo=0,elecMenu=0;
     ///----------------
     ///sucursales
     provincia ar[30];
@@ -15,54 +18,54 @@ int main()
     int validosSucursal=0;
     validosSucursal=descargarArchivo(ar,validosSucursal,30);
     ///----------------
+///---------------------------------------------------------------///
     do
     {
         login=LogIn();
         if(login==1)
         {
             modo=iniciarSesion();
-
         }
         else if(login==2)
         {
             registrarse();
             system("cls");
-            modo=iniciarSesion();
+            modo=iniciarSesion();//si te registras despues inicias sesion
         }
         if(modo==1)
         {
             do
             {
-                eleccion=menuPrincipal();
-                switch(eleccion)
+                elecMenu=menuPrincipal();
+                switch(elecMenu)
                 {
-                case 1:
+                case 1://Funciones de Sucursales
                     do
                     {
                         menu=menuSucursales();
                         switch(menu)
                         {
-                        case 1:
+                        case 1://Agregar sucursal
                             validosSucursal=cargarArchivo(30);
                             validosSucursal=0;
                             validosSucursal=descargarArchivo(ar,validosSucursal,30);//para que se agrege los cargados
                             system("pause");
                             break;
-                        case 2:
+                        case 2://baja logica
                             id= menuSucursalesModificar();
-                            if(id==1)
+                            if(id==1)//Desactivar
                             {
                                 printf("Ingrese el id del provincia que desee desactivar: ");
                                 scanf("%d",&id);
                                 pos=buscarPosProvincia(ar,id,validosSucursal);
                                 if(pos!=-1)
                                 {
-                                    mostrarUnaProvincia(ar[pos]);
+                                    mostrarUnaProvincia(ar[pos]);//Muestra la provincia y sus sucursales
                                     printf("Ingrese el id del local que desee desactivar: ");
                                     scanf("%d",&id);
                                     descativarLocal(ar,id,pos);
                                     system("cls");
-                                    mostrarUnaProvincia(ar[pos]);
+                                    mostrarUnaProvincia(ar[pos]);//Muestra la provincia y sus sucursales despues del cambio
                                 }
                                 else
                                 {
@@ -70,18 +73,18 @@ int main()
                                 }
 
                             }
-                            if(id==2)
+                            if(id==2)//Activar
                             {
                                 printf("Ingrese el id del provincia que desee activar: ");
                                 scanf("%d",&id);
                                 pos=buscarPosProvincia(ar,id,validosSucursal);
                                 if(pos!=-1)
                                 {
-                                    mostrarUnaProvincia(ar[pos]);
+                                    mostrarUnaProvincia(ar[pos]);//Muestra la provincia y sus sucursales
                                     printf("Ingrese el id del local que desee activar: ");
                                     scanf("%d",&id);
                                     activarLocal(ar,id,pos);
-                                    mostrarUnaProvincia(ar[pos]);
+                                    mostrarUnaProvincia(ar[pos]);//Muestra la provincia y sus sucursales despues del cambio
                                 }
                                 else
                                 {
@@ -90,7 +93,7 @@ int main()
                             }
                             system("pause");
                             break;
-                        case 3:
+                        case 3://Info
                             id=menuSucursalesInfo();
                             if(id==1)
                             {
@@ -99,11 +102,11 @@ int main()
                             }
                             if(id==2)
                             {
-                                provincias();
+                                provincias();//id de las provincias
                             }
                             system("pause");
                             break;
-                        case 4:
+                        case 4://Funciones para mostrar
                             id= menuSucursalesMostrar();
                             if(id==1)
                             {
@@ -134,18 +137,50 @@ int main()
                     while(menu!=0);
                     break;
                 case 2:
-                    system("pause");
+                    do
+                    {
+                        eleccion=menuEmpleados();
+                        switch(eleccion)
+                        {
+                        case 1:
+                            break;
+                        case 2:
+                            break;
+                        }
+                    }
+                    while(eleccion!=0);
+
 
                     break;
                 case 3:
-                    printf("hola\n");
-                    system("pause");
+                    do
+                    {
+                        eleccion=menuProuctos();
+                        switch(eleccion)
+                        {
+                        case 1:
+                            break;
+                        case 2:
+                            break;
+                        }
+                    }
+                    while(eleccion!=0);
+
 
                     break;
                 case 4:
-                    printf("hola\n");
-                    system("pause");
-
+                    do
+                    {
+                        //eleccion=();
+                        switch(eleccion)
+                        {
+                        case 1:
+                            break;
+                        case 2:
+                            break;
+                        }
+                    }
+                    while(eleccion!=0);
                     break;
                 case 0:
                     printf("Adios\n");
@@ -153,12 +188,16 @@ int main()
                 }
 
             }
-            while(eleccion!=0);
+            while(elecMenu!=0);
         }
         else if(modo==2)
         {
 
-            printf("hola\n");
+            do
+            {
+
+            }
+            while(elecMenu!=0);
             system("pause");
         }
     }

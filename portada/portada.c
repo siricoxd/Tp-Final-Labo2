@@ -1,4 +1,8 @@
 #include "portada.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <windows.h>
+
 const char archivoUsuarios[]= {"archivoUsuarios.bin"};
 
 ///menus
@@ -16,8 +20,8 @@ int menuPrincipal()
     printf("\t\t\t|                                                                        |\n");
     printf("\t\t\t|                                                                        |\n");
     printf("\t\t\t|                             1. SUCURSALES                              |\n");
-    printf("\t\t\t|                             2.                                         |\n");
-    printf("\t\t\t|                             3.                                         |\n");
+    printf("\t\t\t|                             2. EMPLEADOS                               |\n");
+    printf("\t\t\t|                             3. PRODUCTOS                               |\n");
     printf("\t\t\t|                             4.                                         |\n");
     printf("\t\t\t|                                                                        |\n");
     printf("\t\t\t|                             0. SALIR                                   |\n");
@@ -143,6 +147,66 @@ int menuSucursalesMostrar()
     return seleccion;
 
 }
+int menuEmpleados()
+{
+    system("cls");
+    int seleccion=0;
+    printf("\n\n\n");
+    printf("\t\t\t ________________________________________________________________________\n");
+    printf("\t\t\t|                                                                        |\n");
+    printf("\t\t\t|                                                                        |\n");
+    printf("\t\t\t|       ####   #   #  ###    #      ####     #    ###     ##     ##      |\n");
+    printf("\t\t\t|       #      ## ##  #  #   #      #       # #   #  #   #  #   #  #     |\n");
+    printf("\t\t\t|       ###    # # #  #  #   #      ###    #   #  #  #   #  #    #       |\n");
+    printf("\t\t\t|       #      # # #  ###    #      #      #####  #  #   #  #     #      |\n");
+    printf("\t\t\t|       #      #   #  #      #      #      #   #  #  #   #  #   #  #     |\n");
+    printf("\t\t\t|       ####   #   #  #      ####   ####   #   #  ###     ##     ##      |\n");
+    printf("\t\t\t|                                                                        |\n");
+    printf("\t\t\t|                                                                        |\n");
+    printf("\t\t\t|                             1.                                         |\n");
+    printf("\t\t\t|                             2.                                         |\n");
+    printf("\t\t\t|                                                                        |\n");
+    printf("\t\t\t|                             0. VOLVER                                  |\n");
+    printf("\t\t\t|                                                                        |\n");
+    printf("\t\t\t|________________________________________________________________________|\n");
+    printf("\n");
+    scanf("%d",&seleccion);
+    system("cls");
+    return seleccion;
+
+}
+int menuProuctos()
+{
+    system("cls");
+    int seleccion=0;
+    printf("\n\n\n");
+    printf("\t\t\t ________________________________________________________________________\n");
+    printf("\t\t\t|                                                                        |\n");
+    printf("\t\t\t|                                                                        |\n");
+    printf("\t\t\t|      ###    ###     ##    ###    #  #    ##    #####   ##     ##       |\n");
+    printf("\t\t\t|      #  #   #  #   #  #   #  #   #  #   #  #     #    #  #   #  #      |\n");
+    printf("\t\t\t|      #  #   #  #   #  #   #  #   #  #   #        #    #  #    #        |\n");
+    printf("\t\t\t|      ###    ###    #  #   #  #   #  #   #        #    #  #     #       |\n");
+    printf("\t\t\t|      #      #  #   #  #   #  #   #  #   #  #     #    #  #   #  #      |\n");
+    printf("\t\t\t|      #      #  #    ##    ###     ##     ##      #     ##     ##       |\n");
+    printf("\t\t\t|                                                                        |\n");
+    printf("\t\t\t|                                                                        |\n");
+    printf("\t\t\t|                             1.                                         |\n");
+    printf("\t\t\t|                             2.                                         |\n");
+    printf("\t\t\t|                                                                        |\n");
+    printf("\t\t\t|                             0. VOLVER                                  |\n");
+    printf("\t\t\t|                                                                        |\n");
+    printf("\t\t\t|________________________________________________________________________|\n");
+    printf("\n");
+    scanf("%d",&seleccion);
+    system("cls");
+    return seleccion;
+
+}
+
+
+
+
 int LogIn()
 {
     system("cls");

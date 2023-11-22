@@ -1,7 +1,6 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <windows.h>
-#include "listasSucusrsales.h"
+#ifndef PORTADA_H_INCLUDED
+#define PORTADA_H_INCLUDED
+
 
 typedef struct{
     char usuario[30];
@@ -16,6 +15,12 @@ int menuSucursales();
 int menuSucursalesModificar();
 int menuSucursalesInfo();
 int menuSucursalesMostrar();
+int menuEmpleados();
+
+
+int menuProuctos();
+
+
 int LogIn();
 ///complementos
 void gotoxy(int x,int y);
@@ -26,3 +31,5 @@ stUsuario cargarUsuarioNuevo(int*usuarioExiste);
 int iniciarSesion();
 void registrarse();
 
+
+#endif // PORTADA_H_INCLUDED

@@ -50,49 +50,26 @@
 	"portada.h"
 	"listasSucusrsales.h"
 
-1700504174 source:c:\users\54223\desktop\proyecto\tp-final-labo2\portada\listassucursales.c
+1700674515 source:c:\users\kript\desktop\tp-final-labo2\portada\main.c
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+	"portada.h"
+	"listasSucusrsales.h"
+
+1700672893 c:\users\kript\desktop\tp-final-labo2\portada\portada.h
+
+1700576399 c:\users\kript\desktop\tp-final-labo2\portada\listassucusrsales.h
+
+1700672900 source:c:\users\kript\desktop\tp-final-labo2\portada\portada.c
+	"portada.h"
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+
+1700674565 source:c:\users\kript\desktop\tp-final-labo2\portada\listassucursales.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"listasSucusrsales.h"
-
-1700504174 c:\users\54223\desktop\proyecto\tp-final-labo2\portada\listassucusrsales.h
-
-1700504174 source:c:\users\54223\desktop\proyecto\tp-final-labo2\portada\main.c
-	<stdio.h>
-	<stdlib.h>
-	<windows.h>
-	"portada.h"
-	"listasSucusrsales.h"
-
-1700504175 c:\users\54223\desktop\proyecto\tp-final-labo2\portada\portada.h
-
-1700504175 source:c:\users\54223\desktop\proyecto\tp-final-labo2\portada\portada.c
-	<stdio.h>
-	<stdlib.h>
-	<windows.h>
-	"portada.h"
-
-1700504234 source:c:\users\usuario\desktop\utn\lab 2\asd\tp-final-labo2\portada\listassucursales.c
-	<stdio.h>
-	<stdlib.h>
-	<string.h>
-	"listasSucusrsales.h"
-
-1700504234 c:\users\usuario\desktop\utn\lab 2\asd\tp-final-labo2\portada\listassucusrsales.h
-
-1700504234 source:c:\users\usuario\desktop\utn\lab 2\asd\tp-final-labo2\portada\main.c
-	<stdio.h>
-	<stdlib.h>
-	<windows.h>
-	"portada.h"
-	"listasSucusrsales.h"
-
-1700504234 c:\users\usuario\desktop\utn\lab 2\asd\tp-final-labo2\portada\portada.h
-
-1700504234 source:c:\users\usuario\desktop\utn\lab 2\asd\tp-final-labo2\portada\portada.c
-	<stdio.h>
-	<stdlib.h>
-	<windows.h>
-	"portada.h"
 
