@@ -72,8 +72,6 @@ void cargarArchivoVentas(catalogoSuc dato, FILE *archi,  char arhcivo[], int idD
                 fwrite(&aux, sizeof(StRegistroventas), 1, archi);
 
 
-
-
             seg = seg->siguiente;
         }
     }
@@ -92,7 +90,7 @@ StRegistroventas cambioDeEstrucCatalARegistro(productosDepos dato,char archivo[]
     dest.precioPorKilo=dato.precioPorKilo;
     dest.stock=dato.stock;
 
-    printf("\nINGRESE EL DIA DE LA VENTA: ");
+    printf("\nINGRESE EL DIA DE LA VENTA(DIA/MES/ANIO): ");
     fflush(stdin);
     gets(dest.fechaVenta);
     dest.venta=cargaVenta(dest.stock);
@@ -102,6 +100,7 @@ StRegistroventas cambioDeEstrucCatalARegistro(productosDepos dato,char archivo[]
 
     return dest;
 }
+
 
 int cargaVenta(int stock)
 {

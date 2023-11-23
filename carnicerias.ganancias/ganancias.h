@@ -15,7 +15,6 @@ typedef struct{
     int arrayGanancias[MESES][DIAS];
 }ganancias;
 
-
 typedef struct nodoGananciasAnio{
     ganancias dato;
     struct nodoGananciasAnio * siguiente;

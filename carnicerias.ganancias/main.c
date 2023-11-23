@@ -3,7 +3,8 @@
 #include "menuGanancias.h"
 
 int main(){
-    menuGanancias();
+    mainMenuAdmin();
+    //menuGanancias();
     return 0;
 }
 
