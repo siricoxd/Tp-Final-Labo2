@@ -1,7 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "proyectomio.h"
+#include "proyecto.h"
+#include "libreriaEmpleados.h"
+
 
 //Libreria archivo
 trabajador cargarUnTrabajador()
@@ -73,7 +75,8 @@ void cargarArchivo(char archivoTrabajador[])
 
 void mostrarUnTrabajador(trabajador a)
 {
-    printf("\n--------------------------\n");
+    int bono;
+    printf("\n-  -  -  -  -  -  -  -\n");
 
     printf("Nombre y apellido: ");
     puts(a.nombreApe);
@@ -81,7 +84,17 @@ void mostrarUnTrabajador(trabajador a)
     printf("Id provincia: %i\n", a.idProvincia);
     printf("Id sucursal: %i\n", a.idSucursal);
     printf("Rango :%i\n",a.rango);
-    printf("Sueldo: $ %i\n", a.sueldo);
+
+    if(a.horasExtra > 0)
+    {
+        bono=bonoXtrabajadorArbol(a);
+        printf("Sueldo + bono : $ %i\n", a.sueldo + bono);
+    }
+    else
+    {
+        printf("Sueldo: $ %i\n", a.sueldo);
+    }
+
     printf("Horas Extra: %i\n", a.horasExtra);
     if(a.baja==0)
     {
@@ -91,6 +104,7 @@ void mostrarUnTrabajador(trabajador a)
     {
         printf("Se encuentra activo\n");
     }
+
     if(a.bajaSucursal==0)
     {
         printf("Sucursal dada de baja\n");
@@ -108,10 +122,37 @@ void mostrarUnTrabajador(trabajador a)
         printf("Provincia activa\n");
     }
 
-    printf("\n--------------------------\n");
+
+    printf("\n-  -  -  -  -  -  -  - \n");
 }
 
+void mostrarUnTrabajador2(trabajador a)
+{
+    int bono;
+    printf("\n-  -  -  -  -  -  -  -\n");
 
+    printf("Nombre y apellido: ");
+    puts(a.nombreApe);
+    printf("DNI: %i\n", a.dni);
+    //printf("Id provincia: %i\n", a.idProvincia);
+    //printf("Id sucursal: %i\n", a.idSucursal);
+    printf("Rango :%i\n",a.rango);
+
+    if(a.horasExtra > 0)
+    {
+        bono=bonoXtrabajadorArbol(a);
+        printf("Sueldo + bono : $ %i\n", a.sueldo + bono);
+    }
+    else
+    {
+        printf("Sueldo: $ %i\n", a.sueldo);
+    }
+
+    printf("Horas Extra: %i\n", a.horasExtra);
+
+
+    printf("\n-  -  -  -  -  -  -  - \n");
+}
 
 
 void mostrarArchivo(char archivo[])
@@ -246,7 +287,7 @@ void inorder(nodoArbol * arbol)
         inorder(arbol->izq);
         if(arbol->dato.baja==1) // si esta activo lo muestra sino no:
         {
-            mostrarUnTrabajador(arbol->dato);
+            mostrarUnTrabajador2(arbol->dato);
         }
         inorder(arbol->der);
     }
@@ -259,7 +300,7 @@ void inorderBajas(nodoArbol * arbol)
         inorderBajas(arbol->izq);
         if(arbol->dato.baja==0) // si esta de baja
         {
-            mostrarUnTrabajador(arbol->dato);
+            mostrarUnTrabajador2(arbol->dato);
         }
         inorderBajas(arbol->der);
     }
@@ -272,7 +313,7 @@ void inorderRango(nodoArbol * arbol, int rango)
         inorderRango(arbol->izq, rango);
         if(arbol->dato.rango==rango)
         {
-            mostrarUnTrabajador(arbol->dato);
+            mostrarUnTrabajador2(arbol->dato);
         }
         inorderRango(arbol->der, rango);
     }
@@ -298,6 +339,7 @@ nodoArbol * buscarPorDni(nodoArbol * arbol, int dni, int rango)
     }
     return rta;
 }
+
 
 nodoArbol * buscarPorRango(nodoArbol * arbol, int rango)
 {
@@ -388,16 +430,20 @@ nodoLista* pasarDelArchivoToLDA(char archivo[], nodoLista* lista)
 
 void mostrarLDA(nodoLista* lista)
 {
-
+printf("\n\n\n\n");
+    printf("\t\t\t\t\tLISTA DE TRABAJADORES: \n\n\n\n");
     while(lista != NULL)
     {
-
-        printf("Id sucursal: %i\n", lista->idSucursal);
-        printf("baja sucursal: %i\n", lista->bajaSucursal);
-        printf("Id provincia: %i\n", lista->idProvincia);
-        printf("baja provincia: %i\n", lista->bajaProvincia);
-        printf("\n--------------------------------\n");
+        if(lista->bajaSucursal==1 && lista->bajaProvincia==1){
+             printf("\n\n\n\n\n\n");
+      printf("\t\t\t\t\t | Id sucursal: %i    |\n", lista->idSucursal);
+     // printf("\t\t\t\t\t |  baja sucursal: %i |\n", lista->bajaSucursal);
+      printf("\t\t\t\t\t |  Id provincia: %i  |\n", lista->idProvincia);
+      //printf("\t\t\t\t\t |  baja provincia: %i|\n", lista->bajaProvincia);
+      printf("\t\t\t\n-----------------------------------------------------------------------------------------------------------------------\n");
         inorder(lista->arbol);
+        }
+
 
 
         lista=lista->siguiente;
@@ -423,12 +469,13 @@ nodoLista * buscarNodo(nodoLista * lista,  int idSucursal)
 
 void mostrarBajas(nodoLista* lista)
 {
-    printf("Trabajadores dados de baja: \n");
+    printf("\n\n\n\n");
+    printf("\t\t\t\t\tTrabajadores dados de baja: \n\n\n\n");
 
     while(lista != NULL)
     {
-        printf("Id sucursal: %i\n", lista->idSucursal);
-        printf("\n--------------------------------\n");
+        printf("\t\t\t\t\tId sucursal: %i\n", lista->idSucursal);
+        printf("\t\t\t\n-----------------------------------------------------------------------------------------------------------------------\n");
         inorderBajas(lista->arbol);
         lista=lista->siguiente;
 
@@ -716,7 +763,7 @@ void inorderAltaSucursal(nodoArbol * arbol)
         inorderAltaSucursal(arbol->izq);
 
         arbol->dato.bajaSucursal=1;
-        arbol->dato.baja=1;
+        //arbol->dato.baja=1;
 
         inorderAltaSucursal(arbol->der);
     }
@@ -741,7 +788,7 @@ void darDeAltaUnaSucursal(char archivo[], nodoLista* aux)
             {
 
                 a.bajaSucursal=1;
-                a.baja=1;
+                //a.baja=1;
                 fseek(archi, (-1)*sizeof(trabajador), SEEK_CUR); // Retrocede al inicio del registro
                 fwrite(&a, sizeof(trabajador), 1, archi); // Escribe el registro modificado
                 fseek(archi, 0, SEEK_CUR);
@@ -839,8 +886,8 @@ void inorderAltaProvincia(nodoArbol * arbol)
         inorderAltaProvincia(arbol->izq);
 
         arbol->dato.bajaProvincia=1;
-        arbol->dato.bajaSucursal=1;
-        arbol->dato.baja=1;
+        //arbol->dato.bajaSucursal=1;
+        //arbol->dato.baja=1;
 
         inorderAltaProvincia(arbol->der);
     }
@@ -864,8 +911,8 @@ void darDeAltaUnaProvincia(char archivo[], nodoLista* aux, int idProvincia)
             if(aux->idProvincia==a.idProvincia)
             {
                 a.bajaProvincia=1;
-                a.bajaSucursal=1;
-                a.baja=1;
+                //a.bajaSucursal=1;
+                //a.baja=1;
                 fseek(archi, (-1)*sizeof(trabajador), SEEK_CUR); // Retrocede al inicio del registro
                 fwrite(&a, sizeof(trabajador), 1, archi); // Escribe el registro modificado
                 fseek(archi, 0, SEEK_CUR);
@@ -882,7 +929,7 @@ void darDeAltaUnaProvincia(char archivo[], nodoLista* aux, int idProvincia)
             if(aux->idProvincia==idProvincia)
             {
                 aux->bajaProvincia=1;
-                aux->bajaSucursal=1;
+                //aux->bajaSucursal=1;
                 inorderAltaProvincia(aux->arbol);
             }
 
@@ -896,6 +943,198 @@ void darDeAltaUnaProvincia(char archivo[], nodoLista* aux, int idProvincia)
 
 
 
+}
+
+///funciones case 15 y 16
+
+nodoArbol * buscarPorDni2(nodoArbol * arbol, int dni, int rango)
+{
+    nodoArbol * rta=NULL;
+    if(arbol!=NULL)
+    {
+        // printf("%i\t", arbol->dato.dni);
+        if( (dni == arbol->dato.dni) && (rango==arbol->dato.rango) )
+        {
+            rta=arbol;
+            //printf("Dato dado de baja: %i", rta->dato.dni);
+        }
+
+        else if(rango>=arbol->dato.rango)
+            rta = buscarPorDni2(arbol->der, dni, rango);
+        else
+            rta = buscarPorDni2(arbol->izq, dni,rango);
+    }
+    return rta;
+}
+
+void modificarHrsExtrasEnArchivo(char archivo[], nodoLista* aux, int dni, int rango)
+{
+    int flag=0;
+    int horasNuevas;
+
+    FILE* archi=fopen(archivo, "r+b");
+
+    if(archi)
+    {
+        trabajador a;
+        nodoArbol* arbol;
+
+        while(flag==0 && fread(&a, sizeof(trabajador),1,archi)>0)
+        {
+            if(aux->idSucursal==a.idSucursal)
+            {
+                arbol=buscarPorDni2(aux->arbol, dni, rango);
+                if(arbol!=NULL)
+                {
+                    if(a.dni==dni)
+                    {
+                        printf("\nIngrese las horas extras que desea modificar: ");
+                        scanf("%i",&horasNuevas);
+
+                        arbol->dato.horasExtra =horasNuevas;
+                        a.horasExtra=horasNuevas;
+
+                        fseek(archi, (-1)*sizeof(trabajador), SEEK_CUR); // Retrocede al inicio del registro
+                        fwrite(&a, sizeof(trabajador), 1, archi); // Escribe el registro modificado
+
+                        printf(" \nLas horas extras fueron cargadas y guardadas exitosamente :)\n");
+                        flag=1;
+                    }
+
+                }
+            }
+        }
+        fclose(archi);
+    }
+}
+void modificarHorasExtrasTrabajadores(nodoLista*lista,char nombreArchivo[])
+{
+    char seguir='s';
+    int dni;
+    int horasExtras;
+    int rango;
+    nodoArbol*encontrado;
+
+    if(lista != NULL)
+    {
+        while(seguir == 's')
+        {
+            printf("\nIngrese dni: ");
+            scanf("%i", &dni);
+
+            printf("\nIngrese rango: ");
+            scanf("%i",&rango);
+
+            encontrado=buscarPorDni2(lista->arbol,dni,rango);
+
+            if(encontrado== NULL)
+            {
+                printf("\nDNI INVALIDO \n");
+            }
+            else
+            {
+                modificarHrsExtrasEnArchivo(nombreArchivo,lista,dni,rango);
+            }
+
+            printf("\nDesea continuar? s/n \n");
+            fflush(stdin);
+            scanf("%c", &seguir);
+
+        }
+    }
+    else
+    {
+        printf("no hay empleados cargados \n");
+    }
+}
+void guardarHrsExtrasEnArchivo(char archivo[], nodoLista* aux, int dni, int rango, int hrsExtras)
+{
+    int flag=0;
+
+    FILE* archi=fopen(archivo, "r+b");
+
+    if(archi)
+    {
+        trabajador a;
+        nodoArbol* arbol;
+
+        while(flag==0 && fread(&a, sizeof(trabajador),1,archi)>0)
+        {
+            if(aux->idSucursal==a.idSucursal)
+            {
+                arbol=buscarPorDni2(aux->arbol, dni, rango);
+                if(arbol!=NULL)
+                {
+                    if(a.dni==dni)
+                    {
+                        arbol->dato.horasExtra +=hrsExtras;
+                        a.horasExtra+=hrsExtras;
+
+                        fseek(archi, (-1)*sizeof(trabajador), SEEK_CUR); // Retrocede al inicio del registro
+                        fwrite(&a, sizeof(trabajador), 1, archi); // Escribe el registro modificado
+
+                        printf(" \nLas horas extras fueron cargadas y guardadas exitosamente :)\n");
+                        flag=1;
+                    }
+
+                }
+            }
+        }
+        fclose(archi);
+    }
+}
+
+void cargarHorasExtrasTrabajadores(nodoLista*lista,char nombreArchivo[])
+{
+    char seguir='s';
+    int dni;
+    int horasExtras;
+    int rango;
+    nodoArbol*encontrado;
+
+    if(lista != NULL)
+    {
+        while(seguir == 's')
+        {
+            printf("\nIngrese dni: ");
+            scanf("%i", &dni);
+
+            printf("\nIngrese rango: ");
+            scanf("%i",&rango);
+
+            encontrado=buscarPorDni2(lista->arbol,dni,rango);
+
+            if(encontrado== NULL)
+            {
+                printf("\nDNI INVALIDO \n");
+            }
+            else
+            {
+                printf("\nIngrese horas extras: ");
+                scanf("%i", &horasExtras);
+                guardarHrsExtrasEnArchivo(nombreArchivo,lista,dni,rango,horasExtras);
+            }
+
+            printf("\nDesea continuar? s/n \n");
+            fflush(stdin);
+            scanf("%c", &seguir);
+
+        }
+    }
+    else
+    {
+        printf("no hay empleados cargados \n");
+    }
+}
+//////////////////FUNCIONES BONO/////////////
+int bonoXtrabajadorArbol(trabajador a)
+{
+    int bonoPorHoraExtra = 500;
+    int bono = -1;
+
+    bono =a.horasExtra * bonoPorHoraExtra;
+
+    return bono;
 }
 
 

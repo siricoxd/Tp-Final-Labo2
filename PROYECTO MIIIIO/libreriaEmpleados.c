@@ -1,19 +1,21 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "proyectomio.h"
+#include "proyecto.h"
 #define archivoTrabajadores "archivotrabajadores.bin"
 #include <windows.h>
-
+#include "libreriaEmpleados.h"
 
 int menu();
 int menuOpcion();
-int main()
+int mainEmpleados()
 {
+system("color C0");
+
 
     menuOpcion();
 
-//remove(archivoTrabajadores);
+system("color");
 
     return 0;
 }
@@ -95,6 +97,7 @@ int menuOpcion()
 
             break;
         case 5 :
+            mostrarBajas(lista);
 
             printf("Ingrese el ID de la sucursal del trabajador para dar de alta\n");
             fflush(stdin);
@@ -292,6 +295,41 @@ int menuOpcion()
             system("pause");
             break;
 
+            case 15:
+
+            printf("\nIngrese id de la sucursal:");
+            scanf("%i",&idSucursal);
+
+            sucursal=buscarSucursal(lista,idSucursal);
+
+            if(sucursal == NULL)
+            {
+                printf("\nNo se encontro la sucursal \n");
+            }
+            else
+            {
+                cargarHorasExtrasTrabajadores(sucursal,archivoTrabajadores);
+            }
+
+            system("pause");
+            break;
+
+            case 16:
+
+            printf("\nIngrese id de la sucursal:");
+            scanf("%i",&idSucursal);
+
+            sucursal=buscarSucursal(lista,idSucursal);
+
+            if(sucursal == NULL)
+            {
+                printf("\nNo se encontro la sucursal \n");
+            }
+            else
+            {
+                modificarHorasExtrasTrabajadores(sucursal,archivoTrabajadores);
+            }
+
         case 0:
 
             printf("\n\nTERMINATE THE PROGRAM\n");
@@ -305,34 +343,46 @@ int menuOpcion()
     return 0;
 }
 
+
 int menu()
 {
-
-    int input;
     system("cls");
-
-    printf("\t\t\t\t\t\t\t\t\n----------");
-
-    printf("                   \n MENU");
-    printf("\n\t\t\t\t\t\t\t\t\t-----------");
-    printf("\n\t\t\t\t\t\t\t\t\t1MUESTRA DEL ARCHIVO");
-    printf("\n\t\t\t\t\t\t\t\t\t2-CARGA DEL ARCHIVO");
-    printf("\n\t\t\t\t\t\t\t\t\t3-MOSTRAR LA LISTA DE ARBOLES ");
-    printf("\n\t\t\t\t\t\t\t\t\t4-DAR DE BAJA TRABAJADOR");
-    printf("\n\t\t\t\t\t\t\t\t\t5-DAR DE ALTA TRABAJADOR");
-    printf("\n\t\t\t\t\t\t\t\t\t6-MUESTRA TRABAJADORES DADOS DE BAJA");
-    printf("\n\t\t\t\t\t\t\t\t\t7-AGREGAR UN TRABAJADOR");
-    printf("\n\t\t\t\t\t\t\t\t\t8-MOSTRAR LOS TRABAJADORES DE UNA SUCURSAL");
-    printf("\n\t\t\t\t\t\t\t\t\t9-MOSTRAR LOS TRABAJADORES DE UN RANGO");
-    printf("\n\t\t\t\t\t\t\t\t\t10-CAMBIAR SUELDO");
-    printf("\n\t\t\t\t\t\t\t\t\t11-DAR DE BAJA SUCURSAL");
-    printf("\n\t\t\t\t\t\t\t\t\t12-DAR DE ALTA SUCURSAL");
-    printf("\n\t\t\t\t\t\t\t\t\t13-DAR DE BAJA PROVINCIA");
-    printf("\n\t\t\t\t\t\t\t\t\t14-DAR DE ALTA PROVINCIA");
-
-
-    printf("\n\n\t\t\t\t\t\t\t\t\tENTER YOUR CHOICE: ");
-    scanf("%d",&input);
+    int seleccion=0;
+    printf("\n\n\n");
+    printf("\t\t\t ________________________________________________________________________\n");
+    printf("\t\t\t|                                                                        |\n");
+    printf("\t\t\t|                                                                        |\n");
+    printf("\t\t\t|       ####   #   #  ###    #      ####     #    ###     ##     ##      |\n");
+    printf("\t\t\t|       #      ## ##  #  #   #      #       # #   #  #   #  #   #  #     |\n");
+    printf("\t\t\t|       ###    # # #  #  #   #      ###    #   #  #  #   #  #    #       |\n");
+    printf("\t\t\t|       #      # # #  ###    #      #      #####  #  #   #  #     #      |\n");
+    printf("\t\t\t|       #      #   #  #      #      #      #   #  #  #   #  #   #  #     |\n");
+    printf("\t\t\t|       ####   #   #  #      ####   ####   #   #  ###     ##     ##      |\n");
+    printf("\t\t\t|                                                                        |\n");
+    printf("\t\t\t|                                                                        |\n");
+    printf("\t\t\t|                             1. MUESTRA DEL ARCHIVO                     |\n");
+    printf("\t\t\t|                             2.CARGA DEL ARCHIVO                        |\n");
+    printf("\t\t\t|                             3.MOSTRAR TRABAJADORES                     |\n");
+    printf("\t\t\t|                             4. DAR DE BAJA TRABAJADOR                  |\n");
+    printf("\t\t\t|                             5. DAR DE ALTA TRABAJADOR                  |\n");
+    printf("\t\t\t|                             6. MUESTRA TRABAJADORES DADOS DE BAJA      |\n");
+    printf("\t\t\t|                             7. AGREGAR UN TRABAJADOR                   |\n");
+    printf("\t\t\t|                             8. MOSTRAR LOS TRABAJADORES DE UNA SUCURSAL|\n");
+    printf("\t\t\t|                             9. MOSTRAR LOS TRABAJADORES DE UN RANGO    |\n");
+    printf("\t\t\t|                             10. CAMBIAR SUELDO                         |\n");
+    printf("\t\t\t|                             11. DAR DE BAJA SUCURSAL                   |\n");
+    printf("\t\t\t|                             12. DAR DE ALTA SUCURSAL                   |\n");
+    printf("\t\t\t|                             13. DAR DE BAJA PROVINCIA                  |\n");
+    printf("\t\t\t|                             14. DAR DE ALTA PROVINCIA                  |\n");
+    printf("\t\t\t|                             15. CARGAR HORAS EXTRA                     |\n");
+    printf("\t\t\t|                             16. MODIFICAR HORAS EXTRA                  |\n");
+    printf("\t\t\t|                                                                        |\n");
+    printf("\t\t\t|                             0. VOLVER                                  |\n");
+    printf("\t\t\t|                                                                        |\n");
+    printf("\t\t\t|________________________________________________________________________|\n");
+    printf("\n");
+    scanf("%d",&seleccion);
     system("cls");
-    return input;
+    return seleccion;
+
 }

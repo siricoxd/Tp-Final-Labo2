@@ -1,0 +1,42 @@
+# depslib dependency file v1.0
+1700444740 source:c:\users\win10\downloads\proyecto miio\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"proyecto.h"
+	<windows.h>
+
+1700444740 c:\users\win10\downloads\proyecto miio\proyecto.h
+
+1700444740 source:c:\users\win10\downloads\proyecto miio\proyecto.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"proyecto.h"
+
+1700765282 source:c:\users\win10\downloads\proyecto miiiio\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"proyecto.h"
+	<windows.h>
+	"libreriaEmpleados.h"
+
+1700764223 c:\users\win10\downloads\proyecto miiiio\proyecto.h
+
+1700764683 source:c:\users\win10\downloads\proyecto miiiio\proyecto.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"proyecto.h"
+
+1700765282 c:\users\win10\downloads\proyecto miiiio\libreriaempleados.h
+
+1700765439 source:c:\users\win10\downloads\proyecto miiiio\libreriaempleados.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"proyecto.h"
+	<windows.h>
+	"libreriaEmpleados.h"
+

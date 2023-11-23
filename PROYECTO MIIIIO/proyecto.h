@@ -1,5 +1,5 @@
-#ifndef PROYECTOMIO_H_INCLUDED
-#define PROYECTOMIO_H_INCLUDED
+#ifndef PROYECTO_H_INCLUDED
+#define PROYECTO_H_INCLUDED
 
 typedef struct {
 
@@ -46,12 +46,14 @@ void mostrarUnTrabajador(trabajador a);
 void mostrarArchivo(char archivo[]);
 void agregarTrabajadores(char archivo[], nodoLista* lista);
 
+
 //Libreria listas:
 nodoLista* iniclista();
 nodoLista* crearNodoLista(int idSucursal, int bajaSucursal, int idProvincia, int bajaProvincia);
 nodoLista* agregarAlPpio(nodoLista* lista, nodoLista* nuevo);
 nodoLista* agregarEnOrden(nodoLista* lista, nodoLista* nuevoNodo);
 nodoLista * buscarNodo(nodoLista * lista,  int idSucursal);
+void mostrarUnTrabajador2(trabajador a);
 
 //Libreria LDA
 nodoLista* buscarSucursal(nodoLista* lista, int sucursal);
@@ -86,6 +88,12 @@ void darDeBajaUnaProvincia(char archivo[], nodoLista* aux, int idProvincia);
 void inorderAltaProvincia(nodoArbol * arbol);
 void darDeAltaUnaProvincia(char archivo[], nodoLista* aux, int idProvincia);
 
+//funciones del case 15 y 16
+void cargarHorasExtrasTrabajadores(nodoLista*lista,char nombreArchivo[]);
+void guardarHrsExtrasEnArchivo(char archivo[], nodoLista* aux, int dni, int rango, int hrsExtras);
+nodoArbol * buscarPorDni2(nodoArbol * arbol, int dni, int rango);
+void modificarHorasExtrasTrabajadores(nodoLista*lista,char nombreArchivo[]);
+void modificarHrsExtrasEnArchivo(char archivo[], nodoLista* aux, int dni, int rango);
 
 //Libreria arbol:
 nodoArbol* inicarbol();
@@ -97,4 +105,5 @@ void inorderRango(nodoArbol * arbol, int rango);
 nodoArbol * buscarPorDni(nodoArbol * arbol, int dni, int rango);
 nodoArbol * buscarPorRango(nodoArbol * arbol, int rango);
 
-#endif // PROYECTOMIO_H_INCLUDED
+
+#endif // PROYECTO_H_INCLUDED
