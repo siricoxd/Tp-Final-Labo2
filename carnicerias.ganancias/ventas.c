@@ -16,32 +16,64 @@
 
 //FUNCIONE VENTAS EN EL DIA(pasar de arreglo de listas a un archivo de ventas),cambiar el tipo de estructuras y veificar de que suc es el catalogo cuando cargamos el archivo de ventas,, lo podemos hacer wb el archivo asi es venta por dia y guardamos la info en ganancias
 
-void pasarDeArregloDeposAArchivoVenta(catalogoSuc arreglo[], int pos, int idDeProd, char archivo[], int idDeSuc)
-{
-    FILE *archi = fopen(archivo, "ab");
+//void pasarDeArregloDeposAArchivoVenta(catalogoSuc arreglo[], int pos, int idDeProd, char archivo[], int idDeSuc)
+//{
+//    FILE *archi = fopen(archivo, "wb");
+//
+//    if (archi != NULL)
+//    {
+//        cargarArchivoVentas(arreglo[pos].lista, archi, idDeProd, archivo, idDeSuc);
+//        fclose(archi);
+//    }
+//}
+//
 
+
+
+
+
+
+
+
+void pasarDeArregloDeposAArchivoVenta(catalogoSuc arreglo[], int validos, char archivo[], int idDeSuc)//recorrer el arreglo y pasar los produ
+{
+    FILE *archi = fopen(archivo, "wb");
+    int i=0;
     if (archi != NULL)
     {
-        cargarArchivoVentas(arreglo[pos].lista, archi, idDeProd, archivo, idDeSuc);
+        while(i<validos)
+        {
+            printf("\nCARGUE LAS VENTAS DEL CATALOGO: %s",arreglo[i].nombreDeCategoria);
+             cargarArchivoVentas(arreglo[i], archi, archivo, idDeSuc);
+             i++;
+        }
+
         fclose(archi);
     }
 }
 
-void cargarArchivoVentas(nodoproductosSucursal *lista, FILE *archi, int idDeProd, char arhcivo[], int idDeSuc)
+
+
+
+
+
+void cargarArchivoVentas(catalogoSuc dato, FILE *archi,  char arhcivo[], int idDeSuc)
 {
-    nodoproductosSucursal *seg = lista;
+    nodoproductosSucursal *seg = dato.lista;
     int flag = 0;
     StRegistroventas aux;
 
-    if (archi!=NULL){
-        while (seg != NULL && flag == 0){
-            if (seg->dato.id == idDeProd)
-            {
+    if (archi != NULL)
+    {
+        while (seg != NULL )
+        {
+                printf("\nCARGUE LAS VENTAS DEL PRODUCTO: %s",seg->dato.nombreDeproductosDepos);
                 aux = cambioDeEstrucCatalARegistro(seg->dato, arhcivo, idDeSuc);
                 fwrite(&aux, sizeof(StRegistroventas), 1, archi);
-                flag = 1;
-                printf("\naca");
-            }
+
+
+
+
             seg = seg->siguiente;
         }
     }
@@ -60,7 +92,7 @@ StRegistroventas cambioDeEstrucCatalARegistro(productosDepos dato,char archivo[]
     dest.precioPorKilo=dato.precioPorKilo;
     dest.stock=dato.stock;
 
-    printf("\nINGRESE EL DIA DE LA VENTA (DIA/MES/ANIO): ");
+    printf("\nINGRESE EL DIA DE LA VENTA: ");
     fflush(stdin);
     gets(dest.fechaVenta);
     dest.venta=cargaVenta(dest.stock);
@@ -120,6 +152,28 @@ void modificarSatock(char archi[],int idDelRegistro,int venta,int idDeSuc)
 
 
 }
+
+
+
+int cantidadDeRegistrosConId1()
+{
+    int cantidad;
+    FILE* buffer = fopen(ARCHIVO_DEPOSITO,"rb");
+    if(buffer)
+    {
+        fseek(buffer,0,SEEK_END);
+        cantidad =(int)ftell(buffer)/sizeof(deposito);
+        fclose(buffer);
+    }
+    return cantidad;
+}
+
+
+
+
+
+
+
 
 
 //
@@ -196,4 +250,3 @@ void muestraArchivoVentas(char archivo[])
     }
 
 }
-

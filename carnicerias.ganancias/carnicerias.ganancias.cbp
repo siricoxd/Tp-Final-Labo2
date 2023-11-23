@@ -31,10 +31,18 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="depositoSucursal.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="depositoSucursal.h" />
 		<Unit filename="ganancias.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="ganancias.h" />
+		<Unit filename="listasProductos.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="listasProductos.h" />
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>

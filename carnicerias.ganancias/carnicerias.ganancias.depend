@@ -17,18 +17,18 @@
 1699547223 source:c:\users\usuario\desktop\utn\lab 2\asd\tp-final-labo2\carnicerias.ganancias\gananciasdia.c
 	"ganancias.h"
 
-1700664709 c:\users\usuario\desktop\utn\lab 2\asd\tp-final-labo2\carnicerias.ganancias\ganancias.h
+1700697644 c:\users\usuario\desktop\utn\lab 2\asd\tp-final-labo2\carnicerias.ganancias\ganancias.h
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"ventas.h"
 
-1700664353 source:c:\users\usuario\desktop\utn\lab 2\asd\tp-final-labo2\carnicerias.ganancias\main.c
+1700701046 source:c:\users\usuario\desktop\utn\lab 2\asd\tp-final-labo2\carnicerias.ganancias\main.c
 	<stdio.h>
 	<stdlib.h>
-	"ganancias.h"
+	"menuGanancias.h"
 
-1700664346 source:c:\users\usuario\desktop\utn\lab 2\asd\tp-final-labo2\carnicerias.ganancias\ganancias.c
+1700700502 source:c:\users\usuario\desktop\utn\lab 2\asd\tp-final-labo2\carnicerias.ganancias\ganancias.c
 	"ganancias.h"
 
 1699988023 source:c:\users\54223\desktop\proyecto\tp-final-labo2\carnicerias.ganancias\ganancias.c
@@ -80,20 +80,36 @@
 	<stdlib.h>
 	"ganancias.h"
 
-1700664329 c:\users\usuario\desktop\utn\lab 2\asd\tp-final-labo2\carnicerias.ganancias\ventas.h
+1700671522 c:\users\usuario\desktop\utn\lab 2\asd\tp-final-labo2\carnicerias.ganancias\ventas.h
 	"depositoSucursal.h"
 
-1700664168 source:c:\users\usuario\desktop\utn\lab 2\asd\tp-final-labo2\carnicerias.ganancias\ventas.c
+1700671522 source:c:\users\usuario\desktop\utn\lab 2\asd\tp-final-labo2\carnicerias.ganancias\ventas.c
 	<stdio.h>
 	<stdlib.h>
 	<windows.h>
 	"ventas.h"
 
-1700664220 c:\users\usuario\desktop\utn\lab 2\asd\tp-final-labo2\carnicerias.ganancias\depositosucursal.h
+1700611476 c:\users\usuario\desktop\utn\lab 2\asd\tp-final-labo2\carnicerias.ganancias\depositosucursal.h
 	"listasProductos.h"
 
 1700611476 c:\users\usuario\desktop\utn\lab 2\asd\tp-final-labo2\carnicerias.ganancias\listasproductos.h
 	<time.h>
 	<conio.h>
 	<string.h>
+
+1700661150 source:c:\users\usuario\desktop\utn\lab 2\asd\tp-final-labo2\carnicerias.ganancias\depositosucursal.c
+	<stdio.h>
+	<stdlib.h>
+	"depositoSucursal.h"
+	<string.h>
+
+1700696908 source:c:\users\usuario\desktop\utn\lab 2\asd\tp-final-labo2\carnicerias.ganancias\listasproductos.c
+	<stdio.h>
+	<stdlib.h>
+	"listasProductos.h"
+
+1700700519 c:\users\usuario\desktop\utn\lab 2\asd\tp-final-labo2\carnicerias.ganancias\menuganancias.h
+	<stdio.h>
+	<stdlib.h>
+	"ganancias.h"
 

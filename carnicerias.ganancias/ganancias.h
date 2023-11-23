@@ -64,5 +64,3 @@ void numeroAString(char* nombreMes, int mes);
 
 void crearArchivoGananciasConVentas();
 StRegistroventas cargarVentas();
-void menuGanancias();
-
