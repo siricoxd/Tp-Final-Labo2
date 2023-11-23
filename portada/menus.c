@@ -13,13 +13,21 @@ int mainMenuAdmin()
     do
     {
         // Menú principal
-        printf("Seleccione una opción:\n");
-        printf("1. DEPOSITO GENERAL\n");
-        printf("2. DEPOSITO POR SUCURSAL\n");
-        printf("3. VENTAS\n");
-        printf("4. COMPRA DE PROVEDORES\n");
-        printf("5. Salir\n");
-
+            printf("\t\t|-------------------------------------------------------------------------------------  |\n");
+            printf("\t\t|##   ##  #######  ######     ####     ##     #####    #######  ######    ####      ##  |\n");
+            printf("\t\t|### ###   ##   #   ##  ##   ##  ##   ####     ## ##    ##   #   ##  ##    ##      #### |\n");
+            printf("\t\t|#######   ## #     ##  ##  ##       ##  ##    ##  ##   ## #     ##  ##    ##     ##  ##|\n");
+            printf("\t\t|#######   ####     #####   ##       ##  ##    ##  ##   ####     #####     ##     ##  ##|\n");
+            printf("\t\t|## # ##   ## #     ## ##   ##       ######    ##  ##   ## #     ## ##     ##     ######|\n");
+            printf("\t\t|##   ##   ##   #   ##  ##   ##  ##  ##  ##    ## ##    ##   #   ##  ##    ##     ##  ##|\n");
+            printf("\t\t|##   ##  #######  #### ##    ####   ##  ##   #####    #######  #### ##   ####    ##  ##|\n");
+            printf("\t\t|                                                                                       |\n");
+            printf("\t\t|                                 1. DEPOSITO GENERAL                                   |\n");
+            printf("\t\t|                                 2. DEPOSITO POR SUCURSAL                              |\n");
+            printf("\t\t|                                 3. VENTAS                                             |\n");
+            printf("\t\t|                                 4. COMPRA DE PROVEDORES                               |\n");
+            printf("\t\t|                                 5. Salir                                              |\n");
+            printf("\t\t|---------------------------------------------------------------------------------------|\n");
         scanf("\n%d", &opcion);
 
         switch (opcion)
@@ -46,6 +54,7 @@ int mainMenuAdmin()
             printf("Opción no válida. Inténtelo de nuevo.\n");
             system("cls");
         }
+      system("color");
     }
     while (opcion != 5);
 
@@ -566,18 +575,27 @@ int menuDepositoSucursalesAdmin()
     int input;
     system("cls");
 
-    printf("\t\t\t\t\t\t\t\t\n----------");
+    printf("\t\t|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|\n");
+    printf("\t\t|   ###                                         ##       ##                                                                                       ###                         |\n");
+    printf("\t\t|    ##                                                  ##                                                                                        ##                         |\n");
+    printf("\t\t|    ##    ####     ######   ####     #####    ###      #####    ####              #####   ##  ##    ####    ##  ##   ######    #####    ####      ##      ####     #####     |\n");
+    printf("\t\t| #####   ##  ##    ##  ##  ##  ##   ##         ##       ##     ##  ##            ##       ##  ##   ##  ##   ##  ##    ##  ##  ##           ##     ##     ##  ##   ##         |\n");
+    printf("\t\t| ##  ##  ######    ##  ##  ##  ##    #####     ##       ##     ##  ##             #####   ##  ##   ##       ##  ##    ##       #####    #####     ##     ######    #####     |\n");
+    printf("\t\t| ##  ##  ##        #####   ##  ##        ##    ##       ## ##  ##  ##                 ##  ##  ##   ##  ##   ##  ##    ##           ##  ##  ##     ##     ##            ##    |\n");
+    printf("\t\t| ######  #####     ##       ####    ######    ####       ###    ####             ######    ######   ####     ######  ####     ######    #####    ####     #####   ######     |\n");
+    printf("\t\t|                  ####                                                                                                                                                       |\n");
+    printf("\t\t|                                                                                                                                                                             |\n");
+    printf("\t\t|                                            1.MOSTRAR ARREGLO DE LISTAS DEPOSITO SUCURSAL                                                                                    |\n");
+    printf("\t\t|                                            2.DESACTIVAR PRODUCTO DEL DEPOSITO DE SUCURSAL                                                                                   |\n");
+    printf("\t\t|                                            3. ACTIVAR CATALOGO DEL DEPOSITO DE SUCURSAL                                                                                     |\n");
+    printf("\t\t|                                            4.ACTIVAR PRODUCTO DEL DEPOSITO DE SUCURSAL                                                                                      |\n");
+    printf("\t\t|                                            5. Salir                                                                                                                         |\n");
+    printf("\t\t|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------                                                                                      |\n");
 
-    printf("                   \n MENU");
-    printf("\n\t\t\t\t\t\t\t\t\t-----------");
-    printf("\n\t\t\t\t\t\t\t\t\t1CARGA DE ARCHIVO DEPOSITO SUCURSAL");
-    printf("\n\t\t\t\t\t\t\t\t\t2-MUESTRA DE ARCHIVO DEPOSITO SUCURSAL");
-    printf("\n\t\t\t\t\t\t\t\t\t3-MOSTRAR ARREGLO DE LISTAS DEPOSITO SUCURSAL");
-    printf("\n\t\t\t\t\t\t\t\t\t4-DESACTIVAR PRODUCTO DEL DEPOSITO DE SUCURSAL");
-    printf("\n\t\t\t\t\t\t\t\t\t5-DESACTIVAR CATALOGO DEL DEPOSITO DE SUCURSAL");
-    printf("\n\t\t\t\t\t\t\t\t\t6-ACTIVAR CATALOGO DEL DEPOSITO DE SUCURSAL");
-    printf("\n\t\t\t\t\t\t\t\t\t7-ACTIVAR PRODUCTO DEL DEPOSITO DE SUCURSAL");
-    printf("\n\n\t\t\t\t\t\t\t\t\tENTER YOUR CHOICE: ");
+
+
+
+
     scanf("%d",&input);
     system("cls");
     return input;

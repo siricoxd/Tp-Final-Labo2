@@ -143,8 +143,9 @@ int main()
                         mainEmpleados();
                     break;
                 case 3:
+                    system("color");
                         mainMenuAdmin();
-
+                        system("color");
 
                     break;
                 case 4:

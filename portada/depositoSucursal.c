@@ -329,14 +329,14 @@ int modificarStockEnArchivoDepSuc(char archivo[], int idDePro,int idDeSuc, int s
 
     while (fread(&aux, sizeof(depositoSucursal), 1, archivoDepSuc) == 1 && flag == 0) {
         if (aux.id == idDePro && aux.idDeSuc==idDeSuc) {
-                printf("\nnmm");
-            printf("stock antes de la modificación: %d\n", aux.stock);
+
+
             aux.stock = stock+aux.stock;
 
             fseek(archivoDepSuc, -sizeof(depositoSucursal), SEEK_CUR);
             fwrite(&aux, sizeof(depositoSucursal), 1, archivoDepSuc);
 
-            printf("stock después de la modificación: %d\n", aux.stock);
+
             flag = 1;
             break;
         }

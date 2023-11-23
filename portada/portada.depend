@@ -97,7 +97,7 @@
 	<stdlib.h>
 	<windows.h>
 
-1700769670 source:c:\users\54223\desktop\proyecto\tp-final-labo2\portada\main.c
+1700771428 source:c:\users\54223\desktop\proyecto\tp-final-labo2\portada\main.c
 	<stdio.h>
 	<stdlib.h>
 	<windows.h>
@@ -174,7 +174,7 @@
 
 1700767573 c:\users\54223\desktop\proyecto\tp-final-labo2\portada\listassucusrsales.h
 
-1700710019 source:c:\users\54223\desktop\proyecto\tp-final-labo2\portada\depositosucursal.c
+1700771428 source:c:\users\54223\desktop\proyecto\tp-final-labo2\portada\depositosucursal.c
 	<stdio.h>
 	<stdlib.h>
 	"depositoSucursal.h"
@@ -212,7 +212,7 @@
 1700766223 c:\users\54223\desktop\proyecto\tp-final-labo2\portada\ventas.h
 	"depositoSucursal.h"
 
-1700767573 source:c:\users\54223\desktop\proyecto\tp-final-labo2\portada\menus.c
+1700772664 source:c:\users\54223\desktop\proyecto\tp-final-labo2\portada\menus.c
 	"menus.h"
 
 1700767573 c:\users\54223\desktop\proyecto\tp-final-labo2\portada\menus.h
