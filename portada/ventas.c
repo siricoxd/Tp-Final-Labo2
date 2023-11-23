@@ -60,7 +60,7 @@ void pasarDeArregloDeposAArchivoVenta(catalogoSuc arreglo[], int validos, char a
 void cargarArchivoVentas(catalogoSuc dato, FILE *archi,  char arhcivo[], int idDeSuc)
 {
     nodoproductosSucursal *seg = dato.lista;
-    int flag = 0;
+
     StRegistroventas aux;
 
     if (archi != NULL)

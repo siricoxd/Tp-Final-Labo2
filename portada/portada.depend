@@ -229,3 +229,115 @@
 
 1700714516 c:\users\54223\desktop\proyecto\tp-final-labo2\portada\portada.h
 
+1700660901 source:c:\users\54223\desktop\proyecto\tp final mio\portada\librerias\depostitoporsucursal\depositosucursal.c
+	<stdio.h>
+	<stdlib.h>
+	"depositoSucursal.h"
+	<string.h>
+
+1700713150 c:\users\54223\desktop\proyecto\tp final mio\portada\librerias\depostitoporsucursal\depositosucursal.h
+	"../depositoGeneral/listasProductos.h"
+	"../depostitoPorSucursal/depositoSucursal.h"
+	"../provedores/provedores.h"
+	"../ventas/ventas.h"
+
+1700712236 c:\users\54223\desktop\proyecto\tp final mio\portada\librerias\depositogeneral\listasproductos.h
+	<time.h>
+	<conio.h>
+	<string.h>
+	"../depostitoPorSucursal/depositoSucursal.h"
+
+1700713191 c:\users\54223\desktop\proyecto\tp final mio\portada\librerias\provedores\provedores.h
+	"../depositoGeneral/listasProductos.h"
+	"../depostitoPorSucursal/depositoSucursal.h"
+	"../provedores/provedores.h"
+	"../ventas/ventas.h"
+
+1700713158 c:\users\54223\desktop\proyecto\tp final mio\portada\librerias\ventas\ventas.h
+	"../depositoGeneral/listasProductos.h"
+	"../depostitoPorSucursal/depositoSucursal.h"
+	"../provedores/provedores.h"
+	"../ventas/ventas.h"
+
+1700692655 source:c:\users\54223\desktop\proyecto\tp final mio\portada\librerias\listasucursales\listassucursales.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"listasSucusrsales.h"
+
+1700713680 c:\users\54223\desktop\proyecto\tp final mio\portada\librerias\listasucursales\listassucusrsales.h
+
+1700714956 source:c:\users\54223\desktop\proyecto\tp final mio\portada\main.c
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+	"listasSucusrsales.h"
+	"portada.h"
+	"menus.h"
+
+1700713680 c:\users\54223\desktop\proyecto\tp final mio\portada\listassucusrsales.h
+
+1700714516 c:\users\54223\desktop\proyecto\tp final mio\portada\portada.h
+
+1700714279 c:\users\54223\desktop\proyecto\tp final mio\portada\menus.h
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+	"depositoSucursal.h"
+	"ventas.h"
+	"provedores.h"
+
+1700714115 c:\users\54223\desktop\proyecto\tp final mio\portada\depositosucursal.h
+	"listasProductos.h"
+
+1700714377 c:\users\54223\desktop\proyecto\tp final mio\portada\listasproductos.h
+	<time.h>
+	<conio.h>
+	<string.h>
+	"listasSucusrsales.h"
+
+1700714227 c:\users\54223\desktop\proyecto\tp final mio\portada\ventas.h
+	"depositoSucursal.h"
+
+1700714178 c:\users\54223\desktop\proyecto\tp final mio\portada\provedores.h
+	"depositoSucursal.h"
+
+1700660901 source:c:\users\54223\desktop\proyecto\tp final mio\portada\depositosucursal.c
+	<stdio.h>
+	<stdlib.h>
+	"depositoSucursal.h"
+	<string.h>
+
+1700690315 source:c:\users\54223\desktop\proyecto\tp final mio\portada\listasproductos.c
+	<stdio.h>
+	<stdlib.h>
+	"listasProductos.h"
+
+1700714377 source:c:\users\54223\desktop\proyecto\tp final mio\portada\listassucursales.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"listasSucusrsales.h"
+
+1700708781 source:c:\users\54223\desktop\proyecto\tp final mio\portada\menus.c
+	"menus.h"
+
+1700713463 source:c:\users\54223\desktop\proyecto\tp final mio\portada\portada.c
+	"portada.h"
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+
+1700691163 source:c:\users\54223\desktop\proyecto\tp final mio\portada\provedores.c
+	<stdio.h>
+	<stdlib.h>
+	"provedores.h"
+	<string.h>
+	<conio.h>
+
+1700714322 source:c:\users\54223\desktop\proyecto\tp final mio\portada\ventas.c
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+	"ventas.h"
+
