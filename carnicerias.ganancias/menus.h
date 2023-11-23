@@ -20,6 +20,7 @@ int menuDepositoAdmin();
 int menuOpcionDepositoAdmin();
 
 int menuOpcionDepositoSucursalAdmin();
+void menuAltaBaja();
 int menuDepositoSucursalesAdmin();
 
 

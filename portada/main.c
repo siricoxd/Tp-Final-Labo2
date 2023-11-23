@@ -138,15 +138,10 @@ int main()
                     while(menu!=0);
                     break;
                 case 2:
-
-
                         mainEmpleados();
                     break;
                 case 3:
-                    system("color");
                         mainMenuAdmin();
-                        system("color");
-
                     break;
                 case 4:
                     do

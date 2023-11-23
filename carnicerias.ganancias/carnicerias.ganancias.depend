@@ -80,7 +80,7 @@
 	<stdlib.h>
 	"ganancias.h"
 
-1700671522 c:\users\usuario\desktop\utn\lab 2\asd\tp-final-labo2\carnicerias.ganancias\ventas.h
+1700775998 c:\users\usuario\desktop\utn\lab 2\asd\tp-final-labo2\carnicerias.ganancias\ventas.h
 	"depositoSucursal.h"
 
 1700714274 source:c:\users\usuario\desktop\utn\lab 2\asd\tp-final-labo2\carnicerias.ganancias\ventas.c
@@ -103,7 +103,7 @@
 	"depositoSucursal.h"
 	<string.h>
 
-1700696908 source:c:\users\usuario\desktop\utn\lab 2\asd\tp-final-labo2\carnicerias.ganancias\listasproductos.c
+1700776190 source:c:\users\usuario\desktop\utn\lab 2\asd\tp-final-labo2\carnicerias.ganancias\listasproductos.c
 	<stdio.h>
 	<stdlib.h>
 	"listasProductos.h"
@@ -116,7 +116,7 @@
 1700707354 source:c:\users\usuario\desktop\utn\lab 2\asd\tp-final-labo2\carnicerias.ganancias\menuganancias.c
 	"menuGanancias.h"
 
-1700713259 source:c:\users\usuario\desktop\utn\lab 2\asd\tp-final-labo2\carnicerias.ganancias\menus.c
+1700776190 source:c:\users\usuario\desktop\utn\lab 2\asd\tp-final-labo2\carnicerias.ganancias\menus.c
 	"menus.h"
 
 1700714643 c:\users\usuario\desktop\utn\lab 2\asd\tp-final-labo2\carnicerias.ganancias\menus.h
