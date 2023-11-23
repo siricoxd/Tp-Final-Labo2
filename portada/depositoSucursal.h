@@ -1,6 +1,5 @@
 #ifndef depositoSucursalSUCURSAL_H_INCLUDED
 #define depositoSucursalSUCURSAL_H_INCLUDED
-
 #include "listasProductos.h"
 typedef struct
 {

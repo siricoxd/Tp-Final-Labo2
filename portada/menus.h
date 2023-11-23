@@ -2,14 +2,14 @@
 #define MENUS_H_INCLUDED
 #include <stdio.h>
 #include <stdlib.h>
-
+#include "listasProductos.h"
+#include "provedores.h"
 
 #define ARCHIVO_SUCUSALDep "depsucursal.bin"
 #include <windows.h>
 #include "depositoSucursal.h"
 #include "ventas.h"
-#include "provedores.h"
-
+#include "menuGanancias.h"
 int mainMenuAdmin();
 
 
@@ -25,6 +25,7 @@ int menuDepositoSucursalesAdmin();
 
 
 int menuOpcionVentasAdmin();
+void cargarArchivoVentasMenu();
 int menuVentasAdmin();
 
 

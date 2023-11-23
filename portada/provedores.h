@@ -1,6 +1,6 @@
 #ifndef PROVEDORES_H_INCLUDED
 #define PROVEDORES_H_INCLUDED
-#include"depositoSucursal.h"
+#include "listasProductos.h"
 
 
 typedef struct {

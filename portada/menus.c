@@ -1,6 +1,7 @@
 #include "menus.h"
 
 
+
 //MENUS ADMIN
 int mainMenuAdmin()
 {
@@ -571,9 +572,6 @@ int menuDepositoSucursalesAdmin()
 int menuOpcionVentasAdmin()
 {
     int selected;
-    catalogoSuc arregloSucur[40];
-    int idDeSuc,  validos;
-    //nodoproductosSucursal *buscado;
     do
     {
         selected = menuVentasAdmin();
@@ -581,34 +579,46 @@ int menuOpcionVentasAdmin()
         switch (selected)
         {
         case 1:
-            printf("\n\nIngrese el ID de la sucursal: ");
-            scanf("%d", &idDeSuc);
-
-            validos = pasardeArchivoAArregloSucursal(ARCHIVO_SUCUSALDep, arregloSucur, 40, idDeSuc);
-            muestraDecatalogoSucursal(arregloSucur, validos);
-
-
-            pasarDeArregloDeposAArchivoVenta(arregloSucur,validos,ARCHIVO_VENTAS, idDeSuc);
-            getchar(); // Esperar la entrada del usuario
-            system("pause");
+            cargarArchivoVentasMenu();
             break;
 
         case 2:
             muestraArchivoVentas(ARCHIVO_VENTAS);
-            system("pause");
+            break;
+        case 3:
+            menuGanancias();
             break;
 
         case 0:
             printf("\n\nTERMINATE THE PROGRAM\n");
             break;
         }
-
     }
     while (selected != 0);
 
     printf("\n");
     return 0;
 }
+
+
+void cargarArchivoVentasMenu(){
+    catalogoSuc arregloSucur[40];
+    int idDeSuc,  validos;
+    char fechaVenta[11];
+    printf("\n\nIngrese el ID de la sucursal: ");
+    scanf("%d", &idDeSuc);
+    printf("\nINGRESE LA FECHA DE LA VENTA\n");
+    fflush(stdin);
+    gets(fechaVenta);
+
+    validos = pasardeArchivoAArregloSucursal(ARCHIVO_SUCUSALDep, arregloSucur, 40, idDeSuc);
+    muestraDecatalogoSucursal(arregloSucur, validos);
+    pasarDeArregloDeposAArchivoVenta(arregloSucur,validos,ARCHIVO_VENTAS,ARCHIVO_SUCUSALDep, idDeSuc,fechaVenta);
+    crearArchivoGananciasConVentas();
+    getchar();
+}
+
+
 int menuVentasAdmin()
 {
 
@@ -621,6 +631,7 @@ int menuVentasAdmin()
     printf("\n\t\t\t\t\t\t\t\t\t-----------");
     printf("\n\t\t\t\t\t\t\t\t\t1CARGA DE ARCHIVO VENTAS");
     printf("\n\t\t\t\t\t\t\t\t\t2-MUESTRA DE ARCHIVO VENTAS");
+    printf("\n\t\t\t\t\t\t\t\t\t3-MENU GANANCIAS");
 
     scanf("%d",&input);
     system("cls");

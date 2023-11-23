@@ -12,8 +12,6 @@
 
 
 
-
-
 //FUNCIONE VENTAS EN EL DIA(pasar de arreglo de listas a un archivo de ventas),cambiar el tipo de estructuras y veificar de que suc es el catalogo cuando cargamos el archivo de ventas,, lo podemos hacer wb el archivo asi es venta por dia y guardamos la info en ganancias
 
 //void pasarDeArregloDeposAArchivoVenta(catalogoSuc arreglo[], int pos, int idDeProd, char archivo[], int idDeSuc)
@@ -35,7 +33,7 @@
 
 
 
-void pasarDeArregloDeposAArchivoVenta(catalogoSuc arreglo[], int validos, char archivo[], int idDeSuc)//recorrer el arreglo y pasar los produ
+void pasarDeArregloDeposAArchivoVenta(catalogoSuc arreglo[], int validos, char archivo[],char archuvivoDeposSuc[], int idDeSuc, char fechaVenta[11])//recorrer el arreglo y pasar los produ
 {
     FILE *archi = fopen(archivo, "wb");
     int i=0;
@@ -44,7 +42,7 @@ void pasarDeArregloDeposAArchivoVenta(catalogoSuc arreglo[], int validos, char a
         while(i<validos)
         {
             printf("\nCARGUE LAS VENTAS DEL CATALOGO: %s",arreglo[i].nombreDeCategoria);
-             cargarArchivoVentas(arreglo[i], archi, archivo, idDeSuc);
+             cargarArchivoVentas(arreglo[i], archi, archivo, archuvivoDeposSuc,idDeSuc,fechaVenta);
              i++;
         }
 
@@ -57,10 +55,10 @@ void pasarDeArregloDeposAArchivoVenta(catalogoSuc arreglo[], int validos, char a
 
 
 
-void cargarArchivoVentas(catalogoSuc dato, FILE *archi,  char arhcivo[], int idDeSuc)
+void cargarArchivoVentas(catalogoSuc dato, FILE *archi,  char arhcivo[],char archuvivoDeposSuc[], int idDeSuc, char fechaVenta[11])
 {
     nodoproductosSucursal *seg = dato.lista;
-    int flag = 0;
+
     StRegistroventas aux;
 
     if (archi != NULL)
@@ -68,7 +66,7 @@ void cargarArchivoVentas(catalogoSuc dato, FILE *archi,  char arhcivo[], int idD
         while (seg != NULL )
         {
                 printf("\nCARGUE LAS VENTAS DEL PRODUCTO: %s",seg->dato.nombreDeproductosDepos);
-                aux = cambioDeEstrucCatalARegistro(seg->dato, arhcivo, idDeSuc);
+                aux = cambioDeEstrucCatalARegistro(seg->dato, arhcivo,archuvivoDeposSuc, idDeSuc,fechaVenta);
                 fwrite(&aux, sizeof(StRegistroventas), 1, archi);
 
 
@@ -80,7 +78,7 @@ void cargarArchivoVentas(catalogoSuc dato, FILE *archi,  char arhcivo[], int idD
 
 
 
-StRegistroventas cambioDeEstrucCatalARegistro(productosDepos dato,char archivo[],int idDeSuc)//transforma el tio de dato catlogo a uno de registroventa y cargo el la venta y el dia
+StRegistroventas cambioDeEstrucCatalARegistro(productosDepos dato,char archivo[],char archuvivoDeposSuc[],int idDeSuc, char fechaVenta[11])//transforma el tio de dato catlogo a uno de registroventa y cargo el la venta y el dia
 {
 
     StRegistroventas  dest;
@@ -89,13 +87,11 @@ StRegistroventas cambioDeEstrucCatalARegistro(productosDepos dato,char archivo[]
     dest.id=dato.id;
     dest.precioPorKilo=dato.precioPorKilo;
     dest.stock=dato.stock;
+    strcpy(dest.fechaVenta,fechaVenta);
 
-    printf("\nINGRESE EL DIA DE LA VENTA(DIA/MES/ANIO): ");
-    fflush(stdin);
-    gets(dest.fechaVenta);
     dest.venta=cargaVenta(dest.stock);
     dest.idDSuc=idDeSuc;
-    modificarSatock(archivo,dest.id,dest.venta,idDeSuc);
+    modificarSatock(archuvivoDeposSuc,dest.id,dest.venta,idDeSuc);
 
 
     return dest;
@@ -132,7 +128,7 @@ void modificarSatock(char archi[],int idDelRegistro,int venta,int idDeSuc)
 
     depositoSucursal registro;
 
-    while (fread(&registro, sizeof(deposito), 1, archivo) == 1)
+    while (fread(&registro, sizeof(depositoSucursal), 1, archivo) == 1)
     {
         if (registro.id == idDelRegistro&& registro.idDeSuc==idDeSuc)
         {
@@ -153,23 +149,23 @@ void modificarSatock(char archi[],int idDelRegistro,int venta,int idDeSuc)
 }
 
 
-
-int cantidadDeRegistrosConId1()
-{
-    int cantidad;
-    FILE* buffer = fopen(ARCHIVO_DEPOSITO,"rb");
-    if(buffer)
-    {
-        fseek(buffer,0,SEEK_END);
-        cantidad =(int)ftell(buffer)/sizeof(deposito);
-        fclose(buffer);
-    }
-    return cantidad;
-}
-
-
-
-
+//
+//int cantidadDeRegistrosConId1()
+//{
+//    int cantidad;
+//    FILE* buffer = fopen(ARCHIVO_DEPOSITO,"rb");
+//    if(buffer)
+//    {
+//        fseek(buffer,0,SEEK_END);
+//        cantidad =(int)ftell(buffer)/sizeof(deposito);
+//        fclose(buffer);
+//    }
+//    return cantidad;
+//}
+//
+//
+//
+//
 
 
 

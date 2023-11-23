@@ -31,10 +31,17 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="carnicerias.ganancias.cbp" />
+		<Unit filename="carnicerias.ganancias.cscope_file_list" />
+		<Unit filename="carnicerias.ganancias.depend" />
+		<Unit filename="carnicerias.ganancias.layout" />
+		<Unit filename="deposito.bin" />
 		<Unit filename="depositoSucursal.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="depositoSucursal.h" />
+		<Unit filename="depsucursal.bin" />
+		<Unit filename="ganancias.bin" />
 		<Unit filename="ganancias.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -59,9 +66,6 @@
 		<Unit filename="ventas.h" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
-			<code_completion />
-			<envvars />
-			<debugger />
 		</Extensions>
 	</Project>
 </CodeBlocks_project_file>

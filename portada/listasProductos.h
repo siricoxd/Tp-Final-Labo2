@@ -5,7 +5,6 @@
 #include <string.h>
 #define ARCHIVO_VENTAS "ventas.bin"
 #define ARCHIVO_DEPOSITO "deposito.bin"
-#include "listasSucusrsales.h"
 typedef struct
 {
     char nombreDeProductos[40];
@@ -82,7 +81,8 @@ int cantidadDeRegistros();
 void cargaArchivo(char archivo[]);
 int generarIDUnico() ;
 
-int cantidadDeRegistrosDeposGeneral();
+
+int cantidadDeRegistros();
 
 
 // MUESTRA DE ARCHIVOS
