@@ -1,8 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <windows.h>
+#include"listasSucusrsales.h"
 #include "portada.h"
-#include "listasSucusrsales.h"
+#include "menus.h"
 int main()
 {
 ///---------------------------------------------------------------///
@@ -153,18 +154,7 @@ int main()
 
                     break;
                 case 3:
-                    do
-                    {
-                        eleccion=menuProuctos();
-                        switch(eleccion)
-                        {
-                        case 1:
-                            break;
-                        case 2:
-                            break;
-                        }
-                    }
-                    while(eleccion!=0);
+                        mainMenuAdmin();
 
 
                     break;

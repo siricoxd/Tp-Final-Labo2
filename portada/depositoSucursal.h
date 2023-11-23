@@ -1,11 +1,7 @@
 #ifndef depositoSucursalSUCURSAL_H_INCLUDED
 #define depositoSucursalSUCURSAL_H_INCLUDED
-#include "../depositoGeneral/listasProductos.h"
-#include "../depostitoPorSucursal/depositoSucursal.h"
-#include "../provedores/provedores.h"
-#include "../ventas/ventas.h"
 
-
+#include "listasProductos.h"
 typedef struct
 {
     char nombreDeproductosDepos[40];

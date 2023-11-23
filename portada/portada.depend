@@ -96,11 +96,10 @@
 	<stdlib.h>
 	<windows.h>
 
-1700692655 source:c:\users\54223\desktop\proyecto\tp-final-labo2\portada\main.c
+1700714213 source:c:\users\54223\desktop\proyecto\tp-final-labo2\portada\main.c
 	<stdio.h>
 	<stdlib.h>
 	<windows.h>
-	"portada.h"
 	"listasSucusrsales.h"
 
 1700690315 source:c:\users\54223\desktop\proyecto\tp-final-labo2\portada\librerias\depositogeneral\listasproductos.c
@@ -120,14 +119,113 @@
 	<string.h>
 	"listasSucusrsales.h"
 
-1700504174 c:\users\54223\desktop\proyecto\tp-final-labo2\portada\librerias\listasucursales\listassucusrsales.h
+1700713680 c:\users\54223\desktop\proyecto\tp-final-labo2\portada\librerias\listasucursales\listassucusrsales.h
 
-1700712457 c:\users\54223\desktop\proyecto\tp-final-labo2\portada\librerias\depostitoporsucursal\depositosucursal.h
+1700713150 c:\users\54223\desktop\proyecto\tp-final-labo2\portada\librerias\depostitoporsucursal\depositosucursal.h
 	"../depositoGeneral/listasProductos.h"
+	"../depostitoPorSucursal/depositoSucursal.h"
+	"../provedores/provedores.h"
+	"../ventas/ventas.h"
 
 1700660901 source:c:\users\54223\desktop\proyecto\tp-final-labo2\portada\librerias\depostitoporsucursal\depositosucursal.c
 	<stdio.h>
 	<stdlib.h>
 	"depositoSucursal.h"
 	<string.h>
+
+1700713150 c:\users\54223\desktop\proyecto\tp-final-labo2\portada\librerias\menussanti\menus.h
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+	"../depositoGeneral/listasProductos.h"
+	"../depostitoPorSucursal/depositoSucursal.h"
+	"../provedores/provedores.h"
+	"../ventas/ventas.h"
+
+1700713191 c:\users\54223\desktop\proyecto\tp-final-labo2\portada\librerias\provedores\provedores.h
+	"../depositoGeneral/listasProductos.h"
+	"../depostitoPorSucursal/depositoSucursal.h"
+	"../provedores/provedores.h"
+	"../ventas/ventas.h"
+
+1700713158 c:\users\54223\desktop\proyecto\tp-final-labo2\portada\librerias\ventas\ventas.h
+	"../depositoGeneral/listasProductos.h"
+	"../depostitoPorSucursal/depositoSucursal.h"
+	"../provedores/provedores.h"
+	"../ventas/ventas.h"
+
+1700713463 source:c:\users\54223\desktop\proyecto\tp-final-labo2\portada\librerias\portada\portada.c
+	"portada.h"
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+
+1700713680 c:\users\54223\desktop\proyecto\tp-final-labo2\portada\librerias\portada\portada.h
+	"../listaSucursales/listasSucusrsales.h"
+
+1700714377 source:c:\users\54223\desktop\proyecto\tp-final-labo2\portada\listassucursales.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"listasSucusrsales.h"
+
+1700713680 c:\users\54223\desktop\proyecto\tp-final-labo2\portada\listassucusrsales.h
+
+1700660901 source:c:\users\54223\desktop\proyecto\tp-final-labo2\portada\depositosucursal.c
+	<stdio.h>
+	<stdlib.h>
+	"depositoSucursal.h"
+	<string.h>
+
+1700714115 c:\users\54223\desktop\proyecto\tp-final-labo2\portada\depositosucursal.h
+	"listasProductos.h"
+
+1700714377 c:\users\54223\desktop\proyecto\tp-final-labo2\portada\listasproductos.h
+	<time.h>
+	<conio.h>
+	<string.h>
+	"listasSucusrsales.h"
+
+1700690315 source:c:\users\54223\desktop\proyecto\tp-final-labo2\portada\listasproductos.c
+	<stdio.h>
+	<stdlib.h>
+	"listasProductos.h"
+
+1700691163 source:c:\users\54223\desktop\proyecto\tp-final-labo2\portada\provedores.c
+	<stdio.h>
+	<stdlib.h>
+	"provedores.h"
+	<string.h>
+	<conio.h>
+
+1700714178 c:\users\54223\desktop\proyecto\tp-final-labo2\portada\provedores.h
+	"depositoSucursal.h"
+
+1700714322 source:c:\users\54223\desktop\proyecto\tp-final-labo2\portada\ventas.c
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+	"ventas.h"
+
+1700714227 c:\users\54223\desktop\proyecto\tp-final-labo2\portada\ventas.h
+	"depositoSucursal.h"
+
+1700708781 source:c:\users\54223\desktop\proyecto\tp-final-labo2\portada\menus.c
+	"menus.h"
+
+1700714279 c:\users\54223\desktop\proyecto\tp-final-labo2\portada\menus.h
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+	"depositoSucursal.h"
+	"ventas.h"
+	"provedores.h"
+
+1700713463 source:c:\users\54223\desktop\proyecto\tp-final-labo2\portada\portada.c
+	"portada.h"
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+
+1700714516 c:\users\54223\desktop\proyecto\tp-final-labo2\portada\portada.h
 

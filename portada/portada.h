@@ -1,7 +1,6 @@
 #ifndef PORTADA_H_INCLUDED
 #define PORTADA_H_INCLUDED
 
-
 typedef struct{
     char usuario[30];
     char contrasenia[30];

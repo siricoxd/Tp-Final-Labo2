@@ -1,11 +1,7 @@
 #ifndef VENTAS_H_INCLUDED
 #define VENTAS_H_INCLUDED
-#include "../depositoGeneral/listasProductos.h"
-#include "../depostitoPorSucursal/depositoSucursal.h"
-#include "../provedores/provedores.h"
-#include "../ventas/ventas.h"
 
-
+#include"depositoSucursal.h"
 typedef struct
 {
     int idDSuc;
