@@ -581,3 +581,19 @@ void provincias()
     printf(" |Santa Fe----------------10|\n");
     printf(" |Tucuman-----------------11|\n\n");
 }
+int VerificarSucursal(int id)
+{
+    int flag=0;
+    registroArchivoLocales aux;
+    FILE*buffer=fopen(archivoProvincia,"rb");
+    if(buffer)
+    {
+        while((flag==0)&&(fread(&aux,sizeof(registroArchivoLocales),1,buffer)))
+        {
+            if(id==aux.idLocal)
+                flag=1;
+        }
+        fclose(buffer);
+    }
+    return flag;
+}

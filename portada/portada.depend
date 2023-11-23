@@ -50,16 +50,17 @@
 	"portada.h"
 	"listasSucusrsales.h"
 
-1700674515 source:c:\users\kript\desktop\tp-final-labo2\portada\main.c
+1700764674 source:c:\users\kript\desktop\tp-final-labo2\portada\main.c
 	<stdio.h>
 	<stdlib.h>
 	<windows.h>
-	"portada.h"
 	"listasSucusrsales.h"
+	"portada.h"
+	"menus.h"
 
-1700672893 c:\users\kript\desktop\tp-final-labo2\portada\portada.h
+1700762539 c:\users\kript\desktop\tp-final-labo2\portada\portada.h
 
-1700576399 c:\users\kript\desktop\tp-final-labo2\portada\listassucusrsales.h
+1700766925 c:\users\kript\desktop\tp-final-labo2\portada\listassucusrsales.h
 
 1700672900 source:c:\users\kript\desktop\tp-final-labo2\portada\portada.c
 	"portada.h"
@@ -67,7 +68,7 @@
 	<stdlib.h>
 	<windows.h>
 
-1700674565 source:c:\users\kript\desktop\tp-final-labo2\portada\listassucursales.c
+1700766936 source:c:\users\kript\desktop\tp-final-labo2\portada\listassucursales.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -336,6 +337,75 @@
 	<conio.h>
 
 1700714322 source:c:\users\54223\desktop\proyecto\tp final mio\portada\ventas.c
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+	"ventas.h"
+
+1700762539 source:c:\users\kript\desktop\tp-final-labo2\portada\depositosucursal.c
+	<stdio.h>
+	<stdlib.h>
+	"depositoSucursal.h"
+	<string.h>
+
+1700766748 c:\users\kript\desktop\tp-final-labo2\portada\depositosucursal.h
+	"listasProductos.h"
+
+1700766748 c:\users\kript\desktop\tp-final-labo2\portada\listasproductos.h
+	<time.h>
+	<conio.h>
+	<string.h>
+
+1700762539 source:c:\users\kript\desktop\tp-final-labo2\portada\listasproductos.c
+	<stdio.h>
+	<stdlib.h>
+	"listasProductos.h"
+
+1700767241 c:\users\kript\desktop\tp-final-labo2\portada\menus.h
+	<stdio.h>
+	<stdlib.h>
+	"listasProductos.h"
+	"provedores.h"
+	<windows.h>
+	"depositoSucursal.h"
+	"ventas.h"
+	"menuGanancias.h"
+	"listasSucusrsales.h"
+
+1700766748 c:\users\kript\desktop\tp-final-labo2\portada\provedores.h
+	"listasProductos.h"
+
+1700766748 c:\users\kript\desktop\tp-final-labo2\portada\ventas.h
+	"depositoSucursal.h"
+
+1700766748 c:\users\kript\desktop\tp-final-labo2\portada\menuganancias.h
+	<stdio.h>
+	<stdlib.h>
+	"ganancias.h"
+
+1700766811 c:\users\kript\desktop\tp-final-labo2\portada\ganancias.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"ventas.h"
+
+1700762539 source:c:\users\kript\desktop\tp-final-labo2\portada\provedores.c
+	<stdio.h>
+	<stdlib.h>
+	"provedores.h"
+	<string.h>
+	<conio.h>
+
+1700766846 source:c:\users\kript\desktop\tp-final-labo2\portada\ganancias.c
+	"ganancias.h"
+
+1700766748 source:c:\users\kript\desktop\tp-final-labo2\portada\menuganancias.c
+	"menuGanancias.h"
+
+1700767312 source:c:\users\kript\desktop\tp-final-labo2\portada\menus.c
+	"menus.h"
+
+1700766748 source:c:\users\kript\desktop\tp-final-labo2\portada\ventas.c
 	<stdio.h>
 	<stdlib.h>
 	<windows.h>

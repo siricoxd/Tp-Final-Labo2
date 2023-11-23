@@ -1,7 +1,7 @@
 #include "ganancias.h"
 
 //nodos
-nodoGananciasAnio* inicLista()
+nodoGananciasAnio* inicListaGanancias()
 {
     return NULL;
 }
@@ -285,7 +285,7 @@ void crearArchivoGanancias(nodoGananciasAnio* lista)
 
 nodoGananciasAnio* archivoToLista()
 {
-    nodoGananciasAnio* lista=inicLista();
+    nodoGananciasAnio* lista=inicListaGanancias();
     FILE* archivo=fopen(nombreArchivoGanancias, "rb");
     if(archivo==NULL)
     {

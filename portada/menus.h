@@ -10,6 +10,7 @@
 #include "depositoSucursal.h"
 #include "ventas.h"
 #include "menuGanancias.h"
+#include "listasSucusrsales.h"
 int mainMenuAdmin();
 
 

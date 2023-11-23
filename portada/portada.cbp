@@ -31,16 +31,49 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
-		<Unit filename="../../Tp-Final-Labo2/portada/ganancias.c">
+		<Unit filename="deposito.bin" />
+		<Unit filename="depositoSucursal.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="../../Tp-Final-Labo2/portada/ganancias.h" />
 		<Unit filename="depositoSucursal.h" />
+		<Unit filename="depsucursal.bin" />
+		<Unit filename="ganancias.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="ganancias.h" />
+		<Unit filename="listasProductos.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="listasProductos.h" />
+		<Unit filename="listasSucursales.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="listasSucusrsales.h" />
+		<Unit filename="main.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="menuGanancias.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="menuGanancias.h" />
+		<Unit filename="menus.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="menus.h" />
+		<Unit filename="portada.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="portada.cbp" />
+		<Unit filename="portada.depend" />
 		<Unit filename="portada.h" />
+		<Unit filename="portada.layout" />
+		<Unit filename="provedores.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="provedores.h" />
+		<Unit filename="ventas.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="ventas.h" />
 		<Extensions>
 			<lib_finder disable_auto="1" />

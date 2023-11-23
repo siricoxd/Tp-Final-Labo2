@@ -287,6 +287,9 @@ void imprimirBarraCarga(int porcentaje)
 int menuOpcionDepositoSucursalAdmin()
 {
     int selected;
+    provincia ar[30];
+    int validosProv=0;
+    validosProv=descargarArchivo(ar,validosProv,30);
     catalogo arreglo[40];
     nodoProductos* buscadoDepos;
     catalogoSuc arregloSucur[40];
@@ -331,9 +334,21 @@ int menuOpcionDepositoSucursalAdmin()
                 system("pause");
                 break;
             }
-
-            printf("\n\ncargue el id de la suc:  ");// esta la voy a pedir del menu de sucursales
+            system("pause");
+            system("cls");
+            mostrarTodo(ar,validosProv);
+            printf("\n\ncargue el id de la sucursal:  ");// esta la voy a pedir del menu de sucursales
             scanf("%d",&idDesuc);
+            pos=VerificarSucursal(idDesuc);
+            if(pos==1)
+            {
+
+            }
+            else{
+                printf("No Existe la sucursal\n");
+                system("pause");
+                break;
+            }
 
             stock=cargarStockYmodificarlos(ARCHIVO_DEPOSITO,buscadoDepos);
 

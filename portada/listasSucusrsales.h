@@ -83,6 +83,7 @@ void descativarLocal(provincia ar[],int id,int pos);
 //buscar prov
 int buscarPosProvincia(provincia ar[],int id,int validos);
 void provincias();
+int VerificarSucursal(int id);
 //alta
 int alta(provincia ar[],registroArchivoLocales dato,int validos);
 //archivos

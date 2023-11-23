@@ -24,7 +24,7 @@ typedef struct nodoGananciasAnio{
 
 
 //func nodo
-nodoGananciasAnio* inicLista();
+nodoGananciasAnio* inicListaGanancias();
 nodoGananciasAnio* crearNodo(ganancias dato);
 nodoGananciasAnio* agregarAnioGananciasPpio(nodoGananciasAnio* lista, nodoGananciasAnio* nuevo);
 nodoGananciasAnio* buscarUltimoAnio(nodoGananciasAnio* lista);
