@@ -31,22 +31,35 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
-		<Unit filename="listasSucursales.c">
+		<Unit filename="librerias/depositoGeneral/listasProductos.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="listasSucusrsales.h" />
+		<Unit filename="librerias/depositoGeneral/listasProductos.h" />
+		<Unit filename="librerias/depostitoPorSucursal/depositoSucursal.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="librerias/depostitoPorSucursal/depositoSucursal.h" />
+		<Unit filename="librerias/listaSucursales/listasSucursales.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="librerias/listaSucursales/listasSucusrsales.h" />
+		<Unit filename="librerias/portada/portada.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="librerias/portada/portada.h" />
+		<Unit filename="librerias/provedores/provedores.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="librerias/provedores/provedores.h" />
+		<Unit filename="librerias/ventas/ventas.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="librerias/ventas/ventas.h" />
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="portada.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="portada.h" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
-			<code_completion />
-			<envvars />
-			<debugger />
 		</Extensions>
 	</Project>
 </CodeBlocks_project_file>

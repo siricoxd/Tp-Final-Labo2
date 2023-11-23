@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <windows.h>
-
+#include "listasProductos.h"
 const char archivoUsuarios[]= {"archivoUsuarios.bin"};
 
 ///menus
