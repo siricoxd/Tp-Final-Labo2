@@ -12,16 +12,33 @@ int mainMenuAdmin()
 
     do
     {
+
         // Menú principal
-        printf("Seleccione una opción:\n");
-        printf("1. DEPOSITO GENERAL\n");
-        printf("2. DEPOSITO POR SUCURSAL\n");
-        printf("3. VENTAS\n");
-        printf("4. COMPRA DE PROVEDORES\n");
-        printf("5. Salir\n");
+        system("cls");
+        printf("\n\n\n");
+        printf("\t\t _______________________________________________________________________________________________\n");
+        printf("\t\t|                                                                                               |\n");
+        printf("\t\t|                                                                                               |\n");
+        printf("\t\t|   ##   ##  ### ###  ### ##    ## ##     ##     ### ##   ### ###  ### ##     ####     ##       |\n");
+        printf("\t\t|    ## ##    ##  ##   ##  ##  ##   ##     ##     ##  ##   ##  ##   ##  ##     ##       ##      |\n");
+        printf("\t\t|   # ### #   ##       ##  ##  ##        ## ##    ##  ##   ##       ##  ##     ##     ## ##     |\n");
+        printf("\t\t|   ## # ##   ## ##    ## ##   ##        ##  ##   ##  ##   ## ##    ## ##      ##     ##  ##    |\n");
+        printf("\t\t|   ##   ##   ##       ## ##   ##        ## ###   ##  ##   ##       ## ##      ##     ## ###    |\n");
+        printf("\t\t|   ##   ##   ##  ##   ##  ##  ##   ##   ##  ##   ##  ##   ##  ##   ##  ##     ##     ##  ##    |\n");
+        printf("\t\t|   ##   ##  ### ###  #### ##   ## ##   ###  ##  ### ##   ### ###  #### ##    ####   ###  ##    |\n");
+        printf("\t\t|                                                                                               |\n");
+        printf("\t\t|                             1.Deposito general                                                |\n");
+        printf("\t\t|                             2.Deposito por sucursal                                           |\n");
+        printf("\t\t|                             3.Ventas                                                          |\n");
+        printf("\t\t|                             4.Compra de proveedores                                           |\n");
+        printf("\t\t|                             0.Volver                                                          |\n");
+        printf("\t\t|                                                                                               |\n");
+        printf("\t\t|_______________________________________________________________________________________________|\n");
+        printf("\n");
 
-        scanf("\n%d", &opcion);
+        opcion=getch() - '0';
 
+        system("cls");
         switch (opcion)
         {
         case 1:
@@ -38,16 +55,16 @@ int mainMenuAdmin()
         case 4:
             menuOpcionProveedoresAdmin();
             break;
-        case 5:
+        case 0:
             printf("Saliendo del programa. ¡Hasta luego!\n");
             system("pause");
             break;
         default:
             printf("Opción no válida. Inténtelo de nuevo.\n");
-            system("cls");
         }
+
     }
-    while (opcion != 5);
+    while (opcion != 0);
 
     return 0;
 }
@@ -58,16 +75,13 @@ int menuOpcionDepositoAdmin()
 {
     int selected;
     catalogo arreglo[40];
+    int validos = 0;
 
-    int validos = 0, buscar = 0, pos = 0;
-    int idDeProdu=0;
-    nodoProductos *buscado;
 
     do
     {
 
         selected = menuDepositoAdmin();
-
         switch (selected)
         {
         case 1:
@@ -75,54 +89,64 @@ int menuOpcionDepositoAdmin()
             muestraArchivo(ARCHIVO_DEPOSITO);
             system("pause");
             break;
-
         case 2:
-            printf("\nARCHIVO:\n");
-
+            printf("\n---CARGA DE DEPOSITO--\n");
             cargaArchivo(ARCHIVO_DEPOSITO);
-            muestraArchivo(ARCHIVO_DEPOSITO);
-            system("pause");
             break;
-
         case 3:
-            validos = pasardeArchivoAArreglo(ARCHIVO_DEPOSITO, arreglo, 40);
-            muestraDeCatalogo(arreglo, validos);
-            system("pause");
-
+            menuAltaBaja();
             break;
         case 4:
             validos = pasardeArchivoAArreglo(ARCHIVO_DEPOSITO, arreglo, 40);
             muestraDeCatalogo(arreglo, validos);
 
-            printf("\ningrese el id del catalogo que desea desactivar\n");
+            break;
+        }
+
+    }
+    while (selected != 0);
+
+    //system("pause");
+   // system("cls");
+    return 0;
+}
+
+void menuAltaBaja(){
+    int opcion;
+    int validos = 0, buscar = 0, pos = 0;
+    int idDeProdu=0;
+    catalogo arreglo[40];
+    nodoProductos *buscado;
+    do{
+    system("cls");
+    printf("\t\t\t1)Dar de baja a una categoria\n");
+    printf("\t\t\t2)Dar de baja a un producto\n");
+    printf("\t\t\t3)Dar de alta a una producto\n");
+    printf("\t\t\t4)Dar de alta a una categoria\n");
+    printf("\t\t\t0)Volver\n");
+    opcion=getch() -'0';
+
+    switch(opcion){
+           case 1:
+            validos = pasardeArchivoAArreglo(ARCHIVO_DEPOSITO, arreglo, 40);
+            muestraDeCatalogo(arreglo, validos);
+            printf("\nIngrese el id de la categoria que desea desactivar: \n");
             scanf("%d", &buscar);
             pos = buscaEnCatalogoPorId(arreglo, validos, buscar);
-
-            if (pos !=-1 )
-            {
+            if (pos !=-1){
                 desactivarCatalogo(ARCHIVO_DEPOSITO,arreglo, buscar, pos);
-                validos = pasardeArchivoAArreglo(ARCHIVO_DEPOSITO, arreglo, 40);
-                muestraDeCatalogo(arreglo, validos);
-
             }
             else
             {
-                printf("\nno se encontro catalogo\n");
+                printf("\nNo se encontro catalogo.\n");
             }
-
-            system("pause");
-
             break;
-        case 5 :
-
-
-
+        case 2 :
             validos = pasardeArchivoAArreglo(ARCHIVO_DEPOSITO, arreglo, 40);
             muestraDeCatalogo(arreglo, validos);
-
-            printf("\ningrese el id del catalogo del producto a dersactivar\n");
+            printf("\nIngrese el id del catalogo del producto a desactivar: \n");
             scanf("%d", &buscar);
-            printf("\nINGRESE EL ID DEL PRODUCTO A DAR DE BAJA");
+            printf("\nIngrese el id del producto a dar de baja: ");
             scanf("%d",&idDeProdu);
 
             pos = buscaEnCatalogoPorId(arreglo, validos, buscar);
@@ -137,40 +161,38 @@ int menuOpcionDepositoAdmin()
                 }
                 else
                 {
-                    printf("\nno se encontro producto\n");
+                    printf("\nNo se encontro producto.\n");
                 }
 
 
             }
             else
             {
-                printf("\nno se encontro catalogo\n");
+                printf("\nNo se encontro catalogo.\n");
             }
 
-            system("pause");
 
             break;
-        case 6:
+        case 3:
             validos = pasardeArchivoAArreglo(ARCHIVO_DEPOSITO, arreglo, 40);
             muestraDeCatalogoTodos(arreglo, validos);
 
-            printf("\ningrese el id del catalogo del producto a activar\n");
+            printf("\nIngrese el id del catalogo del cual el producto producto a activar forma parte: \n");
             scanf("%d", &buscar);
-            printf("\nINGRESE EL ID DEL PRODUCTO A  activar");
+            printf("\nIngrese el id del producto a activar: ");
             scanf("%d",&idDeProdu);
 
             pos = buscaEnCatalogoPorId(arreglo, validos, buscar);
             buscado=buscaEnListaId(arreglo,pos,idDeProdu);
 
             activarProducto(ARCHIVO_DEPOSITO,arreglo,pos,buscado);
-            system("pause");
             break;
 
-        case 7:
+        case 4:
             validos = pasardeArchivoAArreglo(ARCHIVO_DEPOSITO, arreglo, 40);
             muestraDeCatalogoTodos(arreglo, validos);
 
-            printf("\ningrese el id del catalogo que desea activar\n");
+            printf("\nIngrese el id del catalogo que desea activar: \n");
             scanf("%d", &buscar);
             pos = buscaEnCatalogoPorId(arreglo, validos, buscar);
 
@@ -183,26 +205,13 @@ int menuOpcionDepositoAdmin()
             }
             else
             {
-                printf("\nno se encontro catalogo\n");
+                printf("\nNo se encontro catalogo.\n");
             }
 
-            system("pause");
             break;
-
-
-        case 0:
-
-
-            printf("\n\nTERMINATE THE PROGRAM\n");
-            break;
-        }
-
     }
-    while (selected != 0);
+    }while(opcion!=0);
 
-    system("pause");
-    system("cls");
-    return 0;
 }
 int menuDepositoAdmin()
 {
@@ -212,26 +221,26 @@ int menuDepositoAdmin()
 
 
     printf("\n\n\n");
-    printf("\t\t\t|-------------------------------------------------------------------------------------------------------------------------------------------------\n");
-    printf("\t\t\t|#####    #######  ######    #####    #####    ####    ######    #####              ####   #######  ##   ##  #######  ######     ##     ####     |\n");
-    printf("\t\t\t|## ##    ##   #   ##  ##  ##   ##  ##   ##    ##     # ## #   ##   ##            ##  ##   ##   #  ###  ##   ##   #   ##  ##   ####     ##       |\n");
-    printf("\t\t\t|##  ##   ## #     ##  ##  ##   ##  #          ##       ##     ##   ##           ##        ## #    #### ##   ## #     ##  ##  ##  ##    ##       |\n");
-    printf("\t\t\t||##  ##   ####     #####   ##   ##   #####     ##       ##     ##   ##           ##        ####    ## ####   ####     #####   ##  ##    ##      |\n");
-    printf("\t\t\t||##  ##   ## #     ##      ##   ##       ##    ##       ##     ##   ##           ##  ###   ## #    ##  ###   ## #     ## ##   ######    ##   #  |\n");
-    printf("\t\t\t| ## ##    ##   #   ##      ##   ##  ##   ##    ##       ##     ##   ##            ##  ##   ##   #  ##   ##   ##   #   ##  ##  ##  ##    ##  ##  |\n");
-    printf("\t\t\t|#####    #######  ####      #####    #####    ####     ####     #####              #####  #######  ##   ##  #######  #### ##  ##  ##   #######  |\n");
-    printf("\t\t\t|                                                    1MUESTRA DEL ARCHIVO DEPOSTIO                                                               |\n");
-    printf("\t\t\t|                                                    2-CARGA DEL ARCHIVO DEPOSITO                                                                |\n");
-    printf("\t\t\t|                                                    3-MOSTRAR ARREGLO DE LISTAS DEPOSITO                                                        |\n");
-    printf("\t\t\t|                                                    4-DAR DE BAJA CATEGORIA del DEPOSITO                                                        |\n");
-    printf("\t\t\t|                                                    5-DAR DE BAJA PRODUCTO DEL DEPOSITO                                                         |\n");
-    printf("\t\t\t|                                                    6-DAR DE ALTA PRODUCTO                                                                      |\n");
-    printf("\t\t\t|                                                    7-DAR DE ALTA CATALOGO                                                                      |\n");
-    printf("\t\t\t|-----------------------------------------------------------------------------------------------------------------------------------------------|\n");
+    printf("\t\t\t|--------------------------------------------------------------------------------------------------------------------------------------------------\n");
+    printf("\t\t\t|                                                                                                                                                  |\n");
+    printf("\t\t\t|  #####    #######  ######    #####    #####    ####    ######    #####              ####   #######  ##   ##  #######  ######     ##     ####     |\n");
+    printf("\t\t\t|  ## ##    ##   #   ##  ##  ##   ##  ##   ##    ##     # ## #   ##   ##            ##  ##   ##   #  ###  ##   ##   #   ##  ##   ####     ##       |\n");
+    printf("\t\t\t|  ##  ##   ## #     ##  ##  ##   ##  #          ##       ##     ##   ##           ##        ## #    #### ##   ## #     ##  ##  ##  ##    ##       |\n");
+    printf("\t\t\t|  ##  ##   ####     #####   ##   ##   #####     ##       ##     ##   ##           ##        ####    ## ####   ####     #####   ##  ##    ##       |\n");
+    printf("\t\t\t|  ##  ##   ## #     ##      ##   ##       ##    ##       ##     ##   ##           ##  ###   ## #    ##  ###   ## #     ## ##   ######    ##   #   |\n");
+    printf("\t\t\t|  ## ##    ##   #   ##      ##   ##  ##   ##    ##       ##     ##   ##            ##  ##   ##   #  ##   ##   ##   #   ##  ##  ##  ##    ##  ##   |\n");
+    printf("\t\t\t| #####    #######  ####      #####    #####    ####     ####     #####              #####  #######  ##   ##  #######  #### ##  ##  ##   #######   |\n");
+    printf("\t\t\t|                                                                                                                                                  |\n");
+    printf("\t\t\t|                                                                                                                                                  |\n");
+    printf("\t\t\t|                                                                  1)Muestra del deposito                                                          |\n");
+    printf("\t\t\t|                                                                  2)Carga del deposito                                                            |\n");
+    printf("\t\t\t|                                                                  3)Menu alta/baja                                                                |\n");
+    printf("\t\t\t|                                                                  0)Volver                                                                        |\n");
+    //printf("\t\t\t|                                                    4)MOSTRAR ARREGLO DE LISTAS DEPOSITO                                                        |\n");
+    printf("\t\t\t|                                                                                                                                                  |\n");
+    printf("\t\t\t|--------------------------------------------------------------------------------------------------------------------------------------------------|\n");
 
-           printf("\n\n\t\t\t\t\t\t\t\t\tENTER YOUR CHOICE: ");
-           scanf("%d",&input);
-           system("pause");
+           input=getch()-'0';
            system("cls");
            return input;
 }
