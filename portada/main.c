@@ -138,20 +138,9 @@ int main()
                     while(menu!=0);
                     break;
                 case 2:
-                    do
-                    {
-                        eleccion=menuEmpleados();
-                        switch(eleccion)
-                        {
-                        case 1:
-                            break;
-                        case 2:
-                            break;
-                        }
-                    }
-                    while(eleccion!=0);
 
 
+                        mainEmpleados();
                     break;
                 case 3:
                         mainMenuAdmin();
