@@ -96,7 +96,7 @@
 	<stdlib.h>
 	"listasProductos.h"
 
-1700689357 source:c:\users\54223\desktop\proyecto\tp final mio\deposito y catalogosucursales2\main.c
+1700705111 source:c:\users\54223\desktop\proyecto\tp final mio\deposito y catalogosucursales2\main.c
 	<stdio.h>
 	<stdlib.h>
 	"listasProductos.h"
@@ -104,6 +104,7 @@
 	"depositoSucursal.h"
 	"ventas.h"
 	"provedores.h"
+	"menus.h"
 
 1700690251 source:c:\users\54223\desktop\proyecto\tp final mio\deposito y catalogosucursales2\ventas.c
 	<stdio.h>
@@ -114,10 +115,10 @@
 1700666251 c:\users\54223\desktop\proyecto\tp final mio\deposito y catalogosucursales2\ventas.h
 	"depositoSucursal.h"
 
-1700691026 source:c:\users\54223\desktop\proyecto\tp final mio\deposito y catalogosucursales2\menus.c
+1700705000 source:c:\users\54223\desktop\proyecto\tp final mio\deposito y catalogosucursales2\menus.c
 	"menus.h"
 
-1700691050 c:\users\54223\desktop\proyecto\tp final mio\deposito y catalogosucursales2\menus.h
+1700705000 c:\users\54223\desktop\proyecto\tp final mio\deposito y catalogosucursales2\menus.h
 	<stdio.h>
 	<stdlib.h>
 	"listasProductos.h"

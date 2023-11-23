@@ -9,24 +9,34 @@
 #include "depositoSucursal.h"
 #include "ventas.h"
 #include "provedores.h"
-int mainMenu();
+int mainMenuAdmin();
 
 
 void imprimirBarraCarga(int porcentaje);
 void barra();
 
-int menuDeposito();
-int menuOpcionDeposito();
+int menuDepositoAdmin();
+int menuOpcionDepositoAdmin();
 
-int menuOpcionDepositoSucursal();
-int menuDepositoSucursales();
-
-
-int menuOpcionVentas();
-int menuVentas();
-int mainMenu();
+int menuOpcionDepositoSucursalAdmin();
+int menuDepositoSucursalesAdmin();
 
 
-int menuOpcionProveedores() ;
-int menuProveedores() ;
+
+int menuOpcionVentasAdmin();
+int menuVentasAdmin();
+
+
+
+int menuOpcionProveedoresAdmin()  ;
+int menuProveedoresAdmin() ;
+
+
+
+
+
+
+//MUENU USUARIOS
+int menuOpcionDepositoUsuario();
+int menuDepositoUsuario();
 #endif // MENUS_H_INCLUDED

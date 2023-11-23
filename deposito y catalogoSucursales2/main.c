@@ -7,10 +7,10 @@
 #include "depositoSucursal.h"
 #include "ventas.h"
 #include "provedores.h"
-
+#include "menus.h"
 int main()
 {
-    mainMenu();
+    mainMenuAdmin();
 
 
     return 0;
