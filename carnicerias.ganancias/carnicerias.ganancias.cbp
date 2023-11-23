@@ -48,16 +48,11 @@
 		</Unit>
 		<Unit filename="menuGanancias.c">
 			<Option compilerVar="CC" />
+			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
-		<Unit filename="menuGanancias.h" />
-		<Unit filename="menus.c">
-			<Option compilerVar="CC" />
+		<Unit filename="menuGanancias.h">
+			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
-		<Unit filename="menus.h" />
-		<Unit filename="provedores.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="provedores.h" />
 		<Unit filename="ventas.c">
 			<Option compilerVar="CC" />
 		</Unit>

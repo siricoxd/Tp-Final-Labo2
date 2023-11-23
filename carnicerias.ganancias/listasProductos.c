@@ -139,7 +139,7 @@ int pasardeArchivoAArreglo(char archivo[],catalogo arreglo[],int dim)
 
 void mostrarUnProducto(productos dato)
 {
-    printf("\nACTIVO PRODUCTO: %d",dato.activoPro);
+    printf("\nACTIVO: %d",dato.activoPro);
     printf("\nNOMBRE DE PRODUCTO:  %s", dato.nombreDeProductos);
     printf("\nPRECIO POR KILO: %d ",dato.precioPorKilo);
     printf("\nSTOCK: %d", dato.stock);
@@ -164,7 +164,7 @@ void muestraUnCatalogo(catalogo A)
     {
         printf("\nNOMBRE DE CATEGORIA: %s", A.nombreDeCategoria);
         printf("\nID DE CATEGORIA: |%d|", A.idCategoria);
-        printf("\nACTIVO CATEGORIA: %d",A.activoCat);
+        printf("\nACTIVOcatalog: %d",A.activoCat);
         muestraLISTA(A.lista);
         printf("\n----------------------------------------------");
     }
@@ -230,20 +230,22 @@ void muestraDeCatalogoTodos(catalogo A[],int validos)
 
 void muestraUnRegistro(deposito dato)
 {
+    printf("nn");
     if(dato.activoCat==1)
     {
         printf("\nNOMBRE DE CATEGORIA: %s",dato.nombreDeCategoria);
         printf("\nid DE CATEGORIA|%d|",dato.idCategoria);
-        printf("\nACTIVO CATEGORIA: %d",dato.activoCat);
+        printf("\nACTIVO: %d",dato.activoCat);
     }
     if(dato.activoPro==1)
     {
-         printf("\nACTIVO PRODUCTO: %d",dato.activoPro);
+         printf("\nACTIVO: %d",dato.activoPro);
         printf("\nNOMBRE DE PRODUCTO:  %s",dato.nombreDeProductos);
         printf("\nPRECIO POR KILO:%d ",dato.precioPorKilo);
         printf("\nSTOCK: %d",dato.stock);
-        printf("\nId de productos |%d|",dato.id);
-        printf("\n----------------------------------------------\n");
+        printf("\nid de productos |%d|",dato.id);
+
+        printf("\n----------------------------------------------");
     }
 
 
@@ -261,9 +263,6 @@ void muestraArchivo(char archivo[])
             muestraUnRegistro(aux);
         }
         fclose(archi);
-    }
-    else{
-        printf("Error archivo deposito.\n");
     }
 
 }
@@ -400,9 +399,6 @@ void activarProducto(char archivo[], catalogo arreglo[],int pos,nodoProductos* i
 
             }
         }
-        if(flag==0){
-            printf("\nNo se pudo activar el producto.\n");
-        }
         fclose(buffer);
     }
 
@@ -420,7 +416,8 @@ void activarCatalogo(char archivo[],catalogo ar[], int id, int pos)
 
         while (fread(&aux, sizeof(deposito), 1, buffer) > 0 && flag == 0)
         {
-            if (ar[pos].idCategoria == aux.idCategoria && aux.activoCat!=1){
+            if (ar[pos].idCategoria == aux.idCategoria )
+            {
                 ar[pos].activoCat = 1;
                 aux.activoCat = 1;
 
@@ -429,9 +426,6 @@ void activarCatalogo(char archivo[],catalogo ar[], int id, int pos)
                 fflush(buffer);
                 flag = 1;
             }
-        }
-        if(flag==0){
-            printf("\nNo se pudo activar la categoria.\n");
         }
 
         fclose(buffer);
@@ -530,12 +524,15 @@ void cargaArchivo(char archivo[])
         FILE* buffer= fopen(archivo,"ab");
          if(buffer)
             {
+
+            printf("\nCARGUE EL REGISTRRO\n");
             aux=cargaRegistro();
             fwrite(&aux,sizeof(deposito),1,buffer);
 
-            printf("\nSi desea salir presione ESC. De lo contrario, presione cualquier tecla.\n");
+            printf("\nPARA SALIR PRESIONE ESC\n");
             fflush(stdin);
             opcion=getch();
+            system("pause");
             system("cls");
 
           }
