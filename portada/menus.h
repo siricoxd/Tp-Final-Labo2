@@ -18,9 +18,16 @@ void imprimirBarraCarga(int porcentaje);
 void barra();
 
 int menuDepositoAdmin();
+void menuAltaBaja();
 int menuOpcionDepositoAdmin();
 
 int menuOpcionDepositoSucursalAdmin();
+void cargarStockSucursal();
+void mostrarDepositoSucursal();
+void menuDesactivarProductoSucursal();
+void menuDesactivarCatalogoSucursal();
+void menuActivarCatalogoSucursal();
+void menuActivarProductoSucursal();
 int menuDepositoSucursalesAdmin();
 
 
@@ -41,5 +48,5 @@ int menuProveedoresAdmin() ;
 
 //MUENU USUARIOS
 //int menuOpcionDepositoUsuario();
-int menuDepositoUsuario();
+//int menuDepositoUsuario();
 #endif // MENUS_H_INCLUDED
