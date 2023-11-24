@@ -4,6 +4,7 @@
 #include"listasSucusrsales.h"
 #include "portada.h"
 #include "menus.h"
+
 int main()
 {
 ///---------------------------------------------------------------///
@@ -22,6 +23,7 @@ int main()
 ///---------------------------------------------------------------///
     do
     {
+        modo=0;
         login=LogIn();
         if(login==1)
         {
@@ -143,23 +145,6 @@ int main()
                 case 3:
                         mainMenuAdmin();
                     break;
-                case 4:
-                    do
-                    {
-                        //eleccion=();
-                        switch(eleccion)
-                        {
-                        case 1:
-                            break;
-                        case 2:
-                            break;
-                        }
-                    }
-                    while(eleccion!=0);
-                    break;
-                case 0:
-                    printf("Adios\n");
-                    system("pause");
                 }
 
             }

@@ -22,13 +22,12 @@ int menuPrincipal()
     printf("\t\t\t|                             1. SUCURSALES                              |\n");
     printf("\t\t\t|                             2. EMPLEADOS                               |\n");
     printf("\t\t\t|                             3. PRODUCTOS                               |\n");
-    printf("\t\t\t|                             4.                                         |\n");
     printf("\t\t\t|                                                                        |\n");
     printf("\t\t\t|                             0. SALIR                                   |\n");
     printf("\t\t\t|                                                                        |\n");
     printf("\t\t\t|________________________________________________________________________|\n");
     printf("\n");
-    scanf("%d",&seleccion);
+    seleccion= getch()-'0';
     system("cls");
     return seleccion;
 }
@@ -58,7 +57,7 @@ int menuSucursales()
     printf("\t\t\t|                                                                        |\n");
     printf("\t\t\t|________________________________________________________________________|\n");
     printf("\n");
-    scanf("%d",&seleccion);
+    seleccion= getch()-'0';
     system("cls");
     return seleccion;
 
@@ -86,7 +85,7 @@ int menuSucursalesModificar()
     printf("\t\t\t|                                                                        |\n");
     printf("\t\t\t|________________________________________________________________________|\n");
     printf("\n");
-    scanf("%d",&seleccion);
+    seleccion= getch()-'0';
     system("cls");
     return seleccion;
 
@@ -114,7 +113,7 @@ int menuSucursalesInfo()
     printf("\t\t\t|                                                                        |\n");
     printf("\t\t\t|________________________________________________________________________|\n");
     printf("\n");
-    scanf("%d",&seleccion);
+    seleccion= getch()-'0';
     system("cls");
     return seleccion;
 
@@ -142,7 +141,7 @@ int menuSucursalesMostrar()
     printf("\t\t\t|                                                                        |\n");
     printf("\t\t\t|________________________________________________________________________|\n");
     printf("\n");
-    scanf("%d",&seleccion);
+    seleccion= getch()-'0';
     system("cls");
     return seleccion;
 
@@ -169,7 +168,7 @@ int menuEmpleados(){
     printf("\t\t\t|                                                                        |\n");
     printf("\t\t\t|________________________________________________________________________|\n");
     printf("\n");
-    scanf("%d",&seleccion);
+    seleccion= getch()-'0';
     system("cls");
     return seleccion;
 
@@ -197,7 +196,7 @@ int menuProuctos()
     printf("\t\t\t|                                                                        |\n");
     printf("\t\t\t|________________________________________________________________________|\n");
     printf("\n");
-    scanf("%d",&seleccion);
+    seleccion= getch()-'0';
     system("cls");
     return seleccion;
 
@@ -222,7 +221,7 @@ int LogIn()
     printf("\n\n\n");
     printf("\t\t\t\t\t\t 1. INICIAR SESION\n\n\t\t\t\t\t\t 2. REGISTRARSE\n\n\t\t\t\t\t\t 0. SALIR\n\n\n\n");
 
-    scanf("%d",&seleccion);
+    seleccion= getch()-'0';
     system("cls");
     return seleccion;
 }

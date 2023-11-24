@@ -69,15 +69,15 @@ int mainMenuAdmin()
 int menuOpcionDepositoAdmin()
 {
     int selected;
-    /*catalogo arreglo[40];
-    int validos = 0;*/
+    catalogo arreglo[40];
+    int validos = 0;
     do{
         selected = menuDepositoAdmin();
         switch (selected)
         {
         case 1:
-            //barra();
-            muestraArchivo(ARCHIVO_DEPOSITO);
+            validos = pasardeArchivoAArreglo(ARCHIVO_DEPOSITO, arreglo, 40);
+            muestraDeCatalogo(arreglo, validos);
             system("pause");
             break;
         case 2:
@@ -87,11 +87,7 @@ int menuOpcionDepositoAdmin()
         case 3:
             menuAltaBaja();
             break;
-        /*case 4:
-            validos = pasardeArchivoAArreglo(ARCHIVO_DEPOSITO, arreglo, 40);
-            muestraDeCatalogo(arreglo, validos);
 
-            break;*/
         }
 
     }
@@ -233,7 +229,6 @@ int menuDepositoAdmin()
     printf("\t\t|                                                                  2. CARGA DEL DEPOSITO                                                           |\n");
     printf("\t\t|                                                                  3. MENU ALTA/BAJA                                                               |\n");
     printf("\t\t|                                                                  0. VOLER                                                                        |\n");
-    //printf("\t\t|                                                                  4. MOSTRAR ARREGLO DE LISTAS DEPOSITO                                           |\n");
     printf("\t\t|                                                                                                                                                  |\n");
     printf("\t\t|__________________________________________________________________________________________________________________________________________________|\n");
 
@@ -328,12 +323,10 @@ void cargarStockSucursal(){
     provincia ar[30];
     catalogo arreglo[40];
     nodoProductos* buscadoDepos;
-
+    validosProv=descargarArchivo(ar,validosProv,30);
     validos = pasardeArchivoAArreglo(ARCHIVO_DEPOSITO, arreglo, 40);
     printf("--CARGA DE STOCK PRODUCTO--\n\n");
     muestraDeCatalogo(arreglo, validos);
-
-
     printf("\nIngrese el id de la categoria: ");
     scanf("%d", &buscar);
     pos = buscaEnCatalogoPorId(arreglo, validos, buscar);
@@ -352,7 +345,7 @@ void cargarStockSucursal(){
         }
         else{
             //system("pause");
-            //system("cls");
+            system("cls");
             mostrarTodo(ar,validosProv);
             printf("\n\nCargue el id de la sucursal:  ");// esta la voy a pedir del menu de sucursales
             scanf("%d",&idDesuc);
@@ -363,16 +356,16 @@ void cargarStockSucursal(){
             }
             else
             {
-            stock=cargarStockYmodificarlos(ARCHIVO_DEPOSITO,buscadoDepos);
-            if(modificarStockEnArchivoDepSuc(ARCHIVO_SUCUSALDep,idDeProdu,idDesuc,stock)==1)//separa la funcion verifiar si en el archivo existe y si exite modificar su atock
-            {
-            // modificarStockEnArchivoDepSuc(ARCHIVO_SUCUSALDep,idDeProdu,idDesuc,stock);
-            }
-            else
-            {
-            recorrerDeposito(ARCHIVO_DEPOSITO,ARCHIVO_SUCUSALDep,idDesuc,idDeProdu,stock);
-            // muestraArchivoSucursal(ARCHIVO_SUCUSALDep);
-            }
+                stock=cargarStockYmodificarlos(ARCHIVO_DEPOSITO,buscadoDepos);
+                if(modificarStockEnArchivoDepSuc(ARCHIVO_SUCUSALDep,idDeProdu,idDesuc,stock)==1)//separa la funcion verifiar si en el archivo existe y si exite modificar su atock
+                {
+                // modificarStockEnArchivoDepSuc(ARCHIVO_SUCUSALDep,idDeProdu,idDesuc,stock);
+                }
+                else
+                {
+                recorrerDeposito(ARCHIVO_DEPOSITO,ARCHIVO_SUCUSALDep,idDesuc,idDeProdu,stock);
+                // muestraArchivoSucursal(ARCHIVO_SUCUSALDep);
+                }
             }
         }
     }
@@ -638,6 +631,7 @@ int menuOpcionVentasAdmin()
 
         case 2:
             muestraArchivoVentas(ARCHIVO_VENTAS);
+            system("pause");
             break;
         case 3:
             menuGanancias();
@@ -673,7 +667,7 @@ void cargarArchivoVentasMenu()
     if(pos==1)
     {
 
-        printf("\nINGRESE LA FECHA DE LA VENTA(DIA/MES/ANIO): ");
+        printf("\nIngrese la fecha de la venta(DIA/MES/ANIO): ");
         fflush(stdin);
         gets(fechaVenta);
         int seEncuentraFechaGanancias=buscaEnArchivoGanancias(nombreArchivoGanancias, fechaVenta);
@@ -723,7 +717,7 @@ int menuVentasAdmin()
     printf("\t\t|                 0. VOLVER                            |\n");
     printf("\t\t|______________________________________________________|\n");
 
-    scanf("%d",&input);
+    input=getch()-'0';
     system("cls");
     return input;
 }

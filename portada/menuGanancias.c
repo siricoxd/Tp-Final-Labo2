@@ -53,7 +53,6 @@ void menuGanancias(){
                 printf("Seleccion incorrecta.\n");
                 break;
         }
-        system("pause");
     }
 }
 
