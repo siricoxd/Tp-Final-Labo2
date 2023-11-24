@@ -311,7 +311,7 @@ void inorderRango(nodoArbol * arbol, int rango)
     if(arbol != NULL)
     {
         inorderRango(arbol->izq, rango);
-        if(arbol->dato.rango==rango)
+        if(arbol->dato.rango==rango && arbol->dato.baja==1)
         {
             mostrarUnTrabajador2(arbol->dato);
         }
@@ -630,11 +630,12 @@ void mostrarTrabajadoresDeUnaSucursal(nodoLista* lista,int idSucursal)
 
 void mostrarTrabajadoresDeUnRango(nodoLista* lista, int rango)
 {
-    printf("Trabajadores rango %i\n", rango);
+    printf("\n\n\n\n");
+    printf("\t\t\t\t\tTrabajadores rango %i: \n\n\n\n", rango);
     while(lista!=NULL)
     {
-        printf("Id sucursal: %i\n", lista->idSucursal);
-        printf("\n--------------------------------\n");
+        printf("\t\t\t\t\tId sucursal: %i\n", lista->idSucursal);
+        printf("\t\t\t\n-----------------------------------------------------------------------------------------------------------------------\n");
         inorderRango(lista->arbol, rango);
         lista=lista->siguiente;
     }
@@ -642,6 +643,7 @@ void mostrarTrabajadoresDeUnRango(nodoLista* lista, int rango)
 
 
 }
+
 
 ///
 

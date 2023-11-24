@@ -59,7 +59,7 @@ int menuOpcion()
 
             break;
         case 4:
-
+          mostrarLDA(lista);
             printf("Ingrese el ID de la sucursal del trabajador para dar de baja\n");
             fflush(stdin);
             scanf("%i", &idSucursal);
@@ -159,7 +159,7 @@ int menuOpcion()
 
         case 9:
 
-            printf("Ingrese el rango: \n");
+            printf("Ingrese el rango (1, 2 o 3): \n");
             fflush(stdin);
             scanf("%i", &rango);
 
@@ -168,6 +168,8 @@ int menuOpcion()
             system("pause");
             break;
         case 10:
+            mostrarLDA(lista);
+
             printf("Ingrese el ID de la sucursal del trabajador \n");
             fflush(stdin);
             scanf("%i", &idSucursal);
@@ -296,6 +298,7 @@ int menuOpcion()
             break;
 
             case 15:
+                mostrarLDA(lista);
 
             printf("\nIngrese id de la sucursal:");
             scanf("%i",&idSucursal);
@@ -315,6 +318,7 @@ int menuOpcion()
             break;
 
             case 16:
+                mostrarLDA(lista);
 
             printf("\nIngrese id de la sucursal:");
             scanf("%i",&idSucursal);
