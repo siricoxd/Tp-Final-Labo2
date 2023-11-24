@@ -64,4 +64,4 @@ void numeroAString(char* nombreMes, int mes);
 void crearArchivoGananciasConVentas();
 StRegistroventas cargarVentas();
 
-int buscaEnArhcivoGnancias(char archivoGanancia[],char fecha[]);
+int buscaEnArchivoGanancias(char archivoGanancia[],char fecha[]);

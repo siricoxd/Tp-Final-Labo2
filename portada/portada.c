@@ -147,8 +147,7 @@ int menuSucursalesMostrar()
     return seleccion;
 
 }
-int menuEmpleados()
-{
+int menuEmpleados(){
     system("cls");
     int seleccion=0;
     printf("\n\n\n");

@@ -717,15 +717,21 @@ void cargarArchivoVentasMenu()
     pos=VerificarSucursal(idDeSuc);
     if(pos==1)
     {
-        printf("\nINGRESE LA FECHA DE LA VENTA\n");
+
+        printf("\nINGRESE LA FECHA DE LA VENTA(DIA/MES/ANIO): ");
         fflush(stdin);
         gets(fechaVenta);
-
-        validos = pasardeArchivoAArregloSucursal(ARCHIVO_SUCUSALDep, arregloSucur, 40, idDeSuc);
-        muestraDecatalogoSucursal(arregloSucur, validos);
-        pasarDeArregloDeposAArchivoVenta(arregloSucur,validos,ARCHIVO_VENTAS,ARCHIVO_SUCUSALDep, idDeSuc,fechaVenta);
-        crearArchivoGananciasConVentas();
-        getchar();
+        int seEncuentraFechaGanancias=buscaEnArchivoGanancias(nombreArchivoGanancias, fechaVenta);
+        if(seEncuentraFechaGanancias==0 || seEncuentraFechaGanancias==-1){
+            validos = pasardeArchivoAArregloSucursal(ARCHIVO_SUCUSALDep, arregloSucur, 40, idDeSuc);
+            muestraDecatalogoSucursal(arregloSucur, validos);
+            pasarDeArregloDeposAArchivoVenta(arregloSucur,validos,ARCHIVO_VENTAS,ARCHIVO_SUCUSALDep, idDeSuc,fechaVenta);
+            crearArchivoGananciasConVentas();
+            getchar();
+        }
+        else{
+            printf("\nLa fecha ya ha sido cargada.\n");
+        }
     }
     else
     {

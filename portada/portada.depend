@@ -92,7 +92,7 @@
 
 1700715248 c:\users\usuario\desktop\utn\lab 2\asd\tp-final-labo2\portada\portada.h
 
-1700715248 source:c:\users\usuario\desktop\utn\lab 2\asd\tp-final-labo2\portada\portada.c
+1700787706 source:c:\users\usuario\desktop\utn\lab 2\asd\tp-final-labo2\portada\portada.c
 	"portada.h"
 	<stdio.h>
 	<stdlib.h>
@@ -479,10 +479,10 @@
 
 1700775998 c:\users\usuario\desktop\utn\lab 2\asd\tp-final-labo2\portada\empleados.h
 
-1700775998 source:c:\users\usuario\desktop\utn\lab 2\asd\tp-final-labo2\portada\ganancias.c
+1700789427 source:c:\users\usuario\desktop\utn\lab 2\asd\tp-final-labo2\portada\ganancias.c
 	"ganancias.h"
 
-1700775998 c:\users\usuario\desktop\utn\lab 2\asd\tp-final-labo2\portada\ganancias.h
+1700788420 c:\users\usuario\desktop\utn\lab 2\asd\tp-final-labo2\portada\ganancias.h
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -526,7 +526,7 @@
 1700775998 source:c:\users\usuario\desktop\utn\lab 2\asd\tp-final-labo2\portada\menuganancias.c
 	"menuGanancias.h"
 
-1700785745 source:c:\users\usuario\desktop\utn\lab 2\asd\tp-final-labo2\portada\menus.c
+1700789496 source:c:\users\usuario\desktop\utn\lab 2\asd\tp-final-labo2\portada\menus.c
 	"menus.h"
 
 1700715248 source:c:\users\usuario\desktop\utn\lab 2\asd\tp-final-labo2\portada\provedores.c

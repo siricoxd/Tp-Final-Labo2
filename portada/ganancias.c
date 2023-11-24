@@ -390,7 +390,12 @@ void crearArchivoGananciasConVentas(){
     if(archivoVentas){
         StRegistroventas ventas;
         while(fread(&ventas, sizeof(StRegistroventas), 1, archivoVentas)==1){
-            gananciasABarchivo(ventas);
+            if(buscaEnArchivoGanancias(nombreArchivoGanancias, ventas.fechaVenta)==-1){
+                gananciasABarchivo(ventas);
+            }
+            else{
+                sumarGananciasArchivo(ventas);
+            }
         }
         fclose(archivoVentas);
     }
@@ -425,7 +430,7 @@ void cargarVariasVentas(){
 
 
 
-int buscaEnArhcivoGnancias(char archivoGanancia[],char fecha[])
+int buscaEnArchivoGanancias(char archivoGanancia[],char fecha[])
 {
     FILE *archi=fopen(archivoGanancia,"rb");
     ganancias flag;
@@ -448,12 +453,10 @@ int buscaEnArhcivoGnancias(char archivoGanancia[],char fecha[])
     }
     else
     {
-        return 1;
+        return -1;
     }
 
-    if(flag.anio!=-1)
-    {
-
+    if(flag.anio!=-1){
             if(flag.arrayGanancias[mes-1][dia-1]>0)
             {
                 existe=1;
