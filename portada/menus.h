@@ -28,7 +28,7 @@ int menuDepositoSucursalesAdmin();
 int menuOpcionVentasAdmin();
 void cargarArchivoVentasMenu();
 int menuVentasAdmin();
-
+void menuAltaBaja();
 
 
 int menuOpcionProveedoresAdmin()  ;

@@ -102,33 +102,37 @@ int menuOpcionDepositoAdmin()
     while (selected != 0);
 
     //system("pause");
-   // system("cls");
+    // system("cls");
     return 0;
 }
 
-void menuAltaBaja(){
+void menuAltaBaja()
+{
     int opcion;
     int validos = 0, buscar = 0, pos = 0;
     int idDeProdu=0;
     catalogo arreglo[40];
     nodoProductos *buscado;
-    do{
-    system("cls");
-    printf("\t\t\t1)Dar de baja a una categoria\n");
-    printf("\t\t\t2)Dar de baja a un producto\n");
-    printf("\t\t\t3)Dar de alta a una producto\n");
-    printf("\t\t\t4)Dar de alta a una categoria\n");
-    printf("\t\t\t0)Volver\n");
-    opcion=getch() -'0';
+    do
+    {
+        system("cls");
+        printf("\t\t\t1)Dar de baja a una categoria\n");
+        printf("\t\t\t2)Dar de baja a un producto\n");
+        printf("\t\t\t3)Dar de alta a una producto\n");
+        printf("\t\t\t4)Dar de alta a una categoria\n");
+        printf("\t\t\t0)Volver\n");
+        opcion=getch() -'0';
 
-    switch(opcion){
-           case 1:
+        switch(opcion)
+        {
+        case 1://muestra archivo depos general
             validos = pasardeArchivoAArreglo(ARCHIVO_DEPOSITO, arreglo, 40);
             muestraDeCatalogo(arreglo, validos);
             printf("\nIngrese el id de la categoria que desea desactivar: \n");
             scanf("%d", &buscar);
             pos = buscaEnCatalogoPorId(arreglo, validos, buscar);
-            if (pos !=-1){
+            if (pos !=-1)
+            {
                 desactivarCatalogo(ARCHIVO_DEPOSITO,arreglo, buscar, pos);
             }
             else
@@ -136,7 +140,7 @@ void menuAltaBaja(){
                 printf("\nNo se encontro catalogo.\n");
             }
             break;
-        case 2 :
+        case 2 ://carga deposito general solo los productos y catalogos
             validos = pasardeArchivoAArreglo(ARCHIVO_DEPOSITO, arreglo, 40);
             muestraDeCatalogo(arreglo, validos);
             printf("\nIngrese el id del catalogo del producto a desactivar: \n");
@@ -168,7 +172,7 @@ void menuAltaBaja(){
 
 
             break;
-        case 3:
+        case 3://muestra  depos general
             validos = pasardeArchivoAArreglo(ARCHIVO_DEPOSITO, arreglo, 40);
             muestraDeCatalogoTodos(arreglo, validos);
 
@@ -183,7 +187,7 @@ void menuAltaBaja(){
             activarProducto(ARCHIVO_DEPOSITO,arreglo,pos,buscado);
             break;
 
-        case 4:
+        case 4://activar catalogo depos
             validos = pasardeArchivoAArreglo(ARCHIVO_DEPOSITO, arreglo, 40);
             muestraDeCatalogoTodos(arreglo, validos);
 
@@ -204,8 +208,9 @@ void menuAltaBaja(){
             }
 
             break;
+        }
     }
-    }while(opcion!=0);
+    while(opcion!=0);
 
 }
 int menuDepositoAdmin()
@@ -235,9 +240,9 @@ int menuDepositoAdmin()
     printf("\t\t\t|                                                                                                                                                  |\n");
     printf("\t\t\t|--------------------------------------------------------------------------------------------------------------------------------------------------|\n");
 
-           input=getch()-'0';
-           system("cls");
-           return input;
+    input=getch()-'0';
+    system("cls");
+    return input;
 }
 
 
@@ -305,7 +310,7 @@ int menuOpcionDepositoSucursalAdmin()
         selected = menuDepositoSucursalesAdmin();
         switch (selected)
         {
-        case 1:
+        case 1://CARGA ARCHIVO DEPOSITO SUCURSAL POR SUCURSAL
             validos = pasardeArchivoAArreglo(ARCHIVO_DEPOSITO, arreglo, 40);
             muestraDeCatalogo(arreglo, validos);
 
@@ -342,7 +347,8 @@ int menuOpcionDepositoSucursalAdmin()
             {
 
             }
-            else{
+            else
+            {
                 printf("No Existe la sucursal\n");
                 system("pause");
                 break;
@@ -361,16 +367,28 @@ int menuOpcionDepositoSucursalAdmin()
             }
             system("pause");
             break;
-        case 2:
+        case 2://MUESTRA ARCHIVO SUCURSAL
 
             muestraArchivoSucursal(ARCHIVO_SUCUSALDep);
             system("pause");
             break;
-        case 3:
+        case 3://MUESTRA CATALOGO DE DEPOSITO
 
-            printf("\n\ncargue el id de la suc:  ");// esta la voy a pedir del menu de sucursales
+
+            mostrarTodo(ar,validosProv);
+            printf("\n\ncargue el id de la sucursal:  ");// esta la voy a pedir del menu de sucursales
             scanf("%d",&idDesuc);
+            pos=VerificarSucursal(idDesuc);
+            if(pos==1)
+            {
 
+            }
+            else
+            {
+                printf("No Existe la sucursal\n");
+                system("pause");
+                break;
+            }
             printf("\nMUESTRA DEPOSITO DEL LOCAL:\n");
             validos=pasardeArchivoAArregloSucursal(ARCHIVO_SUCUSALDep,arregloSucur,40,idDesuc);
             printf("\nvalidos: %d",validos);
@@ -381,10 +399,25 @@ int menuOpcionDepositoSucursalAdmin()
 
             break;
 
-        case 4 :
+        case 4 ://DESACTIVAR PRODUCTO
 
-            printf("\n\ncargue el id de la suc:  ");// esta la voy a pedir del menu de sucursales
+
+            mostrarTodo(ar,validosProv);
+            printf("\n\ncargue el id de la sucursal:  ");// esta la voy a pedir del menu de sucursales
             scanf("%d",&idDesuc);
+            pos=VerificarSucursal(idDesuc);
+            if(pos==1)
+            {
+
+            }
+            else
+            {
+                printf("No Existe la sucursal\n");
+                system("pause");
+                break;
+            }
+            system("pause");
+            system("cls");
             validos = pasardeArchivoAArregloSucursal(ARCHIVO_SUCUSALDep, arregloSucur, 40,idDesuc);
             muestraDecatalogoSucursal(arregloSucur, validos);
             printf("\ningrese el id del catálogo del producto a DESACTIVAR\n");
@@ -426,10 +459,27 @@ int menuOpcionDepositoSucursalAdmin()
 
             system("pause");
             break;
-        case 5:
+        case 5://DESACTIVAR CATALOGO
 
-            printf("\n\ncargue el id de la suc:  ");// esta la voy a pedir del menu de sucursales
+
+            mostrarTodo(ar,validosProv);
+            printf("\n\ncargue el id de la sucursal:  ");// esta la voy a pedir del menu de sucursales
             scanf("%d",&idDesuc);
+            pos=VerificarSucursal(idDesuc);
+            if(pos==1)
+            {
+
+            }
+            else
+            {
+                printf("No Existe la sucursal\n");
+                system("pause");
+                break;
+            }
+            system("pause");
+            system("cls");
+
+
             validos = pasardeArchivoAArregloSucursal(ARCHIVO_SUCUSALDep, arregloSucur, 40,idDesuc);
             muestraDecatalogoSucursal(arregloSucur, validos);
             printf("\ningrese el id del catálogo  DESACTIVAR\n");
@@ -461,9 +511,26 @@ int menuOpcionDepositoSucursalAdmin()
 
             break;
 
-        case 6:
-            printf("\n\ncargue el id de la suc:  ");// esta la voy a pedir del menu de sucursales
+        case 6://ACTIVAR CATALOGO
+
+            mostrarTodo(ar,validosProv);
+            printf("\n\ncargue el id de la sucursal:  ");// esta la voy a pedir del menu de sucursales
             scanf("%d",&idDesuc);
+            pos=VerificarSucursal(idDesuc);
+            if(pos==1)
+            {
+
+            }
+            else
+            {
+                printf("No Existe la sucursal\n");
+                system("pause");
+                break;
+            }
+            system("pause");
+            system("cls");
+
+
             validos = pasardeArchivoAArregloSucursal(ARCHIVO_SUCUSALDep, arregloSucur, 40,idDesuc);
             muestraDecatalogoSucursalTodos(arregloSucur, validos);
             printf("\ningrese el id del catálogo del producto a ACTIVAR\n");
@@ -495,9 +562,25 @@ int menuOpcionDepositoSucursalAdmin()
 
             break;
 
-        case 7:
-            printf("\n\ncargue el id de la suc:  ");// esta la voy a pedir del menu de sucursales
+        case 7://ACTIVAR PROD
+
+            mostrarTodo(ar,validosProv);
+            printf("\n\ncargue el id de la sucursal:  ");// esta la voy a pedir del menu de sucursales
             scanf("%d",&idDesuc);
+            pos=VerificarSucursal(idDesuc);
+            if(pos==1)
+            {
+
+            }
+            else
+            {
+                printf("No Existe la sucursal\n");
+                system("pause");
+                break;
+            }
+            system("pause");
+            system("cls");
+
             validos = pasardeArchivoAArregloSucursal(ARCHIVO_SUCUSALDep, arregloSucur, 40,idDesuc);
             muestraDecatalogoSucursalTodos(arregloSucur, validos);
             printf("\ningrese el id del catálogo del producto a ACTIVAR\n");
@@ -623,21 +706,45 @@ int menuOpcionVentasAdmin()
 }
 
 
-void cargarArchivoVentasMenu(){
+void cargarArchivoVentasMenu()
+{
+
+
+    provincia ar[30];
+    int validosProv=0;
+    validosProv=descargarArchivo(ar,validosProv,30);
+    int pos=0;
     catalogoSuc arregloSucur[40];
     int idDeSuc,  validos;
     char fechaVenta[11];
-    printf("\n\nIngrese el ID de la sucursal: ");
-    scanf("%d", &idDeSuc);
-    printf("\nINGRESE LA FECHA DE LA VENTA\n");
-    fflush(stdin);
-    gets(fechaVenta);
 
-    validos = pasardeArchivoAArregloSucursal(ARCHIVO_SUCUSALDep, arregloSucur, 40, idDeSuc);
-    muestraDecatalogoSucursal(arregloSucur, validos);
-    pasarDeArregloDeposAArchivoVenta(arregloSucur,validos,ARCHIVO_VENTAS,ARCHIVO_SUCUSALDep, idDeSuc,fechaVenta);
-    crearArchivoGananciasConVentas();
-    getchar();
+
+    mostrarTodo(ar,validosProv);
+    printf("\n\ncargue el id de la sucursal:  ");// esta la voy a pedir del menu de sucursales
+    scanf("%d",&idDeSuc);
+    pos=VerificarSucursal(idDeSuc);
+    if(pos==1)
+    {
+        printf("\nINGRESE LA FECHA DE LA VENTA\n");
+        fflush(stdin);
+        gets(fechaVenta);
+
+        validos = pasardeArchivoAArregloSucursal(ARCHIVO_SUCUSALDep, arregloSucur, 40, idDeSuc);
+        muestraDecatalogoSucursal(arregloSucur, validos);
+        pasarDeArregloDeposAArchivoVenta(arregloSucur,validos,ARCHIVO_VENTAS,ARCHIVO_SUCUSALDep, idDeSuc,fechaVenta);
+        crearArchivoGananciasConVentas();
+        getchar();
+    }
+    else
+    {
+        printf("No Existe la sucursal\n");
+        system("pause");
+
+    }
+    system("pause");
+    system("cls");
+
+
 }
 
 
@@ -678,7 +785,7 @@ int menuOpcionProveedoresAdmin()
 
         switch (selected)
         {
-        case 1:
+        case 1://carga la mercaderia en depos general
             validos = pasardeArchivoAArreglo(ARCHIVO_DEPOSITO, arregloDepos, 40);
             pasarDeDepositoAAFilas(arregloDepos, validos, &prov, ARCHIVO_DEPOSITO);
             mostrarFila(prov);
