@@ -27,32 +27,17 @@ int menuOpcion()
 {
     int selected;
     nodoLista* lista=iniclista();
-    int dni, idSucursal, rango, idProvincia;
+    int dni, idSucursal, rango;
     nodoLista* sucursal;
-    nodoLista* provincia;
+    nodoLista* provinciaEmpleados;
     nodoArbol* encontrado;
 
 provincia arEmpleados[30];
 
     int validosProv=0;
-    validosProv=descargarArchivo(ar,validosProv,30);
-
-    mostrarTodo(ar,validosProv);
-            printf("\n\nCargue el id de la sucursal:  ");// esta la voy a pedir del menu de sucursales
-            scanf("%d",&idSucursal);
-            pos=VerificarSucursal(idSucursal);
-            if(pos==1)
-            {
-                 lista=pasarDelArchivoToLDA(archivoTrabajadores,lista,idSucursal);
-
-            }
-            else
-            {
-                printf("No Existe la sucursal\n");
-                system("pause");
-
-            }
-
+    validosProv=descargarArchivo(arEmpleados,validosProv,30);
+int pos;
+    lista=pasarDelArchivoToLDA(archivoTrabajadores,lista,idSucursal);
 
 
 
@@ -69,7 +54,7 @@ provincia arEmpleados[30];
             break;
 
         case 2:
-            mostrarTodo(ar,validosProv);
+            mostrarTodo(arEmpleados,validosProv);
             printf("\n\nCargue el id de la sucursal:  ");// esta la voy a pedir del menu de sucursales
             scanf("%d",&idSucursal);
             pos=VerificarSucursal(idSucursal);
@@ -78,7 +63,7 @@ provincia arEmpleados[30];
                 cargarArchivoEmpleados(archivoTrabajadores, idSucursal);
             mostrarArchivo(archivoTrabajadores);
             lista = iniclista();
-            lista=pasarDelArchivoToLDA(archivoTrabajadores, lista);
+            lista=pasarDelArchivoToLDA(archivoTrabajadores, lista, idSucursal);
 
             }
             else
@@ -179,13 +164,13 @@ provincia arEmpleados[30];
             system("pause");
             break;
         case 7:
-             mostrarTodo(ar,validosProv);
+             mostrarTodo(arEmpleados,validosProv);
             printf("\n\nCargue el id de la sucursal:  ");// esta la voy a pedir del menu de sucursales
-            scanf("%d",&idsucursal);
+            scanf("%d",&idSucursal);
             pos=VerificarSucursal(idSucursal);
             if(pos==1)
             {
-                agregarTrabajadores(archivoTrabajadores, lista);
+                agregarTrabajadores(archivoTrabajadores, lista, idSucursal);
 
             }
             else
@@ -305,51 +290,8 @@ provincia arEmpleados[30];
             system("pause");
             break;
 
-             case 13:
-
-            printf("Ingrese el id de la provincia para dar de baja:\n");
-            fflush(stdin);
-            scanf("%i", &idProvincia);
-
-            provincia=buscarProvincia(lista,idProvincia);
-
-            if(provincia==NULL)
-            {
-                printf("No se encontro la provincia\n");
-            }
-            else
-            {
-                darDeBajaUnaProvincia(archivoTrabajadores,provincia, idProvincia);
-            }
 
 
-
-
-            system("pause");
-            break;
-
-            case 14:
-
-            printf("Ingrese el id de la provincia para dar de alta:\n");
-            fflush(stdin);
-            scanf("%i", &idProvincia);
-
-            provincia=buscarProvincia(lista,idProvincia);
-
-            if(provincia==NULL)
-            {
-                printf("No se encontro la provincia\n");
-            }
-            else
-            {
-                darDeAltaUnaProvincia(archivoTrabajadores,provincia, idProvincia);
-            }
-
-
-
-
-            system("pause");
-            break;
 
             case 15:
                 mostrarLDA(lista);
@@ -430,8 +372,6 @@ int menu()
     printf("\t\t\t|                             10. CAMBIAR SUELDO                         |\n");
     printf("\t\t\t|                             11. DAR DE BAJA SUCURSAL                   |\n");
     printf("\t\t\t|                             12. DAR DE ALTA SUCURSAL                   |\n");
-    printf("\t\t\t|                             13. DAR DE BAJA PROVINCIA                  |\n");
-    printf("\t\t\t|                             14. DAR DE ALTA PROVINCIA                  |\n");
     printf("\t\t\t|                             15. CARGAR HORAS EXTRA                     |\n");
     printf("\t\t\t|                             16. MODIFICAR HORAS EXTRA                  |\n");
     printf("\t\t\t|                                                                        |\n");

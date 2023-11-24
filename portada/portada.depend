@@ -649,7 +649,7 @@
 1700768821 source:c:\users\win10\desktop\tp-final-labo2\portada\menuganancias.c
 	"menuGanancias.h"
 
-1700791588 source:c:\users\win10\desktop\tp-final-labo2\portada\menus.c
+1700798453 source:c:\users\win10\desktop\tp-final-labo2\portada\menus.c
 	"menus.h"
 
 1700791588 source:c:\users\win10\desktop\tp-final-labo2\portada\portada.c
@@ -671,7 +671,7 @@
 	<windows.h>
 	"ventas.h"
 
-1700796956 source:c:\users\win10\desktop\tp-final-labo2\portada\empleados.c
+1700799668 source:c:\users\win10\desktop\tp-final-labo2\portada\empleados.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -680,13 +680,14 @@
 
 1700769778 c:\users\win10\desktop\tp-final-labo2\portada\menuempleados.h
 
-1700797176 c:\users\win10\desktop\tp-final-labo2\portada\empleados.h
+1700799661 c:\users\win10\desktop\tp-final-labo2\portada\empleados.h
 
-1700792182 source:c:\users\win10\desktop\tp-final-labo2\portada\menuempleados.c
+1700799661 source:c:\users\win10\desktop\tp-final-labo2\portada\menuempleados.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"empleados.h"
 	<windows.h>
 	"menuEmpleados.h"
+	"listasSucusrsales.h"
 

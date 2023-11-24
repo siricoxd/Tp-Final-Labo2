@@ -11,9 +11,6 @@ trabajador cargarUnTrabajador(int idSucursal)
 
     trabajador a;
 
-    printf("Ingresa el id de la provincia: \n");
-    fflush(stdin);
-    scanf("%i", &a.idProvincia);
 
    a.idSucursal=idSucursal;
 
@@ -47,7 +44,6 @@ trabajador cargarUnTrabajador(int idSucursal)
 
     a.baja=1;
     a.bajaSucursal=1;
-    a.bajaProvincia=1;
 
     return a;
 
@@ -86,7 +82,6 @@ void mostrarUnTrabajador(trabajador a)
     printf("Nombre y apellido: ");
     puts(a.nombreApe);
     printf("DNI: %i\n", a.dni);
-    printf("Id provincia: %i\n", a.idProvincia);
     printf("Id sucursal: %i\n", a.idSucursal);
     printf("Rango :%i\n",a.rango);
 
@@ -118,14 +113,6 @@ void mostrarUnTrabajador(trabajador a)
     {
         printf("SUCURSAL activa\n");
     }
-    if(a.bajaProvincia==0)
-    {
-        printf("Provincia dada de baja\n");
-    }
-    else if(a.bajaProvincia==1)
-    {
-        printf("Provincia activa\n");
-    }
 
 
     printf("\n-  -  -  -  -  -  -  - \n");
@@ -139,8 +126,6 @@ void mostrarUnTrabajador2(trabajador a)
     printf("Nombre y apellido: ");
     puts(a.nombreApe);
     printf("DNI: %i\n", a.dni);
-    //printf("Id provincia: %i\n", a.idProvincia);
-    //printf("Id sucursal: %i\n", a.idSucursal);
     printf("Rango :%i\n",a.rango);
 
     if(a.horasExtra > 0)
@@ -184,15 +169,13 @@ nodoLista* iniclista()
     return NULL;
 }
 
-nodoLista* crearNodoLista(int idSucursal, int bajaSucursal,int idProvincia, int bajaProvincia)
+nodoLista* crearNodoLista(int idSucursal, int bajaSucursal)
 {
 
     nodoLista* aux=(nodoLista*)malloc(sizeof(nodoLista));
 
     aux->idSucursal=idSucursal;
-    aux->idProvincia=idProvincia;
     aux->bajaSucursal=bajaSucursal;
-    aux->bajaProvincia=bajaProvincia;
     aux->arbol=inicarbol();
     aux->siguiente=NULL;
 
@@ -375,20 +358,9 @@ nodoLista* buscarSucursal(nodoLista* lista, int sucursal)
     return seg;
 }
 
-nodoLista* buscarProvincia(nodoLista* lista, int provincia)
-{
 
-    nodoLista *seg = lista;
 
-    while ((seg != NULL) && (seg->idProvincia != provincia))
-    {
-        seg=seg->siguiente;
-    }
-
-    return seg;
-}
-
-nodoLista* altaEmpleados(nodoLista* lista, trabajador dato, int idSucursal,int bajaSucursal,int idProvincia, int bajaProvincia)
+nodoLista* altaEmpleados(nodoLista* lista, trabajador dato, int idSucursal,int bajaSucursal)
 {
 
     nodoArbol* nuevo = crearNodoArbol(dato);
@@ -396,7 +368,7 @@ nodoLista* altaEmpleados(nodoLista* lista, trabajador dato, int idSucursal,int b
 
     if(encontrado==NULL)
     {
-        nodoLista* aux = crearNodoLista(idSucursal,bajaSucursal,idProvincia, bajaProvincia);
+        nodoLista* aux = crearNodoLista(idSucursal,bajaSucursal);
         lista=agregarEnOrden(lista, aux); //o al ppio
         aux->arbol=insertar(aux->arbol, nuevo);
 
@@ -421,9 +393,9 @@ nodoLista* pasarDelArchivoToLDA(char archivo[], nodoLista* lista, int idSucursal
         trabajador a;
         while(fread(&a, sizeof(trabajador), 1, archi)>0)
         {
-            if(a.idSucursal==idSucursal){
-            lista=altaEmpleados(lista, a, a.idSucursal,a.bajaSucursal,a.idProvincia,a.bajaProvincia);
-            }
+
+            lista=altaEmpleados(lista, a, a.idSucursal,a.bajaSucursal);
+
 
 
         }
@@ -442,12 +414,9 @@ printf("\n\n\n\n");
     printf("\t\t\t\t\tLISTA DE TRABAJADORES: \n\n\n\n");
     while(lista != NULL)
     {
-        if(lista->bajaSucursal==1 && lista->bajaProvincia==1){
+        if(lista->bajaSucursal==1){
              printf("\n\n\n\n\n\n");
       printf("\t\t\t\t\t | Id sucursal: %i    |\n", lista->idSucursal);
-     // printf("\t\t\t\t\t |  baja sucursal: %i |\n", lista->bajaSucursal);
-      printf("\t\t\t\t\t |  Id provincia: %i  |\n", lista->idProvincia);
-      //printf("\t\t\t\t\t |  baja provincia: %i|\n", lista->bajaProvincia);
       printf("\t\t\t\n-----------------------------------------------------------------------------------------------------------------------\n");
         inorder(lista->arbol);
         }
@@ -605,7 +574,7 @@ void agregarTrabajadores(char archivo[], nodoLista* lista, int idSucursal)
     if(archi)
     {
         a=cargarUnTrabajador(idSucursal);
-        lista=altaEmpleados(lista,a,a.idSucursal,a.bajaSucursal,a.idProvincia,a.bajaProvincia);
+        lista=altaEmpleados(lista,a,a.idSucursal,a.bajaSucursal);
         fwrite(&a,sizeof(trabajador),1,archi);
 
         fclose(archi);
@@ -819,141 +788,6 @@ void darDeAltaUnaSucursal(char archivo[], nodoLista* aux)
 
 }
 
-//dar de baja una provincia
-
-void inorderBajaProvincia(nodoArbol * arbol)
-{
-    if(arbol != NULL)
-    {
-        inorderBajaProvincia(arbol->izq);
-
-        arbol->dato.bajaProvincia=0;
-        arbol->dato.bajaSucursal=0;
-        arbol->dato.baja=0;
-
-        inorderBajaProvincia(arbol->der);
-    }
-}
-
-void darDeBajaUnaProvincia(char archivo[], nodoLista* aux, int idProvincia)
-{
-
-    FILE* archi=fopen(archivo, "r+b");
-
-
-
-    if(archi)
-    {
-
-        trabajador a;
-
-
-        while(fread(&a, sizeof(trabajador),1,archi)>0)
-        {
-            if(aux->idProvincia==a.idProvincia)
-            {
-                a.bajaProvincia=0;
-                a.bajaSucursal=0;
-                a.baja=0;
-                fseek(archi, (-1)*sizeof(trabajador), SEEK_CUR); // Retrocede al inicio del registro
-                fwrite(&a, sizeof(trabajador), 1, archi); // Escribe el registro modificado
-                fseek(archi, 0, SEEK_CUR);
-
-
-
-            }
-
-
-        }
-
-        while(aux!=NULL)
-        {
-            if(aux->idProvincia==idProvincia)
-            {
-                aux->bajaProvincia=0;
-                aux->bajaSucursal=0;
-                inorderBajaProvincia(aux->arbol);
-            }
-
-
-            aux=aux->siguiente;
-        }
-
-        fclose(archi);
-
-    }
-
-
-
-}
-
-//dar de alta una provincia
-
-void inorderAltaProvincia(nodoArbol * arbol)
-{
-    if(arbol != NULL)
-    {
-        inorderAltaProvincia(arbol->izq);
-
-        arbol->dato.bajaProvincia=1;
-        //arbol->dato.bajaSucursal=1;
-        //arbol->dato.baja=1;
-
-        inorderAltaProvincia(arbol->der);
-    }
-}
-
-void darDeAltaUnaProvincia(char archivo[], nodoLista* aux, int idProvincia)
-{
-
-    FILE* archi=fopen(archivo, "r+b");
-
-
-
-    if(archi)
-    {
-
-        trabajador a;
-
-
-        while(fread(&a, sizeof(trabajador),1,archi)>0)
-        {
-            if(aux->idProvincia==a.idProvincia)
-            {
-                a.bajaProvincia=1;
-                //a.bajaSucursal=1;
-                //a.baja=1;
-                fseek(archi, (-1)*sizeof(trabajador), SEEK_CUR); // Retrocede al inicio del registro
-                fwrite(&a, sizeof(trabajador), 1, archi); // Escribe el registro modificado
-                fseek(archi, 0, SEEK_CUR);
-
-
-
-            }
-
-
-        }
-
-        while(aux!=NULL)
-        {
-            if(aux->idProvincia==idProvincia)
-            {
-                aux->bajaProvincia=1;
-                //aux->bajaSucursal=1;
-                inorderAltaProvincia(aux->arbol);
-            }
-
-
-            aux=aux->siguiente;
-        }
-
-        fclose(archi);
-
-    }
-
-
-
-}
 
 ///funciones case 15 y 16
 

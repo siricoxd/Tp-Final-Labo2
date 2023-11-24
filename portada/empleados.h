@@ -6,13 +6,12 @@ typedef struct {
 int rango;
 char nombreApe[25];
 int idSucursal;
-int idProvincia;
 int sueldo;
 int baja; //si es 0, esta dado de baja, si es uno esta activo;
 int horasExtra;
 int dni;
 int bajaSucursal;
-int bajaProvincia;
+
 
 }trabajador; //Registro archivo
 
@@ -29,9 +28,6 @@ typedef struct nodoLista{
 
 int idSucursal;
 int bajaSucursal;
-int idProvincia;
-int bajaProvincia;
-
 
 nodoArbol* arbol;
 struct nodoLista* siguiente;
@@ -49,7 +45,7 @@ void agregarTrabajadores(char archivo[], nodoLista* lista, int idSucursal);
 
 //Libreria listas:
 nodoLista* iniclista();
-nodoLista* crearNodoLista(int idSucursal, int bajaSucursal, int idProvincia, int bajaProvincia);
+nodoLista* crearNodoLista(int idSucursal, int bajaSucursal);
 nodoLista* agregarAlPpio(nodoLista* lista, nodoLista* nuevo);
 nodoLista* agregarEnOrden(nodoLista* lista, nodoLista* nuevoNodo);
 nodoLista * buscarNodoEmpleado(nodoLista * lista,  int idSucursal);
@@ -57,13 +53,12 @@ void mostrarUnTrabajador2(trabajador a);
 
 //Libreria LDA
 nodoLista* buscarSucursal(nodoLista* lista, int sucursal);
-nodoLista* altaEmpleados(nodoLista* lista, trabajador dato, int idSucursal, int bajaSucursal, int idProvincia, int bajaProvincia);
+nodoLista* altaEmpleados(nodoLista* lista, trabajador dato, int idSucursal, int bajaSucursal);
 nodoLista* pasarDelArchivoToLDA(char archivo[], nodoLista* lista, int idSucursal);
 void mostrarLDA(nodoLista* lista);
 void mostrarBajas(nodoLista* lista);
 void mostrarTrabajadoresDeUnaSucursal(nodoLista* lista,int idSucursal);
 void mostrarTrabajadoresDeUnRango(nodoLista* lista, int rango);
-nodoLista* buscarProvincia(nodoLista* lista, int provincia);
 
 //Dar de baja y alta
 void darDeBaja(char archivo[], nodoLista* aux, int dni, int rango);
@@ -80,13 +75,6 @@ void darDeBajaUnaSucursal(char archivo[], nodoLista* aux);
 void inorderAltaSucursal(nodoArbol* arbol);
 void darDeAltaUnaSucursal(char archivo[], nodoLista* aux);
 
-//dar de baja una provincia
-void inorderBajaProvincia(nodoArbol* arbol);
-void darDeBajaUnaProvincia(char archivo[], nodoLista* aux, int idProvincia);
-
-//dar de alta una provincia
-void inorderAltaProvincia(nodoArbol * arbol);
-void darDeAltaUnaProvincia(char archivo[], nodoLista* aux, int idProvincia);
 
 //funciones del case 15 y 16
 void cargarHorasExtrasTrabajadores(nodoLista*lista,char nombreArchivo[]);
