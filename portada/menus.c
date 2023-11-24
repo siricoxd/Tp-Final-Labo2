@@ -407,7 +407,7 @@ void menuDesactivarProductoSucursal(){
     nodoproductosSucursal *buscado;
     int idDesuc;
     mostrarTodo(ar,validosProv);
-    printf("\n\Ingrese el id de la sucursal:  ");
+    printf("\nIngrese el id de la sucursal:  ");
     scanf("%d",&idDesuc);
     pos=VerificarSucursal(idDesuc);
     if(pos!=1)
@@ -825,10 +825,10 @@ int mainMenuUsuario ()
         switch (opcion)
         {
         case 1:
-            menuOpcionDepositoAdmin();
+            menuOpcionDepositoUusuario();
             break;
         case 2:
-            menuOpcionDepositoSucursalAdmin();
+            menuOpcionDepositoSucursalUsuario();
          break;
         default:
             printf("Opción no válida. Inténtelo de nuevo.\n");
@@ -841,47 +841,114 @@ int mainMenuUsuario ()
 }
 
 
-/*int  menuOpcionDepositoUsuario()
+
+
+int menuOpcionDepositoUusuario()
 {
     int selected;
     catalogo arreglo[40];
     int validos = 0;
-    int buscar, idDeProdu, pos, buscado;
-
-
-    do
-    {
-        selected = menuDepositoAdmin();
+    do{
+        selected = menuDepositoUusario();
         switch (selected)
         {
         case 1:
-            //barra();
-            muestraArchivo(ARCHIVO_DEPOSITO);
-            system("pause");
-            break;
-             case 3://muestra  depos general
-            validos = pasardeArchivoAArreglo(ARCHIVO_DEPOSITO, arreglo, 40);
-            muestraDeCatalogoTodos(arreglo, validos);
-
-            printf("\nIngrese el id del catalogo del cual el producto producto a activar forma parte: \n");
-            scanf("%d", &buscar);
-            printf("\nIngrese el id del producto a activar: ");
-            scanf("%d",&idDeProdu);
-
-            pos = buscaEnCatalogoPorId(arreglo, validos, buscar);
-            buscado=buscaEnListaId(arreglo,pos,idDeProdu);
-
-            activarProducto(ARCHIVO_DEPOSITO,arreglo,pos,buscado);
-            break;
-
-                 }
-     case 4:
             validos = pasardeArchivoAArreglo(ARCHIVO_DEPOSITO, arreglo, 40);
             muestraDeCatalogo(arreglo, validos);
-
+            system("pause");
             break;
-        }while (selected != 0);
-return 0;
+
+
+        }
+
+    }
+    while (selected != 0);
+
+    //system("pause");
+    // system("cls");
+    return 0;
 }
-*/
+
+int menuDepositoUusario()
+{
+
+    int input;
+    system("cls");
+
+
+    printf("\n\n\n");
+    printf("\t\t __________________________________________________________________________________________________________________________________________________\n");
+    printf("\t\t|                                                                                                                                                  |\n");
+    printf("\t\t|                                                                                                                                                  |\n");
+    printf("\t\t|  #####    #######  ######    #####    #####    ####    ######    #####              ####   #######  ##   ##  #######  ######     ##     ####     |\n");
+    printf("\t\t|  ## ##    ##   #   ##  ##  ##   ##  ##   ##    ##     # ## #   ##   ##            ##  ##   ##   #  ###  ##   ##   #   ##  ##   ####     ##       |\n");
+    printf("\t\t|  ##  ##   ## #     ##  ##  ##   ##  #          ##       ##     ##   ##           ##        ## #    #### ##   ## #     ##  ##  ##  ##    ##       |\n");
+    printf("\t\t|  ##  ##   ####     #####   ##   ##   #####     ##       ##     ##   ##           ##        ####    ## ####   ####     #####   ##  ##    ##       |\n");
+    printf("\t\t|  ##  ##   ## #     ##      ##   ##       ##    ##       ##     ##   ##           ##  ###   ## #    ##  ###   ## #     ## ##   ######    ##   #   |\n");
+    printf("\t\t|  ## ##    ##   #   ##      ##   ##  ##   ##    ##       ##     ##   ##            ##  ##   ##   #  ##   ##   ##   #   ##  ##  ##  ##    ##  ##   |\n");
+    printf("\t\t| #####    #######  ####      #####    #####    ####     ####     #####              #####  #######  ##   ##  #######  #### ##  ##  ##   #######   |\n");
+    printf("\t\t|                                                                                                                                                  |\n");
+    printf("\t\t|                                                                                                                                                  |\n");
+    printf("\t\t|                                                                  1. MUESTRA DEL DEPOSITO                                                         |\n");
+    printf("\t\t|                                                                                                                                                  |\n");
+    printf("\t\t|__________________________________________________________________________________________________________________________________________________|\n");
+
+    input=getch()-'0';
+    system("cls");
+    return input;
+}
+
+
+
+
+
+int menuOpcionDepositoSucursalUsuario()
+{
+    int opcion;
+    do{
+        opcion = menuDepositoSucursalesUusario();
+        switch (opcion)
+        {
+
+        case 1:
+            mostrarDepositoSucursal();
+            break;
+
+        }
+
+    }
+    while (opcion != 0);
+
+    return 0;
+}
+
+
+
+int menuDepositoSucursalesUusario()
+{
+
+    int input;
+    system("cls");
+    printf("\n\n\n");
+    printf("\t\t _____________________________________________________________________________________________________________________________________________________________________________\n");
+    printf("\t\t|                                                                                                                                                                             |\n");
+    printf("\t\t|                                                                                                                                                                             |\n");
+    printf("\t\t|   ###                                         ##       ##                                                                                       ###                         |\n");
+    printf("\t\t|    ##                                                  ##                                                                                        ##                         |\n");
+    printf("\t\t|    ##    ####     ######   ####     #####    ###      #####    ####              #####   ##  ##    ####    ##  ##   ######    #####    ####      ##      ####     #####     |\n");
+    printf("\t\t| #####   ##  ##    ##  ##  ##  ##   ##         ##       ##     ##  ##            ##       ##  ##   ##  ##   ##  ##    ##  ##  ##           ##     ##     ##  ##   ##         |\n");
+    printf("\t\t| ##  ##  ######    ##  ##  ##  ##    #####     ##       ##     ##  ##             #####   ##  ##   ##       ##  ##    ##       #####    #####     ##     ######    #####     |\n");
+    printf("\t\t| ##  ##  ##        #####   ##  ##        ##    ##       ## ##  ##  ##                 ##  ##  ##   ##  ##   ##  ##    ##           ##  ##  ##     ##     ##            ##    |\n");
+    printf("\t\t| ######  #####     ##       ####    ######    ####       ###    ####             ######    ######   ####     ######  ####     ######    #####    ####     #####   ######     |\n");
+    printf("\t\t|                  ####                                                                                                                                                       |\n");
+    printf("\t\t|                                                                                                                                                                             |\n");
+    printf("\t\t|                                            1. MOSTRAR DEPOSITO SUCURSAL                                                                                                     |\n");
+    printf("\t\t|                                            0. SALIR                                                                                                                         |\n");
+    printf("\t\t|_____________________________________________________________________________________________________________________________________________________________________________|\n");
+
+    input=getch()- '0';
+    system("cls");
+    return input;
+}
+
 

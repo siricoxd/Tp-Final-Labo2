@@ -152,12 +152,8 @@ int main()
         }
         else if(modo==2)
         {
+            mainMenuUsuario();
 
-            do
-            {
-
-            }
-            while(elecMenu!=0);
             system("pause");
         }
     }

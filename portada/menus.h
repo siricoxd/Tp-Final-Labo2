@@ -44,7 +44,11 @@ int menuProveedoresAdmin() ;
 
 
 
-
+int mainMenuUsuario ();
+int menuOpcionDepositoUusuario();
+int menuDepositoUusario();
+int menuOpcionDepositoSucursalUsuario();
+int menuDepositoSucursalesUusario();
 
 //MUENU USUARIOS
 //int menuOpcionDepositoUsuario();
