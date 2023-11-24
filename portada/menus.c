@@ -373,15 +373,17 @@ int menuOpcionDepositoSucursalAdmin()
             system("pause");
             break;
         case 3://MUESTRA CATALOGO DE DEPOSITO
-
-
             mostrarTodo(ar,validosProv);
-            printf("\n\ncargue el id de la sucursal:  ");// esta la voy a pedir del menu de sucursales
+            printf("\n\nCargue el id de la sucursal:  ");// esta la voy a pedir del menu de sucursales
             scanf("%d",&idDesuc);
             pos=VerificarSucursal(idDesuc);
             if(pos==1)
             {
-
+                printf("\nMUESTRA DEPOSITO DEL LOCAL:\n");
+                validos=pasardeArchivoAArregloSucursal(ARCHIVO_SUCUSALDep,arregloSucur,40,idDesuc);
+                printf("\nvalidos: %d",validos);
+                muestraDecatalogoSucursal(arregloSucur,validos);
+                system("pause");
             }
             else
             {
@@ -389,11 +391,7 @@ int menuOpcionDepositoSucursalAdmin()
                 system("pause");
                 break;
             }
-            printf("\nMUESTRA DEPOSITO DEL LOCAL:\n");
-            validos=pasardeArchivoAArregloSucursal(ARCHIVO_SUCUSALDep,arregloSucur,40,idDesuc);
-            printf("\nvalidos: %d",validos);
-            muestraDecatalogoSucursal(arregloSucur,validos);
-            system("pause");
+
 
 
 
@@ -529,11 +527,9 @@ int menuOpcionDepositoSucursalAdmin()
             }
             system("pause");
             system("cls");
-
-
             validos = pasardeArchivoAArregloSucursal(ARCHIVO_SUCUSALDep, arregloSucur, 40,idDesuc);
             muestraDecatalogoSucursalTodos(arregloSucur, validos);
-            printf("\ningrese el id del catálogo del producto a ACTIVAR\n");
+            printf("\nIngrese el id del catálogo del producto a ACTIVAR\n");
             scanf("%d", &buscar);
 
             // Verificar si el catálogo existe en el arreglo
@@ -566,7 +562,7 @@ int menuOpcionDepositoSucursalAdmin()
 
             mostrarTodo(ar,validosProv);
             printf("\n\ncargue el id de la sucursal:  ");// esta la voy a pedir del menu de sucursales
-            scanf("%d",&idDesuc);
+            scanf("%d",&idDesuc);// menu mercaderia y depositos
             pos=VerificarSucursal(idDesuc);
             if(pos==1)
             {
@@ -657,16 +653,12 @@ int menuDepositoSucursalesAdmin()
     printf("\t\t| ######  #####     ##       ####    ######    ####       ###    ####             ######    ######   ####     ######  ####     ######    #####    ####     #####   ######     |\n");
     printf("\t\t|                  ####                                                                                                                                                       |\n");
     printf("\t\t|                                                                                                                                                                             |\n");
-    printf("\t\t|                                            1.Sumar stock a deposito                                                                                                         |\n");
-    printf("\t\t|                                            2.DESACTIVAR PRODUCTO DEL DEPOSITO DE SUCURSAL                                                                                   |\n");
-    printf("\t\t|                                            3.ACTIVAR CATALOGO DEL DEPOSITO DE SUCURSAL                                                                                      |\n");
+    printf("\t\t|                                            1.Cargar stock de sucursal.                                                                                                      |\n");
+    printf("\t\t|                                            2.Ver deposito sucursal                                                                                                          |\n");
+    printf("\t\t|                                            3.Ver catalogo sucursal                                                                                                          |\n");
     printf("\t\t|                                            4.ACTIVAR PRODUCTO DEL DEPOSITO DE SUCURSAL                                                                                      |\n");
-    printf("\t\t|                                            5. Salir                                                                                                                         |\n");
-    printf("\t\t|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------                                                                                      |\n");
-
-
-
-
+    printf("\t\t|                                            0. Salir                                                                                                                         |\n");
+    printf("\t\t|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------\n");
 
     scanf("%d",&input);
     system("cls");
