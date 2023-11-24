@@ -423,3 +423,44 @@ void cargarVariasVentas(){
     }
 }
 
+
+
+int buscaEnArhcivoGnancias(char archivoGanancia[],char fecha[])
+{
+    FILE *archi=fopen(archivoGanancia,"rb");
+    ganancias flag;
+    flag.anio=-1;
+    int anio,mes,dia;
+    ganancias aux;
+    int existe=0;
+
+    obtenerFecha(fecha,&anio,&mes,&dia);
+    if(archi!=NULL)
+    {
+        while(fread(&aux,sizeof(ganancias),1,archi)>0 && flag.anio==-1)
+        {
+            if(aux.anio==anio)
+            {
+                flag=aux;
+            }
+        }
+        fclose(archi);
+    }
+    else
+    {
+        return 1;
+    }
+
+    if(flag.anio!=-1)
+    {
+
+            if(flag.arrayGanancias[mes-1][dia-1]>0)
+            {
+                existe=1;
+            }
+    }
+
+
+    return existe;
+}
+
