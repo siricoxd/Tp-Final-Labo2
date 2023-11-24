@@ -50,7 +50,7 @@
 	"portada.h"
 	"listasSucusrsales.h"
 
-1700764674 source:c:\users\kript\desktop\tp-final-labo2\portada\main.c
+1700807978 source:c:\users\kript\desktop\tp-final-labo2\portada\main.c
 	<stdio.h>
 	<stdlib.h>
 	<windows.h>
@@ -62,7 +62,7 @@
 
 1700766925 c:\users\kript\desktop\tp-final-labo2\portada\listassucusrsales.h
 
-1700672900 source:c:\users\kript\desktop\tp-final-labo2\portada\portada.c
+1700807978 source:c:\users\kript\desktop\tp-final-labo2\portada\portada.c
 	"portada.h"
 	<stdio.h>
 	<stdlib.h>
@@ -349,7 +349,7 @@
 	<windows.h>
 	"ventas.h"
 
-1700762539 source:c:\users\kript\desktop\tp-final-labo2\portada\depositosucursal.c
+1700807978 source:c:\users\kript\desktop\tp-final-labo2\portada\depositosucursal.c
 	<stdio.h>
 	<stdlib.h>
 	"depositoSucursal.h"
@@ -363,12 +363,12 @@
 	<conio.h>
 	<string.h>
 
-1700762539 source:c:\users\kript\desktop\tp-final-labo2\portada\listasproductos.c
+1700807978 source:c:\users\kript\desktop\tp-final-labo2\portada\listasproductos.c
 	<stdio.h>
 	<stdlib.h>
 	"listasProductos.h"
 
-1700767241 c:\users\kript\desktop\tp-final-labo2\portada\menus.h
+1700807978 c:\users\kript\desktop\tp-final-labo2\portada\menus.h
 	<stdio.h>
 	<stdlib.h>
 	"listasProductos.h"
@@ -390,7 +390,7 @@
 	<stdlib.h>
 	"ganancias.h"
 
-1700766811 c:\users\kript\desktop\tp-final-labo2\portada\ganancias.h
+1700807978 c:\users\kript\desktop\tp-final-labo2\portada\ganancias.h
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -403,13 +403,13 @@
 	<string.h>
 	<conio.h>
 
-1700766846 source:c:\users\kript\desktop\tp-final-labo2\portada\ganancias.c
+1700807978 source:c:\users\kript\desktop\tp-final-labo2\portada\ganancias.c
 	"ganancias.h"
 
-1700766748 source:c:\users\kript\desktop\tp-final-labo2\portada\menuganancias.c
+1700807978 source:c:\users\kript\desktop\tp-final-labo2\portada\menuganancias.c
 	"menuGanancias.h"
 
-1700767312 source:c:\users\kript\desktop\tp-final-labo2\portada\menus.c
+1700807978 source:c:\users\kript\desktop\tp-final-labo2\portada\menus.c
 	"menus.h"
 
 1700766748 source:c:\users\kript\desktop\tp-final-labo2\portada\ventas.c
@@ -685,6 +685,26 @@
 1700799661 c:\users\win10\desktop\tp-final-labo2\portada\empleados.h
 
 1700799661 source:c:\users\win10\desktop\tp-final-labo2\portada\menuempleados.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"empleados.h"
+	<windows.h>
+	"menuEmpleados.h"
+	"listasSucusrsales.h"
+
+1700807978 source:c:\users\kript\desktop\tp-final-labo2\portada\empleados.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"menuEmpleados.h"
+	"empleados.h"
+
+1700773821 c:\users\kript\desktop\tp-final-labo2\portada\menuempleados.h
+
+1700807978 c:\users\kript\desktop\tp-final-labo2\portada\empleados.h
+
+1700808846 source:c:\users\kript\desktop\tp-final-labo2\portada\menuempleados.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>

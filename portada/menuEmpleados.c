@@ -11,7 +11,6 @@ int menu();
 int menuOpcion();
 int mainEmpleados()
 {
-    system("color C0");
 
 
     menuOpcion();
