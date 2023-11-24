@@ -40,6 +40,6 @@ int menuProveedoresAdmin() ;
 
 
 //MUENU USUARIOS
-int menuOpcionDepositoUsuario();
+//int menuOpcionDepositoUsuario();
 int menuDepositoUsuario();
 #endif // MENUS_H_INCLUDED

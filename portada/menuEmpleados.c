@@ -5,6 +5,7 @@
 #define archivoTrabajadores "archivotrabajadores.bin"
 #include <windows.h>
 #include "menuEmpleados.h"
+#include "listasSucusrsales.h"
 
 int menu();
 int menuOpcion();
@@ -30,7 +31,30 @@ int menuOpcion()
     nodoLista* sucursal;
     nodoLista* provincia;
     nodoArbol* encontrado;
-    lista=pasarDelArchivoToLDA(archivoTrabajadores,lista);
+
+provincia arEmpleados[30];
+
+    int validosProv=0;
+    validosProv=descargarArchivo(ar,validosProv,30);
+
+    mostrarTodo(ar,validosProv);
+            printf("\n\nCargue el id de la sucursal:  ");// esta la voy a pedir del menu de sucursales
+            scanf("%d",&idSucursal);
+            pos=VerificarSucursal(idSucursal);
+            if(pos==1)
+            {
+                 lista=pasarDelArchivoToLDA(archivoTrabajadores,lista,idSucursal);
+
+            }
+            else
+            {
+                printf("No Existe la sucursal\n");
+                system("pause");
+
+            }
+
+
+
 
     do
     {
@@ -45,10 +69,25 @@ int menuOpcion()
             break;
 
         case 2:
-            cargarArchivoEmpleados(archivoTrabajadores);
+            mostrarTodo(ar,validosProv);
+            printf("\n\nCargue el id de la sucursal:  ");// esta la voy a pedir del menu de sucursales
+            scanf("%d",&idSucursal);
+            pos=VerificarSucursal(idSucursal);
+            if(pos==1)
+            {
+                cargarArchivoEmpleados(archivoTrabajadores, idSucursal);
             mostrarArchivo(archivoTrabajadores);
             lista = iniclista();
             lista=pasarDelArchivoToLDA(archivoTrabajadores, lista);
+
+            }
+            else
+            {
+                printf("No Existe la sucursal\n");
+                system("pause");
+                break;
+            }
+
 
             system("pause");
             break;
@@ -140,7 +179,22 @@ int menuOpcion()
             system("pause");
             break;
         case 7:
-            agregarTrabajadores(archivoTrabajadores, lista);
+             mostrarTodo(ar,validosProv);
+            printf("\n\nCargue el id de la sucursal:  ");// esta la voy a pedir del menu de sucursales
+            scanf("%d",&idsucursal);
+            pos=VerificarSucursal(idSucursal);
+            if(pos==1)
+            {
+                agregarTrabajadores(archivoTrabajadores, lista);
+
+            }
+            else
+            {
+                printf("No Existe la sucursal\n");
+                system("pause");
+                break;
+            }
+
 
             system("pause");
             break;

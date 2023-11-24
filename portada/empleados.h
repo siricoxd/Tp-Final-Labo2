@@ -40,11 +40,11 @@ struct nodoLista* siguiente;
 
 //Libreria Archivo:
 
-trabajador cargarUnTrabajador();
-void cargarArchivoEmpleados(char archivoTrabajador[]);
+trabajador cargarUnTrabajador(int idSucursal);
+void cargarArchivoEmpleados(char archivoTrabajador[], int idSucursal);
 void mostrarUnTrabajador(trabajador a);
 void mostrarArchivo(char archivo[]);
-void agregarTrabajadores(char archivo[], nodoLista* lista);
+void agregarTrabajadores(char archivo[], nodoLista* lista, int idSucursal);
 
 
 //Libreria listas:
@@ -57,8 +57,8 @@ void mostrarUnTrabajador2(trabajador a);
 
 //Libreria LDA
 nodoLista* buscarSucursal(nodoLista* lista, int sucursal);
-nodoLista* alta(nodoLista* lista, trabajador dato, int idSucursal, int bajaSucursal, int idProvincia, int bajaProvincia);
-nodoLista* pasarDelArchivoToLDA(char archivo[], nodoLista* lista);
+nodoLista* altaEmpleados(nodoLista* lista, trabajador dato, int idSucursal, int bajaSucursal, int idProvincia, int bajaProvincia);
+nodoLista* pasarDelArchivoToLDA(char archivo[], nodoLista* lista, int idSucursal);
 void mostrarLDA(nodoLista* lista);
 void mostrarBajas(nodoLista* lista);
 void mostrarTrabajadoresDeUnaSucursal(nodoLista* lista,int idSucursal);

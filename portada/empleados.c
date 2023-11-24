@@ -6,7 +6,7 @@
 
 
 //Libreria archivo
-trabajador cargarUnTrabajador()
+trabajador cargarUnTrabajador(int idSucursal)
 {
 
     trabajador a;
@@ -15,9 +15,7 @@ trabajador cargarUnTrabajador()
     fflush(stdin);
     scanf("%i", &a.idProvincia);
 
-    printf("Ingresa el id de la sucursal: \n");
-    fflush(stdin);
-    scanf("%i", &a.idSucursal);
+   a.idSucursal=idSucursal;
 
     printf("Ingresa el nombre y apellido: \n");
     fflush(stdin);
@@ -28,9 +26,16 @@ trabajador cargarUnTrabajador()
     scanf("%i", &a.dni);
 
 
-    printf("Ingresa el rango: \n");
+    printf("Ingresa el rango(1, 2 o 3): \n");
     fflush(stdin);
     scanf("%i", &a.rango);
+
+    while(a.rango!= 1 && a.rango!=2 && a.rango!=3){
+        printf("Ingresa el rango(1, 2 o 3): \n");
+    fflush(stdin);
+    scanf("%i", &a.rango);
+
+    }
 
     printf("Ingresa el sueldo: \n");
     fflush(stdin);
@@ -48,7 +53,7 @@ trabajador cargarUnTrabajador()
 
 }
 
-void cargarArchivoEmpleados(char archivoTrabajador[])
+void cargarArchivoEmpleados(char archivoTrabajador[], int idSucursal)
 {
 
     FILE* archi=fopen(archivoTrabajador, "ab");
@@ -60,7 +65,7 @@ void cargarArchivoEmpleados(char archivoTrabajador[])
     {
         while(control=='s')
         {
-            a=cargarUnTrabajador();
+            a=cargarUnTrabajador(idSucursal);
             fwrite(&a, sizeof(trabajador), 1, archi);
 
             printf("Seguir?");
@@ -406,7 +411,7 @@ nodoLista* altaEmpleados(nodoLista* lista, trabajador dato, int idSucursal,int b
 }
 
 
-nodoLista* pasarDelArchivoToLDA(char archivo[], nodoLista* lista)
+nodoLista* pasarDelArchivoToLDA(char archivo[], nodoLista* lista, int idSucursal)
 {
 
     FILE* archi=fopen(archivo, "rb");
@@ -416,7 +421,10 @@ nodoLista* pasarDelArchivoToLDA(char archivo[], nodoLista* lista)
         trabajador a;
         while(fread(&a, sizeof(trabajador), 1, archi)>0)
         {
-            lista=alta(lista, a, a.idSucursal,a.bajaSucursal,a.idProvincia,a.bajaProvincia);
+            if(a.idSucursal==idSucursal){
+            lista=altaEmpleados(lista, a, a.idSucursal,a.bajaSucursal,a.idProvincia,a.bajaProvincia);
+            }
+
 
         }
 
@@ -587,7 +595,7 @@ void darDeAlta(char archivo[], nodoLista* aux, int dni, int rango)
 ///
 
 
-void agregarTrabajadores(char archivo[], nodoLista* lista)
+void agregarTrabajadores(char archivo[], nodoLista* lista, int idSucursal)
 {
 
     FILE* archi=fopen(archivo, "ab");
@@ -596,8 +604,8 @@ void agregarTrabajadores(char archivo[], nodoLista* lista)
 
     if(archi)
     {
-        a=cargarUnTrabajador();
-        lista=alta(lista,a,a.idSucursal,a.bajaSucursal,a.idProvincia,a.bajaProvincia);
+        a=cargarUnTrabajador(idSucursal);
+        lista=altaEmpleados(lista,a,a.idSucursal,a.bajaSucursal,a.idProvincia,a.bajaProvincia);
         fwrite(&a,sizeof(trabajador),1,archi);
 
         fclose(archi);
