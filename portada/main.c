@@ -21,6 +21,7 @@ int main()
     validosSucursal=descargarArchivo(ar,validosSucursal,30);
     ///----------------
 ///---------------------------------------------------------------///
+    GARDEL();
     do
     {
         modo=0;
@@ -132,9 +133,6 @@ int main()
                                 system("pause");
                             }
                             break;
-                        case 0:
-                            break;
-
                         }
                     }
                     while(menu!=0);
@@ -158,5 +156,6 @@ int main()
         }
     }
     while(login!=0);
+    GARDEL();
     return 0;
 }
