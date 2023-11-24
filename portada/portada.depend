@@ -82,7 +82,7 @@
 
 1700775998 c:\users\usuario\desktop\utn\lab 2\asd\tp-final-labo2\portada\listassucusrsales.h
 
-1700805583 source:c:\users\usuario\desktop\utn\lab 2\asd\tp-final-labo2\portada\main.c
+1700808735 source:c:\users\usuario\desktop\utn\lab 2\asd\tp-final-labo2\portada\main.c
 	<stdio.h>
 	<stdlib.h>
 	<windows.h>
@@ -90,9 +90,9 @@
 	"portada.h"
 	"menus.h"
 
-1700715248 c:\users\usuario\desktop\utn\lab 2\asd\tp-final-labo2\portada\portada.h
+1700806410 c:\users\usuario\desktop\utn\lab 2\asd\tp-final-labo2\portada\portada.h
 
-1700805403 source:c:\users\usuario\desktop\utn\lab 2\asd\tp-final-labo2\portada\portada.c
+1700806423 source:c:\users\usuario\desktop\utn\lab 2\asd\tp-final-labo2\portada\portada.c
 	"portada.h"
 	<stdio.h>
 	<stdlib.h>
@@ -469,7 +469,7 @@
 	<conio.h>
 	<string.h>
 
-1700801359 source:c:\users\usuario\desktop\utn\lab 2\asd\tp-final-labo2\portada\empleados.c
+1700808646 source:c:\users\usuario\desktop\utn\lab 2\asd\tp-final-labo2\portada\empleados.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -478,7 +478,7 @@
 
 1700775998 c:\users\usuario\desktop\utn\lab 2\asd\tp-final-labo2\portada\menuempleados.h
 
-1700801359 c:\users\usuario\desktop\utn\lab 2\asd\tp-final-labo2\portada\empleados.h
+1700808646 c:\users\usuario\desktop\utn\lab 2\asd\tp-final-labo2\portada\empleados.h
 
 1700789427 source:c:\users\usuario\desktop\utn\lab 2\asd\tp-final-labo2\portada\ganancias.c
 	"ganancias.h"
@@ -497,7 +497,7 @@
 	<stdlib.h>
 	"listasProductos.h"
 
-1700800492 c:\users\usuario\desktop\utn\lab 2\asd\tp-final-labo2\portada\menus.h
+1700808646 c:\users\usuario\desktop\utn\lab 2\asd\tp-final-labo2\portada\menus.h
 	<stdio.h>
 	<stdlib.h>
 	"listasProductos.h"
@@ -516,7 +516,7 @@
 	<stdlib.h>
 	"ganancias.h"
 
-1700801359 source:c:\users\usuario\desktop\utn\lab 2\asd\tp-final-labo2\portada\menuempleados.c
+1700808646 source:c:\users\usuario\desktop\utn\lab 2\asd\tp-final-labo2\portada\menuempleados.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -525,10 +525,10 @@
 	"menuEmpleados.h"
 	"listasSucusrsales.h"
 
-1700775998 source:c:\users\usuario\desktop\utn\lab 2\asd\tp-final-labo2\portada\menuganancias.c
+1700806162 source:c:\users\usuario\desktop\utn\lab 2\asd\tp-final-labo2\portada\menuganancias.c
 	"menuGanancias.h"
 
-1700805128 source:c:\users\usuario\desktop\utn\lab 2\asd\tp-final-labo2\portada\menus.c
+1700808646 source:c:\users\usuario\desktop\utn\lab 2\asd\tp-final-labo2\portada\menus.c
 	"menus.h"
 
 1700715248 source:c:\users\usuario\desktop\utn\lab 2\asd\tp-final-labo2\portada\provedores.c

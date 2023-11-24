@@ -9,6 +9,7 @@ typedef struct{
 }stUsuario;
 
 ///Menus
+void GARDEL();
 int menuPrincipal();
 int menuSucursales();
 int menuSucursalesModificar();
