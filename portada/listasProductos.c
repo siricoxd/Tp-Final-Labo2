@@ -143,7 +143,7 @@ void mostrarUnProducto(productos dato)
     printf("\nNOMBRE DE PRODUCTO:  %s", dato.nombreDeProductos);
     printf("\nPRECIO POR KILO: %d ",dato.precioPorKilo);
     printf("\nSTOCK: %d", dato.stock);
-    printf("\nID: %d", dato.id);
+    printf("\nID PRODUCTO: %d", dato.id);
     printf("\n");
 }
 void muestraLISTA(nodoProductos *lista)
@@ -327,8 +327,8 @@ nodoProductos* buscaEnListaId(catalogo arreglo[],int pos,int idDePro)
     nodoProductos *id=NULL,*seg;
     seg=arreglo[pos].lista;
 
-    muestraUnCatalogo(arreglo[pos]);
-    mostrarUnProducto(seg->dato);
+    //muestraUnCatalogo(arreglo[pos]);
+    //mostrarUnProducto(seg->dato);
     while(seg!=NULL&& flag==0)
     {
         if(seg->dato.id==idDePro)

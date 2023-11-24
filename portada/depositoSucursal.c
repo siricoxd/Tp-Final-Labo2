@@ -140,7 +140,7 @@ void mostrarUnProductoSucursal(productosDepos dato)
     printf("\nNOMBRE DE PRODUCTO:  %s", dato.nombreDeproductosDepos);
     printf("\nPRECIO POR KILO: %d ",dato.precioPorKilo);
     printf("\nSTOCK: %d", dato.stock);
-    printf("\nID: %d", dato.id);
+    printf("\nID PRODUCTO: %d", dato.id);
     printf("\n");
 }
 void muestraLISTASucursal(nodoproductosSucursal *lista)
@@ -159,10 +159,10 @@ void muestraUncatalogoSucursal(catalogoSuc A)
 {
     if (A.activoCat == 1)
     {
-        printf("\nACTIVO CAT: %d",A.activoCat);
+        printf("\nACTIVO CATEGORIA: %d",A.activoCat);
         printf("\nID DE SUCURSAL: %d",A.idDeSuc);
         printf("\nNOMBRE DE CATEGORIA: %s", A.nombreDeCategoria);
-        printf("\nID DE CATEGORIA|%d|", A.idCategoria);
+        printf("\nID CATEGORIA|%d|", A.idCategoria);
         printf("\n");
         muestraLISTASucursal(A.lista);
         printf("\n----------------------------------------------");
@@ -235,7 +235,7 @@ void cargaArchivoDepositoSucursal(char archivoDepoSuc[], deposito dato, int idDe
         fwrite(&aux, sizeof(depositoSucursal), 1, archi);
         fclose(archi);
     } else {
-        perror("Error opening archivoDepoSuc");
+        perror("Error al abrir archivoDepoSuc");
     }
 }
 depositoSucursal pasarDeDepositoASucursal(deposito dato,int idDeSuc,int stock)
@@ -270,7 +270,7 @@ void recorrerDeposito(char archivoDepos[], char archivoDepoSuc[], int idDeSuc, i
         }
         fclose(archi);
     } else {
-        perror("Error opening archivoDepos");
+        perror("Error abriendo archivoDepos");
     }
 }
 
@@ -286,18 +286,18 @@ int cargarStockYmodificarlos(char archivo[], nodoProductos *produc) {
         while (fread(&aux, sizeof(deposito), 1, buffer) > 0 && flag == 0) {
             if (produc->dato.id == aux.id) {
                 stockAgregar = cargarstock(aux.stock);
-                printf("stock antes de la modificación: %d\n", aux.stock);
+                printf("Stock antes de la modificacion: %d\n", aux.stock);
                 aux.stock -= stockAgregar;
                 fseek(buffer, -sizeof(deposito), SEEK_CUR);
                 fwrite(&aux, sizeof(deposito), 1, buffer);
-                printf("stock después de la modificación: %d\n", aux.stock);
+                printf("Stock despues de la modificacion: %d\n", aux.stock);
                 flag = 1;
             }
         }
 
         fclose(buffer);
     } else {
-        perror("Error opening archivo");
+        perror("Error al abrir archivo");
     }
 
     return stockAgregar;
@@ -305,11 +305,11 @@ int cargarStockYmodificarlos(char archivo[], nodoProductos *produc) {
 
 int cargarstock(int stock) {
     int pasaje;
-    printf("\ncargue el stock del producto: ");
+    printf("\nIngrese stock que desea ingresar: ");
     scanf("%d", &pasaje);
 
     while (pasaje > stock) {
-        printf("\ncargue el stock del producto (que no supere el stock disponible): ");
+        printf("\nCargue el stock que desea ingresar (que no supere el stock disponible): ");
         scanf("%d", &pasaje);
     }
 
@@ -320,7 +320,7 @@ int modificarStockEnArchivoDepSuc(char archivo[], int idDePro,int idDeSuc, int s
     FILE *archivoDepSuc = fopen(archivo, "rb+");
 
     if (archivoDepSuc == NULL) {
-        perror("Error opening archivo");
+        perror("Error al abrir archivo");
         return 0;  // Return an appropriate value or error code
     }
 
@@ -352,7 +352,7 @@ int buscaPosDelArchivo (char archivo[], int idDePro,int idDeSuc)
      FILE *archivoDepSuc = fopen(archivo, "rb");
 
     if (archivoDepSuc == NULL) {
-        perror("Error opening archivo");
+        perror("Error abriendo archivo");
         return 0;  // Return an appropriate value or error code
     }
 
