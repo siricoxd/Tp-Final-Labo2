@@ -127,6 +127,13 @@ void mostrarUnTrabajador2(trabajador a)
     puts(a.nombreApe);
     printf("DNI: %i\n", a.dni);
     printf("Rango :%i\n",a.rango);
+    if(a.rango==1){
+        printf("Encargado\n");
+    }else if(a.rango==2){
+    printf("Carnicero\n");
+    }else if(a.rango==3){
+    printf("Personal Limpieza\n");
+    }
 
     if(a.horasExtra > 0)
     {
@@ -557,28 +564,6 @@ void darDeAlta(char archivo[], nodoLista* aux, int dni, int rango)
         fclose(archi);
     }
 
-
-
-}
-
-///
-
-
-void agregarTrabajadores(char archivo[], nodoLista* lista, int idSucursal)
-{
-
-    FILE* archi=fopen(archivo, "ab");
-
-    trabajador a;
-
-    if(archi)
-    {
-        a=cargarUnTrabajador(idSucursal);
-        lista=altaEmpleados(lista,a,a.idSucursal,a.bajaSucursal);
-        fwrite(&a,sizeof(trabajador),1,archi);
-
-        fclose(archi);
-    }
 
 
 }
