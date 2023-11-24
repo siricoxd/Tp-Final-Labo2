@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="portada" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/portada" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/portada" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+		</Compiler>
+		<Unit filename="depositoSucursal.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="depositoSucursal.h" />
+		<Unit filename="empleados.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="empleados.h" />
+		<Unit filename="ganancias.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="ganancias.h" />
+		<Unit filename="listasProductos.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="listasProductos.h" />
+		<Unit filename="listasSucursales.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="listasSucusrsales.h" />
+		<Unit filename="main.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="menuEmpleados.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="menuEmpleados.h" />
+		<Unit filename="menuGanancias.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="menuGanancias.h" />
+		<Unit filename="menus.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="menus.h" />
+		<Unit filename="portada.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="portada.h" />
+		<Unit filename="provedores.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="provedores.h" />
+		<Unit filename="ventas.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="ventas.h" />
+		<Extensions>
+			<lib_finder disable_auto="1" />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
