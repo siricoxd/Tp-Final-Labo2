@@ -79,11 +79,11 @@ nodoLocales*buscarNodo(nodoLocales*lista,int id)
 }
 nodoLocales* agregarAlPpioLocales(nodoLocales*lista,nodoLocales*nuevo)
 {
-    if(lista==NULL) //si la lista esta vacia
+    if(lista==NULL)
     {
         lista=nuevo;
     }
-    else// si la lista tiene algo
+    else
     {
         nuevo->siguiente=lista;
         lista=nuevo;
@@ -329,14 +329,14 @@ registroArchivoLocales cargarRegistroLocales()
     FILE* buffer2 = fopen(archivoProvincia,"rb");
     if(buffer2)
     {
-        aux.idLocal=cantidadDeRegistros()+1;
+        aux.idLocal=cantidadDeRegistrosDeposGeneral()+1;
 
         fclose(buffer2);
     }
     aux.activoLocal=1;
     return aux;
 }
-int cantidadDeRegistros()
+int cantidadDeRegistrosDeposGeneral()
 {
     int cantidad;
     FILE* buffer = fopen(archivoProvincia,"rb");
@@ -353,21 +353,20 @@ int cargarArchivo(int dim)
     registroArchivoLocales aux;
     int i=0;
     char salir='s';
-    FILE* buffer= fopen(archivoProvincia,"ab");
-    if(buffer)
+    while(salir=='s' && i<dim)
     {
-        while(salir=='s' && i<dim)
-        {
+        FILE* buffer= fopen(archivoProvincia,"ab");
+        if(buffer){
             aux=cargarRegistroLocales();
             fwrite(&aux,sizeof(registroArchivoLocales),1,buffer);
-            printf("\nDesea seguir?: ");
-            fflush(stdin);
-            scanf("%c",&salir);
-            printf("\n");
-            i++;
         }
-
         fclose(buffer);
+
+        printf("\nDesea seguir?: ");
+        fflush(stdin);
+        scanf("%c",&salir);
+        printf("\n");
+        i++;
     }
     return i;
 }
@@ -417,18 +416,12 @@ void recorrerYMostrarTodos(provincia ar[],int validos,int pos)
     printf("Locales existentes: \n\n");
     while(ar[pos].listaDelocales!=NULL)
     {
-
-
-
         printf("Ciudad del local: %s\n",seg->dato.localidad);
         printf("ID del local: %d\n",seg->dato.idDeLocal);
         printf("Direccion del local: %s\n",seg->dato.direccion);
         printf("Estado de actividad: %d\n",seg->dato.activo);
         printf("\n");
         seg=seg->siguiente;
-
-
-
     }
 }
 void recorrerYMostrarDesactivados(provincia ar[],int validos,int pos)
@@ -436,23 +429,18 @@ void recorrerYMostrarDesactivados(provincia ar[],int validos,int pos)
     nodoLocales*seg=ar[pos].listaDelocales;
     if(ar[pos].activo==0)
     {
-
         printf("\nProvincia: %s:\n",ar[pos].NombreProvincia);
         printf("Id de la provincia: %d\n",ar[pos].idProvincia);
         printf("Locales existentes: \n\n");
         while(seg!=NULL)
         {
-
-
             printf("Ciudad del local: %s\n",seg->dato.localidad);
             printf("ID del local: %d\n",seg->dato.idDeLocal);
             printf("Direccion del local: %s\n",seg->dato.direccion);
             printf("Estado de actividad: %d\n",seg->dato.activo);
             printf("\n");
             seg=seg->siguiente;
-
         }
-
     }
 }
 void activarLocal(provincia ar[],int id,int pos)
@@ -463,7 +451,8 @@ void activarLocal(provincia ar[],int id,int pos)
         registroArchivoLocales aux;
         nodoLocales*seg=ar[pos].listaDelocales;
         int flag=0;
-         while( (flag==0) && (fread(&aux,sizeof(registroArchivoLocales),1,buffer)) ){
+        while( (flag==0) && (fread(&aux,sizeof(registroArchivoLocales),1,buffer)) )
+        {
             if( (ar[pos].idProvincia==aux.idProvincia) && (aux.idLocal==id) )
             {
                 while(flag==0 && seg!=NULL)
@@ -494,7 +483,8 @@ void descativarLocal(provincia ar[],int id,int pos)
         registroArchivoLocales aux;
         nodoLocales*seg=ar[pos].listaDelocales;
         int flag=0;
-        while( (flag==0) && (fread(&aux,sizeof(registroArchivoLocales),1,buffer)) ){
+        while( (flag==0) && (fread(&aux,sizeof(registroArchivoLocales),1,buffer)) )
+        {
             if( (ar[pos].idProvincia==aux.idProvincia) && (aux.idLocal==id) )
             {
                 while(flag==0 && seg!=NULL)
@@ -517,9 +507,6 @@ void descativarLocal(provincia ar[],int id,int pos)
         fclose(buffer);
     }
 }
-
-
-
 void mostrarTodo(provincia ar[],int validos)
 {
     int i=0;
@@ -593,4 +580,20 @@ void provincias()
     printf(" |Salta-------------------9|\n");
     printf(" |Santa Fe----------------10|\n");
     printf(" |Tucuman-----------------11|\n\n");
+}
+int VerificarSucursal(int id)
+{
+    int flag=0;
+    registroArchivoLocales aux;
+    FILE*buffer=fopen(archivoProvincia,"rb");
+    if(buffer)
+    {
+        while((flag==0)&&(fread(&aux,sizeof(registroArchivoLocales),1,buffer)))
+        {
+            if(id==aux.idLocal)
+                flag=1;
+        }
+        fclose(buffer);
+    }
+    return flag;
 }
