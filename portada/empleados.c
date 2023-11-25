@@ -12,7 +12,7 @@ trabajador cargarUnTrabajador(int idSucursal)
     trabajador a;
 
 
-   a.idSucursal=idSucursal;
+    a.idSucursal=idSucursal;
 
     printf("Ingresa el nombre y apellido: \n");
     fflush(stdin);
@@ -27,10 +27,11 @@ trabajador cargarUnTrabajador(int idSucursal)
     fflush(stdin);
     scanf("%i", &a.rango);
 
-    while(a.rango!= 1 && a.rango!=2 && a.rango!=3){
+    while(a.rango!= 1 && a.rango!=2 && a.rango!=3)
+    {
         printf("Ingresa el rango(1, 2 o 3): \n");
-    fflush(stdin);
-    scanf("%i", &a.rango);
+        fflush(stdin);
+        scanf("%i", &a.rango);
 
     }
 
@@ -127,12 +128,17 @@ void mostrarUnTrabajador2(trabajador a)
     puts(a.nombreApe);
     printf("DNI: %i\n", a.dni);
     printf("Rango :%i\n",a.rango);
-    if(a.rango==1){
+    if(a.rango==1)
+    {
         printf("Encargado\n");
-    }else if(a.rango==2){
-    printf("Carnicero\n");
-    }else if(a.rango==3){
-    printf("Personal Limpieza\n");
+    }
+    else if(a.rango==2)
+    {
+        printf("Carnicero\n");
+    }
+    else if(a.rango==3)
+    {
+        printf("Personal Limpieza\n");
     }
 
     if(a.horasExtra > 0)
@@ -417,15 +423,16 @@ nodoLista* pasarDelArchivoToLDA(char archivo[], nodoLista* lista, int idSucursal
 
 void mostrarLDA(nodoLista* lista)
 {
-printf("\n\n\n\n");
+    printf("\n\n\n\n");
     printf("\t\t\t\t\tLISTA DE TRABAJADORES: \n\n\n\n");
     while(lista != NULL)
     {
-        if(lista->bajaSucursal==1){
-             printf("\n\n\n\n\n\n");
-      printf("\t\t\t\t\t | Id sucursal: %i    |\n", lista->idSucursal);
-      printf("\t\t\t\n-----------------------------------------------------------------------------------------------------------------------\n");
-        inorder(lista->arbol);
+        if(lista->bajaSucursal==1)
+        {
+            printf("\n\n\n\n\n\n");
+            printf("\t\t\t\t\t | Id sucursal: %i    |\n", lista->idSucursal);
+            printf("\t\t\t\n-----------------------------------------------------------------------------------------------------------------------\n");
+            inorder(lista->arbol);
         }
 
 
@@ -966,5 +973,91 @@ int bonoXtrabajadorArbol(trabajador a)
     return bono;
 }
 
+//dar de baja solo con dni
+nodoArbol *buscarPorDniBaja(nodoArbol *arbol, int dni)
+{
+    nodoArbol *aux=NULL;
+    if(arbol!=NULL)
+    {
+        if(arbol->dato.dni==dni)
+        {
+            aux=arbol;
+            printf("%i", arbol->dato.dni);
+        }
+        else
+        {
+            aux=buscarPorDniBaja(arbol->izq,dni);
+            if(!aux)
+            {
+                aux=buscarPorDniBaja(arbol->der,dni);
+            }
+        }
 
+    }
+    return aux;
+}
+
+nodoArbol* buscarPorDniPrincipal(nodoLista* lista, int dni)
+{
+    int flag = 0;
+    nodoArbol* aux = NULL;
+
+    while (lista != NULL && flag == 0)
+    {
+        aux = buscarPorDniBaja(lista->arbol, dni);
+
+        if (aux != NULL)
+        {
+            flag = 1;
+        }
+        else
+        {
+            lista = lista->siguiente;
+        }
+    }
+
+    return aux;
+}
+
+void darDeBajaNuevo(char archivo[], nodoArbol* aux, int dni)
+{
+
+    int flag=0;
+
+    FILE* archi=fopen(archivo, "r+b");
+
+    if(archi)
+    {
+
+        trabajador a;
+
+
+        while(flag==0 && fread(&a, sizeof(trabajador),1,archi)>0)
+        {
+
+                    if(a.dni==dni)
+                    {
+                        aux->dato.baja=0;
+                        a.baja=0;
+                        fseek(archi, (-1)*sizeof(trabajador), SEEK_CUR); // Retrocede al inicio del registro
+                        fwrite(&a, sizeof(trabajador), 1, archi); // Escribe el registro modificado
+
+
+                        flag=1;
+
+                    }
+
+
+
+
+
+
+        }
+
+        fclose(archi);
+    }
+
+
+
+}
 

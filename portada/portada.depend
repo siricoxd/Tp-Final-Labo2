@@ -580,7 +580,7 @@
 1700767563 source:c:\users\54223\desktop\proyecto\tp final mio\portada\menuganancias.c
 	"menuGanancias.h"
 
-1700791588 source:c:\users\win10\desktop\tp-final-labo2\portada\depositosucursal.c
+1700800898 source:c:\users\win10\desktop\tp-final-labo2\portada\depositosucursal.c
 	<stdio.h>
 	<stdlib.h>
 	"depositoSucursal.h"
@@ -606,7 +606,7 @@
 1700766800 c:\users\win10\desktop\tp-final-labo2\portada\ventas.h
 	"depositoSucursal.h"
 
-1700791588 source:c:\users\win10\desktop\tp-final-labo2\portada\listasproductos.c
+1700800898 source:c:\users\win10\desktop\tp-final-labo2\portada\listasproductos.c
 	<stdio.h>
 	<stdlib.h>
 	"listasProductos.h"
@@ -619,7 +619,7 @@
 
 1700768824 c:\users\win10\desktop\tp-final-labo2\portada\listassucusrsales.h
 
-1700791588 source:c:\users\win10\desktop\tp-final-labo2\portada\main.c
+1700868663 source:c:\users\win10\desktop\tp-final-labo2\portada\main.c
 	<stdio.h>
 	<stdlib.h>
 	<windows.h>
@@ -627,9 +627,9 @@
 	"portada.h"
 	"menus.h"
 
-1700766484 c:\users\win10\desktop\tp-final-labo2\portada\portada.h
+1700868663 c:\users\win10\desktop\tp-final-labo2\portada\portada.h
 
-1700797016 c:\users\win10\desktop\tp-final-labo2\portada\menus.h
+1700807800 c:\users\win10\desktop\tp-final-labo2\portada\menus.h
 	<stdio.h>
 	<stdlib.h>
 	"listasProductos.h"
@@ -648,13 +648,13 @@
 	<stdlib.h>
 	"ganancias.h"
 
-1700768821 source:c:\users\win10\desktop\tp-final-labo2\portada\menuganancias.c
+1700807800 source:c:\users\win10\desktop\tp-final-labo2\portada\menuganancias.c
 	"menuGanancias.h"
 
-1700798453 source:c:\users\win10\desktop\tp-final-labo2\portada\menus.c
+1700807800 source:c:\users\win10\desktop\tp-final-labo2\portada\menus.c
 	"menus.h"
 
-1700791588 source:c:\users\win10\desktop\tp-final-labo2\portada\portada.c
+1700868663 source:c:\users\win10\desktop\tp-final-labo2\portada\portada.c
 	"portada.h"
 	<stdio.h>
 	<stdlib.h>
@@ -673,7 +673,7 @@
 	<windows.h>
 	"ventas.h"
 
-1700799668 source:c:\users\win10\desktop\tp-final-labo2\portada\empleados.c
+1700878651 source:c:\users\win10\desktop\tp-final-labo2\portada\empleados.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -682,9 +682,9 @@
 
 1700769778 c:\users\win10\desktop\tp-final-labo2\portada\menuempleados.h
 
-1700799661 c:\users\win10\desktop\tp-final-labo2\portada\empleados.h
+1700878426 c:\users\win10\desktop\tp-final-labo2\portada\empleados.h
 
-1700799661 source:c:\users\win10\desktop\tp-final-labo2\portada\menuempleados.c
+1700878440 source:c:\users\win10\desktop\tp-final-labo2\portada\menuempleados.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>

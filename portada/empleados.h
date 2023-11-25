@@ -95,6 +95,12 @@ nodoArbol * buscarPorRango(nodoArbol * arbol, int rango);
 
 //
 
+nodoArbol* buscarPorDniBaja(nodoArbol *arbol, int dni);
+nodoArbol* buscarPorDniPrincipal(nodoLista* lista, int dni);
+
+void darDeBajaNuevo(char archivo[], nodoArbol* aux, int dni);
+
+//void darDeBajaNuevo(char archivo[], nodoLista* lista, int dni);
 
 
 #endif // PROYECTO_H_INCLUDED

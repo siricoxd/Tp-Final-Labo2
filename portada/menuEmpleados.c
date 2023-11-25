@@ -82,52 +82,26 @@ int menuOpcion()
             break;
         case 4:
             mostrarLDA(lista);
-            printf("Ingrese el ID de la sucursal del trabajador para dar de baja\n");
-            fflush(stdin);
-            scanf("%i", &idSucursal);
-
-            sucursal=buscarSucursal(lista,idSucursal);
-
-            if(sucursal==NULL)
-            {
-                printf("No se encontro la sucursal\n");
-            }
-            else
-            {
-                printf("Ingrese el rango del trabajador para dar de baja\n");
-                fflush(stdin);
-                scanf("%i", &rango);
-
-                encontrado=buscarPorRango(sucursal->arbol, rango);
-                if(encontrado==NULL)
-                {
-                    printf("No se encontro el rango\n");
-                }
-                else
-                {
-                    printf("Ingrese el dni del trabajador al que quiere dar de baja\n");
-                    fflush(stdin);
-                    scanf("%i", &dni);
-
-                    encontrado=buscarPorDni(sucursal->arbol,dni,rango);
-                    if(encontrado==NULL)
-                    {
-                        printf("No se encontro el dni\n");
-                    }
-                    else
-                    {
-                        darDeBaja(archivoTrabajadores,sucursal,dni,rango);
-                    }
+    printf("Ingrese el DNI del trabajador para dar de baja: ");
+    fflush(stdin);
+    scanf("%i", &dni);
 
 
+    encontrado = buscarPorDniPrincipal(lista, dni);
 
-                }
-            }
+    if (encontrado != NULL)
+    {
+        printf("%i", encontrado->dato.dni);
 
+        darDeBajaNuevo(archivoTrabajadores, encontrado, dni);
+    }
+    else
+    {
+        printf("No se encontró un trabajador con el DNI proporcionado.\n");
+    }
 
-            system("pause");
-
-            break;
+    system("pause");
+    break;
         case 5 :
             mostrarBajas(lista);
 
