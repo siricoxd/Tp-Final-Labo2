@@ -356,7 +356,8 @@ int cargarArchivo(int dim)
     while(salir=='s' && i<dim)
     {
         FILE* buffer= fopen(archivoProvincia,"ab");
-        if(buffer){
+        if(buffer)
+        {
             aux=cargarRegistroLocales();
             fwrite(&aux,sizeof(registroArchivoLocales),1,buffer);
         }
@@ -594,6 +595,96 @@ int VerificarSucursal(int id)
                 flag=1;
         }
         fclose(buffer);
+    }
+    return flag;
+}
+void modificarCiudad(provincia ar[],int id,int pos,char dire[],char ciudad[])
+{
+
+    FILE*buffer=fopen(archivoProvincia,"r+b");
+    if(buffer)
+    {
+        registroArchivoLocales aux;
+        nodoLocales*seg=ar[pos].listaDelocales;
+        int flag=0;
+        while( (flag==0) && (fread(&aux,sizeof(registroArchivoLocales),1,buffer)) )
+        {
+            if( (ar[pos].idProvincia==aux.idProvincia) && (aux.idLocal==id) )
+            {
+                while(flag==0 && seg!=NULL)
+                {
+                    if(seg->dato.idDeLocal==id)
+                    {
+
+                        strcpy(seg->dato.localidad,ciudad);
+                        strcpy(aux.localidad,ciudad);
+                        strcpy(seg->dato.direccion,dire);
+                        strcpy(aux.direccion,dire);
+
+
+
+
+                        fseek(buffer,(-1)*sizeof(registroArchivoLocales),SEEK_CUR);
+                        fwrite(&aux, sizeof(registroArchivoLocales),1, buffer);
+
+                        flag=1;
+                    }
+                    seg=seg->siguiente;
+                }
+            }
+        }
+        fclose(buffer);
+    }
+}
+void modificarDireccion(provincia ar[],int id,int pos,char dire[])
+{
+    FILE*buffer=fopen(archivoProvincia,"r+b");
+    if(buffer)
+    {
+        registroArchivoLocales aux;
+        nodoLocales*seg=ar[pos].listaDelocales;
+        int flag=0;
+        while( (flag==0) && (fread(&aux,sizeof(registroArchivoLocales),1,buffer)) )
+        {
+            if( (ar[pos].idProvincia==aux.idProvincia) && (aux.idLocal==id) )
+            {
+                while(flag==0 && seg!=NULL)
+                {
+                    if(seg->dato.idDeLocal==id)
+                    {
+
+
+
+
+                            strcpy(seg->dato.direccion,dire);
+                            strcpy(aux.direccion,dire);
+
+
+
+                        fseek(buffer,(-1)*sizeof(registroArchivoLocales),SEEK_CUR);
+                        fwrite(&aux, sizeof(registroArchivoLocales),1, buffer);
+
+                        flag=1;
+                    }
+
+                    seg=seg->siguiente;
+                }
+            }
+        }
+        fclose(buffer);
+    }
+}
+int buscarEnLista(nodoLocales*lista,char nombre[])
+{
+    nodoLocales*seg=lista;
+    int flag=0;
+    while(seg!=NULL)
+    {
+        if(strcmpi(seg->dato.direccion,nombre)==0)
+        {
+            flag=1;
+        }
+        seg=seg->siguiente;
     }
     return flag;
 }

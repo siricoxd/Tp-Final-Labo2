@@ -1,6 +1,6 @@
 #ifndef PORTADA_H_INCLUDED
 #define PORTADA_H_INCLUDED
-
+#include"../listaSucursales/listasSucusrsales.h"
 typedef struct{
     char usuario[30];
     char contrasenia[30];
@@ -9,10 +9,8 @@ typedef struct{
 }stUsuario;
 
 ///Menus
-void GARDEL();
 int menuPrincipal();
 int menuSucursales();
-int menuSucursalesAltaBaja();
 int menuSucursalesModificar();
 int menuSucursalesInfo();
 int menuSucursalesMostrar();

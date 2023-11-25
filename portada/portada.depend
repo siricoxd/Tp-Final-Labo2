@@ -50,7 +50,7 @@
 	"portada.h"
 	"listasSucusrsales.h"
 
-1700807978 source:c:\users\kript\desktop\tp-final-labo2\portada\main.c
+1700941643 source:c:\users\kript\desktop\tp-final-labo2\portada\main.c
 	<stdio.h>
 	<stdlib.h>
 	<windows.h>
@@ -58,17 +58,17 @@
 	"portada.h"
 	"menus.h"
 
-1700762539 c:\users\kript\desktop\tp-final-labo2\portada\portada.h
+1700938409 c:\users\kript\desktop\tp-final-labo2\portada\portada.h
 
-1700766925 c:\users\kript\desktop\tp-final-labo2\portada\listassucusrsales.h
+1700941375 c:\users\kript\desktop\tp-final-labo2\portada\listassucusrsales.h
 
-1700807978 source:c:\users\kript\desktop\tp-final-labo2\portada\portada.c
+1700941708 source:c:\users\kript\desktop\tp-final-labo2\portada\portada.c
 	"portada.h"
 	<stdio.h>
 	<stdlib.h>
 	<windows.h>
 
-1700766936 source:c:\users\kript\desktop\tp-final-labo2\portada\listassucursales.c
+1700941381 source:c:\users\kript\desktop\tp-final-labo2\portada\listassucursales.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -693,7 +693,7 @@
 	"menuEmpleados.h"
 	"listasSucusrsales.h"
 
-1700807978 source:c:\users\kript\desktop\tp-final-labo2\portada\empleados.c
+1700936146 source:c:\users\kript\desktop\tp-final-labo2\portada\empleados.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -702,9 +702,9 @@
 
 1700773821 c:\users\kript\desktop\tp-final-labo2\portada\menuempleados.h
 
-1700807978 c:\users\kript\desktop\tp-final-labo2\portada\empleados.h
+1700936146 c:\users\kript\desktop\tp-final-labo2\portada\empleados.h
 
-1700808846 source:c:\users\kript\desktop\tp-final-labo2\portada\menuempleados.c
+1700936146 source:c:\users\kript\desktop\tp-final-labo2\portada\menuempleados.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -712,4 +712,117 @@
 	<windows.h>
 	"menuEmpleados.h"
 	"listasSucusrsales.h"
+
+1700807978 source:c:\users\kript\desktop\portada\depositosucursal.c
+	<stdio.h>
+	<stdlib.h>
+	"depositoSucursal.h"
+	<string.h>
+
+1700766748 c:\users\kript\desktop\portada\depositosucursal.h
+	"listasProductos.h"
+
+1700766748 c:\users\kript\desktop\portada\listasproductos.h
+	<time.h>
+	<conio.h>
+	<string.h>
+
+1700936146 source:c:\users\kript\desktop\portada\empleados.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"menuEmpleados.h"
+	"empleados.h"
+
+1700773821 c:\users\kript\desktop\portada\menuempleados.h
+
+1700936146 c:\users\kript\desktop\portada\empleados.h
+
+1700807978 source:c:\users\kript\desktop\portada\ganancias.c
+	"ganancias.h"
+
+1700807978 c:\users\kript\desktop\portada\ganancias.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"ventas.h"
+
+1700766748 c:\users\kript\desktop\portada\ventas.h
+	"depositoSucursal.h"
+
+1700807978 source:c:\users\kript\desktop\portada\listasproductos.c
+	<stdio.h>
+	<stdlib.h>
+	"listasProductos.h"
+
+1700941381 source:c:\users\kript\desktop\portada\listassucursales.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"listasSucusrsales.h"
+
+1700941375 c:\users\kript\desktop\portada\listassucusrsales.h
+
+1700941643 source:c:\users\kript\desktop\portada\main.c
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+	"listasSucusrsales.h"
+	"portada.h"
+	"menus.h"
+
+1700938409 c:\users\kript\desktop\portada\portada.h
+
+1700807978 c:\users\kript\desktop\portada\menus.h
+	<stdio.h>
+	<stdlib.h>
+	"listasProductos.h"
+	"provedores.h"
+	<windows.h>
+	"depositoSucursal.h"
+	"ventas.h"
+	"menuGanancias.h"
+	"listasSucusrsales.h"
+
+1700766748 c:\users\kript\desktop\portada\provedores.h
+	"listasProductos.h"
+
+1700766748 c:\users\kript\desktop\portada\menuganancias.h
+	<stdio.h>
+	<stdlib.h>
+	"ganancias.h"
+
+1700936146 source:c:\users\kript\desktop\portada\menuempleados.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"empleados.h"
+	<windows.h>
+	"menuEmpleados.h"
+	"listasSucusrsales.h"
+
+1700807978 source:c:\users\kript\desktop\portada\menuganancias.c
+	"menuGanancias.h"
+
+1700807978 source:c:\users\kript\desktop\portada\menus.c
+	"menus.h"
+
+1700941708 source:c:\users\kript\desktop\portada\portada.c
+	"portada.h"
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+
+1700762539 source:c:\users\kript\desktop\portada\provedores.c
+	<stdio.h>
+	<stdlib.h>
+	"provedores.h"
+	<string.h>
+	<conio.h>
+
+1700766748 source:c:\users\kript\desktop\portada\ventas.c
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+	"ventas.h"
 

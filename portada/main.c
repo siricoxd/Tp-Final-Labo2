@@ -12,10 +12,11 @@ int main()
     system("color 0a");
     ///----------------
     ///Variables del menu
-    int eleccion=0,menu=0,login=0,modo=0,elecMenu=0;
+    int menu=0,login=0,modo=0,elecMenu=0;
     ///----------------
     ///sucursales
     provincia ar[30];
+    char dire[30],ciudad[30];
     int id=1,pos=0;
     int validosSucursal=0;
     validosSucursal=descargarArchivo(ar,validosSucursal,30);
@@ -56,7 +57,7 @@ int main()
                             system("pause");
                             break;
                         case 2://baja logica
-                            id= menuSucursalesModificar();
+                            id=menuSucursalesAltaBaja();
                             if(id==1)//Desactivar
                             {
                                 printf("Ingrese el id del provincia que desee desactivar: ");
@@ -95,9 +96,83 @@ int main()
                                     printf("La provincia no se encontro\n");
                                 }
                             }
+
+
                             system("pause");
                             break;
-                        case 3://Info
+                        case 3://modificacion
+                            id= menuSucursalesModificar();
+                            if(id==1)
+                            {
+                                printf("Ingrese el id del provincia en la cual esta la sucursal a modificar : ");
+                                scanf("%d",&id);
+                                pos=buscarPosProvincia(ar,id,validosSucursal);
+                                nodoLocales*seg=ar[pos].listaDelocales;
+                                if(pos!=-1)
+
+                                {
+                                    mostrarUnaProvincia(ar[pos]);//Muestra la provincia y sus sucursales
+                                    printf("Ingrese el id del local que desee cambiar la direccion: ");
+                                    scanf("%d",&id);
+                                    printf("Ingrese la nueva direccion: ");
+                                    fflush(stdin);
+                                    gets(dire);
+                                    if(0==buscarEnLista(seg,dire))
+                                    {
+                                        modificarDireccion(ar,id,pos,dire);
+                                        mostrarUnaProvincia(ar[pos]);//Muestra la provincia y sus sucursales despues del cambio
+                                    }
+                                    else
+                                    {
+                                        printf("Ya existe un local es esa direccion\n");
+                                    }
+                                    system("pasue");
+
+                                }
+                                else
+                                {
+                                    printf("La provincia no se encontro\n");
+                                }
+                            }
+
+                            if(id==2)
+                            {
+                                printf("Ingrese el id del provincia en la cual desea hacer una modificacion: ");
+                                scanf("%d",&id);
+                                pos=buscarPosProvincia(ar,id,validosSucursal);
+                                nodoLocales*seg=ar[pos].listaDelocales;
+                                if(pos!=-1)
+                                {
+                                        mostrarUnaProvincia(ar[pos]);//Muestra la provincia y sus sucursales
+                                        printf("Ingrese el id del local que desee cambiar la direccion: ");
+                                        scanf("%d",&id);
+                                        printf("Ingrese la nueva Ciudad: ");
+                                        fflush(stdin);
+                                        gets(ciudad);
+                                        printf("Ingrese la nueva direccion: ");
+                                        fflush(stdin);
+                                        gets(dire);
+                                    if(0==buscarEnLista(seg,dire))
+                                    {
+                                        modificarCiudad(ar,id,pos,dire,ciudad);
+                                        mostrarUnaProvincia(ar[pos]);//Muestra la provincia y sus sucursales despues del cambio
+                                    }
+                                    else
+                                    {
+                                        printf("Ya existe un local en esa direcion\n");
+
+                                    }
+                                    system("pasue");
+
+                                }
+                                else
+                                {
+                                    printf("La provincia no se encontro\n");
+                                }
+                            }
+                            system("pasue");
+                            break;
+                        case 4://Info
                             id=menuSucursalesInfo();
                             if(id==1)
                             {
@@ -110,7 +185,7 @@ int main()
                             }
                             system("pause");
                             break;
-                        case 4://Funciones para mostrar
+                        case 5://Funciones para mostrar
                             id= menuSucursalesMostrar();
                             if(id==1)
                             {
@@ -138,10 +213,10 @@ int main()
                     while(menu!=0);
                     break;
                 case 2:
-                        mainEmpleados();
+                    mainEmpleados();
                     break;
                 case 3:
-                        mainMenuAdmin();
+                    mainMenuAdmin();
                     break;
                 }
 

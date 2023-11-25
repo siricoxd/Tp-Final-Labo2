@@ -90,4 +90,8 @@ int alta(provincia ar[],registroArchivoLocales dato,int validos);
 int descargarArchivo(provincia ar[],int validos,int dim);
 int cargarArchivo(int dim);
 int cantidadDeRegistros();
+//modificar
+void modificarDireccion(provincia ar[],int id,int pos,char dire[]);
+void modificarCiudad(provincia ar[],int id,int pos,char dire[],char ciuadad[]);
+int buscarEnLista(nodoLocales*lista,char nombre[]);
 #endif // LISTASSUCUSRSALES_H_INCLUDED

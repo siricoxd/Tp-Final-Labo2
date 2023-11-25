@@ -35,10 +35,12 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="depositoSucursal.h" />
+		<Unit filename="depsucursal.bin" />
 		<Unit filename="empleados.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="empleados.h" />
+		<Unit filename="ganancias.bin" />
 		<Unit filename="ganancias.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -69,11 +71,15 @@
 		<Unit filename="portada.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="portada.cbp" />
+		<Unit filename="portada.depend" />
 		<Unit filename="portada.h" />
+		<Unit filename="portada.layout" />
 		<Unit filename="provedores.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="provedores.h" />
+		<Unit filename="ventas.bin" />
 		<Unit filename="ventas.c">
 			<Option compilerVar="CC" />
 		</Unit>
