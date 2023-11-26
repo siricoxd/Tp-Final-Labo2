@@ -343,8 +343,7 @@ void desactivarCatalogo(char archivo[],catalogo ar[], int pos,int idDeSuc)
 
 
         while (fread(&aux, sizeof(deposito), 1, buffer) > 0 && flag == 0)
-{
-    printf("ar[pos].idCategoria: %d, aux.idCategoria: %d, aux.idDeSucursal: %d, idDeSuc: %d\n", ar[pos].idCategoria, aux.idCategoria, aux.idDeSucursal, idDeSuc);
+
 
     if (ar[pos].idCategoria == aux.idCategoria && aux.idDeSucursal == idDeSuc)
     {
