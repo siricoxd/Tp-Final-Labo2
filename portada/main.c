@@ -4,6 +4,7 @@
 #include"listasSucusrsales.h"
 #include "portada.h"
 #include "menus.h"
+#define archivoTrabajadores "archivotrabajadores.bin"
 
 int main()
 {
@@ -69,6 +70,7 @@ int main()
                                     printf("Ingrese el id del local que desee desactivar: ");
                                     scanf("%d",&id);
                                     descativarLocal(ar,id,pos);
+                                    darDeBajaUnaSucursal(archivoTrabajadores,id);
                                     system("cls");
                                     mostrarUnaProvincia(ar[pos]);//Muestra la provincia y sus sucursales despues del cambio
                                 }
@@ -89,6 +91,7 @@ int main()
                                     printf("Ingrese el id del local que desee activar: ");
                                     scanf("%d",&id);
                                     activarLocal(ar,id,pos);
+                                    darDeAltaUnaSucursal(archivoTrabajadores, id);
                                     mostrarUnaProvincia(ar[pos]);//Muestra la provincia y sus sucursales despues del cambio
                                 }
                                 else

@@ -69,12 +69,14 @@ void darDeAlta(char archivo[], nodoLista* aux, int dni, int rango);
 void cambiarSueldo(char archivo[], nodoArbol* aux, int dni);
 
 //dar de baja una sucursal
-void inorderBajaSucursal(nodoArbol * arbol);
-void darDeBajaUnaSucursal(char archivo[], nodoLista* aux);
+//void inorderBajaSucursal(nodoArbol * arbol);
+
+void darDeBajaUnaSucursal(char archivo[], int idSucursal);
+
 
 //dar de alta una sucursal
-void inorderAltaSucursal(nodoArbol* arbol);
-void darDeAltaUnaSucursal(char archivo[], nodoLista* aux);
+//void inorderAltaSucursal(nodoArbol* arbol);
+void darDeAltaUnaSucursal(char archivo[], int idSucursal);
 
 
 //funciones del case 15 y 16

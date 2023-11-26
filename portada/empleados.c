@@ -627,7 +627,7 @@ void cambiarSueldo(char archivo[], nodoArbol* aux, int dni)
 
 
 //dar de baja una sucursal
-
+/*/
 void inorderBajaSucursal(nodoArbol * arbol)
 {
     if(arbol != NULL)
@@ -640,8 +640,8 @@ void inorderBajaSucursal(nodoArbol * arbol)
         inorderBajaSucursal(arbol->der);
     }
 }
-
-void darDeBajaUnaSucursal(char archivo[], nodoLista* aux)
+/*/
+void darDeBajaUnaSucursal(char archivo[], int idSucursal)
 {
 
     FILE* archi=fopen(archivo, "r+b");
@@ -656,7 +656,7 @@ void darDeBajaUnaSucursal(char archivo[], nodoLista* aux)
 
         while(fread(&a, sizeof(trabajador),1,archi)>0)
         {
-            if(aux->idSucursal==a.idSucursal)
+            if(idSucursal==a.idSucursal)
             {
 
                 a.bajaSucursal=0;
@@ -671,8 +671,7 @@ void darDeBajaUnaSucursal(char archivo[], nodoLista* aux)
 
 
         }
-        aux->bajaSucursal=0;
-        inorderBajaSucursal(aux->arbol);
+
         fclose(archi);
 
     }
@@ -680,10 +679,9 @@ void darDeBajaUnaSucursal(char archivo[], nodoLista* aux)
 
 
 }
-
 //dar de alta una sucursal
 
-
+/*/
 void inorderAltaSucursal(nodoArbol * arbol)
 {
     if(arbol != NULL)
@@ -696,8 +694,8 @@ void inorderAltaSucursal(nodoArbol * arbol)
         inorderAltaSucursal(arbol->der);
     }
 }
-
-void darDeAltaUnaSucursal(char archivo[], nodoLista* aux)
+/*/
+void darDeAltaUnaSucursal(char archivo[], int idSucursal)
 {
 
     FILE* archi=fopen(archivo, "r+b");
@@ -712,11 +710,11 @@ void darDeAltaUnaSucursal(char archivo[], nodoLista* aux)
 
         while(fread(&a, sizeof(trabajador),1,archi)>0)
         {
-            if(aux->idSucursal==a.idSucursal)
+            if(idSucursal==a.idSucursal)
             {
 
                 a.bajaSucursal=1;
-                //a.baja=1;
+
                 fseek(archi, (-1)*sizeof(trabajador), SEEK_CUR); // Retrocede al inicio del registro
                 fwrite(&a, sizeof(trabajador), 1, archi); // Escribe el registro modificado
                 fseek(archi, 0, SEEK_CUR);
@@ -727,8 +725,7 @@ void darDeAltaUnaSucursal(char archivo[], nodoLista* aux)
 
 
         }
-        aux->bajaSucursal=1;
-        inorderAltaSucursal(aux->arbol);
+
         fclose(archi);
 
     }
