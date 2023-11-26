@@ -26,6 +26,7 @@ int menuOpcion()
 {
     int selected;
     nodoLista* lista=iniclista();
+    nodoLista* lista2=iniclista();
     int dni, idSucursal, rango;
     nodoLista* sucursal;
     nodoArbol* encontrado;
@@ -36,7 +37,7 @@ int menuOpcion()
     validosProv=descargarArchivo(arEmpleados,validosProv,30);
     int pos;
     lista=pasarDelArchivoToLDA(archivoTrabajadores,lista,idSucursal);
-
+    //lista2=pasarDelArchivoToLDAAlfabetico(archivoTrabajadores,lista2,idSucursal);
 
 
     do
@@ -63,6 +64,7 @@ int menuOpcion()
                 lista = iniclista();
                 lista=pasarDelArchivoToLDA(archivoTrabajadores, lista, idSucursal);
 
+
             }
             else
             {
@@ -78,6 +80,8 @@ int menuOpcion()
         case 3:
             mostrarLDA(lista);
             system("pause");
+
+
 
             break;
         case 4:
@@ -124,7 +128,9 @@ int menuOpcion()
                 {
                     printf("Este empleado ya se encuentra dado de alta\n");
                 }
-                else
+                else if(encontrado->dato.bajaSucursal==0){
+                    printf("La sucursal de este empleado se encuentra dada de baja\n");
+                }else
                 {
                     darDeAltaNuevo(archivoTrabajadores, encontrado, dni);
                 }
@@ -346,6 +352,7 @@ int menuOpcion()
             {
 
                 cambiarSucursalTrabajador(archivoTrabajadores,encontrado,dni,lista);
+                selected=0;
 
             }
 
@@ -398,16 +405,43 @@ int menuOpcion()
             system("pause");
             break;
 
-        case 0:
+            case 18:
 
-            printf("\n\nTERMINATE THE PROGRAM\n");
+            printf("Ingrese el DNI del trabajador \n");
+            fflush(stdin);
+            scanf("%i", &dni);
+
+            encontrado=buscarPorDniPrincipal(lista,dni);
+
+            if(encontrado==NULL)
+            {
+                printf("El dni no existe\n");
+            }
+            else
+            {
+
+                mostrarPorDniTrabajador(encontrado);
+
+            }
+
+            system("pause");
             break;
+
+            case 19:
+            lista2=pasarDelArchivoToLDAAlfabetico(archivoTrabajadores,lista2,idSucursal);
+            mostrarPorOrdenAlfabetico(lista2);
+
+            system("pause");
+            break;
+
+
+
         }
 
     }
     while (selected != 0);
 
-    system("PAUSE");
+
     return 0;
 }
 
@@ -435,25 +469,27 @@ int menu()
     printf("\t\t\t|                             3. MOSTRAR TRABAJADORES POR RANGO          |\n");
     printf("\t\t\t|                             4. MOSTRAR TRABAJADORES DE UNA SUCURSAL    |\n");
     printf("\t\t\t|                             5. MOSTRAR DADOS DE BAJA                   |\n");
-    printf("\t\t\t|                             6. MOSTRAR EMPLEADO POR DNI****            |\n");
+    printf("\t\t\t|                             6. MOSTRAR EMPLEADO POR DNI                |\n");
+    printf("\t\t\t|                             7.MOSTRAR TRABAJADOES ALFABETICAMENTE      |\n");
+    printf("\t\t\t|                                                                        |\n");
     printf("\t\t\t|                                                                        |\n");
     printf("\t\t\t|                                                                        |\n");
     printf("\t\t\t|                              FUNCIONES DE CARGA Y MODIFICACION:        |\n");
     printf("\t\t\t|                                                                        |\n");
-    printf("\t\t\t|                             7. CARGA TRABAJADORES POR SUCURSAL         |\n");
-    printf("\t\t\t|                             8. CAMBIAR SUELDO                          |\n");
-    printf("\t\t\t|                             9. CAMBIAR SUCURSAL                        |\n");
-    printf("\t\t\t|                             10. CARGAR HORAS EXTRA                     |\n");
-    printf("\t\t\t|                             11. MODIFICAR HORAS EXTRA                  |\n");
-    printf("\t\t\t|                             12. MODIFICAR DNI                          |\n");
-    printf("\t\t\t|                             13. MODIFICAR NOMBRE                       |\n");
-    printf("\t\t\t|                             14. MODIFICAR RANGO                        |\n");
+    printf("\t\t\t|                             8. CARGA TRABAJADORES POR SUCURSAL         |\n");
+    printf("\t\t\t|                             9. CAMBIAR SUELDO                          |\n");
+    printf("\t\t\t|                             10. CAMBIAR SUCURSAL                       |\n");
+    printf("\t\t\t|                             11. CARGAR HORAS EXTRA                     |\n");
+    printf("\t\t\t|                             12. MODIFICAR HORAS EXTRA                  |\n");
+    printf("\t\t\t|                             13. MODIFICAR DNI                          |\n");
+    printf("\t\t\t|                             14. MODIFICAR NOMBRE                       |\n");
+    printf("\t\t\t|                             15. MODIFICAR RANGO                        |\n");
     printf("\t\t\t|                                                                        |\n");
     printf("\t\t\t|                             FUNCIONES DE BAJA Y ALTA                   |\n");
-    printf("\t\t\t|                             15. DAR DE BAJA EMPLEADO                   |\n");
-    printf("\t\t\t|                             16. DAR DE ALTA EMPLEADO                   |\n");
-    printf("\t\t\t|                             17. DAR DE BAJA SUCURSAL                   |\n");
-    printf("\t\t\t|                             18. DAR DE ALTA SUCURSAL                   |\n");
+    printf("\t\t\t|                             16. DAR DE BAJA EMPLEADO                   |\n");
+    printf("\t\t\t|                             17. DAR DE ALTA EMPLEADO                   |\n");
+    printf("\t\t\t|                             18. DAR DE BAJA SUCURSAL                   |\n");
+    printf("\t\t\t|                             19. DAR DE ALTA SUCURSAL                   |\n");
     printf("\t\t\t|                                                                        |\n");
     printf("\t\t\t|                             0. VOLVER                                  |\n");
     printf("\t\t\t|                                                                        |\n");

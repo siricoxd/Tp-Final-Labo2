@@ -1291,3 +1291,110 @@ void cambiarRango(char archivo[], nodoArbol* aux, int dni, nodoLista* lista)
 
 
 }
+//mostrar por dni
+void mostrarPorDniTrabajador(nodoArbol* aux){
+
+mostrarUnTrabajador(aux->dato);
+
+
+}
+
+
+//mostrar por orden alfabetico
+
+nodoArbol* insertarAlfabetico(nodoArbol* arbol, nodoArbol* nuevo)
+{
+    if (arbol == NULL)
+    {
+        arbol = nuevo;
+    }
+    else
+    {
+
+        int comparacion = strcmpi(arbol->dato.nombreApe, nuevo->dato.nombreApe);
+
+        if (comparacion >= 0)
+        {
+            arbol->izq = insertarAlfabetico(arbol->izq, nuevo);
+        }
+        else
+        {
+            arbol->der = insertarAlfabetico(arbol->der, nuevo);
+        }
+    }
+
+    return arbol;
+}
+
+
+nodoLista* altaEmpleadosAlfabetico(nodoLista* lista2, trabajador dato, int idSucursal,int bajaSucursal)
+{
+
+    nodoArbol* nuevo = crearNodoArbol(dato);
+    nodoLista* encontrado=buscarSucursal(lista2, idSucursal);
+
+    if(encontrado==NULL)
+    {
+        nodoLista* aux = crearNodoLista(idSucursal,bajaSucursal);
+        lista2=agregarEnOrden(lista2, aux); //o al ppio
+        aux->arbol=insertarAlfabetico(aux->arbol, nuevo);
+
+    }
+
+    else
+    {
+        encontrado->arbol=insertarAlfabetico(encontrado->arbol, nuevo);
+
+    }
+    return lista2;
+}
+
+
+nodoLista* pasarDelArchivoToLDAAlfabetico(char archivo[], nodoLista* lista2, int idSucursal)
+{
+
+    FILE* archi=fopen(archivo, "rb");
+
+    if(archi)
+    {
+        trabajador a;
+        while(fread(&a, sizeof(trabajador), 1, archi)>0)
+        {
+
+            lista2=altaEmpleadosAlfabetico(lista2, a, a.idSucursal,a.bajaSucursal);
+
+
+
+        }
+
+        fclose(archi);
+    }
+
+    return lista2;
+}
+
+void mostrarPorOrdenAlfabetico(nodoLista* lista2){
+
+ printf("\n\n\n\n");
+    printf("\t\t\t\t\tLISTA DE TRABAJADORES: \n\n\n\n");
+    while(lista2 != NULL)
+    {
+        if(lista2->bajaSucursal==1)
+        {
+            printf("\n\n\n\n\n\n");
+            printf("\t\t\t\t\t | Id sucursal: %i    |\n", lista2->idSucursal);
+            printf("\t\t\t\n-----------------------------------------------------------------------------------------------------------------------\n");
+            inorder(lista2->arbol);
+        }
+
+
+
+        lista2=lista2->siguiente;
+
+    }
+
+
+
+}
+
+

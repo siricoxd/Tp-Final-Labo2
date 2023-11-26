@@ -673,18 +673,18 @@
 	<windows.h>
 	"ventas.h"
 
-1700964566 source:c:\users\win10\desktop\tp-final-labo2\portada\empleados.c
+1701018850 source:c:\users\win10\desktop\tp-final-labo2\portada\empleados.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"menuEmpleados.h"
 	"empleados.h"
 
-1700769778 c:\users\win10\desktop\tp-final-labo2\portada\menuempleados.h
+1701015755 c:\users\win10\desktop\tp-final-labo2\portada\menuempleados.h
 
-1700966356 c:\users\win10\desktop\tp-final-labo2\portada\empleados.h
+1701018083 c:\users\win10\desktop\tp-final-labo2\portada\empleados.h
 
-1700966356 source:c:\users\win10\desktop\tp-final-labo2\portada\menuempleados.c
+1701019467 source:c:\users\win10\desktop\tp-final-labo2\portada\menuempleados.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>

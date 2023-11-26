@@ -59,6 +59,7 @@ void mostrarLDA(nodoLista* lista);
 void mostrarBajas(nodoLista* lista);
 void mostrarTrabajadoresDeUnaSucursal(nodoLista* lista,int idSucursal);
 void mostrarTrabajadoresDeUnRango(nodoLista* lista, int rango);
+void mostrarPorDniTrabajador(nodoArbol* aux);
 
 //Dar de baja y alta
 //void darDeBaja(char archivo[], nodoLista* aux, int dni, int rango);
@@ -107,7 +108,12 @@ void cambiarSucursalTrabajador(char archivo[], nodoArbol* aux, int dni, nodoList
 void cambiarNombreTrabajador(char archivo[], nodoArbol* aux, int dni, nodoLista* lista);
 void cambiarRango(char archivo[], nodoArbol* aux, int dni, nodoLista* lista);
 
+//alfabetico
+nodoArbol* insertarAlfabetico(nodoArbol* arbol, nodoArbol* nuevo);
 
+nodoLista* altaEmpleadosAlfabetico(nodoLista* lista, trabajador dato, int idSucursal, int bajaSucursal);
 
+nodoLista* pasarDelArchivoToLDAAlfabetico(char archivo[], nodoLista* lista, int idSucursal);
+void mostrarPorOrdenAlfabetico(nodoLista* lista2);
 
 #endif // PROYECTO_H_INCLUDED
