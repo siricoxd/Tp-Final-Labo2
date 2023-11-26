@@ -36,11 +36,11 @@ struct nodoLista* siguiente;
 
 //Libreria Archivo:
 
-trabajador cargarUnTrabajador(int idSucursal);
-void cargarArchivoEmpleados(char archivoTrabajador[], int idSucursal);
+trabajador cargarUnTrabajador(int idSucursal, nodoLista* lista);
+void cargarArchivoEmpleados(char archivoTrabajador[], int idSucursal,nodoLista* lista);
 void mostrarUnTrabajador(trabajador a);
 void mostrarArchivo(char archivo[]);
-void agregarTrabajadores(char archivo[], nodoLista* lista, int idSucursal);
+
 
 
 //Libreria listas:
@@ -61,11 +61,11 @@ void mostrarTrabajadoresDeUnaSucursal(nodoLista* lista,int idSucursal);
 void mostrarTrabajadoresDeUnRango(nodoLista* lista, int rango);
 
 //Dar de baja y alta
-void darDeBaja(char archivo[], nodoLista* aux, int dni, int rango);
+//void darDeBaja(char archivo[], nodoLista* aux, int dni, int rango);
 void darDeAlta(char archivo[], nodoLista* aux, int dni, int rango);
 
 //cambiar sueldo
-void cambiarSueldo(char archivo[], nodoLista* aux, int dni, int rango);
+void cambiarSueldo(char archivo[], nodoArbol* aux, int dni);
 
 //dar de baja una sucursal
 void inorderBajaSucursal(nodoArbol * arbol);
@@ -99,8 +99,15 @@ nodoArbol* buscarPorDniBaja(nodoArbol *arbol, int dni);
 nodoArbol* buscarPorDniPrincipal(nodoLista* lista, int dni);
 
 void darDeBajaNuevo(char archivo[], nodoArbol* aux, int dni);
+void darDeAltaNuevo(char archivo[], nodoArbol* aux, int dni);
 
-//void darDeBajaNuevo(char archivo[], nodoLista* lista, int dni);
+//modificar
+void cambiarDni(char archivo[], nodoArbol* aux, int dni, nodoLista* lista);
+void cambiarSucursalTrabajador(char archivo[], nodoArbol* aux, int dni, nodoLista* lista);
+void cambiarNombreTrabajador(char archivo[], nodoArbol* aux, int dni, nodoLista* lista);
+void cambiarRango(char archivo[], nodoArbol* aux, int dni, nodoLista* lista);
+
+
 
 
 #endif // PROYECTO_H_INCLUDED

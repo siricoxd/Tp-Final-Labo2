@@ -611,15 +611,15 @@
 	<stdlib.h>
 	"listasProductos.h"
 
-1700768824 source:c:\users\win10\desktop\tp-final-labo2\portada\listassucursales.c
+1700956036 source:c:\users\win10\desktop\tp-final-labo2\portada\listassucursales.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"listasSucusrsales.h"
 
-1700768824 c:\users\win10\desktop\tp-final-labo2\portada\listassucusrsales.h
+1700956036 c:\users\win10\desktop\tp-final-labo2\portada\listassucusrsales.h
 
-1700868663 source:c:\users\win10\desktop\tp-final-labo2\portada\main.c
+1700956036 source:c:\users\win10\desktop\tp-final-labo2\portada\main.c
 	<stdio.h>
 	<stdlib.h>
 	<windows.h>
@@ -627,7 +627,7 @@
 	"portada.h"
 	"menus.h"
 
-1700868663 c:\users\win10\desktop\tp-final-labo2\portada\portada.h
+1700956036 c:\users\win10\desktop\tp-final-labo2\portada\portada.h
 
 1700807800 c:\users\win10\desktop\tp-final-labo2\portada\menus.h
 	<stdio.h>
@@ -654,7 +654,7 @@
 1700807800 source:c:\users\win10\desktop\tp-final-labo2\portada\menus.c
 	"menus.h"
 
-1700868663 source:c:\users\win10\desktop\tp-final-labo2\portada\portada.c
+1700956036 source:c:\users\win10\desktop\tp-final-labo2\portada\portada.c
 	"portada.h"
 	<stdio.h>
 	<stdlib.h>
@@ -673,7 +673,7 @@
 	<windows.h>
 	"ventas.h"
 
-1700878651 source:c:\users\win10\desktop\tp-final-labo2\portada\empleados.c
+1700964566 source:c:\users\win10\desktop\tp-final-labo2\portada\empleados.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -682,9 +682,9 @@
 
 1700769778 c:\users\win10\desktop\tp-final-labo2\portada\menuempleados.h
 
-1700878426 c:\users\win10\desktop\tp-final-labo2\portada\empleados.h
+1700966356 c:\users\win10\desktop\tp-final-labo2\portada\empleados.h
 
-1700878440 source:c:\users\win10\desktop\tp-final-labo2\portada\menuempleados.c
+1700966356 source:c:\users\win10\desktop\tp-final-labo2\portada\menuempleados.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>

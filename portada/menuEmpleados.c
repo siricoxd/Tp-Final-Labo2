@@ -58,7 +58,7 @@ int menuOpcion()
             pos=VerificarSucursal(idSucursal);
             if(pos==1)
             {
-                cargarArchivoEmpleados(archivoTrabajadores, idSucursal);
+                cargarArchivoEmpleados(archivoTrabajadores, idSucursal,lista);
                 mostrarArchivo(archivoTrabajadores);
                 lista = iniclista();
                 lista=pasarDelArchivoToLDA(archivoTrabajadores, lista, idSucursal);
@@ -82,73 +82,61 @@ int menuOpcion()
             break;
         case 4:
             mostrarLDA(lista);
-    printf("Ingrese el DNI del trabajador para dar de baja: ");
-    fflush(stdin);
-    scanf("%i", &dni);
-
-
-    encontrado = buscarPorDniPrincipal(lista, dni);
-
-    if (encontrado != NULL)
-    {
-        printf("%i", encontrado->dato.dni);
-
-        darDeBajaNuevo(archivoTrabajadores, encontrado, dni);
-    }
-    else
-    {
-        printf("No se encontró un trabajador con el DNI proporcionado.\n");
-    }
-
-    system("pause");
-    break;
-        case 5 :
-            mostrarBajas(lista);
-
-            printf("Ingrese el ID de la sucursal del trabajador para dar de alta\n");
+            printf("Ingrese el DNI del trabajador para dar de baja: ");
             fflush(stdin);
-            scanf("%i", &idSucursal);
+            scanf("%i", &dni);
 
-            sucursal=buscarSucursal(lista,idSucursal);
 
-            if(sucursal==NULL)
+            encontrado = buscarPorDniPrincipal(lista, dni);
+
+            if (encontrado != NULL)
             {
-                printf("No se encontro la sucursal\n");
-            }
-            else
-            {
-                printf("Ingrese el rango del trabajador para dar de alta\n");
-                fflush(stdin);
-                scanf("%i", &rango);
-
-                encontrado=buscarPorRango(sucursal->arbol, rango);
-                if(encontrado==NULL)
+                if(encontrado->dato.baja==0)
                 {
-                    printf("No se encontro el rango\n");
+                    printf("Este empleado ya se encuentra dado de baja\n");
                 }
                 else
                 {
-                    printf("Ingrese el dni del trabajador al que quiere dar de alta\n");
-                    fflush(stdin);
-                    scanf("%i", &dni);
-
-                    encontrado=buscarPorDni(sucursal->arbol,dni,rango);
-                    if(encontrado==NULL)
-                    {
-                        printf("No se encontro el dni\n");
-                    }
-                    else
-                    {
-                        darDeAlta(archivoTrabajadores,sucursal,dni,rango);
-                    }
-
-
-
+                    darDeBajaNuevo(archivoTrabajadores, encontrado, dni);
                 }
+
+
+            }
+            else
+            {
+                printf("No se encontro un trabajador con el DNI proporcionado.\n");
             }
 
             system("pause");
+            break;
+        case 5 :
+            mostrarBajas(lista);
+            printf("Ingrese el DNI del trabajador para dar de alta: ");
+            fflush(stdin);
+            scanf("%i", &dni);
 
+
+            encontrado = buscarPorDniPrincipal(lista, dni);
+
+            if (encontrado != NULL)
+            {
+                if(encontrado->dato.baja==1)
+                {
+                    printf("Este empleado ya se encuentra dado de alta\n");
+                }
+                else
+                {
+                    darDeAltaNuevo(archivoTrabajadores, encontrado, dni);
+                }
+
+
+            }
+            else
+            {
+                printf("No se encontro un trabajador con el DNI proporcionado.\n");
+            }
+
+            system("pause");
             break;
         case 6:
             mostrarBajas(lista);
@@ -163,7 +151,17 @@ int menuOpcion()
             fflush(stdin);
             scanf("%i", &idSucursal);
 
-            mostrarTrabajadoresDeUnaSucursal(lista,idSucursal);
+            sucursal=buscarSucursal(lista,idSucursal);
+            if(sucursal==NULL)
+            {
+                printf("No existe la sucursal\n");
+            }
+            else
+            {
+                mostrarTrabajadoresDeUnaSucursal(lista,idSucursal);
+            }
+
+
 
             system("pause");
             break;
@@ -174,53 +172,34 @@ int menuOpcion()
             fflush(stdin);
             scanf("%i", &rango);
 
-            mostrarTrabajadoresDeUnRango(lista,rango);
+            if(rango!=1 && rango!=2 && rango!=3)
+            {
+                printf("Rango no valido\n");
+            }
+            else
+            {
+                mostrarTrabajadoresDeUnRango(lista,rango);
+            }
+
 
             system("pause");
             break;
         case 9:
             mostrarLDA(lista);
 
-            printf("Ingrese el ID de la sucursal del trabajador \n");
+            printf("Ingrese el DNI del trabajador \n");
             fflush(stdin);
-            scanf("%i", &idSucursal);
+            scanf("%i", &dni);
 
-            sucursal=buscarSucursal(lista,idSucursal);
+            encontrado=buscarPorDniPrincipal(lista,dni);
 
-            if(sucursal==NULL)
+            if(encontrado==NULL)
             {
-                printf("No se encontro la sucursal\n");
+                printf("El dni no existe\n");
             }
             else
             {
-                printf("Ingrese el rango del trabajador \n");
-                fflush(stdin);
-                scanf("%i", &rango);
-
-                encontrado=buscarPorRango(sucursal->arbol, rango);
-                if(encontrado==NULL)
-                {
-                    printf("No se encontro el rango\n");
-                }
-                else
-                {
-                    printf("Ingrese el dni del trabajador \n");
-                    fflush(stdin);
-                    scanf("%i", &dni);
-
-                    encontrado=buscarPorDni(sucursal->arbol,dni,rango);
-                    if(encontrado==NULL)
-                    {
-                        printf("No se encontro el dni\n");
-                    }
-                    else
-                    {
-                        cambiarSueldo(archivoTrabajadores,sucursal,dni,rango);
-                    }
-
-
-
-                }
+                cambiarSueldo(archivoTrabajadores,encontrado,dni);
             }
 
             system("pause");
@@ -240,7 +219,15 @@ int menuOpcion()
             }
             else
             {
-                darDeBajaUnaSucursal(archivoTrabajadores,sucursal);
+                if(sucursal->bajaSucursal==0)
+                {
+                    printf("La sucursal ya se encuentra dada de baja\n");
+                }
+                else
+                {
+                    darDeBajaUnaSucursal(archivoTrabajadores,sucursal);
+                }
+
             }
 
 
@@ -263,7 +250,15 @@ int menuOpcion()
             }
             else
             {
-                darDeAltaUnaSucursal(archivoTrabajadores,sucursal);
+                if(sucursal->bajaSucursal==1)
+                {
+                    printf("La sucursal ya se encuentra dada de alta\n");
+                }
+                else
+                {
+                    darDeAltaUnaSucursal(archivoTrabajadores,sucursal);
+                }
+
             }
 
 
@@ -314,6 +309,94 @@ int menuOpcion()
             system("pause");
             break;
 
+        case 14:
+            mostrarLDA(lista);
+
+            printf("Ingrese el DNI del trabajador \n");
+            fflush(stdin);
+            scanf("%i", &dni);
+
+            encontrado=buscarPorDniPrincipal(lista,dni);
+
+            if(encontrado==NULL)
+            {
+                printf("El dni no existe\n");
+            }
+            else
+            {
+                cambiarDni(archivoTrabajadores,encontrado,dni,lista);
+            }
+
+            system("pause");
+            break;
+        case 15:
+            mostrarLDA(lista);
+
+            printf("Ingrese el DNI del trabajador \n");
+            fflush(stdin);
+            scanf("%i", &dni);
+
+            encontrado=buscarPorDniPrincipal(lista,dni);
+
+            if(encontrado==NULL)
+            {
+                printf("El dni no existe\n");
+            }
+            else
+            {
+
+                cambiarSucursalTrabajador(archivoTrabajadores,encontrado,dni,lista);
+
+            }
+
+            system("pause");
+            break;
+
+            case 16:
+            mostrarLDA(lista);
+
+            printf("Ingrese el DNI del trabajador \n");
+            fflush(stdin);
+            scanf("%i", &dni);
+
+            encontrado=buscarPorDniPrincipal(lista,dni);
+
+            if(encontrado==NULL)
+            {
+                printf("El dni no existe\n");
+            }
+            else
+            {
+
+                cambiarNombreTrabajador(archivoTrabajadores,encontrado,dni,lista);
+
+            }
+
+            system("pause");
+            break;
+
+            case 17:
+            mostrarLDA(lista);
+
+            printf("Ingrese el DNI del trabajador \n");
+            fflush(stdin);
+            scanf("%i", &dni);
+
+            encontrado=buscarPorDniPrincipal(lista,dni);
+
+            if(encontrado==NULL)
+            {
+                printf("El dni no existe\n");
+            }
+            else
+            {
+
+                cambiarRango(archivoTrabajadores,encontrado,dni,lista);
+
+            }
+
+            system("pause");
+            break;
 
         case 0:
 
@@ -345,19 +428,31 @@ int menu()
     printf("\t\t\t|       ####   #   #  #      ####   ####   #   #  ###     ##     ##      |\n");
     printf("\t\t\t|                                                                        |\n");
     printf("\t\t\t|                                                                        |\n");
+    printf("\t\t\t|                            FUNCIONES DE MUESTRA:                       |\n");
+    printf("\t\t\t|                                                                        |\n");
     printf("\t\t\t|                             1. MUESTRA DEL ARCHIVO                     |\n");
-    printf("\t\t\t|                             2.CARGA TRABAJADORES POR SUCURSAL          |\n");
-    printf("\t\t\t|                             3.MOSTRAR TRABAJADORES                     |\n");
-    printf("\t\t\t|                             4. DAR DE BAJA TRABAJADOR                  |\n");
-    printf("\t\t\t|                             5. DAR DE ALTA TRABAJADOR                  |\n");
-    printf("\t\t\t|                             6. MUESTRA TRABAJADORES DADOS DE BAJA      |\n");
-    printf("\t\t\t|                             7. MOSTRAR LOS TRABAJADORES DE UNA SUCURSAL|\n");
-    printf("\t\t\t|                             8. MOSTRAR LOS TRABAJADORES DE UN RANGO    |\n");
+    printf("\t\t\t|                             2. MOSTRAR LISTA DE TRABAJADORES           |\n");
+    printf("\t\t\t|                             3. MOSTRAR TRABAJADORES POR RANGO          |\n");
+    printf("\t\t\t|                             4. MOSTRAR TRABAJADORES DE UNA SUCURSAL    |\n");
+    printf("\t\t\t|                             5. MOSTRAR DADOS DE BAJA                   |\n");
+    printf("\t\t\t|                                                                        |\n");
+    printf("\t\t\t|                              FUNCIONES DE CARGA Y MODIFICACION         |\n");
+    printf("\t\t\t|                             6. CARGA TRABAJADORES POR SUCURSAL         |\n");
+    printf("\t\t\t|                             7. CAMBIAR SUELDO                          |\n");
+    printf("\t\t\t|                             8. CAMBIAR SUCURSAL                        |\n");
+    printf("\t\t\t|                             9. CARGAR HORAS EXTRA                      |\n");
+    printf("\t\t\t|                             10. MODIFICAR HORAS EXTRA                  |\n");
+    printf("\t\t\t|                             11. MODIFICAR DNI                          |\n");
+    printf("\t\t\t|                             12. MODIFICAR NOMBRE                       |\n");
+    printf("\t\t\t|                             6.                                         |\n");
+    printf("\t\t\t|                             7. |\n");
+    printf("\t\t\t|                             8.     |\n");
     printf("\t\t\t|                             9. CAMBIAR SUELDO                          |\n");
     printf("\t\t\t|                             10. DAR DE BAJA SUCURSAL                   |\n");
     printf("\t\t\t|                             11. DAR DE ALTA SUCURSAL                   |\n");
     printf("\t\t\t|                             12. CARGAR HORAS EXTRA                     |\n");
     printf("\t\t\t|                             13. MODIFICAR HORAS EXTRA                  |\n");
+    printf("\t\t\t|                             14.MODIFICAR DNI                           |\n");
     printf("\t\t\t|                                                                        |\n");
     printf("\t\t\t|                             0. VOLVER                                  |\n");
     printf("\t\t\t|                                                                        |\n");
