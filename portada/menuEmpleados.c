@@ -277,43 +277,48 @@ int menuOpcion()
 
 
         case 12:
-            mostrarLDA(lista);
+           mostrarLDA(lista);
 
-            printf("\nIngrese id de la sucursal:");
-            scanf("%i",&idSucursal);
+            printf("Ingrese el DNI del trabajador \n");
+            fflush(stdin);
+            scanf("%i", &dni);
 
-            sucursal=buscarSucursal(lista,idSucursal);
+            encontrado=buscarPorDniPrincipal(lista,dni);
 
-            if(sucursal == NULL)
+            if(encontrado==NULL)
             {
-                printf("\nNo se encontro la sucursal \n");
+                printf("El dni no existe\n");
             }
             else
             {
-                cargarHorasExtrasTrabajadores(sucursal,archivoTrabajadores);
+                cargarHorasExtrasTrabajadores(encontrado,archivoTrabajadores,dni);
             }
 
             system("pause");
             break;
+
 
         case 13:
             mostrarLDA(lista);
 
-            printf("\nIngrese id de la sucursal:");
-            scanf("%i",&idSucursal);
+            printf("Ingrese el DNI del trabajador \n");
+            fflush(stdin);
+            scanf("%i", &dni);
 
-            sucursal=buscarSucursal(lista,idSucursal);
+            encontrado=buscarPorDniPrincipal(lista,dni);
 
-            if(sucursal == NULL)
+            if(encontrado==NULL)
             {
-                printf("\nNo se encontro la sucursal \n");
+                printf("El dni no existe\n");
             }
             else
             {
-                modificarHorasExtrasTrabajadores(sucursal,archivoTrabajadores);
+                cambiarHorasExtras(archivoTrabajadores,encontrado,dni);
             }
-            system("pause");
+
+           system("pause");
             break;
+
 
         case 14:
             mostrarLDA(lista);

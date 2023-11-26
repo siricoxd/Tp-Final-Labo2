@@ -594,10 +594,10 @@
 	<conio.h>
 	<string.h>
 
-1700791588 source:c:\users\win10\desktop\tp-final-labo2\portada\ganancias.c
+1701027902 source:c:\users\win10\desktop\tp-final-labo2\portada\ganancias.c
 	"ganancias.h"
 
-1700791588 c:\users\win10\desktop\tp-final-labo2\portada\ganancias.h
+1701027902 c:\users\win10\desktop\tp-final-labo2\portada\ganancias.h
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -643,12 +643,12 @@
 1700766800 c:\users\win10\desktop\tp-final-labo2\portada\provedores.h
 	"listasProductos.h"
 
-1700766800 c:\users\win10\desktop\tp-final-labo2\portada\menuganancias.h
+1701027902 c:\users\win10\desktop\tp-final-labo2\portada\menuganancias.h
 	<stdio.h>
 	<stdlib.h>
 	"ganancias.h"
 
-1700807800 source:c:\users\win10\desktop\tp-final-labo2\portada\menuganancias.c
+1701027902 source:c:\users\win10\desktop\tp-final-labo2\portada\menuganancias.c
 	"menuGanancias.h"
 
 1700807800 source:c:\users\win10\desktop\tp-final-labo2\portada\menus.c
@@ -673,7 +673,7 @@
 	<windows.h>
 	"ventas.h"
 
-1701018850 source:c:\users\win10\desktop\tp-final-labo2\portada\empleados.c
+1701028764 source:c:\users\win10\desktop\tp-final-labo2\portada\empleados.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -682,9 +682,9 @@
 
 1701015755 c:\users\win10\desktop\tp-final-labo2\portada\menuempleados.h
 
-1701018083 c:\users\win10\desktop\tp-final-labo2\portada\empleados.h
+1701028764 c:\users\win10\desktop\tp-final-labo2\portada\empleados.h
 
-1701019467 source:c:\users\win10\desktop\tp-final-labo2\portada\menuempleados.c
+1701028764 source:c:\users\win10\desktop\tp-final-labo2\portada\menuempleados.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>

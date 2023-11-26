@@ -760,158 +760,96 @@ nodoArbol * buscarPorDni2(nodoArbol * arbol, int dni, int rango)
     return rta;
 }
 
-void modificarHrsExtrasEnArchivo(char archivo[], nodoLista* aux, int dni, int rango)
+/////Funcion modificar horas extras////////////////
+void cambiarHorasExtras(char archivo[], nodoArbol* aux, int dni)
 {
-    int flag=0;
-    int horasNuevas;
 
-    FILE* archi=fopen(archivo, "r+b");
-
-    if(archi)
-    {
-        trabajador a;
-        nodoArbol* arbol;
-
-        while(flag==0 && fread(&a, sizeof(trabajador),1,archi)>0)
-        {
-            if(aux->idSucursal==a.idSucursal)
-            {
-                arbol=buscarPorDni2(aux->arbol, dni, rango);
-                if(arbol!=NULL)
-                {
-                    if(a.dni==dni)
-                    {
-                        printf("\nIngrese las horas extras que desea modificar: ");
-                        scanf("%i",&horasNuevas);
-
-                        arbol->dato.horasExtra =horasNuevas;
-                        a.horasExtra=horasNuevas;
-
-                        fseek(archi, (-1)*sizeof(trabajador), SEEK_CUR); // Retrocede al inicio del registro
-                        fwrite(&a, sizeof(trabajador), 1, archi); // Escribe el registro modificado
-
-                        printf(" \nLas horas extras fueron cargadas y guardadas exitosamente :)\n");
-                        flag=1;
-                    }
-
-                }
-            }
-        }
-        fclose(archi);
-    }
-}
-void modificarHorasExtrasTrabajadores(nodoLista*lista,char nombreArchivo[])
-{
-    char seguir='s';
-    int dni;
-    int horasExtras;
-    int rango;
-    nodoArbol*encontrado;
-
-    if(lista != NULL)
-    {
-        while(seguir == 's')
-        {
-            printf("\nIngrese dni: ");
-            scanf("%i", &dni);
-
-            printf("\nIngrese rango: ");
-            scanf("%i",&rango);
-
-            encontrado=buscarPorDni2(lista->arbol,dni,rango);
-
-            if(encontrado== NULL)
-            {
-                printf("\nDNI INVALIDO \n");
-            }
-            else
-            {
-                modificarHrsExtrasEnArchivo(nombreArchivo,lista,dni,rango);
-            }
-
-            printf("\nDesea continuar? s/n \n");
-            fflush(stdin);
-            scanf("%c", &seguir);
-
-        }
-    }
-    else
-    {
-        printf("no hay empleados cargados \n");
-    }
-}
-void guardarHrsExtrasEnArchivo(char archivo[], nodoLista* aux, int dni, int rango, int hrsExtras)
-{
     int flag=0;
 
     FILE* archi=fopen(archivo, "r+b");
 
     if(archi)
     {
+
         trabajador a;
-        nodoArbol* arbol;
+
+
 
         while(flag==0 && fread(&a, sizeof(trabajador),1,archi)>0)
         {
-            if(aux->idSucursal==a.idSucursal)
+
+
+            if(a.dni==dni)
             {
-                arbol=buscarPorDni2(aux->arbol, dni, rango);
-                if(arbol!=NULL)
-                {
-                    if(a.dni==dni)
-                    {
-                        arbol->dato.horasExtra +=hrsExtras;
-                        a.horasExtra+=hrsExtras;
-
-                        fseek(archi, (-1)*sizeof(trabajador), SEEK_CUR); // Retrocede al inicio del registro
-                        fwrite(&a, sizeof(trabajador), 1, archi); // Escribe el registro modificado
-
-                        printf(" \nLas horas extras fueron cargadas y guardadas exitosamente :)\n");
-                        flag=1;
-                    }
-
-                }
-            }
-        }
-        fclose(archi);
-    }
-}
-
-void cargarHorasExtrasTrabajadores(nodoLista*lista,char nombreArchivo[])
-{
-    char seguir='s';
-    int dni;
-    int horasExtras;
-    int rango;
-    nodoArbol*encontrado;
-
-    if(lista != NULL)
-    {
-        while(seguir == 's')
-        {
-            printf("\nIngrese dni: ");
-            scanf("%i", &dni);
-
-            printf("\nIngrese rango: ");
-            scanf("%i",&rango);
-
-            encontrado=buscarPorDni2(lista->arbol,dni,rango);
-
-            if(encontrado== NULL)
-            {
-                printf("\nDNI INVALIDO \n");
-            }
-            else
-            {
-                printf("\nIngrese horas extras: ");
+                int horasExtras;
+                printf("Ingrese el horas extras: \n");
+                fflush(stdin);
                 scanf("%i", &horasExtras);
-                guardarHrsExtrasEnArchivo(nombreArchivo,lista,dni,rango,horasExtras);
+                aux->dato.horasExtra=horasExtras;
+                a.horasExtra=horasExtras;
+
+                fseek(archi, (-1)*sizeof(trabajador), SEEK_CUR); // Retrocede al inicio del registro
+                fwrite(&a, sizeof(trabajador), 1, archi); // Escribe el registro modificado
+
+                flag=1;
+
             }
+
+
+        }
+
+
+        fclose(archi);
+    }
+
+}
+/////Funciones cargar horas extras/////
+void guardarHrsExtrasCargadasEnArchivo(char archivo[], nodoArbol* aux, int dni,int horasExtras)
+{
+
+    int flag=0;
+
+    FILE* archi=fopen(archivo, "r+b");
+
+    if(archi)
+    {
+        trabajador a;
+
+        while(flag==0 && fread(&a, sizeof(trabajador),1,archi)>0)
+        {
+
+            if(a.dni==dni)
+            {
+                aux->dato.horasExtra+=horasExtras;
+                a.horasExtra+=horasExtras;
+                fseek(archi, (-1)*sizeof(trabajador), SEEK_CUR); // Retrocede al inicio del registro
+                fwrite(&a, sizeof(trabajador), 1, archi); // Escribe el registro modificado
+
+                flag=1;
+
+            }
+
+        }
+        fclose(archi);
+    }
+}
+void cargarHorasExtrasTrabajadores(nodoArbol*arbol,char nombreArchivo[],int dni)
+{
+    char seguir='s';
+    int horasExtras;
+
+    if(arbol != NULL)
+    {
+        while(seguir == 's')
+        {
+
+            printf("\nIngrese horas extras: ");
+            scanf("%i", &horasExtras);
+            guardarHrsExtrasCargadasEnArchivo(nombreArchivo,arbol,dni,horasExtras);
 
             printf("\nDesea continuar? s/n \n");
             fflush(stdin);
             scanf("%c", &seguir);
-
         }
     }
     else
@@ -919,6 +857,7 @@ void cargarHorasExtrasTrabajadores(nodoLista*lista,char nombreArchivo[])
         printf("no hay empleados cargados \n");
     }
 }
+
 //////////////////FUNCIONES BONO/////////////
 int bonoXtrabajadorArbol(trabajador a)
 {

@@ -78,12 +78,12 @@ void darDeAltaUnaSucursal(char archivo[], nodoLista* aux);
 
 
 //funciones del case 15 y 16
-void cargarHorasExtrasTrabajadores(nodoLista*lista,char nombreArchivo[]);
-void guardarHrsExtrasEnArchivo(char archivo[], nodoLista* aux, int dni, int rango, int hrsExtras);
 nodoArbol * buscarPorDni2(nodoArbol * arbol, int dni, int rango);
-void modificarHorasExtrasTrabajadores(nodoLista*lista,char nombreArchivo[]);
-void modificarHrsExtrasEnArchivo(char archivo[], nodoLista* aux, int dni, int rango);
 int bonoXtrabajadorArbol(trabajador a);
+void cargarHorasExtrasTrabajadores(nodoArbol*arbol,char nombreArchivo[],int dni);
+void guardarHrsExtrasCargadasEnArchivo(char archivo[], nodoArbol* aux, int dni,int horasExtras);
+void cambiarHorasExtras(char archivo[], nodoArbol* aux, int dni);
+
 //Libreria arbol:
 nodoArbol* inicarbol();
 nodoArbol* crearNodoArbol(trabajador a);
