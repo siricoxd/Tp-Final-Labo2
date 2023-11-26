@@ -5,9 +5,8 @@
 #include "listasProductos.h"
 #include "provedores.h"
 
-#define ARCHIVO_SUCUSALDep "depsucursal.bin"
 #include <windows.h>
-#include "depositoSucursal.h"
+
 #include "ventas.h"
 #include "menuGanancias.h"
 #include "listasSucusrsales.h"
@@ -17,19 +16,31 @@ int mainMenuAdmin();
 void imprimirBarraCarga(int porcentaje);
 void barra();
 
+
 int menuDepositoAdmin();
-void menuAltaBaja();
+void menuAltaBaja(provincia ar[], int validosProv);
 int menuOpcionDepositoAdmin();
-
-int menuOpcionDepositoSucursalAdmin();
-void cargarStockSucursal();
-void mostrarDepositoSucursal();
-void menuDesactivarProductoSucursal();
-void menuDesactivarCatalogoSucursal();
-void menuActivarCatalogoSucursal();
-void menuActivarProductoSucursal();
-int menuDepositoSucursalesAdmin();
-
+void modificaciones();
+void modificacionProducPrecio(int idDesuc);
+void modificacionCatalogo(int idDeSuc);
+void modificacionProduc(int idDeSuc);
+void muestraCatalgoMenu();
+int menuModificaionesDeposGRL();
+void cargararchivoSucursal();
+void realizarCargaStockProducto(provincia ar[], int validosProv);
+//
+//int menuOpcionDepositoSucursalAdmin();
+//
+//void mostrarDepositoSucursal();
+//void menuDesactivarProductoSucursal();
+//void menuDesactivarCatalogoSucursal();
+//void menuActivarCatalogoSucursal();
+//void menuActivarProductoSucursal();
+//int menuDepositoSucursalesAdmin();
+//int menuModificacionesDeposSuc() ;
+//void modificacionCatalogoSucursal();
+//void modificacionProductoSucursal();
+//void modificacionProductoPrecioSucursal() ;
 
 
 int menuOpcionVentasAdmin();
@@ -40,7 +51,7 @@ void menuAltaBaja();
 
 int menuOpcionProveedoresAdmin()  ;
 int menuProveedoresAdmin() ;
-
+void realizarCompraStock(provincia ar[], int validosProv, int idDesuc, catalogo arregloDepos[], fila* prov);
 
 
 

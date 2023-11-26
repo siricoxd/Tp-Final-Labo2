@@ -7,6 +7,7 @@
 #define ARCHIVO_DEPOSITO "deposito.bin"
 typedef struct
 {
+
     char nombreDeProductos[40];
     int precioPorKilo;
     int stock;
@@ -34,6 +35,7 @@ typedef struct
 typedef struct
 {
 
+int idDeSucursal;
     char nombreDeCategoria[40];
     int idCategoria;
     int activoCat;
@@ -57,9 +59,9 @@ int altaCatalogo(catalogo arreglo[],int validos,deposito dato);
 int agregarALCatalogo(catalogo arreglo[],int validos,deposito dato);
 deposito cargaRegistro();
 productos pasarDeRegistroCatAPro(deposito origen);
-
+void ordenarCatalogoAlfabeticamente(catalogo arreglo[], int validos);
 //cargaDeCatalogo
-int pasardeArchivoAArreglo(char archivo[],catalogo arreglo[],int dim);
+int pasardeArchivoAArreglo(char archivo[],int idDeSuc,catalogo arreglo[],int dim);
 
 
 
@@ -78,9 +80,9 @@ void muestraLISTATODOs(nodoProductos *lista);
 //CARGA ARCHIVO DEPOSITO
 deposito cargaRegistro();
 int cantidadDeRegistros();
-void cargaArchivo(char archivo[]);
+void cargaArchivo(char archivo[], int idDeSuc) ;
 int generarIDUnico() ;
-
+int buscarIdCategoriaPorNombre( char nombreArchivo[],  char nombreCategoria[]);
 
 int cantidadDeRegistros();
 
@@ -89,18 +91,19 @@ int cantidadDeRegistros();
 void muestraArchivo(char archivo[]);
 
 //funciones de eliminar
-void desactivarCatalogo(char archivo[],catalogo ar[], int id, int pos);
-void desactivarProducto(char archivo[],catalogo ar[], int pos,nodoProductos* id);
+
+void desactivarCatalogo(char archivo[],catalogo ar[],  int pos,int idDeSuc);
+void desactivarProducto(char archivo[], catalogo arreglo[],int pos,nodoProductos* id,int idDeSuc);
 int buscaEnCatalogoPorId(catalogo arreglo[],int validos,int id);
 nodoProductos *buscaEnListaId(catalogo arreglo[],int pos,int idDePro);
-void activarProducto(char archivo[], catalogo arreglo[],int pos,nodoProductos* id);
-void activarCatalogo(char archivo[],catalogo ar[], int id, int pos);
+void activarProducto(char archivo[], catalogo arreglo[],int pos,nodoProductos* id,int idDeSuc);
+void activarCatalogo(char archivo[],catalogo ar[], int id, int pos,int idDeSuc);
 //funciones de menu
 int menu();
 int menuOpcion();
 
-
-//MUESTRA ARCHIVO DE VENTAS
-//void muestraUnRegistroVentas(StRegistroventas dato);
-//void muestraArchivoVentas(char archivo[]);
+//MODIFICAR EL ARCHUIVO
+void modificarCatalogoArchivo(catalogo ar[], int pos,  char nuevoNombreCatalogo[]);//MODIFICA EL NOMBRE DEL CATALOGO;
+void modificarProductoArchivo(catalogo ar[], int pos,  int idDePro,char nuevoNombreProducto[]);//MODIFICA EL NOMBRE DEL PRODUCTO
+void modificarProductoPrecioArchivo(catalogo ar[], int pos,  int idDePro,int nuevoPrecio);//MODIFICA EL PRECIO PRODUCTO
 #endif // LISTASPRODUCTOS_H_INCLUDED

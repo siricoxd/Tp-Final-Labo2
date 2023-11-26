@@ -26,17 +26,27 @@ nodoProductos *crearNuevonodoProductos(productos dato )
     return aux;//retorno el la nuva direccion de memoria para que sea asignada a un puntero
 
 }
-
-nodoProductos* agregarNuevonodoProductosAlPLista(nodoProductos*lista,nodoProductos *nuevonodoProductos)
+nodoProductos* agregarNuevonodoProductosAlPLista(nodoProductos* lista, nodoProductos* nuevonodoProductos)
 {
-    if(lista==NULL)//verifico si la lista esta vacia
+    if (lista == NULL || strcasecmp(nuevonodoProductos->dato.nombreDeProductos, lista->dato.nombreDeProductos) < 0)
     {
-        lista=nuevonodoProductos;//si lo esta mi nuevo nodoProductos sera el primero en la lista
+        // Case: the list is empty or the new node should go at the beginning
+        nuevonodoProductos->siguiente = lista;
+        lista = nuevonodoProductos;
     }
     else
     {
-        nuevonodoProductos->siguiente=lista;//si ya hay uno copio su direccion de memoria en siguiente
-        lista=nuevonodoProductos;//EN EL LUGAR QUE ESTaba la lista sera el lugar de mi nuevo nodd porque estoy agregando al principio
+        // Find the correct position for insertion based on alphabetical order
+        nodoProductos* actual = lista;
+        while (actual->siguiente != NULL &&
+                strcasecmp(nuevonodoProductos->dato.nombreDeProductos, actual->siguiente->dato.nombreDeProductos) > 0)
+        {
+            actual = actual->siguiente;
+        }
+
+        // Insert the new nodoProductos at the correct position
+        nuevonodoProductos->siguiente = actual->siguiente;
+        actual->siguiente = nuevonodoProductos;
     }
 
     return lista;
@@ -49,7 +59,7 @@ int buscaEnCatalogo(catalogo arreglo[],int validos,deposito dato)
     int i=validos-1,flag=-1;
     while(i>=0 && flag==-1)
     {
-        if(strcasecmp(arreglo[i].nombreDeCategoria,dato.nombreDeCategoria)==0)
+        if(strcmp(arreglo[i].nombreDeCategoria,dato.nombreDeCategoria)==0)
         {
             flag=i;
         }
@@ -114,23 +124,45 @@ productos pasarDeRegistroCatAPro(deposito origen)
 
     return dest;
 }
+void ordenarCatalogoAlfabeticamente(catalogo arreglo[], int validos)
+{
+    int i, j;
+    catalogo temp;
+
+    for (i = 0; i < validos - 1; i++)
+    {
+        for (j = 0; j < validos - i - 1; j++)
+        {
+            if (strcasecmp(arreglo[j].nombreDeCategoria, arreglo[j + 1].nombreDeCategoria) > 0)
+            {
+                // Swap elements if they are in the wrong order
+                temp = arreglo[j];
+                arreglo[j] = arreglo[j + 1];
+                arreglo[j + 1] = temp;
+            }
+        }
+    }
+}
 //__________________________________________________________________________________________________________________________________________________________________________________________________________________
 
 // carga de arreglo de listas
 
 
-int pasardeArchivoAArreglo(char archivo[],catalogo arreglo[],int dim)
+int pasardeArchivoAArreglo(char archivo[],int idDeSuc,catalogo arreglo[],int dim)
 {
     FILE *archi=fopen(archivo,"rb");
-    deposito aux;
-    int i=0,validos=0;
-    if(archi!=NULL)
-    {
-        while(fread(&aux,sizeof(deposito),1,archi)>0&& i<dim)
-        {
-            validos=altaCatalogo(arreglo,validos,aux);
+      deposito aux;
+    int i = 0, validos = 0;
+
+    if (archi != NULL) {
+        while (fread(&aux, sizeof(deposito), 1, archi) == 1 && i < dim) {
+            if (aux.idDeSucursal == idDeSuc) {
+                validos = altaCatalogo(arreglo, validos, aux);
+                i++;
+            }
         }
     }
+
     return validos;
 }
 
@@ -182,6 +214,7 @@ void muestraDeCatalogo(catalogo A[],int validos)
         muestraUnCatalogo(A[i]);
         i++;
     }
+
 }
 
 //MUESTRA ACTIVO Y NO ACTIVOS
@@ -192,7 +225,7 @@ void muestraLISTATODOs(nodoProductos *lista)
     while (lista != NULL)
     {
 
-            mostrarUnProducto(lista->dato);
+        mostrarUnProducto(lista->dato);
 
         lista = lista->siguiente;
     }
@@ -200,11 +233,11 @@ void muestraLISTATODOs(nodoProductos *lista)
 }
 void muestraUnCatalogoTodos(catalogo A)
 {
-      printf("\nNOMBRE DE CATEGORIA: %s", A.nombreDeCategoria);
-        printf("\nID DE CATEGORIA|%d|", A.idCategoria);
-        printf("\nACTIVO(catalogo):%d",A.activoCat);
-        muestraLISTATODOs(A.lista);
-        printf("\n----------------------------------------------");
+    printf("\nNOMBRE DE CATEGORIA: %s", A.nombreDeCategoria);
+    printf("\nID DE CATEGORIA|%d|", A.idCategoria);
+    printf("\nACTIVO(catalogo):%d",A.activoCat);
+    muestraLISTATODOs(A.lista);
+    printf("\n----------------------------------------------");
 
 
 
@@ -232,6 +265,7 @@ void muestraUnRegistro(deposito dato)
 {
     if(dato.activoCat==1)
     {
+        printf("\nid de suc %d",dato.idDeSucursal);
         printf("\nNOMBRE DE CATEGORIA: %s",dato.nombreDeCategoria);
         printf("\nid DE CATEGORIA|%d|",dato.idCategoria);
         printf("\nACTIVO CATEGORIA: %d",dato.activoCat);
@@ -262,7 +296,8 @@ void muestraArchivo(char archivo[])
         }
         fclose(archi);
     }
-    else{
+    else
+    {
         printf("Error archivo deposito.\n");
     }
 
@@ -272,24 +307,32 @@ void muestraArchivo(char archivo[])
 
 
 //funcion de desactivar
-int buscaEnCatalogoPorId(catalogo arreglo[],int validos,int id)
+int buscaEnCatalogoPorId(catalogo arreglo[], int validos, int id)
 {
-    int flag=-1,i=0;
+    int flag = -1, i = 0;
 
-    while(i<validos && flag==-1)
+    while (i < validos && flag == -1)
     {
-        if(arreglo[i].idCategoria==id)
+        if (arreglo[i].idCategoria == id)
         {
-            flag=i;
-
+            flag = i;
+            break;
         }
         i++;
     }
-    //muestraUnCatalogo(arreglo[i-1]);
+
+
+    if (flag == -1)
+    {
+        printf("No se encontró una categoría con el ID %d.\n", id);
+         return flag;
+    }
+
     return flag;
 }
 
-void desactivarCatalogo(char archivo[],catalogo ar[], int id, int pos)
+
+void desactivarCatalogo(char archivo[],catalogo ar[], int pos,int idDeSuc)
 {
     FILE *buffer = fopen(archivo, "r+b");
 
@@ -298,19 +341,22 @@ void desactivarCatalogo(char archivo[],catalogo ar[], int id, int pos)
         deposito aux;
         int flag = 0;
 
+
         while (fread(&aux, sizeof(deposito), 1, buffer) > 0 && flag == 0)
-        {
-            if (ar[pos].idCategoria == aux.idCategoria )
-            {
-                ar[pos].activoCat = 0;
+{
+    printf("ar[pos].idCategoria: %d, aux.idCategoria: %d, aux.idDeSucursal: %d, idDeSuc: %d\n", ar[pos].idCategoria, aux.idCategoria, aux.idDeSucursal, idDeSuc);
+
+    if (ar[pos].idCategoria == aux.idCategoria && aux.idDeSucursal == idDeSuc)
+    {
+      ar[pos].activoCat = 0;
                 aux.activoCat = 0;
 
                 fseek(buffer, (-1) * sizeof(deposito), SEEK_CUR);
                 fwrite(&aux, sizeof(deposito), 1, buffer);
                 fflush(buffer);
                 flag = 1;
-            }
-        }
+    }
+}
 
         fclose(buffer);
     }
@@ -344,7 +390,7 @@ nodoProductos* buscaEnListaId(catalogo arreglo[],int pos,int idDePro)
 
 }
 
-void desactivarProducto(char archivo[], catalogo arreglo[],int pos,nodoProductos* id)
+void desactivarProducto(char archivo[], catalogo arreglo[],int pos,nodoProductos* id,int idDeSuc)
 {
     FILE *buffer = fopen(archivo, "r+b");
 
@@ -358,7 +404,7 @@ void desactivarProducto(char archivo[], catalogo arreglo[],int pos,nodoProductos
         while (fread(&aux, sizeof(deposito), 1, buffer)>0 && flag == 0)//abre
         {
 
-            if (id->dato.id == aux.id )
+            if (id->dato.id == aux.id&& aux.idDeSucursal==idDeSuc )
             {
                 id->dato.activoPro = 0;
                 aux.activoPro = 0;
@@ -375,7 +421,7 @@ void desactivarProducto(char archivo[], catalogo arreglo[],int pos,nodoProductos
 
 }
 
-void activarProducto(char archivo[], catalogo arreglo[],int pos,nodoProductos* id)
+void activarProducto(char archivo[], catalogo arreglo[],int pos,nodoProductos* id,int idDeSuc)
 {
     FILE *buffer = fopen(archivo, "r+b");
 
@@ -386,10 +432,9 @@ void activarProducto(char archivo[], catalogo arreglo[],int pos,nodoProductos* i
 
         int flag = 0;
 
-        while (fread(&aux, sizeof(deposito), 1, buffer) && flag == 0)//abre
+        while (fread(&aux, sizeof(deposito), 1, buffer) == 1 && flag == 0)
         {
-
-            if (id->dato.id == aux.id )
+            if (id->dato.id == aux.id && aux.idDeSucursal == idDeSuc)
             {
                 id->dato.activoPro = 1;
                 aux.activoPro = 1;
@@ -397,10 +442,10 @@ void activarProducto(char archivo[], catalogo arreglo[],int pos,nodoProductos* i
                 fseek(buffer, (-1) * sizeof(deposito), SEEK_CUR);
                 fwrite(&aux, sizeof(deposito), 1, buffer);
                 flag = 1;
-
             }
         }
-        if(flag==0){
+        if(flag==0)
+        {
             printf("\nNo se pudo activar el producto.\n");
         }
         fclose(buffer);
@@ -409,7 +454,7 @@ void activarProducto(char archivo[], catalogo arreglo[],int pos,nodoProductos* i
 
 }
 
-void activarCatalogo(char archivo[],catalogo ar[], int id, int pos)
+void activarCatalogo(char archivo[],catalogo ar[], int id, int pos,int idDeSuc)
 {
     FILE *buffer = fopen(archivo, "r+b");
 
@@ -420,7 +465,7 @@ void activarCatalogo(char archivo[],catalogo ar[], int id, int pos)
 
         while (fread(&aux, sizeof(deposito), 1, buffer) > 0 && flag == 0)
         {
-            if (ar[pos].idCategoria == aux.idCategoria && aux.activoCat!=1)
+            if (ar[pos].idCategoria == aux.idCategoria && aux.activoCat!=1 && aux.idDeSucursal==idDeSuc)
             {
                 ar[pos].activoCat = 1;
                 aux.activoCat = 1;
@@ -431,7 +476,8 @@ void activarCatalogo(char archivo[],catalogo ar[], int id, int pos)
                 flag = 1;
             }
         }
-        if(flag==0){
+        if(flag==0)
+        {
             printf("\nNo se pudo activar la categoria.\n");
         }
 
@@ -457,54 +503,36 @@ int generarIDUnico()
     return rand();
 }
 
-
-deposito cargaRegistro()
+deposito cargaRegistro(int idDeSuc)
 {
-
-
-
     deposito dato;
 
+    dato.idDeSucursal = idDeSuc;
 
     printf("\nNOMBRE DE CATEGORIA: ");
     fflush(stdin);
     gets(dato.nombreDeCategoria);
-    //dato.idCategoria=generarIDUnico();
-    FILE* buffer1 = fopen(ARCHIVO_DEPOSITO,"rb");
-    if(buffer1)
-    {
-        dato.idCategoria=cantidadDeRegistros()*1;
 
-        fclose(buffer1);
-    }
+    // Use a consistent method for generating idCategoria
+    dato.idCategoria = generarIDUnico();
 
     dato.activoCat = 1;
 
+    // Use a consistent method for generating id
+    dato.id = generarIDUnico();
 
-
-
-    FILE* buffer2 = fopen(ARCHIVO_DEPOSITO,"rb");
-    if(buffer2)
-    {
-        dato.id=cantidadDeRegistros()+1;
-
-        fclose(buffer2);
-    }
-   // dato.id=generarIDUnico();
     printf("\nNOMBRE DE PRODUCTO:  ");
     fflush(stdin);
     gets(dato.nombreDeProductos);
-    dato.stock=0;//inicializo en 0 y el provedor le pasa el stock
+
+    dato.stock = 0; // Initialize to 0, and the supplier will update the stock
     printf("\nPRECIO POR KILO: ");
-    scanf("%d",&dato.precioPorKilo);
-    dato.activoPro=1;
+    scanf("%d", &dato.precioPorKilo);
 
-
-
+    dato.activoPro = 1;
 
     return dato;
 }
-
 
 
 
@@ -520,24 +548,166 @@ int cantidadDeRegistros()
     }
     return cantidad;
 }
-void cargaArchivo(char archivo[]){
+
+int buscarIdCategoriaPorNombre( char nombreArchivo[],  char nombreCategoria[])
+{
+    FILE* archivo = fopen(nombreArchivo, "rb");
+
+    if (archivo == NULL)
+    {
+        perror("Error al abrir el archivo");
+        return -1; // Return -1 to indicate an error
+    }
+
+    catalogo registro;
+
+    while (fread(&registro, sizeof(catalogo), 1, archivo) == 1)
+    {
+        if (strcmp(registro.nombreDeCategoria, nombreCategoria) == 0 && registro.activoCat == 1)
+        {
+            fclose(archivo);
+            return registro.idCategoria; // Return the ID if category is found
+        }
+    }
+
+    fclose(archivo);
+    return -1; // Return -1 if category is not found
+}
+void cargaArchivo(char archivo[], int idDeSuc)
+{
     deposito aux;
     char opcion;
-    do{
-        FILE* buffer= fopen(archivo,"ab");
-        if(buffer) {
-        aux=cargaRegistro();
-        fwrite(&aux,sizeof(deposito),1,buffer);
-        printf("\nSi desea salir presione ESC. De lo contrario, presione cualquier tecla.\n");
-        fflush(stdin);
-        opcion=getch();
-        system("cls");
+
+    FILE* buffer = fopen(archivo, "ab");
+    if (buffer)
+    {
+        do
+        {
+
+            aux = cargaRegistro(idDeSuc);
+            fwrite(&aux, sizeof(deposito), 1, buffer);
+
+            printf("\nSi desea salir presione ESC. De lo contrario, presione cualquier tecla.\n");
+            fflush(stdin);
+            opcion = getch();
+            system("cls");
         }
+        while (opcion != ESC);
+
         fclose(buffer);
-        }while(opcion!=ESC);
-
-
-
-
+    }
+    else
+    {
+        perror("Error al abrir archivo");
+    }
 }
+
+
+
+//MODIFICACIONE EN EL ARCHIVO
+
+
+void modificarCatalogoArchivo(catalogo ar[], int pos,  char nuevoNombreCatalogo[])//MODIFICA EL NOMBRE DEL CATALOGO
+{
+    FILE *buffer = fopen(ARCHIVO_DEPOSITO, "r+b");
+
+    if (buffer)
+    {
+        deposito aux;
+        long posicion = 0;  // Almacena la posición actual en el archivo
+
+        while (fread(&aux, sizeof(deposito), 1, buffer) > 0)
+        {
+            if (strcmp(aux.nombreDeCategoria, ar[pos].nombreDeCategoria) == 0)
+            {
+                // Modificar el nombre de la categoría en la estructura auxiliar
+                strcpy(aux.nombreDeCategoria, nuevoNombreCatalogo);
+
+                // Guardar la posición actual en el archivo
+                fseek(buffer, posicion, SEEK_SET);
+
+                // Escribir la estructura modificada de vuelta en el archivo
+                fwrite(&aux, sizeof(deposito), 1, buffer);
+
+                // Romper el bucle después de la modificación
+                break;
+            }
+
+            // Actualizar la posición actual en el archivo
+            posicion = ftell(buffer);
+        }
+
+        fclose(buffer);
+    }
+}
+
+
+void modificarProductoArchivo(catalogo ar[], int pos,  int idDePro,char nuevoNombreProducto[])//MODIFICA EL NOMBRE DEL PRODUCTO
+{
+    FILE *buffer = fopen(ARCHIVO_DEPOSITO, "r+b");
+
+    if (buffer)
+    {
+        deposito aux;
+        long posicion = 0;  // Almacena la posición actual en el archivo
+
+        while (fread(&aux, sizeof(deposito), 1, buffer) > 0)
+        {
+            if (strcmp(aux.nombreDeCategoria, ar[pos].nombreDeCategoria) == 0 && aux.id==idDePro)
+            {
+                // Modificar el nombre de la categoría en la estructura auxiliar
+
+                strcpy(aux.nombreDeProductos,nuevoNombreProducto);
+                // Guardar la posición actual en el archivo
+                fseek(buffer, posicion, SEEK_SET);
+
+                // Escribir la estructura modificada de vuelta en el archivo
+                fwrite(&aux, sizeof(deposito), 1, buffer);
+
+                // Romper el bucle después de la modificación
+                break;
+            }
+
+            // Actualizar la posición actual en el archivo
+            posicion = ftell(buffer);
+        }
+
+        fclose(buffer);
+    }
+}
+
+void modificarProductoPrecioArchivo(catalogo ar[], int pos,  int idDePro,int nuevoPrecio)//MODIFICA EL PRECIO PRODUCTO
+{
+    FILE *buffer = fopen(ARCHIVO_DEPOSITO, "r+b");
+
+    if (buffer)
+    {
+        deposito aux;
+        long posicion = 0;  // Almacena la posición actual en el archivo
+
+        while (fread(&aux, sizeof(deposito), 1, buffer) > 0)
+        {
+            if (strcmp(aux.nombreDeCategoria, ar[pos].nombreDeCategoria) == 0 && aux.id==idDePro)
+            {
+                // Modificar el nombre de la categoría en la estructura auxiliar
+
+                aux.precioPorKilo=nuevoPrecio;
+                // Guardar la posición actual en el archivo
+                fseek(buffer, posicion, SEEK_SET);
+
+                // Escribir la estructura modificada de vuelta en el archivo
+                fwrite(&aux, sizeof(deposito), 1, buffer);
+
+                // Romper el bucle después de la modificación
+                break;
+            }
+
+            // Actualizar la posición actual en el archivo
+            posicion = ftell(buffer);
+        }
+
+        fclose(buffer);
+    }
+}
+
 

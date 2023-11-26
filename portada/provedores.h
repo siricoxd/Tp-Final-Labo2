@@ -20,8 +20,8 @@ typedef struct nodoDobleProvedores
 typedef struct fila
 {
 
-    nodoDobleProvedores *prim;//nodo que apunta al primero de la lista
-    nodoDobleProvedores *ult;//nodo que apunt al ultimo de la lista
+    struct nodoDobleProvedores *prim;//nodo que apunta al primero de la lista
+    struct nodoDobleProvedores *ult;//nodo que apunt al ultimo de la lista
 }fila;
 
 //TDA LISTAS DOBLES
@@ -35,7 +35,7 @@ void agregarALF(nodoDobleProvedores **lista, nodoDobleProvedores *nuevo);
 void muestraLista(nodoDobleProvedores *seg);
 provedor cargaUnaprovedor();
 
-
+nodoDobleProvedores * inicializarListaDProductos();
 //FILAS
 
 
@@ -58,4 +58,5 @@ void cargaFilaDeProvedores(catalogo dato, fila *prov, char archivoDepos[]);
 provedor cambioDeEstrucCatalAFila(productos dato, char archivoDepos[]);
 int cargaCompra();
 void modificarSatockDeposito(char archi[], int idDelRegistro, int compra);
+void cargaFila(fila *prov,productos dato,char archivoDeposGrl[]);
 #endif // PROVEDORES_H_INCLUDED

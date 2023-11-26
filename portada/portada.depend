@@ -98,7 +98,7 @@
 	<stdlib.h>
 	<windows.h>
 
-1700807226 source:c:\users\54223\desktop\proyecto\tp-final-labo2\portada\main.c
+1701031845 source:c:\users\54223\desktop\proyecto\tp-final-labo2\portada\main.c
 	<stdio.h>
 	<stdlib.h>
 	<windows.h>
@@ -167,13 +167,13 @@
 1700713680 c:\users\54223\desktop\proyecto\tp-final-labo2\portada\librerias\portada\portada.h
 	"../listaSucursales/listasSucusrsales.h"
 
-1700767573 source:c:\users\54223\desktop\proyecto\tp-final-labo2\portada\listassucursales.c
+1700952171 source:c:\users\54223\desktop\proyecto\tp-final-labo2\portada\listassucursales.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"listasSucusrsales.h"
 
-1700805870 c:\users\54223\desktop\proyecto\tp-final-labo2\portada\listassucusrsales.h
+1700952171 c:\users\54223\desktop\proyecto\tp-final-labo2\portada\listassucusrsales.h
 
 1700805870 source:c:\users\54223\desktop\proyecto\tp-final-labo2\portada\depositosucursal.c
 	<stdio.h>
@@ -184,56 +184,55 @@
 1700667287 c:\users\54223\desktop\proyecto\tp-final-labo2\portada\depositosucursal.h
 	"listasProductos.h"
 
-1700667287 c:\users\54223\desktop\proyecto\tp-final-labo2\portada\listasproductos.h
+1701023235 c:\users\54223\desktop\proyecto\tp-final-labo2\portada\listasproductos.h
 	<time.h>
 	<conio.h>
 	<string.h>
 
-1700804513 source:c:\users\54223\desktop\proyecto\tp-final-labo2\portada\listasproductos.c
+1701026198 source:c:\users\54223\desktop\proyecto\tp-final-labo2\portada\listasproductos.c
 	<stdio.h>
 	<stdlib.h>
 	"listasProductos.h"
 
-1700715214 source:c:\users\54223\desktop\proyecto\tp-final-labo2\portada\provedores.c
+1700921750 source:c:\users\54223\desktop\proyecto\tp-final-labo2\portada\provedores.c
 	<stdio.h>
 	<stdlib.h>
 	"provedores.h"
 	<string.h>
 	<conio.h>
 
-1700715214 c:\users\54223\desktop\proyecto\tp-final-labo2\portada\provedores.h
+1700921360 c:\users\54223\desktop\proyecto\tp-final-labo2\portada\provedores.h
 	"listasProductos.h"
 
-1700764301 source:c:\users\54223\desktop\proyecto\tp-final-labo2\portada\ventas.c
+1701016383 source:c:\users\54223\desktop\proyecto\tp-final-labo2\portada\ventas.c
 	<stdio.h>
 	<stdlib.h>
 	<windows.h>
 	"ventas.h"
 
-1700766223 c:\users\54223\desktop\proyecto\tp-final-labo2\portada\ventas.h
-	"depositoSucursal.h"
+1701016423 c:\users\54223\desktop\proyecto\tp-final-labo2\portada\ventas.h
+	"listasProductos.h"
 
-1700807226 source:c:\users\54223\desktop\proyecto\tp-final-labo2\portada\menus.c
+1701030875 source:c:\users\54223\desktop\proyecto\tp-final-labo2\portada\menus.c
 	"menus.h"
 
-1700807081 c:\users\54223\desktop\proyecto\tp-final-labo2\portada\menus.h
+1701031845 c:\users\54223\desktop\proyecto\tp-final-labo2\portada\menus.h
 	<stdio.h>
 	<stdlib.h>
 	"listasProductos.h"
 	"provedores.h"
 	<windows.h>
-	"depositoSucursal.h"
 	"ventas.h"
 	"menuGanancias.h"
 	"listasSucusrsales.h"
 
-1700806252 source:c:\users\54223\desktop\proyecto\tp-final-labo2\portada\portada.c
+1701032224 source:c:\users\54223\desktop\proyecto\tp-final-labo2\portada\portada.c
 	"portada.h"
 	<stdio.h>
 	<stdlib.h>
 	<windows.h>
 
-1700714516 c:\users\54223\desktop\proyecto\tp-final-labo2\portada\portada.h
+1700952171 c:\users\54223\desktop\proyecto\tp-final-labo2\portada\portada.h
 
 1700660901 source:c:\users\54223\desktop\proyecto\tp final mio\portada\librerias\depostitoporsucursal\depositosucursal.c
 	<stdio.h>
@@ -418,24 +417,24 @@
 	<windows.h>
 	"ventas.h"
 
-1700791347 source:c:\users\54223\desktop\proyecto\tp-final-labo2\portada\ganancias.c
+1701031476 source:c:\users\54223\desktop\proyecto\tp-final-labo2\portada\ganancias.c
 	"ganancias.h"
 
-1700791347 c:\users\54223\desktop\proyecto\tp-final-labo2\portada\ganancias.h
+1701031476 c:\users\54223\desktop\proyecto\tp-final-labo2\portada\ganancias.h
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"ventas.h"
 
-1700806252 source:c:\users\54223\desktop\proyecto\tp-final-labo2\portada\menuganancias.c
+1701031476 source:c:\users\54223\desktop\proyecto\tp-final-labo2\portada\menuganancias.c
 	"menuGanancias.h"
 
-1700710019 c:\users\54223\desktop\proyecto\tp-final-labo2\portada\menuganancias.h
+1701031476 c:\users\54223\desktop\proyecto\tp-final-labo2\portada\menuganancias.h
 	<stdio.h>
 	<stdlib.h>
 	"ganancias.h"
 
-1700801069 source:c:\users\54223\desktop\proyecto\tp-final-labo2\portada\empleados.c
+1701031476 source:c:\users\54223\desktop\proyecto\tp-final-labo2\portada\empleados.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -444,9 +443,9 @@
 
 1700768997 c:\users\54223\desktop\proyecto\tp-final-labo2\portada\menuempleados.h
 
-1700801069 c:\users\54223\desktop\proyecto\tp-final-labo2\portada\empleados.h
+1701031476 c:\users\54223\desktop\proyecto\tp-final-labo2\portada\empleados.h
 
-1700801069 source:c:\users\54223\desktop\proyecto\tp-final-labo2\portada\menuempleados.c
+1701031476 source:c:\users\54223\desktop\proyecto\tp-final-labo2\portada\menuempleados.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>

@@ -33,16 +33,16 @@
 
 
 
-void pasarDeArregloDeposAArchivoVenta(catalogoSuc arreglo[], int validos, char archivo[],char archuvivoDeposSuc[], int idDeSuc, char fechaVenta[11])//recorrer el arreglo y pasar los produ
+void pasarDeArregloDeposAArchivoVenta(catalogo arreglo[], int validos, char archivoVentas[], int idDeSuc, char fechaVenta[11])//recorrer el arreglo y pasar los produ
 {
-    FILE *archi = fopen(archivo, "wb");
+    FILE *archi = fopen(archivoVentas, "wb");
     int i=0;
     if (archi != NULL)
     {
         while(i<validos)
         {
             printf("\nCARGUE LAS VENTAS DEL CATALOGO: %s",arreglo[i].nombreDeCategoria);
-             cargarArchivoVentas(arreglo[i], archi, archivo, archuvivoDeposSuc,idDeSuc,fechaVenta);
+             cargarArchivoVentas(arreglo[i], archi, idDeSuc,fechaVenta);
              i++;
         }
 
@@ -55,9 +55,9 @@ void pasarDeArregloDeposAArchivoVenta(catalogoSuc arreglo[], int validos, char a
 
 
 
-void cargarArchivoVentas(catalogoSuc dato, FILE *archi,  char arhcivo[],char archuvivoDeposSuc[], int idDeSuc, char fechaVenta[11])
+void cargarArchivoVentas(catalogo dato, FILE *archi,   int idDeSuc, char fechaVenta[11])
 {
-    nodoproductosSucursal *seg = dato.lista;
+    nodoProductos *seg = dato.lista;
 
     StRegistroventas aux;
 
@@ -65,8 +65,8 @@ void cargarArchivoVentas(catalogoSuc dato, FILE *archi,  char arhcivo[],char arc
     {
         while (seg != NULL )
         {
-                printf("\nCARGUE LAS VENTAS DEL PRODUCTO: %s",seg->dato.nombreDeproductosDepos);
-                aux = cambioDeEstrucCatalARegistro(seg->dato, arhcivo,archuvivoDeposSuc, idDeSuc,fechaVenta);
+                printf("\nCARGUE LAS VENTAS DEL PRODUCTO: %s",seg->dato.nombreDeProductos);
+                aux = cambioDeEstrucCatalARegistro(seg->dato,idDeSuc,fechaVenta);
                 fwrite(&aux, sizeof(StRegistroventas), 1, archi);
 
 
@@ -78,12 +78,12 @@ void cargarArchivoVentas(catalogoSuc dato, FILE *archi,  char arhcivo[],char arc
 
 
 
-StRegistroventas cambioDeEstrucCatalARegistro(productosDepos dato,char archivo[],char archuvivoDeposSuc[],int idDeSuc, char fechaVenta[11])//transforma el tio de dato catlogo a uno de registroventa y cargo el la venta y el dia
+StRegistroventas cambioDeEstrucCatalARegistro(productos dato,int idDeSuc, char fechaVenta[11])//transforma el tio de dato catlogo a uno de registroventa y cargo el la venta y el dia
 {
 
     StRegistroventas  dest;
 
-    strcpy(dest.nombreDeProductos,dato.nombreDeproductosDepos);
+    strcpy(dest.nombreDeProductos,dato.nombreDeProductos);
     dest.id=dato.id;
     dest.precioPorKilo=dato.precioPorKilo;
     dest.stock=dato.stock;
@@ -91,7 +91,7 @@ StRegistroventas cambioDeEstrucCatalARegistro(productosDepos dato,char archivo[]
 
     dest.venta=cargaVenta(dest.stock);
     dest.idDSuc=idDeSuc;
-    modificarSatock(archuvivoDeposSuc,dest.id,dest.venta,idDeSuc);
+    modificarSatock(dest.id,dest.venta,idDeSuc);
 
 
     return dest;
@@ -103,7 +103,7 @@ int cargaVenta(int stock)
     int venta;
     printf("\ncargue la venta del producto: ");
     scanf("%d",&venta);
-    while(venta>stock)
+    while(venta>stock )
     {
         printf("\ncargue la venta del producto(que no supere el stock disponible): ");
         scanf("%d",&venta);
@@ -114,29 +114,29 @@ int cargaVenta(int stock)
 
 }
 
-void modificarSatock(char archi[],int idDelRegistro,int venta,int idDeSuc)
+void modificarSatock(int idDelRegistro,int venta,int idDeSuc)
 {
     FILE *archivo;
 
 
-    archivo = fopen(archi, "rb+");
+    archivo = fopen(ARCHIVO_DEPOSITO, "rb+");
     if (archivo == NULL)
     {
         perror("Error al abrir el archivo");
 
     }
 
-    depositoSucursal registro;
+    deposito registro;
 
-    while (fread(&registro, sizeof(depositoSucursal), 1, archivo) == 1)
+    while (fread(&registro, sizeof(deposito), 1, archivo) == 1)
     {
-        if (registro.id == idDelRegistro&& registro.idDeSuc==idDeSuc)
+        if (registro.id == idDelRegistro&& registro.idDeSucursal==idDeSuc)
         {
 
             printf("stock antes de la modificación: %d\n", registro.stock);
             registro.stock=(registro.stock-venta); // Modifica el valor según tus necesidades
-            fseek(archivo, -sizeof(depositoSucursal), SEEK_CUR); // Retrocede al inicio del registro
-            fwrite(&registro, sizeof(depositoSucursal), 1, archivo); // Escribe el registro modificado
+            fseek(archivo, -sizeof(deposito), SEEK_CUR); // Retrocede al inicio del registro
+            fwrite(&registro, sizeof(deposito), 1, archivo); // Escribe el registro modificado
             printf("stock después de la modificación: %d\n", registro.stock);
             break;
         }

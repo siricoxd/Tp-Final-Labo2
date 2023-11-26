@@ -1,6 +1,6 @@
 #ifndef VENTAS_H_INCLUDED
 #define VENTAS_H_INCLUDED
-#include "depositoSucursal.h"
+#include "listasProductos.h"
 
 typedef struct
 {
@@ -19,12 +19,13 @@ typedef struct
 // crear archivo de ventas
 
 
-void pasarDeArregloDeposAArchivoVenta(catalogoSuc arreglo[], int validos, char archivo[],char archuvivoDeposSuc[], int idDeSuc, char fechaVenta[11]);//recorrer el arreglo y pasar los produ
 
-void cargarArchivoVentas(catalogoSuc dato, FILE *archi,  char arhcivo[],char archuvivoDeposSuc[], int idDeSuc, char fechaVenta[11]);
-StRegistroventas cambioDeEstrucCatalARegistro(productosDepos dato,char archivo[],char archuvivoDeposSuc[],int idDeSuc, char fechaVenta[11]);//transforma el tio de dato catlogo a uno de registroventa y cargo el la venta y el dia;
+void pasarDeArregloDeposAArchivoVenta(catalogo arreglo[], int validos, char archivoVentas[], int idDeSuc, char fechaVenta[11]);//recorrer el arreglo y pasar los produ
+
+void cargarArchivoVentas(catalogo dato, FILE *archi,  int idDeSuc, char fechaVenta[11]);
+StRegistroventas cambioDeEstrucCatalARegistro(productos dato,int idDeSuc, char fechaVenta[11]);//transforma el tio de dato catlogo a uno de registroventa y cargo el la venta y el dia;
 int cargaVenta(int stock);
-void modificarSatock(char archi[],int idDelRegistro,int venta,int idDeSuc);
+void modificarSatock(int idDelRegistro,int venta,int idDeSuc);
 void desactivarArchivoVentas (int id);
 
 
