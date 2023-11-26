@@ -11,6 +11,7 @@ static const char nombreArchivoVentas[]="ventas.bin";
 
 typedef struct{
     int anio;
+    int alta;
     int idSucursal;
     int arrayGanancias[MESES][DIAS];
 }ganancias;
@@ -43,9 +44,6 @@ void mostrarGananciasSucursal(nodoGananciasAnio* lista, int id);
 void mostrarGananciasAnio(nodoGananciasAnio* lista, int anio);
 void mostrarGanancias(int ganancias[MESES][DIAS]);
 
-//func usuario
-ganancias cargarGananciasUnDia();
-int cargarAnio();
 
 int precioPorVenta(int precio, int ventas);
 
@@ -62,6 +60,10 @@ int buscarEnArchivoGanancias(FILE* archivo, ganancias dato);
 void numeroAString(char* nombreMes, int mes);
 
 void crearArchivoGananciasConVentas();
-StRegistroventas cargarVentas();
 
 int buscaEnArchivoGanancias(char archivoGanancia[],char fecha[]);
+
+//alta/baja
+void altaBajaGananciasSucursal(int sucursal, int estado);
+void altaBajaGananciasAnio(int anio, int estado);
+int altaBajaGanancias(int sucursal, int anio, int estado);

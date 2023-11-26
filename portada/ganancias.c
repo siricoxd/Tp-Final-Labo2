@@ -137,11 +137,26 @@ void inicArregloGanancias(int ganancias[MESES][DIAS])
 }
 
 //printeo
+
+void mostrarTodasGananciasBajas(nodoGananciasAnio* lista){
+    while(lista!=NULL){
+        if(lista->dato.alta==0){
+            printf("\t---ANIO %d---\n\n", lista->dato.anio);
+            printf("--SUCURSAL %d--\n\n", lista->dato.idSucursal);
+            mostrarGanancias(lista->dato.arrayGanancias);
+        }
+        lista=lista->siguiente;
+    }
+}
 void mostrarTodasGanancias(nodoGananciasAnio* lista){
     while(lista!=NULL){
-        printf("\t---ANIO %d---\n\n", lista->dato.anio);
-         printf("--SUCURSAL %d--\n\n", lista->dato.idSucursal);
-        mostrarGanancias(lista->dato.arrayGanancias);
+        if(lista->dato.alta==1){
+            if(lista->anterior==NULL || lista->anterior->dato.anio!=lista->dato.anio){
+                printf("\t---ANIO %d---\n\n", lista->dato.anio);
+            }
+            printf("--SUCURSAL %d--\n\n", lista->dato.idSucursal);
+            mostrarGanancias(lista->dato.arrayGanancias);
+        }
         lista=lista->siguiente;
     }
 }
@@ -150,14 +165,16 @@ void mostrarGananciasSucursal(nodoGananciasAnio* lista, int id){
     printf("\t---SUCURSAL %d---\n\n", id);
     while(lista!=NULL){
         if(lista->dato.idSucursal==id){
-            flag=1;
-            printf("--ANIO %d--\n", lista->dato.anio);
-            mostrarGanancias(lista->dato.arrayGanancias);
+            if(lista->dato.alta==1){
+                flag=1;
+                printf("--ANIO %d--\n", lista->dato.anio);
+                mostrarGanancias(lista->dato.arrayGanancias);
+            }
         }
         lista=lista->siguiente;
     }
     if(flag==0){
-        printf("LA SUCURSAL %d NO EXISTE.\n", id);
+        printf("LA SUCURSAL %d NO EXISTE O HA SIDO DADA DE BAJA.\n", id);
     }
 }
 
@@ -166,8 +183,10 @@ void mostrarGananciasAnio(nodoGananciasAnio* lista, int anio){
     printf("\t---ANIO %d---\n\n", anio);
     while(lista!=NULL){
         if(lista->dato.anio==anio){
-            printf("--SUCURSAL %d--\n\n", lista->dato.idSucursal);
-            mostrarGanancias(lista->dato.arrayGanancias);
+            if(lista->dato.alta==1){
+                printf("--SUCURSAL %d--\n\n", lista->dato.idSucursal);
+                mostrarGanancias(lista->dato.arrayGanancias);
+            }
         }
         lista=lista->siguiente;
     }
@@ -185,7 +204,6 @@ void mostrarGanancias(int ganancias[MESES][DIAS])
                 break;
             }
         }
-
         if(hayGanancias==1){
             numeroAString(nombreMes, i+1);
             printf("GANANCIAS %s:\n", nombreMes);
@@ -330,6 +348,7 @@ ganancias ventasToGanancias(StRegistroventas ventas){
     aux.anio=anio;
     aux.arrayGanancias[mes-1][dia-1]=profit;
     aux.idSucursal=ventas.idDSuc;
+    aux.alta=1;
     return aux;
 }
 
@@ -401,34 +420,6 @@ void crearArchivoGananciasConVentas(){
     }
 }
 
-//func aux ventas
-StRegistroventas cargarVentas(){
-    StRegistroventas aux;
-    printf("Ingrese id sucursal: ");
-    scanf("%d", &aux.idDSuc);
-    fflush(stdin);
-    printf("Ingrese fecha de la venta (DIA/MES/ANIO): ");
-    gets(aux.fechaVenta);
-    printf("Precio: ");
-    scanf("%d", &aux.precioPorKilo);
-    printf("Ventas: ");
-    scanf("%d", &aux.venta);
-    return aux;
-}
-
-void cargarVariasVentas(){
-    int prod=0;
-    StRegistroventas aux;
-    printf("Ingrese cuantos productos desea cargar: ");
-    scanf("%d", &prod);
-
-    for(int i=0;i<prod;i++){
-        aux=cargarVentas();
-        sumarGananciasArchivo(aux);
-    }
-}
-
-
 
 int buscaEnArchivoGanancias(char archivoGanancia[],char fecha[])
 {
@@ -467,3 +458,102 @@ int buscaEnArchivoGanancias(char archivoGanancia[],char fecha[])
     return existe;
 }
 
+void altaBajaGananciasSucursal(int sucursal, int estado){
+    FILE* archivo=fopen(nombreArchivoGanancias, "rb+");
+    if(archivo){
+        ganancias aux;
+        long int pos=0;
+        while(fread(&aux, sizeof(ganancias), 1, archivo)==1){
+            if(aux.idSucursal==sucursal && aux.alta!=estado){
+                aux.alta=estado;
+                fseek(archivo, pos * sizeof(ganancias), SEEK_SET);
+                fwrite(&aux, sizeof(ganancias), 1, archivo);
+
+            }
+            pos=ftell(archivo);
+        }
+        fclose(archivo);
+    }
+    else{
+    printf("error archivo ganancias.\n");
+    }
+}
+
+void altaBajaGananciasAnio(int anio, int estado){
+    FILE *archivo=fopen(nombreArchivoGanancias, "rb+");
+    if(archivo){
+        ganancias aux;
+        long int pos=0;
+        while(fread(&aux, sizeof(ganancias), 1, archivo)==1){
+            if(aux.anio==anio && aux.alta!=estado){
+                aux.alta=estado;
+                fseek(archivo, pos * sizeof(ganancias), SEEK_SET);
+                fwrite(&aux, sizeof(ganancias), 1, archivo);
+            }
+            pos=ftell(archivo);
+        }
+        fclose(archivo);
+    }else{
+    printf("error archivo ganancias.\n");
+    }
+}
+
+int altaBajaGanancias(int sucursal, int anio, int estado){
+    FILE* archivo=fopen(nombreArchivoGanancias, "rb+");
+    int exito=0;
+    if(archivo){
+        ganancias aux;
+        aux.anio=anio;
+        aux.idSucursal=sucursal;
+        int flag=buscarEnArchivoGanancias(archivo, aux);
+        if(flag){
+            exito=1;
+            rewind(archivo);
+            while(fread(&aux, sizeof(ganancias), 1, archivo)==1){
+                if (aux.anio == anio && aux.idSucursal == sucursal) {
+                        aux.alta=estado;
+                        fseek(archivo, (-1) * sizeof(ganancias), SEEK_CUR);
+                        fwrite(&aux, sizeof(ganancias), 1, archivo);
+                        break;
+                    }
+            }
+        }
+        else{
+            printf("No se encontro ganancias de %d en la sucursal %d\n", anio, sucursal);
+        }
+        fclose(archivo);
+    }
+    else{
+        printf("error archivo ganancias.\n");
+    }
+    return exito;
+}
+
+
+void reemplazarDiaGanancias(int sucursal, char fecha[], int suma){
+    FILE* archivo=fopen(nombreArchivoGanancias, "rb+");
+    if(archivo){
+        int anio, mes, dia;
+        obtenerFecha(fecha, &anio, &mes, &dia);
+        ganancias aux;
+        long int pos=0;
+        while(fread(&aux, sizeof(ganancias), 1, archivo)==1){
+            if(sucursal==aux.idSucursal && anio==aux.anio){
+                if (mes >= 1 && mes <= MESES && dia >= 1 && dia <= DIAS) {
+                    aux.arrayGanancias[mes-1][dia-1]=suma;
+                    fseek(archivo, pos * sizeof(ganancias), SEEK_SET);
+                    fwrite(&aux, sizeof(ganancias), 1, archivo);
+                    break;
+                }
+                else{
+                    printf("Dia y mes no validos\n\n");
+                }
+            }
+            pos=ftell(archivo);
+        }
+        fclose(archivo);
+    }
+    else{
+        printf("error archivo ganancias\n");
+    }
+}
