@@ -355,10 +355,11 @@ void desactivarCatalogo(char archivo[],catalogo ar[], int pos,int idDeSuc)
                 fflush(buffer);
                 flag = 1;
     }
+fclose(buffer);
 }
 
-        fclose(buffer);
-    }
+
+
     else
     {
         printf("\nnnn");

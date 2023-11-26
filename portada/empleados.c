@@ -627,20 +627,7 @@ void cambiarSueldo(char archivo[], nodoArbol* aux, int dni)
 
 
 //dar de baja una sucursal
-/*/
-void inorderBajaSucursal(nodoArbol * arbol)
-{
-    if(arbol != NULL)
-    {
-        inorderBajaSucursal(arbol->izq);
 
-        arbol->dato.bajaSucursal=0;
-        arbol->dato.baja=0;
-
-        inorderBajaSucursal(arbol->der);
-    }
-}
-/*/
 void darDeBajaUnaSucursal(char archivo[], int idSucursal)
 {
 
@@ -681,20 +668,7 @@ void darDeBajaUnaSucursal(char archivo[], int idSucursal)
 }
 //dar de alta una sucursal
 
-/*/
-void inorderAltaSucursal(nodoArbol * arbol)
-{
-    if(arbol != NULL)
-    {
-        inorderAltaSucursal(arbol->izq);
 
-        arbol->dato.bajaSucursal=1;
-        //arbol->dato.baja=1;
-
-        inorderAltaSucursal(arbol->der);
-    }
-}
-/*/
 void darDeAltaUnaSucursal(char archivo[], int idSucursal)
 {
 
