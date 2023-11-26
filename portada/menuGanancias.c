@@ -281,4 +281,5 @@ void menuModificacionGanancias(){
     if(menuConfirmacion()){
         reemplazarDiaGanancias(sucursal, fecha, nuevasGanancias);
     }
+    system("pause");
 }

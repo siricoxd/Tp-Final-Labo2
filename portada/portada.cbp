@@ -31,11 +31,6 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
-		<Unit filename="depositoSucursal.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="depositoSucursal.h" />
-		<Unit filename="depsucursal.bin" />
 		<Unit filename="empleados.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -86,6 +81,9 @@
 		<Unit filename="ventas.h" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
+			<code_completion />
+			<envvars />
+			<debugger />
 		</Extensions>
 	</Project>
 </CodeBlocks_project_file>

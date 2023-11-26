@@ -533,13 +533,14 @@ int altaBajaGanancias(int sucursal, int anio, int estado){
 void reemplazarDiaGanancias(int sucursal, char fecha[], int suma){
     FILE* archivo=fopen(nombreArchivoGanancias, "rb+");
     if(archivo){
-        int anio, mes, dia;
+        int anio, mes, dia, flag=0;
         obtenerFecha(fecha, &anio, &mes, &dia);
         ganancias aux;
         long int pos=0;
         while(fread(&aux, sizeof(ganancias), 1, archivo)==1){
             if(sucursal==aux.idSucursal && anio==aux.anio){
-                if (mes >= 1 && mes <= MESES && dia >= 1 && dia <= DIAS) {
+                flag=1;
+                if (mes >= 1 && mes <= MESES && dia >= 1 && dia <= DIAS){
                     aux.arrayGanancias[mes-1][dia-1]=suma;
                     fseek(archivo, pos * sizeof(ganancias), SEEK_SET);
                     fwrite(&aux, sizeof(ganancias), 1, archivo);
@@ -550,6 +551,9 @@ void reemplazarDiaGanancias(int sucursal, char fecha[], int suma){
                 }
             }
             pos=ftell(archivo);
+        }
+        if(flag==0){
+            printf("No se encontro sucursal o fecha ingresada.\n");
         }
         fclose(archivo);
     }

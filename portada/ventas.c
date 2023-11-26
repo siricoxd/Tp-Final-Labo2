@@ -100,15 +100,19 @@ StRegistroventas cambioDeEstrucCatalARegistro(productos dato,int idDeSuc, char f
 
 int cargaVenta(int stock)
 {
-    int venta;
-    printf("\ncargue la venta del producto: ");
-    scanf("%d",&venta);
-    while(venta>stock )
-    {
-        printf("\ncargue la venta del producto(que no supere el stock disponible): ");
+    int venta=0;
+    if(stock>0){
+        printf("\ncargue la venta del producto: ");
         scanf("%d",&venta);
+        while(venta>stock )
+        {
+            printf("\ncargue la venta del producto(que no supere el stock disponible): ");
+            scanf("%d",&venta);
+        }
     }
-
+    else{
+        printf("\nNo hay stock disponible. dirijase a proveedores\n");
+    }
 
     return venta;
 
